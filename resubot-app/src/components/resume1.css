@@ -1,0 +1,180 @@
+.container {
+    font-family: Arial, sans-serif;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+}
+  
+  
+p {
+    font-size: 16px;
+    margin: 5px 0;
+}
+
+.header {
+  padding: 30px;
+  text-align: center;
+}
+
+.header h1 {
+  font-size: 36px;
+  margin: 0;
+  padding: 15px;
+}
+
+.header p {
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+.contact-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Vertically center the content within the flex container */
+}
+
+hr{
+    width: 100%;
+    height: 4px; /* Adjust the thickness by changing the height value */
+    background-color: #000; /* Set the line color to your preference */
+}
+
+.education {
+    padding: 20px;
+}
+
+.education h2 {
+    font-size: 24px;
+    padding: 15px;
+    margin: 0;
+}
+
+.education-item {
+    margin: 10px 0;
+    padding: 10px;
+}
+  
+.education-item h4 {
+    font-size: 20px;
+    margin: 0 0 5px 0;
+    color: #333; /* Set your preferred color */
+}
+  
+.education-item p {
+    font-size: 16px;
+    margin: 5px 0;
+    color: #555; /* Set your preferred color */
+    display: flex;
+    justify-content: space-between;
+}
+  
+.education-item p:last-child {
+    text-align: right;
+}
+
+
+.experience {
+    padding: 20px;
+}
+
+.experience h2 {
+    font-size: 24px;
+    padding: 15px;
+    margin: 0;
+}
+
+.experience-item {
+    margin: 10px 0;
+    padding: 10px;
+}
+  
+.experience-item h4 {
+    font-size: 20px;
+    margin: 0 0 5px 0;
+    color: #333; /* Set your preferred color */
+}
+  
+.experience-item p {
+    font-size: 16px;
+    margin: 5px 0;
+    color: #555; /* Set your preferred color */
+    display: flex;
+    justify-content: space-between;
+}
+  
+.experience-item p:last-child {
+    text-align: right;
+}
+
+.experience-item ul {
+    list-style: disc; /* You can change the list style */
+    margin: 0;
+    padding: 0;
+    padding-left: 20px;
+    color: #555; /* Set your preferred color */
+}
+  
+.experience-item ul li {
+    font-size: 16px;
+    margin: 5px 0;
+}
+
+
+
+.project {
+    padding: 10px;
+}
+
+.project h2 {
+    font-size: 24px;
+    padding: 15px;
+    margin: 0;
+}
+
+.project-item {
+    margin: 10px 0;
+    padding: 10px;
+}
+  
+.project-item h4 {
+    font-size: 20px;
+    margin: 0 0 5px 0;
+    color: #333; /* Set your preferred color */
+}
+  
+.project-item p {
+    font-size: 16px;
+    margin: 5px 0;
+    color: #555; /* Set your preferred color */
+    display: flex;
+    justify-content: space-between;
+}
+
+.skills {
+    padding: 20px;
+}
+
+.skills h2 {
+    font-size: 24px;
+    padding: 15px;
+    margin: 0;
+}
+
+.skills-items{
+    column-count: 2; /* Split the list into two columns */
+    column-gap: 20px; /* Add spacing between columns */
+    padding-left: 20px;
+    list-style: none; /* Remove default list styles */
+}
+  
+.skills-items li { 
+    margin: 0;
+    padding: 5px 0; /* Add vertical spacing between list items */
+    break-inside: avoid; /* Prevent list items from breaking across columns */
+}
+
+ 
+
+
+  

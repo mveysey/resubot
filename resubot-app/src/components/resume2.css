@@ -1,0 +1,155 @@
+.container2 {
+    font-family: Georgia, sans-serif;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+
+}
+  
+h1 {
+    font-size: 80px;
+    margin: 0;
+}
+h4{
+    font-weight: normal;
+}
+h5{
+    font-weight: normal;
+}
+p {
+    font-size: 16px;
+    margin: 5px 0;
+}
+
+hr{
+    width: 100%;
+    height: 4px;
+    background-color: #000;
+}
+
+.header2 {
+  padding: 30px;
+  text-align: center;
+}
+
+.header2 h1 {
+  font-size: 36px;
+  margin: 0;
+}
+
+.header2 p {
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+.contact-info2 {
+    padding-top: 25px;
+    display: flex;
+    /*flex-direction: row; /* This is the default value, but just to be explicit */
+    justify-content: space-between;
+    align-items: center; /* Vertically center the content within the flex container */
+}
+  
+.contact-info2 p {
+    margin: 0; /* Remove default paragraph margins for clean styling */
+    /*padding-right: 50px; /* Add spacing between contact details */
+}
+
+.education2 h2 {
+    font-size: 24px;
+    padding: 15px;
+    margin: 0;
+    font-style: italic;
+}
+
+.education-item2 {
+    position: relative;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+}
+
+.education-item2 h5 { 
+    position: absolute; 
+    top: 5px; 
+    right: 0;
+}
+
+
+.experience-item2 {
+    position: relative;
+    margin-bottom: 1em;
+    padding-bottom: 1em;
+}
+
+.experience-item2 h5 { 
+    position: absolute; 
+    top: 0.35em; 
+    right: 0 
+}
+.experience-item2 p { 
+    margin: 0.75em 0 3em 0;
+}       
+  
+.experience2 h2 {
+    font-size: 24px;
+    padding: 15px;
+    margin: 0;
+    font-style: italic;
+}
+
+.experience-item2 ul {
+    list-style: disc; /* You can change the list style */
+    margin: 0;
+    padding: 0;
+    padding-left: 20px;
+    color: #555; /* Set your preferred color */
+}
+  
+.experience-item2 ul li {
+    font-size: 16px;
+    margin: 5px 0;
+}
+  
+
+.project2 h2 {
+    font-size: 24px;
+    padding: 15px;
+    margin: 0;
+    font-style: italic;
+}
+
+.project-item2 {
+    position: relative;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+}
+
+
+
+
+.skills2 h2 {
+    font-size: 24px;
+    padding: 15px;
+    margin: 0;
+    font-style: italic;
+}
+
+.skills-item2 {
+    position: relative;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+}
+
+.skills-items2{
+    column-count: 3; /* Split the list into two columns */
+    column-gap: 10px; /* Add spacing between columns */
+    padding-left: 30px;
+}
+  
+.skills-items2 li { 
+    margin: 0;
+    padding: 5px 0; /* Add vertical spacing between list items */
+    break-inside: avoid; /* Prevent list items from breaking across columns */
+    list-style-type: circle;
+}
