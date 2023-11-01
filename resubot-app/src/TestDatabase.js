@@ -20,7 +20,9 @@ function TestAPI() {
       <h1>Data from the API:</h1>
       <ul>
         {data.map((item) => (
-          <li key={item.id}>{item.name}</li>
+          <li key={item.idresume}>
+            {item.frstName} {item.lastName}
+          </li>
         ))}
       </ul>
     </div>
