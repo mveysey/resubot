@@ -1,7 +1,7 @@
 import React, {Suspense} from 'react';
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 import Loader from "./components/Loader/Loader";
-import Home from "./pages/Home/Home";
+import Home from "./pages/Home/Home.jsx";
 import Error from "./pages/Error/Error";
 import Resume from "./components/Resumes/Resume1.js";
 import Resume2 from "./components/Resumes/Resume2.js"
