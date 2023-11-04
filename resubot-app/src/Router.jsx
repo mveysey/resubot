@@ -10,6 +10,7 @@ import Resume2 from "./components/Resumes/Resume2.js"
 import Help from "./pages/Help/Help.jsx";
 import ChatbotPage from "./pages/ChatBot/Chatbot.jsx";
 import Templates from "./pages/Templates/Templates.jsx";
+import Register from "./pages/Register/Register.jsx";
 
 const Router = () => (
     <BrowserRouter>
@@ -18,7 +19,7 @@ const Router = () => (
                 {/* Landing Page */}
                 <Route path="/" element={<Landing/>}/>
                 <Route path="/home" element={<Home/>}/>
-                <Route path="/register" element={<Login/>}/>
+                <Route path="/register" element={<Register/>}/>
                 <Route path="/login" element={<Login/>}/>
                 <Route path="/resume1" element={<Resume/>}/>
                 <Route path="/resume2" element={<Resume2/>}/>
