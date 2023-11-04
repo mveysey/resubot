@@ -6,7 +6,7 @@ import {LeftArrow, RightArrow, ScrollCard} from "../../components/HorizontalScro
 const getItems = () =>
     Array(20)
         .fill(0)
-        .map((_, ind) => ({id: `element-${ind}`}));
+        .map((_, ind) => ({id: `feature-${ind}`}));
 
 // shown when
 const LandingPage = () => {
@@ -38,6 +38,7 @@ const LandingPage = () => {
                         An AI powered resume builder for the modern job seeker
                     </p>
 
+                    <section className="section scroller-container is-align-items-center	">
                     {/* Horizontal Scroller*/}
                     <ScrollMenu LeftArrow={LeftArrow} RightArrow={RightArrow}>
                         {scollItems.map(({id}) => (
@@ -50,12 +51,15 @@ const LandingPage = () => {
                             />
                         ))}
                     </ScrollMenu>
+                    </section>
                     {/* Get Started Button*/}
-                    <button className="button is-danger">GET STARTED</button>
+                    <div className="columns is-centered">
+                        <button className="start-btn button is-large is-info">GET STARTED</button>
+                    </div>
                 </div>
             </section>
 
-            <div className="example box">
+            <div className="example-container box">
 
             </div>
 

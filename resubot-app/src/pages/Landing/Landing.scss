@@ -1,0 +1,29 @@
+.landing-wrapper {
+    height: 100vh;
+
+    .example-container {
+        height: 70vh;
+    }
+
+    .scroller-container {
+        justify-content: center;
+        align-items: center;
+    }
+
+    .start-btn {
+        margin-top: 40px;
+        padding: 10px 20px;
+        color: var(--text-color-light);
+        font-weight: 600;
+        font-size: 1.1rem;
+        width: 30%;
+        cursor: pointer;
+        transition: 0.3s ease-in-out;
+
+        &:hover {
+            background-color: var(--main-color-light);
+            color: var(--text-color-dark);
+            scale: 1.4;
+        }
+    }
+}

@@ -1,0 +1,17 @@
+.scroll-card-wrapper {
+  width: 400px;
+  margin: 0 10px;
+}
+
+.scroll-btn {
+  margin: 220px 10px;
+  padding: 13px;
+  color: var(--text-color-light);
+  font-weight: 600;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+  background-color: var(--main-color);
+  border-radius: 50%;
+
+}
