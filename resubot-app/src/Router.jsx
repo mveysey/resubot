@@ -7,6 +7,9 @@ import Error from "./pages/Error/Error";
 import Login from "./pages/Login/Login";
 import Resume from "./components/Resumes/Resume1.js";
 import Resume2 from "./components/Resumes/Resume2.js"
+import Help from "./pages/Help/Help.jsx";
+import ChatbotPage from "./pages/ChatBot/Chatbot.jsx";
+import Templates from "./pages/Templates/Templates.jsx";
 
 const Router = () => (
     <BrowserRouter>
@@ -19,6 +22,9 @@ const Router = () => (
                 <Route path="/login" element={<Login/>}/>
                 <Route path="/resume1" element={<Resume/>}/>
                 <Route path="/resume2" element={<Resume2/>}/>
+                <Route path="/help" element={<Help/>}/>
+                <Route path="/chatbot" element={<ChatbotPage/>}/>
+                <Route path="/templates" element={<Templates/>}/>
                 {/*Error Page*/}
                 <Route path="*" element={<Error/>}/>
             </Routes>
