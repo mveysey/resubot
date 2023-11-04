@@ -22,7 +22,7 @@ const Header = ({version}) => {
     // };
     return (
         <div className="navbar is-dark" role="navigation" aria-label="main navigation">
-            <div className="navbar-brand">
+            <a className="navbar-brand" href="/">
                 {/*logo*/}
                 <img src={logo} alt="JDP Logo" width="190" height="100"/>
                 <a role="button" className="navbar-burger" aria-label="menu" aria-expanded="false" data-target="">
@@ -30,31 +30,31 @@ const Header = ({version}) => {
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>
                 </a>
-            </div>
+            </a>
             <div id="navbar-menu-id" className="navbar-menu">
                 <div className="navbar-start">
 
-                    <a className="navbar-item">
+                    <a href="/home" className="navbar-item">
                         Home
                     </a>
 
-                    <a className="navbar-item">
+                    <a href="/chatbot" className="navbar-item">
                         Chatbot
                     </a>
 
-                    <a className="navbar-item">
+                    <a href="/templates" className="navbar-item">
                         Templates
                     </a>
 
-                    <a className="navbar-item">
+                    <a href="/resumes" className="navbar-item">
                         My Resume
                     </a>
 
-                    <a className="navbar-item">
+                    <a href="/help" className="navbar-item">
                         Help
                     </a>
 
-                    <a className="navbar-item">
+                    <a href="/preferences" className="navbar-item">
                         Preferences
                     </a>
                 </div>
