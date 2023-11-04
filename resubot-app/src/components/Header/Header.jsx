@@ -33,6 +33,11 @@ const Header = ({version}) => {
             </div>
             <div id="navbar-menu-id" className="navbar-menu">
                 <div className="navbar-start">
+
+                    <a className="navbar-item">
+                        Home
+                    </a>
+
                     <a className="navbar-item">
                         Chatbot
                     </a>
@@ -50,7 +55,7 @@ const Header = ({version}) => {
                     </a>
 
                     <a className="navbar-item">
-                        Documentation
+                        Preferences
                     </a>
                 </div>
                 <div className="navbar-end">

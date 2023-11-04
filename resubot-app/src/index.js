@@ -6,6 +6,7 @@ import reportWebVitals from "./reportWebVitals.js";
 import './scss/theme.scss'
 //react-toastify css
 import 'react-toastify/dist/ReactToastify.css';
+import 'react-horizontal-scrolling-menu/dist/styles.css';
 import {ToastContainer} from "react-toastify";
 
 //layout for the whole application
