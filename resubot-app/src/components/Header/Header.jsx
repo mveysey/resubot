@@ -1,10 +1,11 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
 // import Panel from 'components/Panel';
-// import UserProfile from 'components/UserProfile';
+// import UserProfile from 'components/UserProfile';\
+import logo from '../../assets/logo.png'
+import "./Header.scss";
 
 //Header components
-const Header = (props) => {
+const Header = ({version}) => {
     //open user profile panel method
     // const toProfile = () => {
     //     Panel.open({
@@ -20,34 +21,48 @@ const Header = (props) => {
     //     });
     // };
     return (
-        <div className="header">
-            {/*<div className="grid">*/}
-            {/*    <div className="start">*/}
-            {/*        /!* refresh page *!/*/}
-            {/*        <Link to="/">Home</Link>*/}
-            {/*    </div>*/}
-            {/*    <div className="end">*/}
-            {/*        /!*{props.user.nickname === null ? (*!/*/}
-            {/*        /!*    //display user profle panel on click*!/*/}
-            {/*        /!*     <span className="nickname"*!/*/}
-            {/*        /!*    // onClick={toProfile}*!/*/}
-            {/*        /!*         >*!/*/}
-            {/*        /!*    <i className="far fa-user"></i>*!/*/}
-            {/*        /!*        /!*{props.user.nickname}*!/*!/*/}
-            {/*        /!* </span>*!/*/}
-            {/*        /!*) : (*!/*/}
-            {/*        /!*    // fragmented template*!/*/}
-            {/*        /!*    <React.Fragment>*!/*/}
-            {/*        /!*        /!* redirect to login page *!/*!/*/}
-            {/*        /!*        <Link to="/login">Login</Link>*!/*/}
-            {/*        /!*        /!* redirect to Register page *!/*!/*/}
-            {/*        /!*        <Link to="/register">Register</Link>*!/*/}
-            {/*        /!*    </React.Fragment>*!/*/}
-            {/*        /!*)}*!/*/}
-            {/*    </div>*/}
-            {/*</div>*/}
+        <div className="navbar is-dark" role="navigation" aria-label="main navigation">
+            <div className="navbar-brand">
+                {/*logo*/}
+                <img src={logo} alt="JDP Logo" width="190" height="100"/>
+                <a role="button" className="navbar-burger" aria-label="menu" aria-expanded="false" data-target="">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
+            </div>
+            <div id="navbar-menu-id" className="navbar-menu">
+                <div className="navbar-start">
+                    <a className="navbar-item">
+                        Chatbot
+                    </a>
+
+                    <a className="navbar-item">
+                        Templates
+                    </a>
+
+                    <a className="navbar-item">
+                        My Resume
+                    </a>
+
+                    <a className="navbar-item">
+                        Help
+                    </a>
+
+                    <a className="navbar-item">
+                        Documentation
+                    </a>
+                </div>
+                <div className="navbar-end">
+                    <div className="navbar-item">
+                        <label className="label is-size-6 has-text-light">
+                            version {version ? version : '1.0.0'}
+                        </label>
+                    </div>
+                </div>
+            </div>
         </div>
-    );
+    )
 };
 
 export default Header;

@@ -1,0 +1,29 @@
+.navbar {
+  display: flex;
+  padding: 20px;
+  height: 5%;
+  font-family: "Poppins", sans-serif;
+  user-select: none;
+  -webkit-box-shadow: var(--box-shadow-light);
+  box-shadow: var(--box-shadow-light);
+
+  .navbar-brand {
+    img {
+      margin: 5px;
+    }
+  }
+
+  .navbar-item {
+    margin: 0 10px;
+    color: var(--text-color-light);
+    font-weight: 400;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+
+    &:hover {
+      color: var(--main-color);
+      scale: 1.1;
+    }
+  }
+}
