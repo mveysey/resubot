@@ -1,0 +1,16 @@
+.home-wrapper {
+    padding: 20px;
+    height: 100vh - 10vh;
+    background: var(--light-color);
+
+    .home-content {
+        border: 2px solid var(--grey-dark-color);
+        height: 100%;
+        padding: 28px;
+    }
+
+    .toolbar-bar {
+        color: var(--grey-dark-color);
+        border: 2px solid var(--grey-dark-color);
+    }
+}

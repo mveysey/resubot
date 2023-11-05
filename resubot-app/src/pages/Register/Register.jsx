@@ -13,7 +13,7 @@ const Register = ({props}) => {
     return (
         <div className="register-wrapper">
             <form className="box register-box" onSubmit={handleSubmit(onSubmit)}>
-                <h1 className="title is-1 has-text-centered">Sign Up</h1>
+                <h1 className="title is-1 has-text-centered">Create account</h1>
                 <div className="field">
                     {/* username */}
                     <label className="label">Username</label>
@@ -42,7 +42,7 @@ const Register = ({props}) => {
                 </div>
                 {/*Login Button*/}
                 <div className="control">
-                    <button className="button is-fullwidth is-info register-button">Register</button>
+                    <a className="button is-fullwidth is-info register-button" href="/login">Register</a>
                 </div>
 
                 <label className="login-link has-text-right">Already have an account? <a href="/login"> Log in </a> now</label>

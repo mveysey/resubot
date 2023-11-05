@@ -60,6 +60,12 @@ const Header = ({version}) => {
                 </div>
                 <div className="navbar-end">
                     <div className="navbar-item">
+                        <div className="user-icon">G</div>
+                        <a href="/login" className="label is-size-6 has-text-light ml-2">
+                            Login
+                        </a>
+                    </div>
+                    <div className="navbar-item">
                         <label className="label is-size-6 has-text-light">
                             version {version ? version : '1.0.0'}
                         </label>

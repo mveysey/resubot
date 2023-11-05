@@ -38,7 +38,7 @@ const Login = ({props}) => {
                 </div>
                 {/*Login Button*/}
                 <div className="control">
-                    <button className="button is-fullwidth is-info login-button">Login</button>
+                    <a className="button is-fullwidth is-info login-button" href="/home">Login</a>
                 </div>
 
                 <label className="register-link has-text-right">Don't have an account? <a href="/register"> Sign
