@@ -1,0 +1,32 @@
+.login-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh - 10vh;
+
+  .login-box {
+    width: 800px;
+    height: 500px;
+    padding: 1.5rem 1.5rem 2rem 1.5rem;
+    display: flex; // Add display flex to make flexbox properties available
+    flex-direction: column; // Stack children vertically
+
+    .login-button {
+      width: 400px;
+      height: 60px;
+      font-size: large;
+      margin: 20px auto;
+    }
+
+    .login-button:hover {
+      background-color: #3faea8;
+      scale: 1.1;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .register-link {
+      align-self: center;
+      font-size: 1.2rem;
+    }
+  }
+}

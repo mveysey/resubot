@@ -1,0 +1,42 @@
+.templates-wrapper {
+  padding: 50px;
+  height: 90vh;
+
+  .template-display-area {
+    height: 700px;
+    overflow-y: scroll;
+    padding: 20px;
+
+    .template-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr); /* Display 4 cards in each row */
+      gap: 20px;
+    }
+
+    .template-card {
+      background-color: var(--text-color-light);
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      border: 2px solid var(--dark-color);
+      /* Add more card styles as needed */
+    }
+
+    .template-card:hover {
+      border: 2px solid var(--main-color);
+      scale: 1.01;
+      background-color: var(--dark-color);
+      color: var(--text-color-light);
+      transition: 0.3s ease-in-out;
+    }
+
+    .template-title {
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .template-description {
+      font-size: 14px;
+    }
+  }
+}

@@ -1,0 +1,32 @@
+.register-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh - 10vh;
+
+  .register-box {
+    width: 800px;
+    height: 600px;
+    padding: 1.5rem 1.5rem 2rem 1.5rem;
+    display: flex; // Add display flex to make flexbox properties available
+    flex-direction: column; // Stack children vertically
+
+    .register-button {
+      width: 400px;
+      height: 60px;
+      font-size: large;
+      margin: 20px auto;
+    }
+
+    .register-button:hover {
+      background-color: #3faea8;
+      scale: 1.1;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .login-link {
+      align-self: center;
+      font-size: 1.2rem;
+    }
+  }
+}

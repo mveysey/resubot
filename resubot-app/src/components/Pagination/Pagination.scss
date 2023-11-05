@@ -1,0 +1,25 @@
+.pagination-wrapper {
+  border-radius: var(--border-radius-half);
+  font-weight: 600;
+  padding: 15px;
+
+  &.is-small {
+  }
+
+  .pagination-ellipsis {
+    color: var(--dark-color);
+    scale: 1.3;
+  }
+
+  .pagination-link {
+    border: 2px solid var(--grey-dark-color);
+  }
+
+  .pagination-next {
+    border: 2px solid var(--grey-dark-color);
+  }
+
+  .pagination-previous {
+    border: 2px solid var(--grey-dark-color);
+  }
+}

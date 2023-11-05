@@ -1,0 +1,9 @@
+.hometoolbar-wrapper {
+  padding: 1em;
+
+  .new-button:hover {
+    background: var(--red-color);
+    color: var(--light-color);
+    transition: 0.3s ease-in-out;
+  }
+}

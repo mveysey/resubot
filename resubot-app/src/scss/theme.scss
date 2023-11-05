@@ -1,0 +1,73 @@
+@charset "utf-8";
+
+// Import Google Fonts
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+// Import font awesome icons
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css');
+
+:root {
+  --border-radius: 8px;
+  --border-radius-half: 4px;
+  --main-color: #3faea8;
+  --blue-color: #4b89dc;
+  --purple-color: #967bdc;
+  --red-color: #d94555;
+  --cyan-color: #36bc9b;
+  --yellow-color: #f8ba43;
+  --green-color: #21ab4b;
+  --dark-color: #226d6a;
+  --light-color: #ffffff;
+  --grey-color: #b2b4ba;
+  --grey-dark-color: #403e42;
+  --box-shadow-light: rgb(15, 37, 36) 0px 5px 12px;
+
+  --toastify-toast-width: 400px !important;
+  --toastify-color-light: #f0f3f6 !important;;
+  --text-color-light: #fde0da !important;
+  --text-color-dark: #0b0c10 !important;
+}
+
+// Set global theme colors
+$main: #3faea8;
+$blue: #4b89dc;
+$purple: #967bdc;
+$red: #d94555;
+$cyan: #36bc9b;
+$info: #f28168;
+$yellow: #f8ba43;
+$green: #21ab4b;
+$dark: #226d6a;
+$light: #fde0da;
+$grey: #b2b4ba;
+$grey-dark: #0d111a;
+$bg-color: #b5dac9;
+$pagination-active-color: $main;
+
+//define theme colors for
+$family-sans-serif: "Poppins", sans-serif;
+$primary: $main;
+$link: $blue;
+$info: $info;
+$success: $green;
+$warning: $yellow;
+$danger: $red;
+$dark: $dark;
+$text: $grey-dark;
+$body-background-color: $bg-color;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  -webkit-tap-highlight-color: transparent;
+}
+
+//import bulma css framework
+@import '../../node_modules/bulma/bulma.sass';

@@ -1,0 +1,26 @@
+.loader-wrapper {
+  position: relative;
+  height: 80vh;
+  background: var(--dark-color);
+}
+
+.loader-bg {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 99;
+}
+
+.Loader-container {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  z-index: 1000;
+  padding: 20px;
+}
