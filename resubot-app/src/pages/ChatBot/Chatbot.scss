@@ -5,7 +5,7 @@
 
   .sidebar {
     width: 400px; /* Adjust the width as needed */
-    background-color: var(--main-color);
+    background-color: var(--light-color);
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
@@ -15,6 +15,10 @@
       height: 300px;
       margin-top: 40px;
       resize: none;
+    }
+
+    .panel-tabs {
+      background-color: var(--main-color-light);
     }
   }
 

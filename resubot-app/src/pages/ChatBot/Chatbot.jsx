@@ -1,74 +1,66 @@
 import React from "react";
-import './Chatbot.scss'
+import "./Chatbot.scss";
 
 const ChatbotPage = () => (
     <div className="chatbot-wrapper">
         <div className="sidebar">
             <h3 className="title is-3">AI Chatbot</h3>
-            <textarea className="textarea" placeholder="Type your message..." rows="20"></textarea>
+            <textarea
+                className="textarea"
+                placeholder="Type your message..."
+                rows="20"
+            ></textarea>
 
+            {/*Chatbot Panel*/}
             <nav className="panel">
-                <p className="panel-heading">
-                    Repositories
-                </p>
-                <div className="panel-block">
-                    <p className="control has-icons-left">
-                        <input className="input" type="text" placeholder="Search"/>
-                        <span className="icon is-left">
-        <i className="fas fa-search" aria-hidden="true"></i>
-      </span>
-                    </p>
-                </div>
+                <p className="panel-heading">Chatbot Tools</p>
                 <p className="panel-tabs">
-                    <a className="is-active">All</a>
-                    <a>Public</a>
-                    <a>Private</a>
-                    <a>Sources</a>
-                    <a>Forks</a>
+                    <a className="is-active">GPT3.5</a>
+                    <a>GPT4.0</a>
+                    <a>GPT3.5 Turbo</a>
+                    <a>Dell-E</a>
                 </p>
                 <a className="panel-block is-active">
-    <span className="panel-icon">
-      <i className="fas fa-book" aria-hidden="true"></i>
-    </span>
-                    bulma
+                  <span className="panel-icon">
+                    <i className="fas fa-book" aria-hidden="true"></i>
+                  </span>
+                    Skill Analyzer
                 </a>
                 <a className="panel-block">
-    <span className="panel-icon">
-      <i className="fas fa-book" aria-hidden="true"></i>
-    </span>
-                    marksheet
+                  <span className="panel-icon">
+                    <i className="fas fa-book" aria-hidden="true"></i>
+                  </span>
+                    Web Support
                 </a>
                 <a className="panel-block">
-    <span className="panel-icon">
-      <i className="fas fa-book" aria-hidden="true"></i>
-    </span>
-                    minireset.css
+                  <span className="panel-icon">
+                    <i className="fas fa-book" aria-hidden="true"></i>
+                  </span>
+                    Resume Analyzer
                 </a>
                 <a className="panel-block">
-    <span className="panel-icon">
-      <i className="fas fa-book" aria-hidden="true"></i>
-    </span>
-                    jgthms.github.io
+                  <span className="panel-icon">
+                    <i className="fas fa-book" aria-hidden="true"></i>
+                  </span>
+                    CV Analyzer
                 </a>
                 <a className="panel-block">
-    <span className="panel-icon">
-      <i className="fas fa-code-branch" aria-hidden="true"></i>
-    </span>
-                    daniellowtw/infboard
+                  <span className="panel-icon">
+                    <i className="fas fa-plus" aria-hidden="true"></i>
+                  </span>
+                    Custom Prompts
                 </a>
-                <a class="panel-block">
-    <span class="panel-icon">
-      <i class="fas fa-code-branch" aria-hidden="true"></i>
-    </span>
-                    mojs
-                </a>
-                <label class="panel-block">
-                    <input type="checkbox"/>
-                    remember me
-                </label>
+
+
                 <div class="panel-block">
                     <button class="button is-link is-outlined is-fullwidth">
-                        Reset all filters
+                        Reset Configurations
+                    </button>
+                </div>
+
+                <div className="panel-block">
+                    <button className="button is-danger is-fullwidth">
+                        New AI Session
                     </button>
                 </div>
             </nav>
