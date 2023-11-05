@@ -5,7 +5,8 @@
 
         .examples-grid-container {
             height: 620px;
-            overflow: scroll;
+            overflow-y: scroll;
+            overflow-x: hidden;
             display: grid;
             grid-template-columns: repeat(4, 1fr); /* Create 4 columns in each row */
             gap: 30px; /* Add some gap between boxes */

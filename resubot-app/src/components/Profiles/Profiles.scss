@@ -1,3 +1,36 @@
 .profiles-wrapper {
+    margin: 2px;
 
+    .profiles-content {
+        padding: 20px;
+        height: 700px;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        border-left: 2px solid var(--grey-dark-color);
+        border-right: 2px solid var(--grey-dark-color);
+        border-radius: 10px;
+
+        .profile-card {
+            border: 3px solid var(--dark-color);
+            border-radius: 10px;
+
+            time {
+                color: var(--grey-dark-color);
+                font-size: 12px;
+                font-weight: bold;
+            }
+
+            .card-footer {
+                font-size: 12px;
+            }
+        }
+
+        .profile-card:hover {
+            border: 3px solid var(--grey-dark-color);
+            border-radius: 10px;
+            box-shadow: var(--box-shadow-light);
+            scale: 1.02;
+            transition: 0.2s ease-in-out;
+        }
+    }
 }
