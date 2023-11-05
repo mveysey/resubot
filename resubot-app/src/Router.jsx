@@ -11,6 +11,7 @@ import Help from "./pages/Help/Help.jsx";
 import ChatbotPage from "./pages/ChatBot/Chatbot.jsx";
 import Templates from "./pages/Templates/Templates.jsx";
 import Register from "./pages/Register/Register.jsx";
+import Preferences from "./pages/Preferences/Preferences.jsx";
 
 const Router = () => (
     <BrowserRouter>
@@ -26,6 +27,7 @@ const Router = () => (
                 <Route path="/help" element={<Help/>}/>
                 <Route path="/chatbot" element={<ChatbotPage/>}/>
                 <Route path="/templates" element={<Templates/>}/>
+                <Route path="/preferences" element={<Preferences/>}/>
                 {/*Error Page*/}
                 <Route path="*" element={<Error/>}/>
             </Routes>
