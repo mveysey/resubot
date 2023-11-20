@@ -12,6 +12,9 @@ import ChatbotPage from "./pages/ChatBot/Chatbot.jsx";
 import Templates from "./pages/Templates/Templates.jsx";
 import Register from "./pages/Register/Register.jsx";
 import Preferences from "./pages/Preferences/Preferences.jsx";
+import Loading from "./pages/Loading/Loading.jsx";
+import Contact from "./pages/Contact/Contact.jsx";
+import Experience from "./pages/Experience/Experience.jsx";
 
 const Router = () => (
     <BrowserRouter>
@@ -28,8 +31,13 @@ const Router = () => (
                 <Route path="/chatbot" element={<ChatbotPage/>}/>
                 <Route path="/templates" element={<Templates/>}/>
                 <Route path="/preferences" element={<Preferences/>}/>
+                <Route path="/contact" element={<Contact/>}/>
+                <Route path="/experience" element={<Experience/>}/>
+                <Route path="/loading" element={<Loading/>}/>
+
                 {/*Error Page*/}
                 <Route path="*" element={<Error/>}/>
+
             </Routes>
         </Suspense>
     </BrowserRouter>
