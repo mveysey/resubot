@@ -1,24 +1,21 @@
 import React, {useState} from "react";
 import Loading from "../Loading/Loading";
-import './Contact.scss'
+import './Education.scss'
 
-const Contact = () => {
-    const [fullName, setFullName] = useState("");
-    const [phoneNumber, setPhoneNumber] = useState("");
-    const [email, setEmail] = useState("");
-    const [linkedIn, setLinkedIn] = useState("");
-    const [personalLink, setPersonalLink] = useState("");
+const Education = () => {
+    const [degree, setDegree] = useState("");
+    const [schoolName, setSchoolName] = useState("");
+    const [schoolLocation, setSchoolLocation] = useState("");
+    const [graduation, setGraduation,] = useState("");
     const [loading, setLoading] = useState(false);
 
     const handleFormSubmit = (e) => {
         e.preventDefault();
         console.log({
-            fullName,
-            phoneNumber,
-            email,
-            linkedIn,
-            loading,
-            personalLink,
+            degree,
+            schoolName,
+            schoolLocation,
+            graduation,
         });
         setLoading(true);
     };
@@ -36,13 +33,13 @@ const Contact = () => {
 			<div class="vertical_bar">
 				
 				<ul class="menu">
-					<li><a href="/contact" class="active">
+					<li><a href="/contact">
 						<span class="text">Personal Info</span>
 					</a></li>
 					<li><a href="/experience">
 						<span class="text">Experience</span>
 					</a></li>
-					<li><a href="/education">
+					<li><a href="/education" class="active">
 						<span class="text">Education</span>
 					</a></li>
 					<li><a href="/skills">
@@ -58,61 +55,52 @@ const Contact = () => {
 		</div>
 			<div class="container">
 				<div class="content">
+                <div></div>
                 <form
                     onSubmit= {handleFormSubmit}
                     method = 'POST'
                     encType = 'multipart/form-data'>
-                <label htmlFor='fullName'>FULL NAME</label>
-                <input
-                    type ='text'
-                    required name = 'fullName'
-                    id = 'fullName'
-                    value = {fullName}
-                    onChange={(e) => setFullName(e.target.value)}
-                />
-                <div>
                     <div>
-                        <label htmlFor="email">EMAIL ADDRESS</label>
+                        <label htmlFor="degree">DEGREE</label>
                         <input
                             type='text'
-                            required anme = 'email'
+                            required anme = 'degree'
                             className="currentInput"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
+                            value={degree}
+                            onChange={(e) => setDegree(e.target.value)}
                         />
                     </div>
                     <div>
-                        <label htmlFor="phoneNumber">PHONE NUMBER</label>
+                        <label htmlFor="schoolName">UNIVERSITY NAME</label>
                         <input
                             type='text'
-                            required anme = 'phoneNumber'
+                            required anme = 'schoolName'
                             className="currentInput"
-                            value={phoneNumber}
-                            onChange={(e) => setPhoneNumber(e.target.value)}
+                            value={schoolName}
+                            onChange={(e) => setSchoolName(e.target.value)}
                         />
 
                     </div>
                     <div>
-                        <label htmlFor="linkedIn"><strong>LINKEDIN </strong>URL</label>
+                        <label htmlFor="schoolLocation">UNIVERSITY LOCATIONL</label>
                         <input
                             type='text'
-                            required anme = 'linkedIn'
+                            required anme = 'schoolLocation'
                             className="currentInput"
-                            value={linkedIn}
-                            onChange={(e) => setLinkedIn(e.target.value)}
+                            value={schoolLocation}
+                            onChange={(e) => setSchoolLocation(e.target.value)}
                         />
                     </div>
                     <div>
-                        <label htmlFor="personalLink"><strong>PERSONAL WEBSITE </strong>OR RELEVANT LINK</label>
+                        <label htmlFor="graduation">GRADUATION DATE</label>
                         <input
                             type='text'
-                            required anme = 'personalLink'
+                            required anme = 'graduation'
                             className="currentInput"
-                            value={personalLink}
-                            onChange={(e) => setPersonalLink(e.target.value)}
+                            value={graduation}
+                            onChange={(e) => setGraduation(e.target.value)}
                         />
                     </div>
-                </div>
                 <button>
                     SAVE PERSONAL INFO
                 </button>
@@ -124,4 +112,4 @@ const Contact = () => {
     );
 };
 
-export default Contact;
+export default Education;

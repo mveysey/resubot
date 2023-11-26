@@ -27,42 +27,51 @@ const Experience = () => {
     }
 
     return(
-        <div>
-            <div id="navbar-menu-id" className="navbar-menu">
-                <div className="navbar-start">
+        <div class="wrapper">
+		<div class="wrapper_inner">
+			<div class="vertical_wrap">
+			<div class="backdrop"></div>
+			<div class="vertical_bar">
+				
+				<ul class="menu">
+					<li><a href="/contact">
+						<span class="text">Personal Info</span>
+					</a></li>
+					<li><a href="/experience" class="active">
+						<span class="text">Experience</span>
+					</a></li>
+					<li><a href="/education">
+						<span class="text">Education</span>
+					</a></li>
+					<li><a href="/skills">
+						<span class="text">Skills</span>
+					</a></li>
+					<li><a href="#">
+						<span class="text">Rewards</span>
+					</a></li>
+				</ul>
 
-                    <a href="/contact" className="navbar-item">
-                        PERSONAL INFO
-                    </a>
-
-                    <a href="/experience" className="navbar-item">
-                        EXPERIENCE
-                    </a>
-
-                    <a href="/education" className="navbar-item">
-                        EDUCATION
-                    </a>
-
-                    <a href="/skills" className="navbar-item">
-                        SKILLS
-                    </a>
-                </div>
-            </div>
+				
+			</div>
+		</div>
+        <div class="container">
+            <div class="content">
             <form
                 onSubmit= {handleFormSubmit}
                 method = 'POST'
                 encType = 'multipart/form-data'>
-                <lable htmlFor='role'>Role</lable>
-                <input
-                    type ='text'
-                    required name = 'role'
-                    id = 'role'
-                    value = {role}
-                    onChange={(e) => setRole(e.target.value)}
-                />
                 <div>
+                    <label htmlFor='role'>ROLE</label>
+                    <input
+                        type ='text'
+                        required name = 'role'
+                        className="currentInput"
+                        value = {role}
+                        onChange={(e) => setRole(e.target.value)}
+                    />
+                </div>
                     <div>
-                        <label htmlFor="company">Company Name</label>
+                        <label htmlFor="company">COMPANY NAME</label>
                         <input
                             type='text'
                             required anme = 'company'
@@ -72,7 +81,7 @@ const Experience = () => {
                         />
                     </div>
                     <div>
-                        <label htmlFor="startDate">Start Date</label>
+                        <label htmlFor="startDate">START DATE</label>
                         <input
                             type='text'
                             required name = 'startDate'
@@ -83,7 +92,7 @@ const Experience = () => {
 
                     </div>
                     <div>
-                        <label htmlFor="endDate">End Date</label>
+                        <label htmlFor="endDate">END DATE</label>
                         <input
                             type='text'
                             required name = 'endDate'
@@ -93,7 +102,7 @@ const Experience = () => {
                         />
                     </div>
                     <div>
-                        <label htmlFor="location">Company's Location</label>
+                        <label htmlFor="location">COMPANY'S LOCATION</label>
                         <input
                             type='text'
                             required name = 'location'
@@ -103,19 +112,21 @@ const Experience = () => {
                         />
                     </div>
                     <div>
-                        <label htmlFor="description">Description of Your Role</label>
+                        <label htmlFor="description">DESCRITPION OF YOUR ROLE</label>
                         <input
                             type='text'
                             required name = 'description'
-                            className="currentInput"
+                            className="description"
                             value={description}
                             onChange={(e) => setDescription(e.target.value)}
                         />
                     </div>
-                </div>
                 <button>SAVE EXPERIENCE</button>
             </form>
+            </div>
         </div>
+        </div>
+    </div>
     );
 };
 

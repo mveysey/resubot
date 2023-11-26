@@ -15,6 +15,7 @@ import Preferences from "./pages/Preferences/Preferences.jsx";
 import Loading from "./pages/Loading/Loading.jsx";
 import Contact from "./pages/Contact/Contact.jsx";
 import Experience from "./pages/Experience/Experience.jsx";
+import Education from "./pages/Education/Education.jsx";
 
 const Router = () => (
     <BrowserRouter>
@@ -33,6 +34,7 @@ const Router = () => (
                 <Route path="/preferences" element={<Preferences/>}/>
                 <Route path="/contact" element={<Contact/>}/>
                 <Route path="/experience" element={<Experience/>}/>
+                <Route path="/education" element={<Education/>}/>
                 <Route path="/loading" element={<Loading/>}/>
 
                 {/*Error Page*/}
