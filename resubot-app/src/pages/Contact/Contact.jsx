@@ -9,6 +9,7 @@ const Contact = () => {
     const [linkedIn, setLinkedIn] = useState("");
     const [personalLink, setPersonalLink] = useState("");
     const [loading, setLoading] = useState(false);
+    
 
     const handleFormSubmit = (e) => {
         e.preventDefault();

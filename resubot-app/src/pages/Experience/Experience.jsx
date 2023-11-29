@@ -1,5 +1,6 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import Loading from "../Loading/Loading";
+import './Experience.scss';
 
 const Experience = () => {
     const [role, setRole] = useState("");
@@ -8,8 +9,9 @@ const Experience = () => {
     const [endDate, setEndDate] = useState("");
     const [location, setLocation] = useState("");
     const [description, setDescription] = useState("");
+    const [companyInfo, setCompanyInfo] = useState([{ role: "", position: "", start: "", end: "", location: "", description: "" }]);
     const [loading, setLoading] = useState(false);
-    
+
     const handleFormSubmit = (e) => {
         e.preventDefault();
         console.log({
@@ -22,10 +24,29 @@ const Experience = () => {
         });
         setLoading(true);
     };
-    if(loading){
-        return<Loading />;
+
+    if (loading) {
+        return <Loading />;
     }
 
+
+    //👇🏻 updates the state with user's input
+    const handleAddCompany = () =>
+        setCompanyInfo([...companyInfo, { role: "", position: "", start: "", end: "", location: "", description: "" }]);
+
+    //👇🏻 removes a selected item from the list
+    const handleRemoveCompany = (index) => {
+        const list = [...companyInfo];
+        list.splice(index, 1);
+        setCompanyInfo(list);
+    };
+    //👇🏻 updates an item within the list
+    const handleUpdateCompany = (e, index) => {
+        const { name, value } = e.target;
+        const list = [...companyInfo];
+        list[index][role] = value;
+        setCompanyInfo(list);
+    };
     return(
         <div class="wrapper">
 		<div class="wrapper_inner">
@@ -56,71 +77,80 @@ const Experience = () => {
 		</div>
         <div class="container">
             <div class="content">
-            <form
-                onSubmit= {handleFormSubmit}
-                method = 'POST'
-                encType = 'multipart/form-data'>
-                <div>
-                    <label htmlFor='role'>ROLE</label>
-                    <input
-                        type ='text'
-                        required name = 'role'
-                        className="currentInput"
-                        value = {role}
-                        onChange={(e) => setRole(e.target.value)}
-                    />
-                </div>
-                    <div>
-                        <label htmlFor="company">COMPANY NAME</label>
-                        <input
-                            type='text'
-                            required anme = 'company'
-                            className="currentInput"
-                            value={company}
-                            onChange={(e) => setCompany(e.target.value)}
-                        />
-                    </div>
-                    <div>
-                        <label htmlFor="startDate">START DATE</label>
-                        <input
-                            type='text'
-                            required name = 'startDate'
-                            className="currentInput"
-                            value={startDate}
-                            onChange={(e) => setStartDate(e.target.value)}
-                        />
+            <form>
+                {companyInfo.map((company, index) => (
+                    <div class="nestedContainer" key={index}>
+                        <div className="companies">
+                            <label htmlFor="name">COMPANY NAME</label>
+                            <input
+                                type="text"
+                                name="name"
+                                required onChange={(e) => handleUpdateCompany(e, index)}
+                            />
+                        </div>
+                        <div className="companies">
+                            <label htmlFor="position">POSITION NAME</label>
+                            <input
+                                type="text"
+                                name="position"
+                                required onChange={(e) => handleAddCompany(e, index)}
+                            />
+                        </div>
+                        <div className="verticalcontainer">
+                            <div className="companies">
+                                <label htmlFor="position">StART DATE</label>
+                                <input
+                                    type="text"
+                                    name="position"
+                                    className="subInput"
+                                    required onChange={(e) => handleAddCompany(e, index)}
+                                />
+                            </div>
+                            <div className="companies">
+                                <label htmlFor="position">END DATE</label>
+                                <input
+                                    type="text"
+                                    name="position"
+                                    className="subInput"
+                                    required onChange={(e) => handleAddCompany(e, index)}
+                                />
+                            </div>
+                            <div className="companies">
+                                <label htmlFor="position">LOCATION</label>
+                                <input
+                                    type="text"
+                                    name="position"
+                                    className="subInput"
+                                    required onChange={(e) => handleAddCompany(e, index)}
+                                />
+                            </div>
+                        </div>
+                        <div className="companies">
+                            <label htmlFor="position">DESCRIPTION OF YOUR ROLE</label>
+                            <textarea
+                                type="text"
+                                name="position"
+                                required onChange={(e) => handleAddCompany(e, index)}
+                            />
+                        </div>
 
+
+                        <div className='btn__group'>
+                        {companyInfo.length - 1 === index && companyInfo.length < 4 && (
+                            <button id='addBtn' onClick={handleAddCompany}>
+                                Add
+                            </button>
+                        )}
+                        {companyInfo.length > 1 && (
+                            <button id='deleteBtn' onClick={() => handleRemoveCompany(index)}>
+                                Del
+                            </button>
+                        )}
+
+                        </div>
                     </div>
-                    <div>
-                        <label htmlFor="endDate">END DATE</label>
-                        <input
-                            type='text'
-                            required name = 'endDate'
-                            className="currentInput"
-                            value={endDate}
-                            onChange={(e) => setEndDate(e.target.value)}
-                        />
-                    </div>
-                    <div>
-                        <label htmlFor="location">COMPANY'S LOCATION</label>
-                        <input
-                            type='text'
-                            required name = 'location'
-                            className="currentInput"
-                            value={location}
-                            onChange={(e) => setLocation(e.target.value)}
-                        />
-                    </div>
-                    <div>
-                        <label htmlFor="description">DESCRITPION OF YOUR ROLE</label>
-                        <input
-                            type='text'
-                            required name = 'description'
-                            className="description"
-                            value={description}
-                            onChange={(e) => setDescription(e.target.value)}
-                        />
-                    </div>
+                ))}
+                
                 <button>SAVE EXPERIENCE</button>
             </form>
             </div>
