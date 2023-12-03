@@ -5,38 +5,55 @@ import './Experience.scss';
 
 const Experience = () => {
     const navigate = useNavigate();
-    const [role, setRole] = useState("");
-    const [company, setCompany] = useState("");
-    const [startDate, setStartDate] = useState("");
-    const [endDate, setEndDate] = useState("");
-    const [location, setLocation] = useState("");
-    const [description, setDescription] = useState("");
-    const [companyInfo, setCompanyInfo] = useState([{ role: "", position: "", start: "", location: "", description: "" }]);
+    const [role1, setRole1] = useState("");
+    const [company1, setCompany1] = useState("");
+    const [date1, setDate1] = useState("");
+    const [location1, setLocation1] = useState("");
+    const [description1, setDescription1] = useState("");
+
+    const [role2, setRole2] = useState("");
+    const [company2, setCompany2] = useState("");
+    const [date2, setDate2] = useState("");
+    const [location2, setLocation2] = useState("");
+    const [description2, setDescription2] = useState("");
+    //const [companyInfo, setCompanyInfo] = useState([{ role: "", position: "", start: "", location: "", description: "" }]);
     //const [loading, setLoading] = useState(false);
 
-    /*const handleFormSubmit = (e) => {
+    const handleFormSubmit = (e) => {
         e.preventDefault();
         console.log({
-            role,
-            company,
-            startDate,
-            endDate,
-            location,
-            description,
+            role1,
+            company1,
+            date1,
+            location1,
+            description1,
+            role2,
+            company2,
+            date2,
+            location2,
+            description2,
         });
-        setLoading(true);
+        //setLoading(true);
     };
 
-    if (loading) {
+    /*if (loading) {
         return <Loading />;
     }*/
    
     // To save the user input
     useEffect(() => {
-        const storedCompanyInfo = JSON.parse(localStorage.getItem("companyInfo"));
-        if (storedCompanyInfo) {
-            setCompanyInfo(storedCompanyInfo);
-        }
+        setRole1(localStorage.getItem("role1"));
+        setCompany1(localStorage.getItem("company1"));
+        setDate1(localStorage.getItem("date1"));
+        setLocation1(localStorage.getItem('location1'));
+        setDescription1(localStorage.getItem("description1"));
+
+        setRole2(localStorage.getItem("role2"));
+        setCompany2(localStorage.getItem("company2"));
+        setDate2(localStorage.getItem("date2"));
+        setLocation2(localStorage.getItem('location2'));
+        setDescription2(localStorage.getItem("description2"));
+
     }, []);
 
     const nextPage = () => {
@@ -44,7 +61,7 @@ const Experience = () => {
     };
     
 
-    //updates the state with user's input
+    /*//updates the state with user's input
     const handleAddCompany = () =>
         setCompanyInfo([...companyInfo, { role: "", position: "", start: "", location: "", description: "" }]);
 
@@ -62,7 +79,7 @@ const Experience = () => {
         list[index][name] = value;
         setCompanyInfo(list);
         localStorage.setItem("companyInfo", JSON.stringify(list));
-    };
+    };*/
 
 
     return(
@@ -99,73 +116,126 @@ const Experience = () => {
         <div class="container">
             <div class="content">
             <form>
-                {companyInfo.map((company, index) => (
-                    <div class="nestedContainer" key={index}>
+                    <div class="nestedContainer" >
                         <div className="companies">
-                            <label htmlFor="role">Position</label>
+                            <label htmlFor="role1">Position</label>
                             <input
                                 type="text"
-                                required name = 'role'
+                                required name = 'role1'
                                 className="currentInput"
-                                value={company.role}
-                                    onChange={(e) => {handleUpdateCompany(e, index);
-                                        localStorage.setItem(companyInfo, e.target.value);}}
+                                value={role1}
+                                    onChange={(e) => {setRole1(e.target.value);
+                                        localStorage.setItem("role1", e.target.value);}}
                             />
                         </div>
                         <div className="companies">
-                            <label htmlFor="position">Position</label>
+                            <label htmlFor="company1">Company Name</label>
                             <input
                                 type="text"
-                                name="position"
-                                required onChange={(e) => handleAddCompany(e, index)}
+                                name="company1"
+                                value={company1}
+                                required onChange={(e) => {setCompany1(e.target.value);
+                                        localStorage.setItem("company1", e.target.value);}}
                             />
                         </div>
                         <div className="verticalcontainer">
                             <div className="companies">
-                                <label htmlFor="position">Date or Date Range</label>
+                                <label htmlFor="date1">Date or Date Range</label>
                                 <input
                                     type="text"
                                     name="position"
                                     placeholder="May 23 - Present"
                                     className="subInput"
-                                    required onChange={(e) => handleAddCompany(e, index)}
+                                    value = {date1}
+                                    required onChange={(e) => {setDate1(e.target.value);
+                                        localStorage.setItem("date1", e.target.value);}}
                                 />
                             </div>
                             <div className="companies">
-                                <label htmlFor="position">Location</label>
+                                <label htmlFor="location1">Location</label>
                                 <input
                                     type="text"
-                                    name="position"
+                                    name="location1"
                                     className="subInput"
-                                    required onChange={(e) => handleAddCompany(e, index)}
+                                    value = {location1}
+                                    required onChange={(e) => {setLocation1(e.target.value);
+                                        localStorage.setItem("location1", e.target.value);}}
                                 />
                             </div>
                         </div>
                         <div className="companies">
-                            <label htmlFor="position">Description of Your Position</label>
+                            <label htmlFor="description1">Description of Your Position</label>
                             <textarea
                                 type="text"
-                                name="position"
-                                required onChange={(e) => handleAddCompany(e, index)}
+                                name="description1"
+                                value = {description1}
+                                    required onChange={(e) => {setDescription1(e.target.value);
+                                        localStorage.setItem("description1", e.target.value);}}
                             />
                         </div>
+                    </div>
+                    <hr />
 
-
-                        <div className='btn__group'>
-                        {companyInfo.length - 1 === index && companyInfo.length < 4 && (
-                            <button id='addBtn' onClick={handleAddCompany}>
-                                Add
-                            </button>
-                        )}
-                        {companyInfo.length > 1 && (
-                            <button id='deleteBtn' onClick={() => handleRemoveCompany(index)}>
-                                Del
-                            </button>
-                        )}
-
+                    <div class="nestedContainer2 " >
+                        <div className="companies">
+                            <label htmlFor="role2">Position 2</label>
+                            <input
+                                type="text"
+                                required name = 'role2'
+                                className="currentInput"
+                                value={role2}
+                                    onChange={(e) => {setRole2(e.target.value);
+                                        localStorage.setItem("role2", e.target.value);}}
+                            />
+                        </div>
+                        <div className="companies">
+                            <label htmlFor="company2">Company Name</label>
+                            <input
+                                type="text"
+                                name="company2"
+                                value={company2}
+                                required onChange={(e) => {setCompany2(e.target.value);
+                                        localStorage.setItem("company2", e.target.value);}}
+                            />
+                        </div>
+                        <div className="verticalcontainer">
+                            <div className="companies">
+                                <label htmlFor="date2">Date or Date Range</label>
+                                <input
+                                    type="text"
+                                    name="date2"
+                                    placeholder="May 23 - Present"
+                                    className="subInput"
+                                    value = {date2}
+                                    required onChange={(e) => {setDate2(e.target.value);
+                                        localStorage.setItem("date2", e.target.value);}}
+                                />
+                            </div>
+                            <div className="companies">
+                                <label htmlFor="location2">Location</label>
+                                <input
+                                    type="text"
+                                    name="location2"
+                                    className="subInput"
+                                    value = {location2}
+                                    required onChange={(e) => {setLocation2(e.target.value);
+                                        localStorage.setItem("location2", e.target.value);}}
+                                />
+                            </div>
+                        </div>
+                        <div className="companies">
+                            <label htmlFor="description2">Description of Your Position</label>
+                            <textarea
+                                type="text"
+                                name="description2"
+                                value = {description2}
+                                    required onChange={(e) => {setDescription2(e.target.value);
+                                        localStorage.setItem("description2", e.target.value);}}
+                            />
                         </div>
                     </div>
-                ))}
+
+
                 
                 <button onClick={nextPage}>
                     Next Step

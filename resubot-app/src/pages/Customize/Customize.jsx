@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import { useNavigate } from "react-router-dom";
 import Loading from "../Loading/Loading";
 //import './Contact.scss'
@@ -16,6 +16,11 @@ const Customize = () => {
 
         });
     };
+
+    useEffect(() => {
+        setIndustry(localStorage.getItem("industry"));
+        setNewPosition(localStorage.getItem("newPosition"));
+    }, []);
 
     const nextPage = () => {
         navigate("/contact")
@@ -66,7 +71,8 @@ const Customize = () => {
                     required name = 'newPosition'
                     id = 'newPosition'
                     value = {newPosition}
-                    onChange={(e) => setNewPosition(e.target.value)}
+                    onChange={(e) => {setNewPosition(e.target.value);
+                        localStorage.setItem("newPosition", e.target.value);}}
                 />
                 <div>
                     <div>
@@ -76,7 +82,8 @@ const Customize = () => {
                             required anme = 'industry'
                             className="currentInput"
                             value={industry}
-                            onChange={(e) => setIndustry(e.target.value)}
+                            onChange={(e) => {setIndustry(e.target.value);
+                                localStorage.setItem("industry", e.target.value);}}
                         />
                     </div>
                 </div>

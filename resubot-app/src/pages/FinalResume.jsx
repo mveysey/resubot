@@ -4,52 +4,155 @@ import { useNavigate } from "react-router-dom";
 
 export const FinalResume = () => {
   const [interest1, setInterest1] = useState(false); // Corrected the typo in the state variable name
-  const pdfExportComponent = React.useRef(null);
+  //const pdfExportComponent = React.useRef(null);
 
   const navigate = useNavigate();
 
-  return (
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+};
+
+return (
     <div>
-      <h1
-        style={{
-          fontSize: "12px",
-          fontWeight: "bold",
-          display: "inline-block",
-        }}
-      >
-        PERSONAL DETAILS:
-      </h1>
-      <br />
-      <div
-        className="container"
-        style={{ marginLeft: "0%", fontSize: "11px" }}
-      >
-        <p>
-          <b>Full Name:</b>
-          {"\n" + localStorage.getItem("fullName")}
+    <form
+        onSubmit= {handleFormSubmit}
+        method = 'POST'
+        encType = 'multipart/form-data'>
+
+    <div className="container">
+        <h2>New Role: 
+        {"\n" + localStorage.getItem("newPosition")}</h2>
+        <p>Industry
+        {"\n" + localStorage.getItem("industry")}
         </p>
-        <p>
-          <b>Phone Number: </b>
-          {"\n" + localStorage.getItem("phoneNumber")}
-        </p>
-        <p>
-          <b>Email :</b>
-          {"\n" + localStorage.getItem("email")}
-        </p>
-        <p>
-          <b>linkedIn :</b>
-          {"\n" + localStorage.getItem("linkedIn")}
-        </p>
-        <p>
-          <b>Personal Link:</b>
-          {"\n" + localStorage.getItem("personalLink")}
-        </p>
-        <p>
-          <b>Role:</b>
-          {"\n" + localStorage.getItem("companyInfo")}
-        </p>
+        <br />
+
+        <div>
+            <h2>Personal Info</h2>
+            <p>
+            Full Name:
+            {"\n" + localStorage.getItem("fullName")}
+            </p>
+            <p>
+            Phone Number:
+            {"\n" + localStorage.getItem("phoneNumber")}
+            </p>
+            <p>
+            Email :
+            {"\n" + localStorage.getItem("email")}
+            </p>
+            <p>
+            linkedIn :
+            {"\n" + localStorage.getItem("linkedIn")}
+            </p>
+            <p>
+            Personal Link:
+            {"\n" + localStorage.getItem("personalLink")}
+            </p>
+            
+        </div>
+
+        <br />
+
+        <div>
+            <h2>Experience 1</h2>
+            <p>
+            Position:
+            {"\n" + localStorage.getItem("role1")}
+            </p>
+            <p>
+            Company Name:
+            {"\n" + localStorage.getItem("company1")}
+            </p>
+            <p>
+            Date :
+            {"\n" + localStorage.getItem("date1")}
+            </p>
+            <p>
+            Location :
+            {"\n" + localStorage.getItem("location1")}
+            </p>
+            <p>
+            Description:
+            {"\n" + localStorage.getItem("description1")}
+            </p>
+            <br/>
+            <h2>Experience 2</h2>
+            <p>
+            Position:
+            {"\n" + localStorage.getItem("role2")}
+            </p>
+            <p>
+            Company Name:
+            {"\n" + localStorage.getItem("company2")}
+            </p>
+            <p>
+            Date :
+            {"\n" + localStorage.getItem("date2")}
+            </p>
+            <p>
+            Location :
+            {"\n" + localStorage.getItem("location2")}
+            </p>
+            <p>
+            Description:
+            {"\n" + localStorage.getItem("description2")}
+            </p>
+            
+        </div>
+
+        <br />
+
+        <div>
+            <h2>Education</h2>
+            <p>
+            Degree
+            {"\n" + localStorage.getItem("degree")}
+            </p>
+            <p>
+            University:
+            {"\n" + localStorage.getItem("schoolName")}
+            </p>
+            <p>
+            Location :
+            {"\n" + localStorage.getItem("location")}
+            </p>
+            <p>
+            Graduation Date :
+            {"\n" + localStorage.getItem("graduation")}
+            </p>
+        </div>
+
+        <br />
+
+        <div>
+            <h2>Skills</h2>
+            <p>
+            Skills :
+            {"\n" + localStorage.getItem("skills")}
+            </p>
+           
+        </div>
+
+        <br />
+
+        <div>
+            <h2>Project</h2>
+            <p>
+            Project Name :
+            {"\n" + localStorage.getItem("projectTitle")}
+            </p>
+            <p>
+            Project Description :
+            {"\n" + localStorage.getItem("projectDescription")}
+            </p>
+           
+        </div>
+        <button>CREATE RESUME</button>
       </div>
-      <br />
+
+    </form>
+      
     </div>
   );
 };

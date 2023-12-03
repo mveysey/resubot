@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import { useNavigate } from "react-router-dom";
 import Loading from "../Loading/Loading";
 import './Skills.scss'
@@ -22,6 +22,9 @@ const Skills = () => {
         return<Loading />;
     }*/
 
+    useEffect( () => {
+        setSkills(localStorage.getItem("skills"));
+    }, [])
     const nextPage = () => {
         navigate("/projects")
     };
@@ -73,7 +76,8 @@ const Skills = () => {
                             required anme = 'skills'
                             className="currentInput"
                             value={skills}
-                            onChange={(e) => setSkills(e.target.value)}
+                            onChange={(e) => {setSkills(e.target.value);
+                                localStorage.setItem("skills", e.target.value);}}
                         />
                     </div>
                 </div>

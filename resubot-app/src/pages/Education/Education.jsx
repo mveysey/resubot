@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import { useNavigate } from "react-router-dom";
 import Loading from "../Loading/Loading";
 import './Education.scss'
@@ -25,6 +25,13 @@ const Education = () => {
     /*if(loading){
         return<Loading />;
     }*/
+
+    useEffect(() => {
+        setDegree(localStorage.getItem("degree"));
+        setSchoolLocation(localStorage.getItem("location"));
+        setSchoolName(localStorage.getItem("schoolName"));
+        setGraduation(localStorage.getItem("graduation"));
+    }, []);
 
     const nextPage = () => {
         navigate("/skills")
@@ -76,7 +83,8 @@ const Education = () => {
                             required anme = 'degree'
                             className="currentInput"
                             value={degree}
-                            onChange={(e) => setDegree(e.target.value)}
+                            onChange={(e) => {setDegree(e.target.value);
+                                localStorage.setItem("degree", e.target.value);}}
                         />
                     </div>
                     <div>
@@ -86,7 +94,8 @@ const Education = () => {
                             required anme = 'schoolName'
                             className="currentInput"
                             value={schoolName}
-                            onChange={(e) => setSchoolName(e.target.value)}
+                            onChange={(e) => {setSchoolName(e.target.value);
+                                localStorage.setItem("schoolName", e.target.value);}}
                         />
 
                     </div>
@@ -97,7 +106,8 @@ const Education = () => {
                             required anme = 'schoolLocation'
                             className="currentInput"
                             value={schoolLocation}
-                            onChange={(e) => setSchoolLocation(e.target.value)}
+                            onChange={(e) => {setSchoolLocation(e.target.value);
+                                localStorage.setItem("schoolLocation", e.target.value);}}
                         />
                     </div>
                     <div>
@@ -107,7 +117,8 @@ const Education = () => {
                             required anme = 'graduation'
                             className="currentInput"
                             value={graduation}
-                            onChange={(e) => setGraduation(e.target.value)}
+                            onChange={(e) =>{ setGraduation(e.target.value);
+                                localStorage.setItem("graduation", e.target.value);}}
                         />
                     </div>
                 <button onClick={nextPage}>

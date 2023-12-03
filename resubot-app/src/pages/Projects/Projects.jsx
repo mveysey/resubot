@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import { useNavigate } from "react-router-dom";
 import Loading from "../Loading/Loading";
 import './Projects.scss'
@@ -24,6 +24,10 @@ const Projects = () => {
         return<Loading />;
     }*/
 
+    useEffect( () => {
+        setProjectDescription(localStorage.getItem("projectDescription"));
+        setProjectTitle(localStorage.getItem("projectTitle"));
+    })
     const nextPage = () => {
         navigate("/finalResume")
     };
@@ -74,7 +78,8 @@ const Projects = () => {
                             required anme = 'projectTitle'
                             className="currentInput"
                             value={projectTitle}
-                            onChange={(e) => setProjectTitle(e.target.value)}
+                            onChange={(e) => {setProjectTitle(e.target.value);
+                                localStorage.setItem("projectTitle", e.target.value);}}
                         />
                     </div>
                     <div>
@@ -84,7 +89,8 @@ const Projects = () => {
                             required anme = 'projectDescription'
                             className="currentInput"
                             value={projectDescription}
-                            onChange={(e) => setProjectDescription(e.target.value)}
+                            onChange={(e) => {setProjectDescription(e.target.value);
+                                localStorage.setItem("projectDescription", e.target.value);}}
                         />
                     </div>
                    
