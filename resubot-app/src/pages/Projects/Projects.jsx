@@ -1,21 +1,18 @@
 import React, {useState} from "react";
 import Loading from "../Loading/Loading";
-import './Education.scss'
+import './Projects.scss'
 
-const Education = () => {
-    const [degree, setDegree] = useState("");
-    const [schoolName, setSchoolName] = useState("");
-    const [schoolLocation, setSchoolLocation] = useState("");
-    const [graduation, setGraduation,] = useState("");
+const Projects = () => {
+    const [skills, setSkills] = useState("");
+
     const [loading, setLoading] = useState(false);
+    
 
     const handleFormSubmit = (e) => {
         e.preventDefault();
         console.log({
-            degree,
-            schoolName,
-            schoolLocation,
-            graduation,
+            skills,
+
         });
         setLoading(true);
     };
@@ -42,13 +39,13 @@ const Education = () => {
 					<li><a href="/experience">
 						<span class="text">Experience</span>
 					</a></li>
-					<li><a href="/education" class="active">
+					<li><a href="/education">
 						<span class="text">Education</span>
 					</a></li>
 					<li><a href="/skills">
 						<span class="text">Skills</span>
 					</a></li>
-                    <li><a href="/projects">
+					<li><a href="/projects"  class="active">
 						<span class="text">Projects</span>
 					</a></li>
 				</ul>
@@ -58,52 +55,62 @@ const Education = () => {
 		</div>
 			<div class="container">
 				<div class="content">
-                <div></div>
-                <form
+                <form 
                     onSubmit= {handleFormSubmit}
                     method = 'POST'
                     encType = 'multipart/form-data'>
+                <div>
                     <div>
-                        <label htmlFor="degree">DEGREE</label>
+                        <label htmlFor="skills">Give Your Project a Title</label>
                         <input
                             type='text'
-                            required anme = 'degree'
+                            required anme = 'skills'
                             className="currentInput"
-                            value={degree}
-                            onChange={(e) => setDegree(e.target.value)}
+                            value={skills}
+                            onChange={(e) => setSkills(e.target.value)}
                         />
                     </div>
                     <div>
-                        <label htmlFor="schoolName">UNIVERSITY NAME</label>
+                        <label htmlFor="skills">Give Your Project a Title</label>
                         <input
                             type='text'
-                            required anme = 'schoolName'
+                            required anme = 'skills'
                             className="currentInput"
-                            value={schoolName}
-                            onChange={(e) => setSchoolName(e.target.value)}
-                        />
-
-                    </div>
-                    <div>
-                        <label htmlFor="schoolLocation">UNIVERSITY LOCATIONL</label>
-                        <input
-                            type='text'
-                            required anme = 'schoolLocation'
-                            className="currentInput"
-                            value={schoolLocation}
-                            onChange={(e) => setSchoolLocation(e.target.value)}
+                            value={skills}
+                            onChange={(e) => setSkills(e.target.value)}
                         />
                     </div>
                     <div>
-                        <label htmlFor="graduation">GRADUATION DATE</label>
+                        <label htmlFor="skills">Give Your Project a Title</label>
                         <input
                             type='text'
-                            required anme = 'graduation'
+                            required anme = 'skills'
                             className="currentInput"
-                            value={graduation}
-                            onChange={(e) => setGraduation(e.target.value)}
+                            value={skills}
+                            onChange={(e) => setSkills(e.target.value)}
                         />
                     </div>
+                    <div>
+                        <label htmlFor="skills">Give Your Project a Title</label>
+                        <input
+                            type='text'
+                            required anme = 'skills'
+                            className="currentInput"
+                            value={skills}
+                            onChange={(e) => setSkills(e.target.value)}
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="skills">Give Your Project a Title</label>
+                        <input
+                            type='text'
+                            required anme = 'skills'
+                            className="currentInput"
+                            value={skills}
+                            onChange={(e) => setSkills(e.target.value)}
+                        />
+                    </div>
+                </div>
                 <button>
                     SAVE PERSONAL INFO
                 </button>
@@ -115,4 +122,4 @@ const Education = () => {
     );
 };
 
-export default Education;
+export default Projects;

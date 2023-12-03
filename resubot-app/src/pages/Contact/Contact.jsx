@@ -1,15 +1,30 @@
-import React, {useState} from "react";
+import {useState, useEffect, React} from "react";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Loading from "../Loading/Loading";
 import './Contact.scss'
 
 const Contact = () => {
+    const navigate = useNavigate();
     const [fullName, setFullName] = useState("");
     const [phoneNumber, setPhoneNumber] = useState("");
     const [email, setEmail] = useState("");
     const [linkedIn, setLinkedIn] = useState("");
     const [personalLink, setPersonalLink] = useState("");
-    const [loading, setLoading] = useState(false);
+    //const [loading, setLoading] = useState(false);
     
+    // To save the user input
+    useEffect(() => {
+        setFullName(localStorage.getItem("fullName"));
+        setPhoneNumber(localStorage.getItem("phoneNumber"));
+        setEmail(localStorage.getItem("email"));
+        setLinkedIn(localStorage.getItem("linkedIn"));
+        setPersonalLink(localStorage.getItem("personalLink"));
+    }, []);
+
+    /*const prevStep = () => {
+        navigate.push("/step3");
+      };*/
 
     const handleFormSubmit = (e) => {
         e.preventDefault();
@@ -18,14 +33,15 @@ const Contact = () => {
             phoneNumber,
             email,
             linkedIn,
-            loading,
+            //loading,
             personalLink,
         });
-        setLoading(true);
+        //setLoading(true);
     };
-    if(loading){
+    /*if(loading){
         return<Loading />;
-    }
+    }*/
+
 
 
     return(
@@ -37,8 +53,11 @@ const Contact = () => {
 			<div class="vertical_bar">
 				
 				<ul class="menu">
+                    <li><a href="/Customize">
+						<span class="text">Cutomize Resume</span>
+					</a></li>
 					<li><a href="/contact" class="active">
-						<span class="text">Personal Info</span>
+						<span class="text">Contact Info</span>
 					</a></li>
 					<li><a href="/experience">
 						<span class="text">Experience</span>
@@ -49,8 +68,8 @@ const Contact = () => {
 					<li><a href="/skills">
 						<span class="text">Skills</span>
 					</a></li>
-					<li><a href="#">
-						<span class="text">Rewards</span>
+					<li><a href="/projects">
+						<span class="text">Projects</span>
 					</a></li>
 				</ul>
 
@@ -69,7 +88,10 @@ const Contact = () => {
                     required name = 'fullName'
                     id = 'fullName'
                     value = {fullName}
-                    onChange={(e) => setFullName(e.target.value)}
+                    onChange={(e) => {
+                        setFullName(e.target.value);
+                        localStorage.setItem("fullName", e.target.value);
+                        }}
                 />
                 <div>
                     <div>
@@ -79,7 +101,10 @@ const Contact = () => {
                             required anme = 'email'
                             className="currentInput"
                             value={email}
-                            onChange={(e) => setEmail(e.target.value)}
+                            onChange={(e) => {
+                                setEmail(e.target.value);
+                                localStorage.setItem("email", e.target.value);
+                                }}
                         />
                     </div>
                     <div>
@@ -89,7 +114,9 @@ const Contact = () => {
                             required anme = 'phoneNumber'
                             className="currentInput"
                             value={phoneNumber}
-                            onChange={(e) => setPhoneNumber(e.target.value)}
+                            onChange={(e) => {
+                                setPhoneNumber(e.target.value);
+                                localStorage.setItem("phoneNumber", e.target.value);}}
                         />
 
                     </div>
@@ -100,7 +127,8 @@ const Contact = () => {
                             required anme = 'linkedIn'
                             className="currentInput"
                             value={linkedIn}
-                            onChange={(e) => setLinkedIn(e.target.value)}
+                            onChange={(e) => {setLinkedIn(e.target.value);
+                                localStorage.setItem("linkedIn", e.target.value);}}
                         />
                     </div>
                     <div>
@@ -110,7 +138,8 @@ const Contact = () => {
                             required anme = 'personalLink'
                             className="currentInput"
                             value={personalLink}
-                            onChange={(e) => setPersonalLink(e.target.value)}
+                            onChange={(e) => {setPersonalLink(e.target.value);
+                                localStorage.setItem("personalLink", e.target.value);}}
                         />
                     </div>
                 </div>

@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import {useState, useEffect, React} from "react";
+import { useNavigate } from "react-router-dom";
 import Loading from "../Loading/Loading";
 import './Experience.scss';
 
@@ -9,10 +10,10 @@ const Experience = () => {
     const [endDate, setEndDate] = useState("");
     const [location, setLocation] = useState("");
     const [description, setDescription] = useState("");
-    const [companyInfo, setCompanyInfo] = useState([{ role: "", position: "", start: "", end: "", location: "", description: "" }]);
-    const [loading, setLoading] = useState(false);
+    const [companyInfo, setCompanyInfo] = useState([{ role: "", position: "", start: "", location: "", description: "" }]);
+    //const [loading, setLoading] = useState(false);
 
-    const handleFormSubmit = (e) => {
+    /*const handleFormSubmit = (e) => {
         e.preventDefault();
         console.log({
             role,
@@ -27,26 +28,38 @@ const Experience = () => {
 
     if (loading) {
         return <Loading />;
-    }
+    }*/
+   
+    // To save the user input
+    useEffect(() => {
+        const storedCompanyInfo = JSON.parse(localStorage.getItem("companyInfo"));
+        if (storedCompanyInfo) {
+            setCompanyInfo(storedCompanyInfo);
+        }
+    }, []);
+    
 
-
-    //👇🏻 updates the state with user's input
+    //updates the state with user's input
     const handleAddCompany = () =>
-        setCompanyInfo([...companyInfo, { role: "", position: "", start: "", end: "", location: "", description: "" }]);
+        setCompanyInfo([...companyInfo, { role: "", position: "", start: "", location: "", description: "" }]);
 
-    //👇🏻 removes a selected item from the list
+    // removes a selected item from the list
     const handleRemoveCompany = (index) => {
         const list = [...companyInfo];
         list.splice(index, 1);
         setCompanyInfo(list);
     };
-    //👇🏻 updates an item within the list
+
+    // updates an item within the list
     const handleUpdateCompany = (e, index) => {
         const { name, value } = e.target;
         const list = [...companyInfo];
-        list[index][role] = value;
+        list[index][name] = value;
         setCompanyInfo(list);
+        localStorage.setItem("companyInfo", JSON.stringify(list));
     };
+
+
     return(
         <div class="wrapper">
 		<div class="wrapper_inner">
@@ -55,8 +68,11 @@ const Experience = () => {
 			<div class="vertical_bar">
 				
 				<ul class="menu">
+                    <li><a href="/Customize">
+						<span class="text">Cutomize Resume</span>
+					</a></li>
 					<li><a href="/contact">
-						<span class="text">Personal Info</span>
+						<span class="text">Contact Info</span>
 					</a></li>
 					<li><a href="/experience" class="active">
 						<span class="text">Experience</span>
@@ -67,8 +83,8 @@ const Experience = () => {
 					<li><a href="/skills">
 						<span class="text">Skills</span>
 					</a></li>
-					<li><a href="#">
-						<span class="text">Rewards</span>
+					<li><a href="/projects">
+						<span class="text">Projects</span>
 					</a></li>
 				</ul>
 
@@ -81,15 +97,18 @@ const Experience = () => {
                 {companyInfo.map((company, index) => (
                     <div class="nestedContainer" key={index}>
                         <div className="companies">
-                            <label htmlFor="name">COMPANY NAME</label>
+                            <label htmlFor="role">Position</label>
                             <input
                                 type="text"
-                                name="name"
-                                required onChange={(e) => handleUpdateCompany(e, index)}
+                                required name = 'role'
+                                className="currentInput"
+                                value={company.role}
+                                    onChange={(e) => {handleUpdateCompany(e, index);
+                                        localStorage.setItem(companyInfo, e.target.value);}}
                             />
                         </div>
                         <div className="companies">
-                            <label htmlFor="position">POSITION NAME</label>
+                            <label htmlFor="position">Position</label>
                             <input
                                 type="text"
                                 name="position"
@@ -98,25 +117,17 @@ const Experience = () => {
                         </div>
                         <div className="verticalcontainer">
                             <div className="companies">
-                                <label htmlFor="position">StART DATE</label>
+                                <label htmlFor="position">Date or Date Range</label>
                                 <input
                                     type="text"
                                     name="position"
+                                    placeholder="May 23 - Present"
                                     className="subInput"
                                     required onChange={(e) => handleAddCompany(e, index)}
                                 />
                             </div>
                             <div className="companies">
-                                <label htmlFor="position">END DATE</label>
-                                <input
-                                    type="text"
-                                    name="position"
-                                    className="subInput"
-                                    required onChange={(e) => handleAddCompany(e, index)}
-                                />
-                            </div>
-                            <div className="companies">
-                                <label htmlFor="position">LOCATION</label>
+                                <label htmlFor="position">Location</label>
                                 <input
                                     type="text"
                                     name="position"
