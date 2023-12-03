@@ -22,9 +22,9 @@ const Contact = () => {
         setPersonalLink(localStorage.getItem("personalLink"));
     }, []);
 
-    /*const prevStep = () => {
-        navigate.push("/step3");
-      };*/
+    const nextPage = () => {
+        navigate("/experience")
+    }
 
     const handleFormSubmit = (e) => {
         e.preventDefault();
@@ -82,7 +82,7 @@ const Contact = () => {
                     onSubmit= {handleFormSubmit}
                     method = 'POST'
                     encType = 'multipart/form-data'>
-                <label htmlFor='fullName'>FULL NAME</label>
+                <label htmlFor='fullName'>Full Name</label>
                 <input
                     type ='text'
                     required name = 'fullName'
@@ -95,7 +95,7 @@ const Contact = () => {
                 />
                 <div>
                     <div>
-                        <label htmlFor="email">EMAIL ADDRESS</label>
+                        <label htmlFor="email">Email Address</label>
                         <input
                             type='text'
                             required anme = 'email'
@@ -108,7 +108,7 @@ const Contact = () => {
                         />
                     </div>
                     <div>
-                        <label htmlFor="phoneNumber">PHONE NUMBER</label>
+                        <label htmlFor="phoneNumber">Phone Number</label>
                         <input
                             type='text'
                             required anme = 'phoneNumber'
@@ -121,7 +121,7 @@ const Contact = () => {
 
                     </div>
                     <div>
-                        <label htmlFor="linkedIn"><strong>LINKEDIN </strong>URL</label>
+                        <label htmlFor="linkedIn"><strong>LinkedIn </strong>URL</label>
                         <input
                             type='text'
                             required anme = 'linkedIn'
@@ -132,7 +132,7 @@ const Contact = () => {
                         />
                     </div>
                     <div>
-                        <label htmlFor="personalLink"><strong>PERSONAL WEBSITE </strong>OR RELEVANT LINK</label>
+                        <label htmlFor="personalLink"><strong>Personal Website </strong>OR Relevant Links</label>
                         <input
                             type='text'
                             required anme = 'personalLink'
@@ -143,8 +143,8 @@ const Contact = () => {
                         />
                     </div>
                 </div>
-                <button>
-                    SAVE PERSONAL INFO
+                <button onClick={nextPage}>
+                    Next Step
                 </button>
             </form>
             </div>

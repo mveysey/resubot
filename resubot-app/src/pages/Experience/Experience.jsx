@@ -4,6 +4,7 @@ import Loading from "../Loading/Loading";
 import './Experience.scss';
 
 const Experience = () => {
+    const navigate = useNavigate();
     const [role, setRole] = useState("");
     const [company, setCompany] = useState("");
     const [startDate, setStartDate] = useState("");
@@ -37,6 +38,10 @@ const Experience = () => {
             setCompanyInfo(storedCompanyInfo);
         }
     }, []);
+
+    const nextPage = () => {
+        navigate("/education")
+    };
     
 
     //updates the state with user's input
@@ -137,7 +142,7 @@ const Experience = () => {
                             </div>
                         </div>
                         <div className="companies">
-                            <label htmlFor="position">DESCRIPTION OF YOUR ROLE</label>
+                            <label htmlFor="position">Description of Your Position</label>
                             <textarea
                                 type="text"
                                 name="position"
@@ -162,7 +167,9 @@ const Experience = () => {
                     </div>
                 ))}
                 
-                <button>SAVE EXPERIENCE</button>
+                <button onClick={nextPage}>
+                    Next Step
+                </button>
             </form>
             </div>
         </div>

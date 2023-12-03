@@ -20,6 +20,7 @@ import Skills from "./pages/Skills/Skills.jsx";
 import Projects from "./pages/Projects/Projects.jsx";
 import Customize from "./pages/Customize/Customize.jsx";
 import FinalResume from "./pages/FinalResume.jsx";
+import CreateResume from "./pages/CreateResumes/Resumes.jsx";
 
 const Router = () => (
     <BrowserRouter>
@@ -44,6 +45,7 @@ const Router = () => (
                 <Route path="/customize" element={<Customize/>}/>
                 <Route path="/loading" element={<Loading/>}/>
                 <Route path="/finalresume" element={<FinalResume/>} />
+                <Route path="/resumes" element={<CreateResume/>} />
 
                 {/*Error Page*/}
                 <Route path="*" element={<Error/>}/>

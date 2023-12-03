@@ -1,11 +1,13 @@
 import React, {useState} from "react";
+import { useNavigate } from "react-router-dom";
 import Loading from "../Loading/Loading";
 import './Skills.scss'
 
 const Skills = () => {
+    const navigate = useNavigate();
     const [skills, setSkills] = useState("");
 
-    const [loading, setLoading] = useState(false);
+    //const [loading, setLoading] = useState(false);
     
 
     const handleFormSubmit = (e) => {
@@ -14,12 +16,16 @@ const Skills = () => {
             skills,
 
         });
-        setLoading(true);
+        //setLoading(true);
     };
-    if(loading){
+    /*if(loading){
         return<Loading />;
-    }
+    }*/
 
+    const nextPage = () => {
+        navigate("/projects")
+    };
+    
 
     return(
 
@@ -71,8 +77,8 @@ const Skills = () => {
                         />
                     </div>
                 </div>
-                <button>
-                    SAVE PERSONAL INFO
+                <button onClick={nextPage}>
+                    Next Step
                 </button>
             </form>
             </div>

@@ -1,8 +1,10 @@
 import React, {useState} from "react";
+import { useNavigate } from "react-router-dom";
 import Loading from "../Loading/Loading";
 //import './Contact.scss'
 
 const Customize = () => {
+    const navigate = useNavigate();
     const [newPosition, setNewPosition] = useState("");
     const [industry, setIndustry] = useState("");
 
@@ -14,6 +16,10 @@ const Customize = () => {
 
         });
     };
+
+    const nextPage = () => {
+        navigate("/contact")
+    }
    
 
     return(
@@ -74,8 +80,8 @@ const Customize = () => {
                         />
                     </div>
                 </div>
-                <button>
-                    SAVE PERSONAL INFO
+                <button onClick={nextPage}>
+                    Next Step
                 </button>
             </form>
             </div>

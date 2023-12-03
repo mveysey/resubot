@@ -1,13 +1,16 @@
 import React, {useState} from "react";
+import { useNavigate } from "react-router-dom";
 import Loading from "../Loading/Loading";
 import './Education.scss'
 
 const Education = () => {
+    const navigate = useNavigate();
     const [degree, setDegree] = useState("");
     const [schoolName, setSchoolName] = useState("");
     const [schoolLocation, setSchoolLocation] = useState("");
     const [graduation, setGraduation,] = useState("");
-    const [loading, setLoading] = useState(false);
+    //const [loading, setLoading] = useState(false);
+    
 
     const handleFormSubmit = (e) => {
         e.preventDefault();
@@ -17,12 +20,15 @@ const Education = () => {
             schoolLocation,
             graduation,
         });
-        setLoading(true);
+        //setLoading(true);
     };
-    if(loading){
+    /*if(loading){
         return<Loading />;
-    }
+    }*/
 
+    const nextPage = () => {
+        navigate("/skills")
+    };
 
     return(
 
@@ -64,7 +70,7 @@ const Education = () => {
                     method = 'POST'
                     encType = 'multipart/form-data'>
                     <div>
-                        <label htmlFor="degree">DEGREE</label>
+                        <label htmlFor="degree">Degree</label>
                         <input
                             type='text'
                             required anme = 'degree'
@@ -74,7 +80,7 @@ const Education = () => {
                         />
                     </div>
                     <div>
-                        <label htmlFor="schoolName">UNIVERSITY NAME</label>
+                        <label htmlFor="schoolName">University Name</label>
                         <input
                             type='text'
                             required anme = 'schoolName'
@@ -85,7 +91,7 @@ const Education = () => {
 
                     </div>
                     <div>
-                        <label htmlFor="schoolLocation">UNIVERSITY LOCATIONL</label>
+                        <label htmlFor="schoolLocation">University Location</label>
                         <input
                             type='text'
                             required anme = 'schoolLocation'
@@ -95,7 +101,7 @@ const Education = () => {
                         />
                     </div>
                     <div>
-                        <label htmlFor="graduation">GRADUATION DATE</label>
+                        <label htmlFor="graduation">Graduation Date</label>
                         <input
                             type='text'
                             required anme = 'graduation'
@@ -104,8 +110,8 @@ const Education = () => {
                             onChange={(e) => setGraduation(e.target.value)}
                         />
                     </div>
-                <button>
-                    SAVE PERSONAL INFO
+                <button onClick={nextPage}>
+                    Next Step
                 </button>
             </form>
             </div>

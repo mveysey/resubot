@@ -1,25 +1,32 @@
 import React, {useState} from "react";
+import { useNavigate } from "react-router-dom";
 import Loading from "../Loading/Loading";
 import './Projects.scss'
 
 const Projects = () => {
-    const [skills, setSkills] = useState("");
+    const navigate = useNavigate();
+    const [projectTitle, setProjectTitle] = useState("");
+    const [projectDescription, setProjectDescription] = useState("");
 
-    const [loading, setLoading] = useState(false);
+    //const [loading, setLoading] = useState(false);
     
 
     const handleFormSubmit = (e) => {
         e.preventDefault();
         console.log({
-            skills,
+            projectTitle,
+            projectDescription,
 
         });
-        setLoading(true);
+        //setLoading(true);
     };
-    if(loading){
+    /*if(loading){
         return<Loading />;
-    }
+    }*/
 
+    const nextPage = () => {
+        navigate("/finalResume")
+    };
 
     return(
 
@@ -61,59 +68,31 @@ const Projects = () => {
                     encType = 'multipart/form-data'>
                 <div>
                     <div>
-                        <label htmlFor="skills">Give Your Project a Title</label>
+                        <label htmlFor="projectTitle">Give Your Project a Title</label>
                         <input
                             type='text'
-                            required anme = 'skills'
+                            required anme = 'projectTitle'
                             className="currentInput"
-                            value={skills}
-                            onChange={(e) => setSkills(e.target.value)}
+                            value={projectTitle}
+                            onChange={(e) => setProjectTitle(e.target.value)}
                         />
                     </div>
                     <div>
-                        <label htmlFor="skills">Give Your Project a Title</label>
-                        <input
+                        <label htmlFor="projectDescription">Description of Your Project</label>
+                        <textarea
                             type='text'
-                            required anme = 'skills'
+                            required anme = 'projectDescription'
                             className="currentInput"
-                            value={skills}
-                            onChange={(e) => setSkills(e.target.value)}
+                            value={projectDescription}
+                            onChange={(e) => setProjectDescription(e.target.value)}
                         />
                     </div>
-                    <div>
-                        <label htmlFor="skills">Give Your Project a Title</label>
-                        <input
-                            type='text'
-                            required anme = 'skills'
-                            className="currentInput"
-                            value={skills}
-                            onChange={(e) => setSkills(e.target.value)}
-                        />
-                    </div>
-                    <div>
-                        <label htmlFor="skills">Give Your Project a Title</label>
-                        <input
-                            type='text'
-                            required anme = 'skills'
-                            className="currentInput"
-                            value={skills}
-                            onChange={(e) => setSkills(e.target.value)}
-                        />
-                    </div>
-                    <div>
-                        <label htmlFor="skills">Give Your Project a Title</label>
-                        <input
-                            type='text'
-                            required anme = 'skills'
-                            className="currentInput"
-                            value={skills}
-                            onChange={(e) => setSkills(e.target.value)}
-                        />
-                    </div>
+                   
                 </div>
-                <button>
-                    SAVE PERSONAL INFO
+                <button onClick={nextPage}>
+                    Review Resume
                 </button>
+
             </form>
             </div>
             </div>
