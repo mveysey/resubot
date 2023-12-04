@@ -1,42 +1,40 @@
-const {
-  generateID,
-  generateTextUser,
-  generateTextAssistant,
-} = require("../util/ai-util"); // Import utility functions
+const { generateID, generateText } = require("../util/ai-util"); // Import utility functions
 
 const resumeController = {
   // Create a resume entry logic
   createResumeEntry: async (req, res) => {
     try {
-      (fullName = req.body.fullName),
-        (phoneNumber = req.body.phoneNumber),
-        (email = req.body.email),
-        (linkedIn = req.body.linkedIn),
-        (personalLink = req.body.personalLink),
-        (optionalJobDecsription = req.body.newPosition),
-        (optionalIndustry = req.body.industry),
-        (role1 = req.body.role1),
-        (company1 = req.body.company1),
-        (date1 = req.body.date1),
-        (location1 = req.body.location1),
-        (description1 = req.body.description1),
-        (role2 = req.body.role2),
-        (company2 = req.body.company2),
-        (date2 = req.body.date2),
-        (location2 = req.body.location2),
-        (description2 = req.body.descriotion2),
-        (degree = req.body.degree),
-        (location = req.body.location),
-        (schoolName = req.body.schoolName),
-        (graduation = req.body.graduation),
-        (skills = req.body.skilss),
-        (projectTitle = req.body.projectTitle),
-        (projectDescription = req.body.projectDescription);
+      const {
+        fullName,
+        phoneNumber,
+        email,
+        linkedIn,
+        personalLink,
+        optionalJobDecsription,
+        optionalIndustry,
+        role1,
+        company1,
+        date1,
+        location1,
+        description1,
+        role2,
+        company2,
+        date2,
+        location2,
+        description2,
+        degree,
+        location,
+        schoolName,
+        graduation,
+        skills,
+        projectTitle,
+        projectDescription,
+      } = req.body;
 
       const newEntry = {
         id: generateID(),
         fullName,
-        phonenumer,
+        phoneNumber,
         email,
         linkedIn,
         personalLink,
@@ -71,6 +69,7 @@ const resumeController = {
         default:
           jobDescription = optionalJobDecsription;
       }
+      console.log(jobDescription);
 
       var industry;
       switch (optionalIndustry) {
@@ -81,9 +80,31 @@ const resumeController = {
         default:
           industry = optionalIndustry;
       }
+      console.log(industry);
 
-      //   const testPrompt = `My full name is Madeline. Can you write a 20-word description about my name?`;
+      /*
+      const systemMessage = {
+        role: "system",
+        content: "Use words daring, dashing, and weird to describe Emily",
+      };
+      const testP = `Write down 5 words about me, my name is Emily`;
 
+      //   console.log([{ role: "user", content: testP }]);
+
+      const test = await generateText([
+        systemMessage,
+        { role: "user", content: testP },
+      ]);
+
+      console.log(test);
+
+      const testData = {
+        test,
+      };
+
+      const data = { ...newEntry, ...testData }; */
+
+      // create a prompt to send to openAI API as system
       let systemPrompt;
       if (industry != null && jobDescription != null) {
         systemPrompt = `You are a resume writer for someone who works in the ${industry} industry and is applying for a job with this description ${jobDescription}. Never forget that industry and job description when you are writing the resume.`;
@@ -95,26 +116,41 @@ const resumeController = {
         systemPrompt = `You are a resume writer for someone. Never forget that role.`;
       }
 
-      const role1Prompt = `Write me a 50 word description about my role at ${company1} in ${location1} where I worked as a ${role1} doing ${description1}`;
-      const role2Prompt = `Write me a 50 word description about my role at ${company2} in ${location2} where I worked as a ${role2} doing ${description2}`;
+      // create prompts to send to openAI API as user
+      const role1Prompt = `Write me a 50 word description about my role at ${company1} in ${location1} where I worked as a ${role1}. I was responsible for ${description1}`;
+      const role2Prompt = `Write me a 50 word description about my role at ${company2} in ${location2} where I worked as a ${role2}. I was responsible for ${description2}`;
       const educationPrompt = `Write 5 courses that I might have taken at ${schoolName} in ${location}, getting my degree in ${degree}. My graduation date is ${graduation}`;
       const skillsPrompt = `Write 10 points for my resume on what I am good at given my skills, ${skills}`;
       const projectPrompt = `Write me a 50 word description about my project called ${projectTitle} that consisted of ${projectDescription}`;
 
-      // const objective = await generateText(prompt1);
-      // const keypoints = await generateText(prompt2);
-      // const jobResponsibilities = await generateText(prompt3);
+      //  send context prompt before generating resume info
+      const systemMessage = { role: "system", content: systemPrompt };
 
-      // send context prompt before generating resume info
-      await generateTextAssistant(systemPrompt);
+      // generate all resume info
+      const role1Generated = await generateText([
+        systemMessage,
+        { role: "user", content: role1Prompt },
+      ]);
 
-      const role1Generated = await generateText(role1Prompt);
-      const role2Generated = await generateText(role2Prompt);
-      const educationGenerated = await generateText(educationPrompt);
-      const skillsGenerated = await generateText(skillsPrompt);
-      const projectGenerated = await generateText(projectPrompt);
+      const role2Generated = await generateText([
+        systemMessage,
+        { role: "user", content: role2Prompt },
+      ]);
 
-      //   const test = await generateText(testPrompt);
+      const educationGenerated = await generateText([
+        systemMessage,
+        { role: "user", content: educationPrompt },
+      ]);
+
+      const skillsGenerated = await generateText([
+        systemMessage,
+        { role: "user", content: skillsPrompt },
+      ]);
+
+      const projectGenerated = await generateText([
+        systemMessage,
+        { role: "user", content: projectPrompt },
+      ]);
 
       const chatgptData = {
         role1Generated,
@@ -123,9 +159,11 @@ const resumeController = {
         skillsGenerated,
         projectGenerated,
       };
+
+      console.log(chatgptData);
+
       const responseData = { ...newEntry, ...chatgptData };
 
-      console.log(responseData);
       res.json({
         message: "Resume entry created successfully",
         data: responseData,

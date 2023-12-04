@@ -12,10 +12,11 @@ const generateID = () => {
 };
 
 // Function to generate text using OpenAI API
-const generateTextUser = async (text) => {
+const generateText = async (messages) => {
+  console.log(messages);
   const response = await openai.chat.completions.create({
     model: "gpt-3.5-turbo",
-    messages: [{ role: "user", content: text }],
+    messages: messages,
     temperature: 0.6,
     max_tokens: 250,
     top_p: 1,
@@ -25,17 +26,4 @@ const generateTextUser = async (text) => {
   return response.choices[0].message.content;
 };
 
-const generateTextSystem = async (text) => {
-  const response = await openai.chat.completions.create({
-    model: "gpt-3.5-turbo",
-    messages: [{ role: "system", content: text }],
-    temperature: 0.6,
-    max_tokens: 250,
-    top_p: 1,
-    frequency_penalty: 1,
-    presence_penalty: 1,
-  });
-  return response.choices[0].message.content;
-};
-
-module.exports = { generateID, generateTextUser, generateTextAssistant };
+module.exports = { generateID, generateText };
