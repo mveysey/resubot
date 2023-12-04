@@ -68,18 +68,18 @@ export const FinalResume = () => {
     formData.append("location2", location2);
     formData.append("description2", description2);
 
-    formData.append("degree", role2);
-    formData.append("location", company2);
-    formData.append("schoolName", date2);
-    formData.append("graduation", location2);
+    formData.append("degree", degree);
+    formData.append("location", location);
+    formData.append("schoolName", schoolName);
+    formData.append("graduation", graduation);
 
-    formData.append("skills", description2);
+    formData.append("skills", skills);
 
-    formData.append("projectTitle", date2);
-    formData.append("projectDescription", location2);
+    formData.append("projectTitle", projectTitle);
+    formData.append("projectDescription", projectDescription);
 
     axios
-      .post("http://localhost:4000/resume/create", formData, {})
+      .post("http://localhost:4000/api/resume/create", formData, {})
       .then((res) => {
         if (res.data.message) {
           console.log(res.data.data);
