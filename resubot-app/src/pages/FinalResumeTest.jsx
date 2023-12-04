@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Loading from "./Loading/Loading";
 import "./FinalResume.scss";
@@ -38,12 +38,24 @@ const FinalResume = () => {
   //const pdfExportComponent = React.useRef(null);
   const navigate = useNavigate();
 
+<<<<<<< HEAD
+   
+
+    // SendToChatGPT data 
+    const sendToChatGPT = async (userData) => {
+        // Make an API request or perform any logic to interact with ChatGPT
+        // For example:
+        const response = await axios.post("YOUR_CHATGPT_API_ENDPOINT", userData);
+        return response.data.modifiedResume; // Adjust based on your ChatGPT response
+      };
+=======
   //updates the state with user's input
   const handleAddCompany = () =>
     setCompanyInfo([
       ...companyInfo,
       { role: "", company: "", start: "", location: "", description: "" },
     ]);
+>>>>>>> 154176889e348ebe2d65465f83c3ccd1a3e8c007
 
   // removes a selected item from the list
   const handleRemoveCompany = (index) => {
@@ -61,8 +73,30 @@ const FinalResume = () => {
     localStorage.setItem("companyInfo", JSON.stringify(list));
   };
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
+
+    try {
+        setLoading(true);
+  
+        // Send user input to ChatGPT and get modified resume data
+        const modifiedResumeData = await sendToChatGPT({
+          fullName,
+          graduation,
+          skills,
+          projectDescription,
+          // ... (add other necessary data)
+        });
+
+         // Navigate to the resume display page with the modified resume data
+        navigate("/resume-display", { state: { modifiedResume: modifiedResumeData } });
+
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+
     console.log({
       fullName,
       graduation,

@@ -19,7 +19,7 @@ import Education from "./pages/Education/Education.jsx";
 import Skills from "./pages/Skills/Skills.jsx";
 import Projects from "./pages/Projects/Projects.jsx";
 import Customize from "./pages/Customize/Customize.jsx";
-import FinalResume from "./pages/FinalResume.jsx";
+import FinalResume from "./pages/FinalResume/FinalResume.jsx";
 import CreateResume from "./pages/CreateResumes/Resumes.jsx";
 import ProtectedRoute from "./common/protectedRoute.js";
 
