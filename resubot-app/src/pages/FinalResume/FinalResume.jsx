@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Form, useNavigate } from "react-router-dom";
 import axios from "axios";
-import Loading from "./Loading/Loading";
-import "./FinalResume.scss";
+import Loading from "../Loading/Loading";
+import './Finalresume.scss';
 
 const FinalResume = () => {
     //To Cutomize Resume for new position
@@ -37,7 +37,6 @@ const FinalResume = () => {
     const navigate = useNavigate();
 
 
-
     //updates the state with user's input
     const handleAddCompany = () =>
     setCompanyInfo([...companyInfo, { role: "", company: "", start: "", location: "", description: "" }]);
@@ -60,12 +59,6 @@ const FinalResume = () => {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    console.log({
-        fullName,
-        graduation,
-        skills,
-        projectDescription,
-    });
     /*const newPosition = localStorage.getItem("newPosition");
     const industry = localStorage.getItem("industry");
 
@@ -119,13 +112,13 @@ const FinalResume = () => {
     formData.append("company2", company2);
     formData.append("date2", date2);
     formData.append("location2", location2);
-    //formData.append("description2", description2);
+    //formData.append("description2", description2);*/
 
     
-    formData.append("degree", role2);
-    formData.append("location", company2);
-    formData.append("schoolName", date2);
-    formData.append("graduation", location2);*/
+    formData.append("degree", degree);
+    formData.append("location", schoolLocation);
+    formData.append("schoolName", schoolName);
+    formData.append("graduation", graduation);
 
     formData.append("workHistory", JSON.stringify(companyInfo));
 
@@ -135,7 +128,7 @@ const FinalResume = () => {
     formData.append("projectDescription", projectDescription);
     
     axios
-    .post("http://localhost:4000/api/resume/create", formData, {})
+    .post("http://localhost:4000/api/resume1/create", formData, {})
     .then((res) => {
       if (res.data.message) {
         console.log(res.data.data);
