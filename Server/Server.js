@@ -1,18 +1,38 @@
+// using Middlewares
 const { OpenAI } = require("openai");
 const express = require("express");
-const app = express();
-const routes = require("./Database"); // Import your routes
 const cors = require("cors");
+const dbRoutes = require("./Database");
+const mysql = require("mysql");
+// const { Configuration, OpenAIApi } = require("openai");
+
+const app = express();
+const port = process.env.PORT || 4000;
 
 const openai = new OpenAI({});
 
+// Create a MySQL database connection
+const db = mysql.createConnection({
+  host: "127.0.0.1",
+  user: "root",
+  password: "Resubot2024@",
+  database: "resume",
+});
+
+db.connect((err) => {
+  if (err) {
+    console.error("Database connection error: " + err.stack);
+    return;
+  }
+  console.log("Connected to the database");
+});
+
+app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(cors());
 
-app.use("/", routes); // Use the routes
-
-const port = process.env.PORT || 4000;
+// Pass the database connection to the routes
+app.use("/", dbRoutes(db));
 
 app.get("/api", (req, res) => {
   res.json({
@@ -114,5 +134,5 @@ app.post("/resume/create", async (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Server is running on port 4000`);
+  console.log(`Server is running on port ${port}`);
 });
