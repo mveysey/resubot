@@ -9,7 +9,8 @@ const mysql = require("mysql");
 const app = express();
 const port = process.env.PORT || 4000;
 
-// const openai = new OpenAIApi(configuration);
+const openai = new OpenAI({});
+
 // Create a MySQL database connection
 const db = mysql.createConnection({
   host: "127.0.0.1",
@@ -17,8 +18,6 @@ const db = mysql.createConnection({
   password: "Resubot2024@",
   database: "resume",
 });
-
-const openai = new OpenAI({});
 
 db.connect((err) => {
   if (err) {
