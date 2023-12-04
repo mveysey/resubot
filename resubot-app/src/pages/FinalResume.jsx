@@ -165,7 +165,7 @@ return (
                 <label htmlFor="industry">Industry</label>
                 <input
                     type='text'
-                    required anme = 'industry'
+                    required name = 'industry'
                     className="currentInput"
                     value={industry}
                     onChange={(e) => setIndustry(e.target.value)}
@@ -185,7 +185,7 @@ return (
             <label htmlFor="email">Email Address</label>
                 <input
                     type='text'
-                    required anme = 'email'
+                    required name = 'email'
                     className="currentInput"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
@@ -193,7 +193,7 @@ return (
             <label htmlFor="phoneNumber">Phone Number</label>
                 <input
                     type='text'
-                    required anme = 'phoneNumber'
+                    required name = 'phoneNumber'
                     className="currentInput"
                     value={phoneNumber}
                     onChange={(e) => setPhoneNumber(e.target.value)}
@@ -201,7 +201,7 @@ return (
             <label htmlFor="linkedIn"><strong>LinkedIn </strong>URL</label>
                 <input
                     type='text'
-                    required anme = 'linkedIn'
+                    required name = 'linkedIn'
                     className="currentInput"
                     value={linkedIn}
                     onChange={(e) => setLinkedIn(e.target.value)}
@@ -209,7 +209,7 @@ return (
             <label htmlFor="personalLink"><strong>Personal Website </strong>OR Relevant Links</label>
                 <input
                     type='text'
-                    required anme = 'personalLink'
+                    required name = 'personalLink'
                     className="currentInput"
                     value={personalLink}
                     onChange={(e) => setPersonalLink(e.target.value)}
@@ -289,7 +289,7 @@ return (
                         <label htmlFor="degree">Degree</label>
                         <input
                             type='text'
-                            required anme = 'degree'
+                            required name = 'degree'
                             className="currentInput"
                             value={degree}
                             onChange={(e) => setDegree(e.target.value)}
@@ -299,7 +299,7 @@ return (
                         <label htmlFor="schoolName">University Name</label>
                         <input
                             type='text'
-                            required anme = 'schoolName'
+                            required name = 'schoolName'
                             className="currentInput"
                             value={schoolName}
                             onChange={(e) => setSchoolName(e.target.value)}
@@ -310,7 +310,7 @@ return (
                         <label htmlFor="schoolLocation">University Location</label>
                         <input
                             type='text'
-                            required anme = 'schoolLocation'
+                            required name = 'schoolLocation'
                             className="currentInput"
                             value={schoolLocation}
                             onChange={(e) => setSchoolLocation(e.target.value)}
@@ -320,7 +320,7 @@ return (
                         <label htmlFor="graduation">Graduation Date</label>
                         <input
                             type='text'
-                            required anme = 'graduation'
+                            required name = 'graduation'
                             className="currentInput"
                             value={graduation}
                             onChange={(e) => setGraduation(e.target.value)}
@@ -332,7 +332,7 @@ return (
                         <label htmlFor="skills">Enter the Skills You Possess</label>
                         <textarea
                             type='text'
-                            required anme = 'skills'
+                            required name = 'skills'
                             className="currentInput"
                             value={skills}
                             onChange={(e) => setSkills(e.target.value)}
@@ -347,7 +347,7 @@ return (
                         <label htmlFor="projectTitle">Give Your Project a Title</label>
                         <input
                             type='text'
-                            required anme = 'projectTitle'
+                            required name = 'projectTitle'
                             className="currentInput"
                             value={projectTitle}
                             onChange={(e) => setProjectTitle(e.target.value)}
@@ -357,7 +357,7 @@ return (
                         <label htmlFor="projectDescription">Description of Your Project</label>
                         <textarea
                             type='text'
-                            required anme = 'projectDescription'
+                            required name = 'projectDescription'
                             className="currentInput"
                             value={projectDescription}
                             onChange={(e) => setProjectDescription(e.target.value)}
