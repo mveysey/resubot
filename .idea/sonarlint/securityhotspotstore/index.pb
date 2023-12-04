@@ -90,3 +90,5 @@ g
 .resubot-app/src/components/Panel/PopupMenu.jsx,8\d\8de3cb980b60c7ed64f8409661b1ef91d3221dea
 M
 resubot-app/package-lock.json,c\3\c3b01eb886247675632831db5993b37d1da2b6bd
+]
+-resubot-app/src/components/Header/Header.scss,f\7\f7ae01e032d23a1c90766e8ef49a931b9066543a

@@ -7,10 +7,6 @@ import auth from "./common/auth.js";
 
 //Layout of the entire application
 const Layout = () => {
-    const user = useMemo(() => {
-        return auth.getUser() || {};
-    }, []);
-
     return (
         <div className="layout-wrapper">
             <div className="layout-content-main">

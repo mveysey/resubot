@@ -94,3 +94,5 @@ M
 resubot-app/public/index.html,5\1\516dd331762bd28b49e6bc898ffedd907fa5923c
 M
 resubot-app/package-lock.json,c\3\c3b01eb886247675632831db5993b37d1da2b6bd
+]
+-resubot-app/src/components/Header/Header.scss,f\7\f7ae01e032d23a1c90766e8ef49a931b9066543a

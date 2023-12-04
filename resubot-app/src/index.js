@@ -8,6 +8,7 @@ import "./scss/theme.scss";
 import "react-toastify/dist/ReactToastify.css";
 import "react-horizontal-scrolling-menu/dist/styles.css";
 import { ToastContainer } from "react-toastify";
+import "react-sliding-pane/dist/react-sliding-pane.css";
 
 //layout for the whole application
 import Layout from "./Layout.jsx";

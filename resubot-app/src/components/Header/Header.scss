@@ -41,3 +41,10 @@
     text-transform: uppercase;
   }
 }
+
+.panel{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; /* Align to the bottom */
+  height: -90vh + 10vh; /* Adjust as needed */
+}
