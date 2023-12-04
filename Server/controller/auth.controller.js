@@ -1,92 +1,84 @@
-const pool = require("../database/Database")
-const bcrypt = require('bcrypt')
-const { isAuthenticated, getUsersDb, createToken} = require("../util/auth-util");
+const bcrypt = require('bcrypt');
+const {
+    getUsersDb,
+    createUser,
+    createToken,
+    userDoesExist,
+    isAuthenticated,
+    updateUserPassword
+} = require('../util/auth-util');
 
 const authController = {
-    //register logic implementation
+    // Register a new user
     register: async (req, res) => {
         try {
-            const { email, password, name } = req.body
-            const [user, ] = await pool.query("select * from users where email = ?", [email])
-            if (user[0]) return res.json({ error: "Email already exists!" })
+            const { email, password, username, type } = req.body;
 
-
-            const hash = await bcrypt.hash(password, 10)
-
-            const sql = "insert into users (email, password, name) values (?, ?, ?)"
-            const [rows, fields] = await pool.query(sql, [email, hash, name])
-
-            if (rows.affectedRows) {
-                return res.json({ message: "Ok" })
-            } else {
-                return res.json({ error: "Error" })
+            if (await userDoesExist(email)) {
+                return res.status(401).json({ error: 'Email already exists' });
             }
 
+            const userId = await createUser({ email, password, username, type });
+
+            if (userId) {
+                const payload = { username, type, email };
+                const jwToken = createToken(payload);
+
+                return res.status(200).json({ message: 'Registration successful', token: jwToken });
+            } else {
+                return res.status(500).json({ error: 'Failed to create user' });
+            }
         } catch (error) {
-            console.log(error)
-            res.json({
-                error: error.message
-            })
+            console.error(error);
+            res.status(500).json({ error: 'Internal server error occurred while creating user' });
         }
     },
 
-
-
-    //login logic implementation
+    // Log in a user
     login: async (req, res) => {
         try {
             const { email, password } = req.body;
             const users = await getUsersDb();
-            if (await isAuthenticated({email, password})) {
-                const user = users.find(
-                    u => u.email === email && u.password === password
-                );
+
+            if (await isAuthenticated({ email, password })) {
+                const user = users.find(u => u.email === email && u.password === password);
                 const { username, type } = user;
-                // jwt
+
                 const jwToken = createToken({ username, type, email });
                 return res.status(200).json(jwToken);
             } else {
-                const status = 401;
-                const message = 'Incorrect email or password';
-                return res.status(status).json({ status, message });
+                return res.status(401).json({ error: 'Incorrect email or password' });
             }
         } catch (error) {
-            console.log(error)
-            res.json({
-                error: error.message
-            })
+            console.error(error);
+            res.status(500).json({ error: 'Internal server error occurred while logging in' });
         }
     },
 
-
+    // Get all users
     getAllUsers: async (req, res) => {
         try {
-            // retrieve user data from the database using getUsersDb function
             const users = await getUsersDb();
-            if (users.length > 0) {
-                // filter sensitive information before sending the data
-                const usersWithoutPassword = users.map(user => {
-                    const { password, ...userWithoutPassword } = user;
-                    return userWithoutPassword;
-                });
 
-                return res.status(200).json(usersWithoutPassword);
-            } else {
-                return res.status(404).json({ message: 'No users found' });
-            }
-        } catch (error) {
-            console.log(error);
-            res.json({
-                error: error.message
+            const usersWithoutPassword = users.map(user => {
+                const { password, ...userWithoutPassword } = user;
+                return userWithoutPassword;
             });
+
+            return res.status(200).json(usersWithoutPassword);
+        } catch (error) {
+            console.error(error);
+            res.status(500).json({ error: 'Internal server error occurred while fetching users' });
         }
     },
 
+    // Get a user by username
     getUserByUsername: async (req, res) => {
         try {
-            const { username } = req.params; // extract the username from the URL parameters
+            const { username } = req.params;
             const users = await getUsersDb();
             const user = users.find(u => u.username === username);
+
             if (user) {
                 const { password, ...userWithoutPassword } = user;
                 return res.status(200).json(userWithoutPassword);
@@ -94,12 +86,27 @@ const authController = {
                 return res.status(404).json({ message: 'User not found' });
             }
         } catch (error) {
-            console.log(error);
-            res.json({
-                error: error.message
-            });
+            console.error(error);
+            res.status(500).json({ error: 'Internal server error occurred while fetching user' });
         }
     },
-}
 
-module.exports = authController
+    // Update user password
+    updatePassword: async (req, res) => {
+        try {
+            const { email, currentPassword, newPassword } = req.body;
+
+            if (!(await isAuthenticated({ email, password: currentPassword }))) {
+                return res.status(401).json({ error: 'Incorrect current password' });
+            }
+
+            await updateUserPassword(email, newPassword);
+            return res.status(200).json({ message: 'Password updated successfully' });
+        } catch (error) {
+            console.error(error);
+            res.status(500).json({ error: 'Internal server error occurred while updating password' });
+        }
+    }
+};
+
+module.exports = authController;

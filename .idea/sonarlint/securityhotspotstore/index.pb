@@ -56,3 +56,9 @@ I
 Server/util/login-util.js,8\3\83d809b95a7e1f9e9b354a8fd952c442a0cfc4d9
 H
 Server/util/auth-util.js,1\b\1b50948104681e05bb07109a2143e166718632b5
+<
+package.json,7\0\7030d0b2f71b999ff89a343de08c414af32fc93a
+Q
+!Server/tests/auth.controller.test,4\7\47fdfb7ad03bcda0132532b30b408711d170aeb4
+T
+$Server/tests/auth.controller.test.js,a\0\a06ea79f631faf6c827027d4f1e6b735f7391d1d
