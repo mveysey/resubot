@@ -62,3 +62,9 @@ Q
 !Server/tests/auth.controller.test,4\7\47fdfb7ad03bcda0132532b30b408711d170aeb4
 T
 $Server/tests/auth.controller.test.js,a\0\a06ea79f631faf6c827027d4f1e6b735f7391d1d
+U
+%resubot-app/src/pages/Login/Login.jsx,9\4\945891f6a350faf4cad3f1130857d1d4a85b5e14
+S
+#resubot-app/src/pages/Home/Home.jsx,e\e\eea82174704d2e396591b3cb1aa56fa127fa5046
+^
+.resubot-app/src/pages/Education/Education.scss,3\9\39d9d49300603b4bd572bf7a0375a3892dc3c459

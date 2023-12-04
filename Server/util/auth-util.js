@@ -20,7 +20,6 @@ const getUsersDb = async () => {
 //validate user sign in
 const isAuthenticated = async ({email, password}) => {
     const users = await getUsersDb();
-    console.log(users);
     return (
         users.findIndex(
             user => user.email === email && user.password === password
