@@ -17,7 +17,7 @@ const CreateResume = () => {
     return (
         <div className="resume_container">
             <div className="content">
-                <a href="/customize">+</a>
+                <a href="/finalresume">+</a>
                 <h4>Create New Resume</h4>
             </div>
         </div>
