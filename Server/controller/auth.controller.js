@@ -1,6 +1,6 @@
 const pool = require("../database/Database")
 const bcrypt = require('bcrypt')
-const jwt = require('jsonwebtoken')
+const { isAuthenticated, getUsersDb, createToken} = require("../util/auth-util");
 
 const authController = {
     //register logic implementation
@@ -30,37 +30,74 @@ const authController = {
         }
     },
 
+
+
     //login logic implementation
     login: async (req, res) => {
         try {
-            const { email, password } = req.body
-            const [user, ] = await pool.query("select * from users where email = ?", [email])
-            if (!user[0]) return res.json({ error: "Invalid email!" })
-
-            const { password: hash, id, name } = user[0]
-
-            const check = await bcrypt.compare(password, hash)
-
-            if (check) {
-                const accessToken = jwt.sign({ userId: id }, '3812932sjad34&*@', { expiresIn: '1h' });
-                return res.json({
-                    accessToken,
-                    data: {
-                        userId: id,
-                        name,
-                        email
-                    }
-                })
-
+            const { email, password } = req.body;
+            const users = await getUsersDb();
+            if (await isAuthenticated({email, password})) {
+                const user = users.find(
+                    u => u.email === email && u.password === password
+                );
+                const { username, type } = user;
+                // jwt
+                const jwToken = createToken({ username, type, email });
+                return res.status(200).json(jwToken);
+            } else {
+                const status = 401;
+                const message = 'Incorrect email or password';
+                return res.status(status).json({ status, message });
             }
-
-            return res.json({ error: "Wrong password!" })
-
         } catch (error) {
             console.log(error)
             res.json({
                 error: error.message
             })
+        }
+    },
+
+
+    getAllUsers: async (req, res) => {
+        try {
+            // retrieve user data from the database using getUsersDb function
+            const users = await getUsersDb();
+            if (users.length > 0) {
+                // filter sensitive information before sending the data
+                const usersWithoutPassword = users.map(user => {
+                    const { password, ...userWithoutPassword } = user;
+                    return userWithoutPassword;
+                });
+
+                return res.status(200).json(usersWithoutPassword);
+            } else {
+                return res.status(404).json({ message: 'No users found' });
+            }
+        } catch (error) {
+            console.log(error);
+            res.json({
+                error: error.message
+            });
+        }
+    },
+
+    getUserByUsername: async (req, res) => {
+        try {
+            const { username } = req.params; // extract the username from the URL parameters
+            const users = await getUsersDb();
+            const user = users.find(u => u.username === username);
+            if (user) {
+                const { password, ...userWithoutPassword } = user;
+                return res.status(200).json(userWithoutPassword);
+            } else {
+                return res.status(404).json({ message: 'User not found' });
+            }
+        } catch (error) {
+            console.log(error);
+            res.json({
+                error: error.message
+            });
         }
     },
 }
