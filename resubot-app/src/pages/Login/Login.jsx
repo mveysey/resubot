@@ -1,17 +1,35 @@
 import React from "react";
 import './Login.scss';
 import {useForm} from "react-hook-form"; //plugin that help with validate form inputs
+import axios from "../../common/axiosConfig.js";
+import {toast} from "react-toastify";
+import auth from "../../common/auth.js";
+import { Link, useNavigate } from "react-router-dom";
 
 
 const Login = ({props}) => {
-
+    const navigate = useNavigate();
     const {
         register,
         handleSubmit,
         formState: {errors},
     } = useForm();
 
-    const onSubmit = (data) => {
+    const onSubmit = async (data) => {
+        //Login function implementation
+        try {
+            const {email, password} = data;
+            //verify user information
+            const res = await axios.post("/api/auth/login", {email, password});
+            const jwToken = res.data;
+            console.log(jwToken);
+            // save jwToken in local storage
+            auth.setToken(jwToken);
+            toast.success("Login Successful");
+            navigate("/home");
+        } catch (error) {
+            toast.error("Login Failed, Please Check Your Credentials");
+        }
     };
 
 
@@ -79,8 +97,8 @@ const Login = ({props}) => {
                     <button type="submit" className="button is-fullwidth is-info login-button">Login</button>
                 </div>
 
-                <label className="register-link has-text-right">Don't have an account? <a href="/register"> Sign
-                    up </a> Today</label>
+                <label className="register-link has-text-right">Don't have an account? <Link to="/register"> Sign
+                    up </Link> Today</label>
             </form>
         </div>
     );

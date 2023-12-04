@@ -5,7 +5,17 @@ const cors = require("cors");
 
 const app = express()
 
+//project configs
 require('dotenv').config({ path: '.env.development' })
+
+//cors config
+app.use(cors({
+  // origin: 'http://localhost:3000', // Allow requests from this origin
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true, // allow cookies and HTTP authentication headers
+  optionsSuccessStatus: 204, // Set the status code for preflight requests
+}));
+
 
 app.use(express.urlencoded({extended: false}))
 app.use(express.json())
