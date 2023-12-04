@@ -17,7 +17,8 @@ const CreateResume = () => {
     return (
         <div className="resume_container">
             <div className="content">
-                <button onClick={newResume}>Create a new resume</button>
+                <a href="/customize">+</a>
+                <h4>Create New Resume</h4>
             </div>
         </div>
     );

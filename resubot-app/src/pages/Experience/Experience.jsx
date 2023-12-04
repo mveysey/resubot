@@ -19,26 +19,6 @@ const Experience = () => {
     //const [companyInfo, setCompanyInfo] = useState([{ role: "", position: "", start: "", location: "", description: "" }]);
     //const [loading, setLoading] = useState(false);
 
-    const handleFormSubmit = (e) => {
-        e.preventDefault();
-        console.log({
-            role1,
-            company1,
-            date1,
-            location1,
-            description1,
-            role2,
-            company2,
-            date2,
-            location2,
-            description2,
-        });
-        //setLoading(true);
-    };
-
-    /*if (loading) {
-        return <Loading />;
-    }*/
    
     // To save the user input
     useEffect(() => {

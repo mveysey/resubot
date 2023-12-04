@@ -9,22 +9,8 @@ const Education = () => {
     const [schoolName, setSchoolName] = useState("");
     const [schoolLocation, setSchoolLocation] = useState("");
     const [graduation, setGraduation,] = useState("");
-    //const [loading, setLoading] = useState(false);
     
 
-    const handleFormSubmit = (e) => {
-        e.preventDefault();
-        console.log({
-            degree,
-            schoolName,
-            schoolLocation,
-            graduation,
-        });
-        //setLoading(true);
-    };
-    /*if(loading){
-        return<Loading />;
-    }*/
 
     useEffect(() => {
         setDegree(localStorage.getItem("degree"));
@@ -72,10 +58,7 @@ const Education = () => {
 			<div class="container">
 				<div class="content">
                 <div></div>
-                <form
-                    onSubmit= {handleFormSubmit}
-                    method = 'POST'
-                    encType = 'multipart/form-data'>
+                <form>
                     <div>
                         <label htmlFor="degree">Degree</label>
                         <input

@@ -7,21 +7,9 @@ const Skills = () => {
     const navigate = useNavigate();
     const [skills, setSkills] = useState("");
 
-    //const [loading, setLoading] = useState(false);
     
 
-    const handleFormSubmit = (e) => {
-        e.preventDefault();
-        console.log({
-            skills,
-
-        });
-        //setLoading(true);
-    };
-    /*if(loading){
-        return<Loading />;
-    }*/
-
+    
     useEffect( () => {
         setSkills(localStorage.getItem("skills"));
     }, [])
@@ -64,10 +52,7 @@ const Skills = () => {
 		</div>
 			<div class="container">
 				<div class="content">
-                <form 
-                    onSubmit= {handleFormSubmit}
-                    method = 'POST'
-                    encType = 'multipart/form-data'>
+                <form>
                 <div>
                     <div>
                         <label htmlFor="skills">Enter the Skills You Possess</label>

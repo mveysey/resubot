@@ -7,16 +7,6 @@ const Customize = () => {
     const navigate = useNavigate();
     const [newPosition, setNewPosition] = useState("");
     const [industry, setIndustry] = useState("");
-
-    const handleFormSubmit = (e) => {
-        e.preventDefault();
-        console.log({
-            newPosition,
-            industry,
-
-        });
-    };
-
     useEffect(() => {
         setIndustry(localStorage.getItem("industry"));
         setNewPosition(localStorage.getItem("newPosition"));
@@ -61,10 +51,7 @@ const Customize = () => {
 		</div>
 			<div class="container">
 				<div class="content">
-                <form
-                    onSubmit= {handleFormSubmit}
-                    method = 'POST'
-                    encType = 'multipart/form-data'>
+                <form>
                 <label htmlFor='newPosition'>New Position</label>
                 <input
                     type ='text'

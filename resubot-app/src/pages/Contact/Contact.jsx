@@ -26,24 +26,6 @@ const Contact = () => {
         navigate("/experience")
     }
 
-    const handleFormSubmit = (e) => {
-        e.preventDefault();
-        console.log({
-            fullName,
-            phoneNumber,
-            email,
-            linkedIn,
-            //loading,
-            personalLink,
-        });
-        //setLoading(true);
-    };
-    /*if(loading){
-        return<Loading />;
-    }*/
-
-
-
     return(
 
         <div class="wrapper">
@@ -78,10 +60,7 @@ const Contact = () => {
 		</div>
 			<div class="container">
 				<div class="content">
-                <form
-                    onSubmit= {handleFormSubmit}
-                    method = 'POST'
-                    encType = 'multipart/form-data'>
+                <form>
                 <label htmlFor='fullName'>Full Name</label>
                 <input
                     type ='text'

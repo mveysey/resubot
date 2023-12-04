@@ -11,19 +11,6 @@ const Projects = () => {
     //const [loading, setLoading] = useState(false);
     
 
-    const handleFormSubmit = (e) => {
-        e.preventDefault();
-        console.log({
-            projectTitle,
-            projectDescription,
-
-        });
-        //setLoading(true);
-    };
-    /*if(loading){
-        return<Loading />;
-    }*/
-
     useEffect( () => {
         setProjectDescription(localStorage.getItem("projectDescription"));
         setProjectTitle(localStorage.getItem("projectTitle"));
@@ -66,10 +53,7 @@ const Projects = () => {
 		</div>
 			<div class="container">
 				<div class="content">
-                <form 
-                    onSubmit= {handleFormSubmit}
-                    method = 'POST'
-                    encType = 'multipart/form-data'>
+                <form>
                 <div>
                     <div>
                         <label htmlFor="projectTitle">Give Your Project a Title</label>
