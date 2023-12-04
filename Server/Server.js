@@ -1,6 +1,7 @@
 // using Middlewares
 const express = require("express");
 const cors = require("cors");
+const bodyParser = require("body-parser");
 
 const app = express();
 const PORT = process.env.PORT || 4000;
@@ -18,13 +19,14 @@ app.use(
   })
 );
 
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extened: false }));
 
 const resumeRouter = require("./routes/resume.router");
 const authRouter = require("./routes/auth.router");
 const testRouter = require("./routes/test.router");
-
 app.use("/api/resume", resumeRouter);
 app.use("/api/auth", authRouter);
 app.use("/api/test", testRouter);
