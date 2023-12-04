@@ -1,0 +1,68 @@
+// YourComponent.scss
+
+.resume_container {
+    display: flex;
+    flex-direction: column;
+    padding: 50px;
+    height: 100vh; // Adjust the height as needed
+  
+    .content {
+      margin-bottom: 20px;
+  
+      button {
+        background-color: #FFFFFF;
+        color: --grey-dark-color;
+        width: 450px;
+        height: 500px;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+  
+        &:hover {
+          background-color: #00928F;
+        }
+      }
+    }
+  
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+  
+      .modal-content {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        width: 300px; // Adjust the width as needed
+  
+        h2 {
+          margin-bottom: 10px;
+        }
+  
+        button {
+          background-color: #f28168;
+          color: #fff;
+          padding: 10px 20px;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+          transition: background-color 0.3s;
+          margin-top: 10px;
+  
+          &:hover {
+            background-color: #F87659;
+          }
+        }
+      }
+    }
+  }
+  

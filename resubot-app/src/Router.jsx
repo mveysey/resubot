@@ -12,6 +12,15 @@ import ChatbotPage from "./pages/ChatBot/Chatbot.jsx";
 import Templates from "./pages/Templates/Templates.jsx";
 import Register from "./pages/Register/Register.jsx";
 import Preferences from "./pages/Preferences/Preferences.jsx";
+import Loading from "./pages/Loading/Loading.jsx";
+import Contact from "./pages/Contact/Contact.jsx";
+import Experience from "./pages/Experience/Experience.jsx";
+import Education from "./pages/Education/Education.jsx";
+import Skills from "./pages/Skills/Skills.jsx";
+import Projects from "./pages/Projects/Projects.jsx";
+import Customize from "./pages/Customize/Customize.jsx";
+import FinalResume from "./pages/FinalResume.jsx";
+import CreateResume from "./pages/CreateResumes/Resumes.jsx";
 
 const Router = () => (
     <BrowserRouter>
@@ -28,8 +37,19 @@ const Router = () => (
                 <Route path="/chatbot" element={<ChatbotPage/>}/>
                 <Route path="/templates" element={<Templates/>}/>
                 <Route path="/preferences" element={<Preferences/>}/>
+                <Route path="/contact" element={<Contact/>}/>
+                <Route path="/experience" element={<Experience/>}/>
+                <Route path="/education" element={<Education/>}/>
+                <Route path="/skills" element={<Skills/>}/>
+                <Route path="/projects" element={<Projects/>}/>
+                <Route path="/customize" element={<Customize/>}/>
+                <Route path="/loading" element={<Loading/>}/>
+                <Route path="/finalresume" element={<FinalResume/>} />
+                <Route path="/resumes" element={<CreateResume/>} />
+
                 {/*Error Page*/}
                 <Route path="*" element={<Error/>}/>
+
             </Routes>
         </Suspense>
     </BrowserRouter>
