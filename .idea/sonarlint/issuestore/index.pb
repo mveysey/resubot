@@ -96,3 +96,5 @@ M
 resubot-app/package-lock.json,c\3\c3b01eb886247675632831db5993b37d1da2b6bd
 ]
 -resubot-app/src/components/Header/Header.scss,f\7\f7ae01e032d23a1c90766e8ef49a931b9066543a
+X
+(resubot-app/src/common/protectedRoute.js,4\0\4017cb3851a840727d62246218131cc53ff069bb
