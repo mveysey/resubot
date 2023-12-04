@@ -1,8 +1,8 @@
-import decode from 'jwt-decode';
+import { jwtDecode as decode } from 'jwt-decode';
 
-const JWT = 'store_token_id';
+const JWT = 'auth_token_id';
 
-//get and set token methods
+// get and set token methods
 const setToken = token => {
     localStorage.setItem(JWT, token);
 };
@@ -11,13 +11,13 @@ const getToken = token => {
     return localStorage.getItem(JWT);
 };
 
-//Login method
+// Login method
 const isLogin = () => {
     const jwToken = getToken();
     return !!jwToken && !isTokenExpired(jwToken);
 };
 
-//Login expired method
+// Login expired method
 const isTokenExpired = token => {
     try {
         const _info = decode(token);
@@ -27,7 +27,7 @@ const isTokenExpired = token => {
     }
 };
 
-// get user information
+// Retrieve user information
 const getUser = () => {
     const jwToken = getToken();
     if (isLogin()) {
@@ -38,12 +38,12 @@ const getUser = () => {
     }
 };
 
-//logout method
+// Logout method
 const logout = () => {
     localStorage.removeItem(JWT);
 };
 
-global.auth = {
+export default {
     setToken,
     getToken,
     getUser,

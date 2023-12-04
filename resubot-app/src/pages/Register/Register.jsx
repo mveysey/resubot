@@ -2,7 +2,8 @@ import React from "react";
 import axios from "../../common/axiosConfig.js";
 import './Register.scss';
 import {useForm} from "react-hook-form"; //plugin that help with validate form inputs
-import {toast} from "react-toastify"; //notification plugin
+import {toast} from "react-toastify";
+import {Link} from "react-router-dom"; //notification plugin
 const Register = ({props}) => {
     const {register, handleSubmit, errors} = useForm();
 
@@ -45,7 +46,7 @@ const Register = ({props}) => {
                     <a className="button is-fullwidth is-info register-button" href="/login">Register</a>
                 </div>
 
-                <label className="login-link has-text-right">Already have an account? <a href="/login"> Log in </a> now</label>
+                <label className="login-link has-text-right">Already have an account? <Link to="/login"> Log in </Link> now</label>
             </form>
         </div>
     );

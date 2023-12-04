@@ -68,3 +68,15 @@ S
 #resubot-app/src/pages/Home/Home.jsx,e\e\eea82174704d2e396591b3cb1aa56fa127fa5046
 ^
 .resubot-app/src/pages/Education/Education.scss,3\9\39d9d49300603b4bd572bf7a0375a3892dc3c459
+U
+%resubot-app/src/common/axiosConfig.js,d\a\da3f75fe0a1f2edc24ce31ed1c5862712f700df8
+N
+resubot-app/src/common/auth.js,a\3\a3b4d1b2ff6ae296b85f27083e08823ac35ca7ab
+[
++resubot-app/src/pages/Register/Register.jsx,e\4\e44dc3f1458b41b455c842acd5ad47ee9b17a893
+T
+$resubot-app/src/pages/Home/Home.scss,1\1\119b3abfa2379e427a089d618e603492e6b9df6f
+`
+0resubot-app/src/components/Profiles/Profiles.jsx,a\d\ad9bb36089051c9d5c3ea26e55395d98d6d64688
+a
+1resubot-app/src/components/Profiles/Profiles.scss,f\4\f44030777b341811d8a50c29314379fac16e0623

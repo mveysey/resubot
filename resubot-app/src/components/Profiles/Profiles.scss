@@ -3,11 +3,11 @@
 
     .profiles-content {
         padding: 20px;
-        height: 700px;
+        height: 1100px;
         overflow-y: scroll;
         overflow-x: hidden;
-        border-left: 2px solid var(--grey-dark-color);
-        border-right: 2px solid var(--grey-dark-color);
+        border-top: 2px solid var(--grey-dark-color);
+        border-bottom: 2px solid var(--grey-dark-color);
         border-radius: 10px;
 
         .profile-card {
