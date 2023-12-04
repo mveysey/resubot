@@ -1,44 +1,46 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Form, useNavigate } from "react-router-dom";
 import axios from "axios";
-import Loading from "./Loading/Loading.jsx";
+import Loading from "./Loading/Loading";
 import "./FinalResume.scss";
-//import { PDFExport } from "@progress/kendo-react-pdf"; // Import PDFExport from the correct package
 
-export const FinalResume = () => {
-  //const [formData, setFormData] = useState(new FormData());
-  const [newPosition, setNewPosition] = useState("");
-  const [industry, setIndustry] = useState("");
+const FinalResume = () => {
+    //To Cutomize Resume for new position
+    const [newPosition, setNewPosition] = useState("");
+    const [industry, setIndustry] = useState("");
 
-  const [fullName, setFullName] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [email, setEmail] = useState("");
-  const [linkedIn, setLinkedIn] = useState("");
-  const [personalLink, setPersonalLink] = useState("");
+    //Basic Info about user 
+    const [fullName, setFullName] = useState("");
+    const [phoneNumber, setPhoneNumber] = useState("");
+    const [email, setEmail] = useState("");
+    const [linkedIn, setLinkedIn] = useState("");
+    const [personalLink, setPersonalLink] = useState("");
 
-  const [companyInfo, setCompanyInfo] = useState([{ role: "", position: "", start: "", location: "", description: "" }]);
+    //Compnay information 
+    const [companyInfo, setCompanyInfo] = useState([{ role: "", company: "", start: "", location: "", description: "" }]);
+
+    //Education information
+    const [degree, setDegree] = useState("");
+    const [schoolName, setSchoolName] = useState("");
+    const [schoolLocation, setSchoolLocation] = useState("");
+    const [graduation, setGraduation,] = useState("");
+
+    //Skills Information
+    const [skills, setSkills] = useState("");
+
+    //Projects Information 
+    const [projectTitle, setProjectTitle] = useState("");
+    const [projectDescription, setProjectDescription] = useState("");
+
+    const [loading, setLoading] = useState(false);
+    //const pdfExportComponent = React.useRef(null);
+    const navigate = useNavigate();
 
 
-  const [degree, setDegree] = useState("");
-  const [schoolName, setSchoolName] = useState("");
-  const [schoolLocation, setSchoolLocation] = useState("");
-  const [graduation, setGraduation,] = useState("");
 
-  const [skills, setSkills] = useState("");
-
-  const [projectTitle, setProjectTitle] = useState("");
-  const [projectDescription, setProjectDescription] = useState("");
-
-  const [loading, setLoading] = useState(false);
-  //const pdfExportComponent = React.useRef(null);
-
-  const navigate = useNavigate();
-
-
-
-  //updates the state with user's input
-  const handleAddCompany = () =>
-  setCompanyInfo([...companyInfo, { role: "", position: "", start: "", location: "", description: "" }]);
+    //updates the state with user's input
+    const handleAddCompany = () =>
+    setCompanyInfo([...companyInfo, { role: "", company: "", start: "", location: "", description: "" }]);
 
     // removes a selected item from the list
     const handleRemoveCompany = (index) => {
@@ -58,6 +60,12 @@ export const FinalResume = () => {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
+    console.log({
+        fullName,
+        graduation,
+        skills,
+        projectDescription,
+    });
     /*const newPosition = localStorage.getItem("newPosition");
     const industry = localStorage.getItem("industry");
 
@@ -139,36 +147,34 @@ export const FinalResume = () => {
 };
 
 return (
-    <div>
+    <div className="container">
     <form
         onSubmit= {handleFormSubmit}
         method = 'POST'
         encType = 'multipart/form-data'>
-
-    <div className="container">
-    <div class="content">
       <label htmlFor="newPosition">New Position</label>
+      <div class="cutomize">
+            <input
+                type ='text'
+                required name = 'newPosition'
+                id = 'newPosition'
+                value = {newPosition}
+                onChange={(e) => setNewPosition(e.target.value)}
+            />
+            <div>
+                <label htmlFor="industry">Industry</label>
                 <input
-                    type ='text'
-                    required name = 'newPosition'
-                    id = 'newPosition'
-                    value = {newPosition}
-                    onChange={(e) => setNewPosition(e.target.value)}
+                    type='text'
+                    required anme = 'industry'
+                    className="currentInput"
+                    value={industry}
+                    onChange={(e) => setIndustry(e.target.value)}
                 />
-                <div>
-                    <div>
-                        <label htmlFor="industry">Industry</label>
-                        <input
-                            type='text'
-                            required anme = 'industry'
-                            className="currentInput"
-                            value={industry}
-                            onChange={(e) => setIndustry(e.target.value)}
-                        />
-                    </div>
-                </div>
-                <br/>
-                <label htmlFor='fullName'>Full Name</label>
+            </div>
+            <br/>
+        </div>
+        <div className="contactInfo">
+            <label htmlFor='fullName'>Full Name</label>
                 <input
                     type ='text'
                     required name = 'fullName'
@@ -176,97 +182,87 @@ return (
                     value = {fullName}
                     onChange={(e) => setFullName(e.target.value)}
                 />
-                <div>
-                    <div>
-                        <label htmlFor="email">Email Address</label>
+            <label htmlFor="email">Email Address</label>
+                <input
+                    type='text'
+                    required anme = 'email'
+                    className="currentInput"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    />
+            <label htmlFor="phoneNumber">Phone Number</label>
+                <input
+                    type='text'
+                    required anme = 'phoneNumber'
+                    className="currentInput"
+                    value={phoneNumber}
+                    onChange={(e) => setPhoneNumber(e.target.value)}
+                />
+            <label htmlFor="linkedIn"><strong>LinkedIn </strong>URL</label>
+                <input
+                    type='text'
+                    required anme = 'linkedIn'
+                    className="currentInput"
+                    value={linkedIn}
+                    onChange={(e) => setLinkedIn(e.target.value)}
+                    />
+            <label htmlFor="personalLink"><strong>Personal Website </strong>OR Relevant Links</label>
+                <input
+                    type='text'
+                    required anme = 'personalLink'
+                    className="currentInput"
+                    value={personalLink}
+                    onChange={(e) => setPersonalLink(e.target.value)}
+                />
+            </div>
+            <br/>
+            <div className="companyInfo">
+            {companyInfo.map((company, index) => (
+                <div class="nestedContainer" key={index}>
+                    <div className="companies">
+                        <label htmlFor="role">Position</label>
                         <input
-                            type='text'
-                            required anme = 'email'
+                            type="text"
+                            name = 'role'
                             className="currentInput"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
+                            onChange={(e) => handleUpdateCompany(e, index)}
                         />
                     </div>
-                    <div>
-                        <label htmlFor="phoneNumber">Phone Number</label>
-                        <input
-                            type='text'
-                            required anme = 'phoneNumber'
-                            className="currentInput"
-                            value={phoneNumber}
-                            onChange={(e) => setPhoneNumber(e.target.value)}
-                        />
-
-                    </div>
-                    <div>
-                        <label htmlFor="linkedIn"><strong>LinkedIn </strong>URL</label>
-                        <input
-                            type='text'
-                            required anme = 'linkedIn'
-                            className="currentInput"
-                            value={linkedIn}
-                            onChange={(e) => setLinkedIn(e.target.value)}
-                        />
-                    </div>
-                    <div>
-                        <label htmlFor="personalLink"><strong>Personal Website </strong>OR Relevant Links</label>
-                        <input
-                            type='text'
-                            required anme = 'personalLink'
-                            className="currentInput"
-                            value={personalLink}
-                            onChange={(e) => setPersonalLink(e.target.value)}
-                        />
-                    </div>
-                </div>
-                <br/>
-                {companyInfo.map((company, index) => (
-                    <div class="nestedContainer" key={index}>
                         <div className="companies">
-                            <label htmlFor="role">Position</label>
+                            <label htmlFor="company">Company</label>
                             <input
                                 type="text"
-                                required name = 'role'
-                                className="currentInput"
-                                value={company.role}
-                                    onChange={(e) => handleUpdateCompany(e, index)}
-                            />
-                        </div>
-                        <div className="companies">
-                            <label htmlFor="position">Position</label>
-                            <input
-                                type="text"
-                                name="position"
-                                required onChange={(e) => handleAddCompany(e, index)}
+                                name="company"
+                                required onChange={(e) => handleUpdateCompany(e, index)}
                             />
                         </div>
                         <div className="verticalcontainer">
                             <div className="companies">
-                                <label htmlFor="position">Date or Date Range</label>
+                                <label htmlFor="date">Date or Date Range</label>
                                 <input
                                     type="text"
-                                    name="position"
+                                    name="date"
                                     placeholder="May 23 - Present"
                                     className="subInput"
-                                    required onChange={(e) => handleAddCompany(e, index)}
+                                    required onChange={(e) => handleUpdateCompany(e, index)}
                                 />
                             </div>
                             <div className="companies">
-                                <label htmlFor="position">Location</label>
+                                <label htmlFor="location">Location</label>
                                 <input
                                     type="text"
-                                    name="position"
+                                    name="location"
                                     className="subInput"
-                                    required onChange={(e) => handleAddCompany(e, index)}
+                                    required onChange={(e) => handleUpdateCompany(e, index)}
                                 />
                             </div>
                         </div>
                         <div className="companies">
-                            <label htmlFor="position">Description of Your Position</label>
+                            <label htmlFor="description">Description of Your Position</label>
                             <textarea
                                 type="text"
-                                name="position"
-                                required onChange={(e) => handleAddCompany(e, index)}
+                                name="description"
+                                required onChange={(e) => handleUpdateCompany(e, index)}
                             />
                         </div>
                         <br/>
@@ -286,6 +282,8 @@ return (
                         </div>
                     </div>
                 ))}
+
+            </div>
                 <br/>
                 <div>
                         <label htmlFor="degree">Degree</label>
@@ -342,7 +340,6 @@ return (
                     </div>
                 </div>
                 
-            </div>
             <br/>
 
             <div>
@@ -374,7 +371,6 @@ return (
 
     
         <button>CREATE RESUME</button>
-      </div>
 
     </form>
       
