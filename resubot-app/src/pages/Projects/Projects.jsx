@@ -21,38 +21,38 @@ const Projects = () => {
 
     return(
 
-        <div class="wrapper">
-		<div class="wrapper_inner">
-			<div class="vertical_wrap">
-			<div class="backdrop"></div>
-			<div class="vertical_bar">
+        <div className="wrapper">
+		<div className="wrapper_inner">
+			<div className="vertical_wrap">
+			<div className="backdrop"></div>
+			<div className="vertical_bar">
 				
-				<ul class="menu">
+				<ul className="menu">
                     <li><a href="/Customize">
-						<span class="text">Cutomize Resume</span>
+						<span className="text">Cutomize Resume</span>
 					</a></li>
 					<li><a href="/contact">
-						<span class="text">Contact Info</span>
+						<span className="text">Contact Info</span>
 					</a></li>
 					<li><a href="/experience">
-						<span class="text">Experience</span>
+						<span className="text">Experience</span>
 					</a></li>
 					<li><a href="/education">
-						<span class="text">Education</span>
+						<span className="text">Education</span>
 					</a></li>
 					<li><a href="/skills">
-						<span class="text">Skills</span>
+						<span className="text">Skills</span>
 					</a></li>
-					<li><a href="/projects"  class="active">
-						<span class="text">Projects</span>
+					<li><a href="/projects"  className="active">
+						<span className="text">Projects</span>
 					</a></li>
 				</ul>
 
 				
 			</div>
 		</div>
-			<div class="container">
-				<div class="content">
+			<div className="container">
+				<div className="content">
                 <form>
                 <div>
                     <div>

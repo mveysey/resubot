@@ -25,45 +25,45 @@ const Education = () => {
 
     return(
 
-        <div class="wrapper">
-		<div class="wrapper_inner">
-			<div class="vertical_wrap">
-			<div class="backdrop"></div>
-			<div class="vertical_bar">
+        <div className="wrapper">
+		<div className="wrapper_inner">
+			<div className="vertical_wrap">
+			<div className="backdrop"></div>
+			<div className="vertical_bar">
 				
-				<ul class="menu">
+				<ul className="menu">
                     <li><a href="/Customize">
-						<span class="text">Cutomize Resume</span>
+						<span className="text">Cutomize Resume</span>
 					</a></li>
 					<li><a href="/contact">
-						<span class="text">Contact Info</span>
+						<span className="text">Contact Info</span>
 					</a></li>
 					<li><a href="/experience">
-						<span class="text">Experience</span>
+						<span className="text">Experience</span>
 					</a></li>
-					<li><a href="/education" class="active">
-						<span class="text">Education</span>
+					<li><a href="/education" className="active">
+						<span className="text">Education</span>
 					</a></li>
 					<li><a href="/skills">
-						<span class="text">Skills</span>
+						<span className="text">Skills</span>
 					</a></li>
                     <li><a href="/projects">
-						<span class="text">Projects</span>
+						<span className="text">Projects</span>
 					</a></li>
 				</ul>
 
 				
 			</div>
 		</div>
-			<div class="container">
-				<div class="content">
+			<div className="container">
+				<div className="content">
                 <div></div>
                 <form>
                     <div>
                         <label htmlFor="degree">Degree</label>
                         <input
                             type='text'
-                            required anme = 'degree'
+                            required name = 'degree'
                             className="currentInput"
                             value={degree}
                             onChange={(e) => {setDegree(e.target.value);
@@ -74,7 +74,7 @@ const Education = () => {
                         <label htmlFor="schoolName">University Name</label>
                         <input
                             type='text'
-                            required anme = 'schoolName'
+                            required name = 'schoolName'
                             className="currentInput"
                             value={schoolName}
                             onChange={(e) => {setSchoolName(e.target.value);
@@ -86,7 +86,7 @@ const Education = () => {
                         <label htmlFor="schoolLocation">University Location</label>
                         <input
                             type='text'
-                            required anme = 'schoolLocation'
+                            required name = 'schoolLocation'
                             className="currentInput"
                             value={schoolLocation}
                             onChange={(e) => {setSchoolLocation(e.target.value);
@@ -97,7 +97,7 @@ const Education = () => {
                         <label htmlFor="graduation">Graduation Date</label>
                         <input
                             type='text'
-                            required anme = 'graduation'
+                            required name = 'graduation'
                             className="currentInput"
                             value={graduation}
                             onChange={(e) =>{ setGraduation(e.target.value);

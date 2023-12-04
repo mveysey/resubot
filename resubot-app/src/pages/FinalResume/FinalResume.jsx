@@ -169,7 +169,7 @@ const FinalResume = () => {
         encType="multipart/form-data"
       >
         <label htmlFor="newPosition">New Position</label>
-        <div class="cutomize">
+        <div className="cutomize">
           <input
             type="text"
             required
@@ -244,7 +244,7 @@ const FinalResume = () => {
         </div>
         <br />
         <div className="companyInfo">
-            <div class="nestedContainer">
+            <div className="nestedContainer">
               <div className="companies">
                 <label htmlFor="role">Position</label>
                 <input
@@ -296,7 +296,6 @@ const FinalResume = () => {
                   Description of Your Position
                 </label>
                 <textarea
-                  type="text"
                   required
                   name="description"
                   value={description}

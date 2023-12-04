@@ -172,7 +172,7 @@ const FinalResume = () => {
         encType="multipart/form-data"
       >
         <label htmlFor="newPosition">New Position</label>
-        <div class="cutomize">
+        <div className="cutomize">
           <input
             type="text"
             required
@@ -248,7 +248,7 @@ const FinalResume = () => {
         <br />
         <div className="companyInfo">
           {companyInfo.map((company, index) => (
-            <div class="nestedContainer" key={index}>
+            <div className="nestedContainer" key={index}>
               <div className="companies">
                 <label htmlFor="role">Position</label>
                 <input

@@ -52,8 +52,8 @@ const ChatbotPage = () => (
                 </a>
 
 
-                <div class="panel-block">
-                    <button class="button is-link is-outlined is-fullwidth">
+                <div className="panel-block">
+                    <button className="button is-link is-outlined is-fullwidth">
                         Reset Configurations
                     </button>
                 </div>
