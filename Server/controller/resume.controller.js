@@ -1,12 +1,20 @@
-const { generateID, generateText } = require("../util/ai-util"); // Import utility functions
+const {
+  generateID,
+  generateTextUser,
+  generateTextAssistant,
+} = require("../util/ai-util"); // Import utility functions
 
 const resumeController = {
   // Create a resume entry logic
   createResumeEntry: async (req, res) => {
     try {
       (fullName = req.body.fullName),
-        (newPosition = req.body.newPosition),
-        (industry = req.body.industry),
+        (phoneNumber = req.body.phoneNumber),
+        (email = req.body.email),
+        (linkedIn = req.body.linkedIn),
+        (personalLink = req.body.personalLink),
+        (optionalJobDecsription = req.body.newPosition),
+        (optionalIndustry = req.body.industry),
         (role1 = req.body.role1),
         (company1 = req.body.company1),
         (date1 = req.body.date1),
@@ -28,8 +36,12 @@ const resumeController = {
       const newEntry = {
         id: generateID(),
         fullName,
-        newPosition,
-        industry,
+        phonenumer,
+        email,
+        linkedIn,
+        personalLink,
+        optionalJobDecsription,
+        optionalIndustry,
         role1,
         company1,
         date1,
@@ -49,23 +61,68 @@ const resumeController = {
         projectDescription,
       };
 
-      const testPrompt = `My full name is Madeline. Can you write a 20-word description about my name?`;
+      // assign values to optional params
+      var jobDescription;
+      switch (optionalJobDecsription) {
+        case undefined:
+          jobDescription = null;
+          break;
 
-      // const educationInfo = `I am writing a resume, my details are \n name: ${fullName} \n role: ${currentPosition} (${currentLength} years). \n I write in the technolegies: ${currentTechnologies}. Can you write a 100 words description for the top of the resume(first person writing)?`;
+        default:
+          jobDescription = optionalJobDecsription;
+      }
 
-      // const prompt2 = `I am writing a resume, my details are \n name: ${fullName} \n role: ${currentPosition} (${currentLength} years). \n I write in the technolegies: ${currentTechnologies}. Can you write 10 points for a resume on what I am good at?`;
+      var industry;
+      switch (optionalIndustry) {
+        case undefined:
+          industry = null;
+          break;
 
-      // const prompt3 = `I am writing a resume, my details are \n name: ${fullName} \n role: ${currentPosition} (${currentLength} years). \n During my years I worked at ${
-      //   workArray.length
-      // } companies. ${remainderText()} \n Can you write me 50 words for each company seperated in numbers of my succession in the company (in first person)?`;
+        default:
+          industry = optionalIndustry;
+      }
+
+      //   const testPrompt = `My full name is Madeline. Can you write a 20-word description about my name?`;
+
+      let systemPrompt;
+      if (industry != null && jobDescription != null) {
+        systemPrompt = `You are a resume writer for someone who works in the ${industry} industry and is applying for a job with this description ${jobDescription}. Never forget that industry and job description when you are writing the resume.`;
+      } else if (industry != null) {
+        systemPrompt = `You are a resume writer for someone who works in the ${industry} industry. Never forget that industry when you are writing the resume.`;
+      } else if (jobDescription != null) {
+        systemPrompt = `You are a resume writer for someone who is applying for a job with this description ${jobDescription}. Never forget that job description when you are writing the resume.`;
+      } else {
+        systemPrompt = `You are a resume writer for someone. Never forget that role.`;
+      }
+
+      const role1Prompt = `Write me a 50 word description about my role at ${company1} in ${location1} where I worked as a ${role1} doing ${description1}`;
+      const role2Prompt = `Write me a 50 word description about my role at ${company2} in ${location2} where I worked as a ${role2} doing ${description2}`;
+      const educationPrompt = `Write 5 courses that I might have taken at ${schoolName} in ${location}, getting my degree in ${degree}. My graduation date is ${graduation}`;
+      const skillsPrompt = `Write 10 points for my resume on what I am good at given my skills, ${skills}`;
+      const projectPrompt = `Write me a 50 word description about my project called ${projectTitle} that consisted of ${projectDescription}`;
 
       // const objective = await generateText(prompt1);
       // const keypoints = await generateText(prompt2);
       // const jobResponsibilities = await generateText(prompt3);
 
-      const test = await generateText(testPrompt);
+      // send context prompt before generating resume info
+      await generateTextAssistant(systemPrompt);
 
-      const chatgptData = { test };
+      const role1Generated = await generateText(role1Prompt);
+      const role2Generated = await generateText(role2Prompt);
+      const educationGenerated = await generateText(educationPrompt);
+      const skillsGenerated = await generateText(skillsPrompt);
+      const projectGenerated = await generateText(projectPrompt);
+
+      //   const test = await generateText(testPrompt);
+
+      const chatgptData = {
+        role1Generated,
+        role2Generated,
+        educationGenerated,
+        skillsGenerated,
+        projectGenerated,
+      };
       const responseData = { ...newEntry, ...chatgptData };
 
       console.log(responseData);
