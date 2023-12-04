@@ -27,6 +27,8 @@ const Login = ({props}) => {
             auth.setToken(jwToken);
             toast.success("Login Successful");
             navigate("/home");
+            await new Promise((resolve) => setTimeout(resolve, 3000));
+            window.location.reload();
         } catch (error) {
             toast.error("Login Failed, Please Check Your Credentials");
         }
