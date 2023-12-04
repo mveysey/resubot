@@ -1,15 +1,96 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Form, useNavigate } from "react-router-dom";
+import axios from "axios"
+import Contact from "./Contact/Contact.jsx"
+import Loading from "./Loading/Loading";
 //import { PDFExport } from "@progress/kendo-react-pdf"; // Import PDFExport from the correct package
 
 export const FinalResume = () => {
-  const [interest1, setInterest1] = useState(false); // Corrected the typo in the state variable name
+  const [formData, setFormData] = useState(new FormData());
+  const [loading, setLoading] = useState(false);
   //const pdfExportComponent = React.useRef(null);
 
   const navigate = useNavigate();
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
+    const newPosition = localStorage.getItem("newPosition");
+    const industry = localStorage.getItem("industry");
+
+    const fullName = localStorage.getItem("fullName");
+    const phoneNumber = localStorage.getItem("phoneNumber");
+    const email = localStorage.getItem("email");
+    const linkedIn = localStorage.getItem("linkedIn");
+    const personalLink = localStorage.getItem("personalLink");
+
+    const role1 = localStorage.getItem("role1");
+    const company1 = localStorage.getItem("company1");
+    const date1 = localStorage.getItem("date1");
+    const location1 = localStorage.getItem("location1");
+    const description1 = localStorage.getItem("description1");
+
+    const role2 = localStorage.getItem("role2");
+    const company2 = localStorage.getItem("company2");
+    const date2 = localStorage.getItem("date2");
+    const location2 = localStorage.getItem("location2");
+    const description2 = localStorage.getItem("description2");
+
+    const degree = localStorage.getItem("degree");
+    const location = localStorage.getItem("location");
+    const schoolName = localStorage.getItem("schoolName");
+    const graduation = localStorage.getItem("graduation");
+
+    const skills = localStorage.getItem("skills");
+
+    const projectTitle = localStorage.getItem("projectTitle");
+    const projectDescription = localStorage.getItem("projectDescription");
+
+
+    const formData = new FormData();
+    
+    formData.append("newPosition", newPosition);
+    formData.append("industry", industry);
+
+    formData.append("fullName", fullName);
+    formData.append("phoneNumber", phoneNumber);
+    formData.append("email", email);
+    formData.append("linkedIn", linkedIn);
+    formData.append("personalLink", personalLink);
+
+    formData.append("role1", role1);
+    formData.append("company1", company1);
+    formData.append("date1", date1);
+    formData.append("location1", location1);
+    formData.append("description1", description1);
+
+    formData.append("role2", role2);
+    formData.append("company2", company2);
+    formData.append("date2", date2);
+    formData.append("location2", location2);
+    formData.append("description2", description2);
+
+    
+    formData.append("degree", role2);
+    formData.append("location", company2);
+    formData.append("schoolName", date2);
+    formData.append("graduation", location2);
+
+    formData.append("skills", description2);
+
+    formData.append("projectTitle", date2);
+    formData.append("projectDescription", location2);
+    
+    axios
+        .post("http://localhost:4000/resume/create", formData, {})
+        .then((res) => {
+            if (res.data.message) {
+                console.log(res.data.data);
+                navigate("/resume");
+            }
+        })
+        .catch((err) => console.error(err));
+    setLoading(true);
+
 };
 
 return (
