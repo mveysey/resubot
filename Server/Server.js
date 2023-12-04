@@ -1,22 +1,36 @@
+// using Middlewares
 const express = require("express");
-const app = express();
-const routes = require("./Database"); // Import your routes
 const cors = require("cors");
+const dbRoutes = require("./Database");
+const mysql = require("mysql");
 // const { Configuration, OpenAIApi } = require("openai");
 
-// const configuration = new Configuration({
-
-// });
+const app = express();
+const port = process.env.PORT || 4000;
 
 // const openai = new OpenAIApi(configuration);
+// Create a MySQL database connection
+const db = mysql.createConnection({
+  host: "127.0.0.1",
+  user: "root",
+  password: "Resubot2024@",
+  database: "resume",
+});
 
+db.connect((err) => {
+  if (err) {
+    console.error("Database connection error: " + err.stack);
+    return;
+  }
+  console.log("Connected to the database");
+});
+
+app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(cors());
 
-app.use("/", routes); // Use the routes
-
-const port = process.env.PORT || 4000;
+// Pass the database connection to the routes
+app.use("/", dbRoutes(db));
 
 app.get("/api", (req, res) => {
   res.json({
@@ -36,7 +50,6 @@ app.get("/api", (req, res) => {
 //   });
 //   return response.data.choices[0].text;
 // };
-
 // // get submitted info
 // app.post("/resume/create", async (req, res) => {
 //   const {
@@ -65,7 +78,6 @@ app.get("/api", (req, res) => {
 //     projectTitle,
 //     projectDescription,
 //   } = req.body;
-
 //   const newEntry = {
 //     id: generateID(),
 //     newPosition,
@@ -93,23 +105,17 @@ app.get("/api", (req, res) => {
 //     projectTitle,
 //     projectDescription,
 //   };
-
 //   const prompt1 = `I am writing a resume, my details are \n name: ${fullName} \n role: ${currentPosition} (${currentLength} years). \n I write in the technolegies: ${currentTechnologies}. Can you write a 100 words description for the top of the resume(first person writing)?`;
-
 //   const prompt2 = `I am writing a resume, my details are \n name: ${fullName} \n role: ${currentPosition} (${currentLength} years). \n I write in the technolegies: ${currentTechnologies}. Can you write 10 points for a resume on what I am good at?`;
-
 //   const prompt3 = `I am writing a resume, my details are \n name: ${fullName} \n role: ${currentPosition} (${currentLength} years). \n During my years I worked at ${
 //     workArray.length
 //   } companies. ${remainderText()} \n Can you write me 50 words for each company seperated in numbers of my succession in the company (in first person)?`;
-
 //   const objective = await generateText(prompt1);
 //   const keypoints = await generateText(prompt2);
 //   const jobResponsibilities = await generateText(prompt3);
-
 //   const chatgptData = { objective, keypoints, jobResponsibilities };
 //   const data = { ...newEntry, ...chatgptData };
 //   database.push(data);
-
 //   res.json({
 //     message: "Request successful!",
 //     data,
@@ -117,5 +123,5 @@ app.get("/api", (req, res) => {
 // });
 
 app.listen(port, () => {
-  console.log(`Server is running on port 4000`);
+  console.log(`Server is running on port ${port}`);
 });
