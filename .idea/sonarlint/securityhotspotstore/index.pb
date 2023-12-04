@@ -52,3 +52,7 @@ F
 Server/.env.production,e\e\ee1f94ed8963af5f1880a8089442ab61ea3378da
 H
 Server/database/Test.sql,5\7\57076877d0b1b9d8bc4c4ddc345917a58b2d8a86
+I
+Server/util/login-util.js,8\3\83d809b95a7e1f9e9b354a8fd952c442a0cfc4d9
+H
+Server/util/auth-util.js,1\b\1b50948104681e05bb07109a2143e166718632b5

@@ -1,8 +1,9 @@
 const express = require("express")
 const router = express.Router()
 
+//http://localhost:5000/api/test/hello
 const testController = require("../controller/test.controller")
 
-router.post("/api/test", testController.test1)
+router.get("/hello", testController.test1)
 
 module.exports = router
