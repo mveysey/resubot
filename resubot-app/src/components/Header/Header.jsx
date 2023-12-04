@@ -74,7 +74,7 @@ const Header = ({version}) => {
                         {user?.username ? (
                             <div className="navbar-item" onClick={() => setState({isPaneOpen: true})}>
                                 <span className="user-icon">  {user?.username.slice(0, 1)}</span>
-                                <span className=" label is-size-6 has-text-light m-2">{user?.username} </span>
+                                <span className=" label is-size-6 has-text-light m-2">{user?.username.slice(0, 10)} </span>
                             </div>
                         ) : (
                             <>

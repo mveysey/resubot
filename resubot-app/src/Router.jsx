@@ -1,5 +1,5 @@
 import React, {Suspense} from 'react';
-import {BrowserRouter, Routes, Route} from "react-router-dom";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Loader from "./components/Loader/Loader";
 import Home from "./pages/Home/Home.jsx";
 import Landing from "./pages/Landing/Landing.jsx";
@@ -21,6 +21,7 @@ import Projects from "./pages/Projects/Projects.jsx";
 import Customize from "./pages/Customize/Customize.jsx";
 import FinalResume from "./pages/FinalResume.jsx";
 import CreateResume from "./pages/CreateResumes/Resumes.jsx";
+import ProtectedRoute from "./common/protectedRoute.js";
 
 const Router = () => (
     <BrowserRouter>
@@ -44,8 +45,8 @@ const Router = () => (
                 <Route path="/projects" element={<Projects/>}/>
                 <Route path="/customize" element={<Customize/>}/>
                 <Route path="/loading" element={<Loading/>}/>
-                <Route path="/finalresume" element={<FinalResume/>} />
-                <Route path="/resumes" element={<CreateResume/>} />
+                <Route path="/finalresume" element={<FinalResume/>}/>
+                <Route path="/resumes" element={<CreateResume/>}/>
 
                 {/*Error Page*/}
                 <Route path="*" element={<Error/>}/>

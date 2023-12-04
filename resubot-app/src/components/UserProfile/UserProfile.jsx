@@ -2,12 +2,14 @@ import React, {useState} from "react";
 import auth from "../../common/auth.js";
 import {toast} from "react-toastify";
 import axios from "../../common/axiosConfig.js";
+import {redirect} from "react-router-dom";
 
 const UserProfile = (props) => {
 
     // logout method
     const logout = async () => {
         toast.warning("Logging Out...");
+        redirect("/login");
         await new Promise((resolve) => setTimeout(resolve, 1500));
         auth.logout();
         window.location.reload();
