@@ -5,7 +5,7 @@ const cors = require("cors");
 
 const app = express()
 
-require('dotenv').config()
+require('dotenv').config({ path: '.env.development' })
 
 app.use(express.urlencoded({extended: false}))
 app.use(express.json())
