@@ -1,25 +1,20 @@
-import React from 'react';
-// import Panel from 'components/Panel';
-// import UserProfile from 'components/UserProfile';\
+import React, {useMemo} from 'react';
 import logo from '../../assets/logo.png'
 import "./Header.scss";
+import auth from "../../common/auth.js";
 
 //Header components
 const Header = ({version}) => {
-    //open user profile panel method
-    // const toProfile = () => {
-    //     Panel.open({
-    //         component: UserProfile,
-    //         props: {
-    //             user: props.user
-    //         },
-    //         callback: data => {
-    //             if (data === 'logout') {
-    //                 props.history.go(0);
-    //             }
-    //         }
-    //     });
-    // };
+    // open user profile panel method
+
+    const user = useMemo(() => {
+        return auth.getUser() || {};
+    }, []);
+
+    const toProfile = () => {
+        console.log("s")
+    }
+
     return (
         <div className="navbar is-dark" role="navigation" aria-label="main navigation">
             <a className="navbar-brand" href="/">
@@ -59,17 +54,30 @@ const Header = ({version}) => {
                     </a>
                 </div>
                 <div className="navbar-end">
-                    <div className="navbar-item">
-                        <div className="user-icon">G</div>
-                        <a href="/login" className="label is-size-6 has-text-light ml-2">
-                            Login
-                        </a>
-                    </div>
-                    <div className="navbar-item">
-                        <label className="label is-size-6 has-text-light">
-                            version {version ? version : '1.0.0'}
-                        </label>
-                    </div>
+
+
+                    {user?.username ? (
+                        <div className="navbar-item" onClick={toProfile}>
+                            <span className="user-icon">  {user?.username.slice(0, 1)}</span>
+                            <span className=" label is-size-6 has-text-light m-2">{user?.username} </span>
+                        </div>
+                    ) : (
+                        <>
+                            <div className="navbar-item">
+                                {/* redirect to login page */}
+                                <a href="/login" className="label is-size-6 has-text-light ml-2">Login</a>
+                            </div>
+                            <div className="navbar-item">
+                                {/* redirect to Register page */}
+                                <a href="/register" className="label is-size-6 has-text-light ml-2">Register</a>
+                            </div>
+                        </>
+                    )}
+                </div>
+                <div className="navbar-item">
+                    <label className="label is-size-5 has-text-light">
+                        version {version ? version : '1.0.0'}
+                    </label>
                 </div>
             </div>
         </div>

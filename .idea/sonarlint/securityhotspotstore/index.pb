@@ -78,3 +78,15 @@ T
 $resubot-app/src/pages/Home/Home.scss,1\1\119b3abfa2379e427a089d618e603492e6b9df6f
 a
 1resubot-app/src/components/Profiles/Profiles.scss,f\4\f44030777b341811d8a50c29314379fac16e0623
+f
+6resubot-app/src/components/UserProfile/UserProfile.jsx,0\7\072dba032307f90670ee50843ce30261c0c3db60
+Z
+*resubot-app/src/components/Panel/Panel.jsx,b\3\b3831e52897fddee9e4716618afa91aa14ed8db2
+g
+7resubot-app/src/components/UserProfile/UserProfile.scss,1\b\1bba87790487a905b66e466da92ea7c9d0af9cf1
+[
++resubot-app/src/components/Panel/Panel.scss,3\3\331f801e1eec8f160228604ef2bda8b2d62cb94e
+^
+.resubot-app/src/components/Panel/PopupMenu.jsx,8\d\8de3cb980b60c7ed64f8409661b1ef91d3221dea
+M
+resubot-app/package-lock.json,c\3\c3b01eb886247675632831db5993b37d1da2b6bd
