@@ -136,3 +136,19 @@ P
  Server/routes/template.router.js,b\b\bb4dd09e7d03ba245b54a6ee5c65bdbfb94890aa
 L
 Server/util/template-util.js,4\5\4522506c6f976476f59fd53fa7de0acdac9b69a1
+`
+0resubot-app/src/pages/CreateResumes/Resumes.scss,c\d\cda229cb0841e95eaa0287fc2c468a61792493fe
+[
++resubot-app/src/components/Modal/Modal.scss,b\6\b620e00bc8e82f1d22e887db4066b4260479caf0
+k
+;resubot-app/src/components/HorizontalScroller/HScroller.jsx,b\1\b1f96dd7cbc2115a66d2a948d2d4dee5dca8cc41
+]
+-resubot-app/src/pages/Templates/Template1.jsx,0\0\00bea4872cb3cca67c46cfb8b884ec93b49a96a6
+]
+-resubot-app/src/pages/Templates/Template2.jsx,8\f\8f628beb3c20bf4a1fcfc58bdfa19cd997f97f29
+]
+-resubot-app/src/pages/Templates/Template3.jsx,0\2\0257fc0781f086fd766c380fd2e1817e4cd2ea2e
+S
+#resubot-app/src/common/pdfGenerator,c\1\c1e41eee8b9ad53ccfc6ea889b03fafde5e634ef
+U
+%resubot-app/src/hooks/PdfGenerator.js,f\9\f9c745f3437d0bea1f8db64a5294a0cf25db6716

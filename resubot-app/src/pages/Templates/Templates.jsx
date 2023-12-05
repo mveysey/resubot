@@ -1,5 +1,6 @@
-import React from "react";
+import React, {useState} from "react";
 import './Templates.scss'
+import Modal from "../../components/Modal/Modal.jsx";
 
 const templateData = [
     {
@@ -29,42 +30,47 @@ const templateData = [
     },
 ];
 
-const TemplatesPage = () => (
-    <div className="templates-wrapper">
-        <h3 className="title is-3">Available Templates</h3>
-        <div className="box">
-            <div className="tabs">
-                <ul>
-                    <li className="is-active"><a>All</a></li>
-                    <li><a>Creative</a></li>
-                    <li><a>Professional</a></li>
-                    <li><a>Modern</a></li>
-                    <li><a>Minimalist</a></li>
-                    <li><a>Compact</a></li>
-                    <li><a>Coming Soon...</a></li>
-                </ul>
-            </div>
+const TemplatesPage = () => {
 
-            <div className="template-display-area">
-                <div className="template-grid">
-                    {templateData.map((template) => (
-                        <div className="template-card" key={template.id}>
-                            <h4 className="template-title">{template.title}</h4>
-                            <p className="template-description">{template.description}</p>
-                            <div className="card">
-                                <div className="card-image">
-                                    <figure className="image is-1by2">
-                                        <img src="https://bulma.io/images/placeholders/320x640.png"
-                                             alt="Template Preview"/>
-                                    </figure>
+    const [openModal, setOpenModal] = useState(false);
+    return (
+            <div className="templates-wrapper">
+                <Modal open={openModal} onClose={()=> setOpenModal(false)} title={"Template Preview"}/>
+                <h3 className="title is-3">Available Templates</h3>
+                <div className="box">
+                    <div className="tabs">
+                        <ul>
+                            <li className="is-active"><a>All</a></li>
+                            <li><a>Creative</a></li>
+                            <li><a>Professional</a></li>
+                            <li><a>Modern</a></li>
+                            <li><a>Minimalist</a></li>
+                            <li><a>Compact</a></li>
+                            <li><a>Coming Soon...</a></li>
+                        </ul>
+                    </div>
+
+                    <div className="template-display-area">
+                        <div className="template-grid">
+                            {templateData.map((template) => (
+                                <div className="template-card" key={template.id} onClick={()=> setOpenModal(true)}>
+                                    <h4 className="template-title">{template.title}</h4>
+                                    <p className="template-description">{template.description}</p>
+                                    <div className="card">
+                                        <div className="card-image">
+                                            <figure className="image is-1by2">
+                                                <img src="https://bulma.io/images/placeholders/320x640.png"
+                                                     alt="Template Preview"/>
+                                            </figure>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
+                            ))}
                         </div>
-                    ))}
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-);
+    )
+}
 
 export default TemplatesPage;

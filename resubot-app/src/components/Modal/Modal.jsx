@@ -1,6 +1,10 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 import './Modal.scss';
+import Template3 from "../../pages/Templates/Template3.jsx";
+import PdfGenerator from "../../hooks/PdfGenerator.js";
+import Template1 from "../../pages/Templates/Template1.jsx";
+import Template2 from "../../pages/Templates/Template2.jsx";
 
 const OVERLAY_STYLES = {
     position: 'fixed',
@@ -25,8 +29,8 @@ const Modal = ({open, onClose, onConfirm, title, width, height}) => {
         zIndex: 1000,
         borderRadius: '10px',
         // Use the width and height props
-        height: height || '500px', // Default height if not provided
-        width: width || '850px', // Default width if not provided
+        height: height || '80vh', // Default height if not provided
+        width: width || '70vh', // Default width if not provided
     };
 
     return ReactDom.createPortal(
@@ -36,9 +40,8 @@ const Modal = ({open, onClose, onConfirm, title, width, height}) => {
                 <section className="modal-card-body is-align-content-center">
                     <label className="has-text-weight-bold sub-title is-4"
                            style={{display: 'flex', justifyContent: 'center'}}>{title}</label>
-                    <div className="modal-body">
-                        {/* Content goes here */}
-                    </div>
+                    {/*<Template3/>*/}
+                    <PdfGenerator content={<Template2/>}/>
                     <div className="field is-grouped"
                          style={{display: 'flex', justifyContent: 'center', marginTop: '20px'}}>
                         <p className="control">
