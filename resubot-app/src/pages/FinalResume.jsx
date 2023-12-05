@@ -374,7 +374,7 @@ const FinalResume = () => {
               type="text"
               name="date"
               placeholder="May 23 - Present"
-              className="currentInput"
+              className="subInput"
               value={start}
               required
               onChange={(e) => setStart(e.target.value)}
@@ -385,7 +385,7 @@ const FinalResume = () => {
             <input
               type="text"
               name="location"
-              className="currentInput"
+              className="subInput"
               value={location}
               required
               onChange={(e) => setLocation(e.target.value)}
