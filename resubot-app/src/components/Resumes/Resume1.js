@@ -1,7 +1,13 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 import "./resume1.css";
 
 const Resume = () => {
+    const location = useLocation();
+    const experienceData = location.state?.resumeData || {};
+
+     // Convert the entire experienceData object to a JSON string
+     const experienceDataString = JSON.stringify(experienceData, null, 2);
     return (
         <div className="container">
             <div className="header">
@@ -28,6 +34,7 @@ const Resume = () => {
                 <h2>Experience</h2>
                 <hr/>
                 <div className='experience-item'>
+                    {experienceDataString}
                     <h4>Company Name</h4>
                     <p>Position</p>
                     <p>Date - Date</p>
@@ -60,6 +67,10 @@ const Resume = () => {
                         <li>Web Development</li>
                     </ul>
             </div>
+
+            <pre>
+                        {experienceDataString}
+                    </pre>
         </div>
     );
 };

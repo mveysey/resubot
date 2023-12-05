@@ -156,8 +156,26 @@ const FinalResume = () => {
       })
       .then((res) => {
         if (res.data.message) {
-          console.log(res.data.data);
-          navigate("/resume1");
+          //console.log(res.data.data);
+          const experienceData = res.data.data.experienceGenerated;
+          const educationGenerated = res.data.data.educationGenerated;
+          console.log("education");
+          console.log(educationGenerated); 
+          const skillsGenerated = res.data.data.skillsGenerated;
+          const projectGenerated = res.data.data.projectGenerated;
+
+          // state object 
+          const resumeData = 
+          {
+            experienceData,
+            educationGenerated,
+            skillsGenerated,
+            projectGenerated,
+          }
+
+          console.log(resumeData);
+          navigate("/resume1", { state: { resumeData } });
+          //navigate("/resume1");
         }
       })
       .catch((err) => console.error(err));
