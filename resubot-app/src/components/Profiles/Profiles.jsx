@@ -19,7 +19,7 @@ const Profiles = () => {
         const [currentPage, setCurrentPage] = useState(1);
         const [maxPageLimit, setMaxPageLimit] = useState(10);
         const [minPageLimit, setMinPageLimit] = useState(0);
-    const [openDeleteModal, setOpenDeleteModal] = useState(false);
+        const [openDeleteModal, setOpenDeleteModal] = useState(false);
 
         const onPageChange = (pageNumber) => {
             setCurrentPage(pageNumber);

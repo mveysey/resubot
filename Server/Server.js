@@ -27,9 +27,11 @@ app.use(bodyParser.urlencoded({ extened: false }));
 const resumeRouter = require("./routes/resume.router");
 const authRouter = require("./routes/auth.router");
 const testRouter = require("./routes/test.router");
+const miscRouter = require("./routes/misc.router");
 app.use("/api/resume", resumeRouter);
 app.use("/api/auth", authRouter);
 app.use("/api/test", testRouter);
+app.use("/api/misc", miscRouter);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
