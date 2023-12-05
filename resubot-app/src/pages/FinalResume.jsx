@@ -16,10 +16,15 @@ const FinalResume = () => {
   const [linkedIn, setLinkedIn] = useState("");
   const [personalLink, setPersonalLink] = useState("");
 
+  const [role, setRole] = useState("");
+  const [company, setCompany] = useState("");
+  const [start, setStart] = useState("");
+  const [location, setLocation] = useState("");
+  const [description, setDescription] = useState("");
   //Compnay information
-  const [companyInfo, setCompanyInfo] = useState([
-    { role: "", company: "", start: "", location: "", description: "" },
-  ]);
+  // const [companyInfo, setCompanyInfo] = useState([
+  //   { role: "", company: "", start: "", location: "", description: "" },
+  // ]);
 
   //Education information
   const [degree, setDegree] = useState("");
@@ -48,23 +53,30 @@ const FinalResume = () => {
       email: "john.doe@example.com",
       linkedIn: "https://www.linkedin.com/in/johndoe",
       personalLink: "https://www.johndoe.com",
-      companyInfo: [
-        {
-          role: "Software Developer",
-          company: "ABC Tech",
-          start: "January 2020",
-          location: "New York, NY",
-          description: "Worked as a full stack developer and DBA in a small team of 5, managed projects using Jira...",
-        }
-        // Add more work history data as needed
-      ],
+      role: "Software Developer",
+      company: "ABC Tech",
+      start: "January 2020",
+      location: "New York, NY",
+      description:
+        "Worked as a full stack developer and DBA in a small team of 5, managed projects using Jira...",
+      // companyInfo: [
+      //   {
+      //     role: "Software Developer",
+      //     company: "ABC Tech",
+      //     start: "January 2020",
+      //     location: "New York, NY",
+      //     description: "Worked as a full stack developer and DBA in a small team of 5, managed projects using Jira...",
+      //   }
+      //   // Add more work history data as needed
+      // ],
       degree: "Bachelor of Science",
       schoolName: "University of XYZ",
       schoolLocation: "Los Angeles, CA",
       graduation: "May 2019",
       skills: "React, JavaScript, Node.js, HTML, CSS",
       projectTitle: "Portfolio Website",
-      projectDescription: "Created a personal portfolio website using latest fullstack technologies....",
+      projectDescription:
+        "Created a personal portfolio website using latest fullstack technologies....",
     };
 
     setNewPosition(predefinedData.newPosition);
@@ -74,7 +86,12 @@ const FinalResume = () => {
     setEmail(predefinedData.email);
     setLinkedIn(predefinedData.linkedIn);
     setPersonalLink(predefinedData.personalLink);
-    setCompanyInfo(predefinedData.companyInfo);
+    setRole(predefinedData.role);
+    setStart(predefinedData.start);
+    setCompany(predefinedData.company);
+    setLocation(predefinedData.location);
+    setDescription(predefinedData.description);
+    // setCompanyInfo(predefinedData.companyInfo);
     setDegree(predefinedData.degree);
     setSchoolName(predefinedData.schoolName);
     setSchoolLocation(predefinedData.schoolLocation);
@@ -84,28 +101,28 @@ const FinalResume = () => {
     setProjectDescription(predefinedData.projectDescription);
   };
 
-  //updates the state with user's input
-  const handleAddCompany = () =>
-    setCompanyInfo([
-      ...companyInfo,
-      { role: "", company: "", start: "", location: "", description: "" },
-    ]);
+  // //updates the state with user's input
+  // const handleAddCompany = () =>
+  //   setCompanyInfo([
+  //     ...companyInfo,
+  //     { role: "", company: "", start: "", location: "", description: "" },
+  //   ]);
 
-  // removes a selected item from the list
-  const handleRemoveCompany = (index) => {
-    const list = [...companyInfo];
-    list.splice(index, 1);
-    setCompanyInfo(list);
-  };
+  // // removes a selected item from the list
+  // const handleRemoveCompany = (index) => {
+  //   const list = [...companyInfo];
+  //   list.splice(index, 1);
+  //   setCompanyInfo(list);
+  // };
 
-  // updates an item within the list
-  const handleUpdateCompany = (e, index) => {
-    const { name, value } = e.target;
-    const list = [...companyInfo];
-    list[index][name] = value;
-    setCompanyInfo(list);
-    localStorage.setItem("companyInfo", JSON.stringify(list));
-  };
+  // // updates an item within the list
+  // const handleUpdateCompany = (e, index) => {
+  //   const { name, value } = e.target;
+  //   const list = [...companyInfo];
+  //   list[index][name] = value;
+  //   setCompanyInfo(list);
+  //   localStorage.setItem("companyInfo", JSON.stringify(list));
+  // };
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
@@ -175,7 +192,7 @@ const FinalResume = () => {
     formData.append("schoolName", date2);
     formData.append("graduation", location2);*/
 
-    formData.append("workHistory", JSON.stringify(companyInfo));
+    // formData.append("workHistory", JSON.stringify(companyInfo));
 
     formData.append("skills", skills);
 
@@ -190,7 +207,11 @@ const FinalResume = () => {
       email: email,
       linkedIn: linkedIn,
       personalLink: personalLink,
-      companyInfo: companyInfo,
+      role: role,
+      location: location,
+      start: start,
+      company: company,
+      description: description,
       degree: degree,
       schoolName: schoolName,
       schoolLocation: schoolLocation,
@@ -198,7 +219,7 @@ const FinalResume = () => {
       skills: skills,
       projectTitle: projectTitle,
       projectDescription: projectDescription,
-    })
+    });
 
     axios
       .post("http://localhost:4000/api/resume/create", {
@@ -209,7 +230,11 @@ const FinalResume = () => {
         email: email,
         linkedIn: linkedIn,
         personalLink: personalLink,
-        companyInfo: companyInfo,
+        role: role,
+        company: company,
+        location: location,
+        description: description,
+        start: start,
         degree: degree,
         schoolName: schoolName,
         schoolLocation: schoolLocation,
@@ -224,18 +249,17 @@ const FinalResume = () => {
           const experienceData = res.data.data.experienceGenerated;
           const educationGenerated = res.data.data.educationGenerated;
           console.log("education");
-          console.log(educationGenerated); 
+          console.log(educationGenerated);
           const skillsGenerated = res.data.data.skillsGenerated;
           const projectGenerated = res.data.data.projectGenerated;
 
-          // state object 
-          const resumeData = 
-          {
+          // state object
+          const resumeData = {
             experienceData,
             educationGenerated,
             skillsGenerated,
             projectGenerated,
-          }
+          };
 
           console.log(resumeData);
           navigate("/resume1", { state: { resumeData } });
@@ -254,12 +278,16 @@ const FinalResume = () => {
         encType="multipart/form-data"
       >
         {/*DEMO */}
-        <button onClick={fillFormWithData} className="button is-small is-danger">Fill with Predefined Data</button>
+        <button
+          onClick={fillFormWithData}
+          className="button is-small is-danger"
+        >
+          Fill with Predefined Data
+        </button>
         <label htmlFor="newPosition">New Position</label>
         <div className="cutomize">
           <input
             type="text"
-            required
             name="newPosition"
             id="newPosition"
             value={newPosition}
@@ -269,7 +297,6 @@ const FinalResume = () => {
             <label htmlFor="industry">Industry</label>
             <input
               type="text"
-              required
               name="industry"
               className="currentInput"
               value={industry}
@@ -330,85 +357,51 @@ const FinalResume = () => {
           />
         </div>
         <br />
-        <div className="companyInfo">
-          {companyInfo.map((company, index) => (
-            <div className="nestedContainer" key={index}>
-              <div className="companies">
-                <label htmlFor="role">Position</label>
-                <input
-                  type="text"
-                  name="role"
-                  className="currentInput"
-                  value={companyInfo[index].role}
-                  onChange={(e) => handleUpdateCompany(e, index)}
-                />
-              </div>
-              <div className="companies">
-                <label htmlFor="company">Company</label>
-                <input
-                  type="text"
-                  name="company"
-                  value={companyInfo[index].company}
-                  required
-                  onChange={(e) => handleUpdateCompany(e, index)}
-                />
-              </div>
-              <div className="verticalcontainer">
-                <div className="companies">
-                  <label htmlFor="date">Date or Date Range</label>
-                  <input
-                    type="text"
-                    name="date"
-                    placeholder="May 23 - Present"
-                    className="subInput"
-                    value={companyInfo[index].start}
-                    required
-                    onChange={(e) => handleUpdateCompany(e, index)}
-                  />
-                </div>
-                <div className="companies">
-                  <label htmlFor="location">Location</label>
-                  <input
-                    type="text"
-                    name="location"
-                    className="subInput"
-                    value={companyInfo[index].location}
-                    required
-                    onChange={(e) => handleUpdateCompany(e, index)}
-                  />
-                </div>
-              </div>
-              <div className="companies">
-                <label htmlFor="description">
-                  Description of Your Position
-                </label>
-                <textarea
-                  type="text"
-                  value={companyInfo[index].description}
-                  name="description"
-                  required
-                  onChange={(e) => handleUpdateCompany(e, index)}
-                />
-              </div>
-              <br />
-
-              <div className="btn__group">
-                {companyInfo.length - 1 === index && companyInfo.length < 4 && (
-                  <button id="addBtn" onClick={handleAddCompany}>
-                    Add
-                  </button>
-                )}
-                {companyInfo.length > 1 && (
-                  <button
-                    id="deleteBtn"
-                    onClick={() => handleRemoveCompany(index)}
-                  >
-                    Del
-                  </button>
-                )}
-              </div>
-            </div>
-          ))}
+        <div className="companies">
+          <label htmlFor="company">Company</label>
+          <input
+            type="text"
+            name="company"
+            value={company}
+            required
+            onChange={(e) => setCompany(e.target.value)}
+          />
+        </div>
+        <div className="verticalcontainer">
+          <div className="companies">
+            <label htmlFor="date">Date or Date Range</label>
+            <input
+              type="text"
+              name="date"
+              placeholder="May 23 - Present"
+              className="currentInput"
+              value={start}
+              required
+              onChange={(e) => setStart(e.target.value)}
+            />
+          </div>
+          <div className="companies">
+            <label htmlFor="location">Location</label>
+            <input
+              type="text"
+              name="location"
+              className="currentInput"
+              value={location}
+              required
+              onChange={(e) => setLocation(e.target.value)}
+            />
+          </div>
+        </div>
+        <div className="companies">
+          <label htmlFor="description">Description of Your Position</label>
+          <textarea
+            type="text"
+            value={description}
+            name="description"
+            required
+            onChange={(e) => setDescription(e.target.value)}
+          />
+          <br />
         </div>
         <br />
         <div>
