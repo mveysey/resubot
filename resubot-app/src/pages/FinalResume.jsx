@@ -18,7 +18,7 @@ const FinalResume = () => {
 
   const [role, setRole] = useState("");
   const [company, setCompany] = useState("");
-  const [start, setStart] = useState("");
+  const [date, setDate] = useState("");
   const [location, setLocation] = useState("");
   const [description, setDescription] = useState("");
   //Compnay information
@@ -56,7 +56,7 @@ const FinalResume = () => {
       personalLink: "https://www.johndoe.com",
       role: "Software Developer",
       company: "ABC Tech",
-      start: "January 2020",
+      date: "January 2020",
       location: "New York, NY",
       description:
         "Worked as a full stack developer and DBA in a small team of 5, managed projects using Jira...",
@@ -89,7 +89,7 @@ const FinalResume = () => {
     setLinkedIn(predefinedData.linkedIn);
     setPersonalLink(predefinedData.personalLink);
     setRole(predefinedData.role);
-    setStart(predefinedData.start);
+    setDate(predefinedData.date);
     setCompany(predefinedData.company);
     setLocation(predefinedData.location);
     setDescription(predefinedData.description);
@@ -212,7 +212,7 @@ const FinalResume = () => {
       personalLink: personalLink,
       role: role,
       location: location,
-      start: start,
+      date: date,
       company: company,
       description: description,
       degree: degree,
@@ -238,7 +238,7 @@ const FinalResume = () => {
         company: company,
         location: location,
         description: description,
-        start: start,
+        date: date,
         degree: degree,
         schoolName: schoolName,
         schoolLocation: schoolLocation,
@@ -392,9 +392,9 @@ const FinalResume = () => {
               name="date"
               placeholder="May 23 - Present"
               className="subInput"
-              value={start}
+              value={date}
               required
-              onChange={(e) => setStart(e.target.value)}
+              onChange={(e) => setDate(e.target.value)}
             />
           </div>
           <div className="companies">
