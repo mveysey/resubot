@@ -11,13 +11,13 @@ const CreateResume = () => {
     };
 
     const newResume = () => {
-        navigate("/customize")
+        navigate("/finalresume")
     };
 
     return (
         <div className="resume_container">
             <div className="content">
-                <a href="/finalresume">+</a>
+                <button onClick={newResume}>+</button>
                 <h4>Create New Resume</h4>
             </div>
         </div>
