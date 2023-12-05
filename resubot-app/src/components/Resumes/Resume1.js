@@ -4,10 +4,18 @@ import "./resume1.css";
 
 const Resume = () => {
     const location = useLocation();
-    const experienceData = location.state?.resumeData || {};
+    const resumeData = location.state?.resumeData || {};
 
      // Convert the entire experienceData object to a JSON string
-     const experienceDataString = JSON.stringify(experienceData, null, 2);
+     const experienceDataString = JSON.stringify(resumeData, null, 2);
+     const experienceData = resumeData.experienceData || '';
+     const educationGenerated = resumeData.educationGenerated || '';
+     const skillsGenerated = resumeData.skillsGenerated || '';
+     const projectGenerated = resumeData.projectGenerated || '';
+
+ 
+
+    
     return (
         <div className="container">
             <div className="header">
@@ -20,13 +28,28 @@ const Resume = () => {
             </div>
             </div>
 
+            {/* <div className="education">
+                <h2>Education</h2>
+                <hr/>
+                {courseDetails.map((course, index) => (
+                    <div key={index} className='education-item'>
+                        <h4>{course.title}</h4>
+                        <p>{course.institution}</p>
+                        <p>{course.graduationDate}</p>
+                        <p>{course.description}</p>
+                    </div>
+                ))}
+            </div> */}
+
             <div className="education">
                 <h2>Education</h2>
                 <hr/>
                 <div className='education-item'>
-                    <h4>Bachelor of Science in Computer Science</h4>
+                    {/* {experienceDataString} */}
+                    <p>{educationGenerated}</p>
+                    {/* <h4>Bachelor of Science in Computer Science</h4>
                     <p>Western University, London, Canada</p>
-                    <p>Date - Date</p>
+                    <p>Date - Date</p> */}
                 </div>
             </div>
 
@@ -34,15 +57,17 @@ const Resume = () => {
                 <h2>Experience</h2>
                 <hr/>
                 <div className='experience-item'>
-                    {experienceDataString}
-                    <h4>Company Name</h4>
+                    <p>{experienceData}</p>
+                    {/* {experienceDataString} */}
+                    {/* <h4>Company Name</h4>
+                   
                     <p>Position</p>
                     <p>Date - Date</p>
                     <ul>
                         <li>Responsibility 1</li>
                         <li>Responsibility 2</li>
                         <li>Responsibility 3</li>
-                    </ul>                
+                    </ul>                 */}
                 </div>
             </div>
 
@@ -50,14 +75,16 @@ const Resume = () => {
                 <h2>Projects</h2>
                 <hr/>
                 <div className='project-item'>
-                    <h4>Project Name</h4>
-                    <p>Software Used</p>
-                    <p>Small Description of what the project does</p>            
+                    {/* <h4>Project Name</h4> */}
+                    <p>{projectGenerated}</p>
+                    {/* <p>Software Used</p>
+                    <p>Small Description of what the project does</p>             */}
                 </div>
             </div>
 
             <div className="skills">
                 <h2>Skills</h2>
+                <p>{skillsGenerated}</p>
                 <hr/>
                     <ul className='skills-items'>
                         <li>HTML</li>
