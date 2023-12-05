@@ -124,3 +124,15 @@ T
 $Server/controller/misc.controller.js,6\6\66a42b49908dcf0ac227d4682211e85cbc9c6364
 L
 Server/routes/misc.router.js,d\f\df6784c51fd8e330d9c1f89041e62633819fe534
+]
+-resubot-app/src/components/Resumes/Resume1.js,7\5\7512a8251a30aaaab271c6c94f94e67ea6c71af7
+f
+6resubot-app/src/components/Resumes/PrintableResume.jsx,0\0\009e896ae04b9b9b44ac1e48fa34e215eca66edb
+M
+Server/database/Test-fill.sql,4\9\493e0c7fecaff5c579b36a9fe011971ee6fa44c3
+X
+(Server/controller/template.controller.js,e\c\ec368637b4afd5aafe572e5967f75b3cd89749d7
+P
+ Server/routes/template.router.js,b\b\bb4dd09e7d03ba245b54a6ee5c65bdbfb94890aa
+L
+Server/util/template-util.js,4\5\4522506c6f976476f59fd53fa7de0acdac9b69a1

@@ -1,4 +1,5 @@
 USE resubot;
+DROP TABLE IF EXISTS resume;
 
 CREATE TABLE resume (
                         id INT AUTO_INCREMENT PRIMARY KEY,
@@ -35,4 +36,28 @@ CREATE TABLE users (
                        username VARCHAR(255) NOT NULL,
                        type INT NOT NULL
 );
+
+DROP TABLE IF EXISTS profile;
+
+CREATE TABLE profile (
+                         profile_id INT AUTO_INCREMENT PRIMARY KEY,
+                         profile_name VARCHAR(255) NOT NULL,
+                         creation_date DATETIME NOT NULL,
+                         update_date DATETIME NOT NULL,
+                         cv_count INT NOT NULL DEFAULT 0,
+                         resume_count INT NOT NULL DEFAULT 0
+);
+
+DROP TABLE IF EXISTS template;
+
+CREATE TABLE template (
+                          template_id INT AUTO_INCREMENT PRIMARY KEY,
+                          template_name VARCHAR(255) NOT NULL,
+                          template_category VARCHAR(255),
+                          template_content TEXT,
+                          template_preview BLOB
+);
+
+
+
 

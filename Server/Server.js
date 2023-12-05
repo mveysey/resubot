@@ -28,9 +28,11 @@ const resumeRouter = require("./routes/resume.router");
 const authRouter = require("./routes/auth.router");
 const testRouter = require("./routes/test.router");
 const miscRouter = require("./routes/misc.router");
+const templateRouter = require("./routes/template.router")
 app.use("/api/resume", resumeRouter);
 app.use("/api/auth", authRouter);
 app.use("/api/test", testRouter);
+app.use("/api/template", templateRouter);
 app.use("/api/misc", miscRouter);
 
 app.listen(PORT, () => {
