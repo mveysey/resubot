@@ -1,3 +1,5 @@
+const fs = require('fs');
+const path = require('path');
 const bodyParser = require("body-parser");
 const { generateID, generateText } = require("../util/ai-util"); // Import utility functions
 
@@ -145,6 +147,12 @@ const resumeController = {
       console.log(chatgptData);
 
       const responseData = { ...newEntry, ...chatgptData };
+
+       // Write chatgptData to a JavaScript file
+       const outputFilePath = path.join(__dirname, "chatgptData.js");
+       const outputData = `const chatgptData = ${JSON.stringify(chatgptData, null, 2)};\n\nmodule.exports = chatgptData;`;
+
+       fs.writeFileSync(outputFilePath, outputData, "utf-8");
 
       res.json({
         message: "Resume entry created successfully",
