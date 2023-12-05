@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Form, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Loading from "./Loading/Loading";
-import "./FinalResume.scss";
+import "./FinalResume/Finalresume.scss";
 
 const FinalResume = () => {
   //To Cutomize Resume for new position
