@@ -13,6 +13,11 @@ const Resume = () => {
      const skillsGenerated = resumeData.skillsGenerated || '';
      const projectGenerated = resumeData.projectGenerated || '';
 
+     // Split the skills data based on numbered lists
+    const skills = skillsGenerated.split(/\d+\.\s/).filter(Boolean);
+
+    // Split the education data based on numbered lists
+    const educationCourses = educationGenerated.split(/\d+\.\s/).filter(Boolean);
  
 
     
@@ -40,17 +45,20 @@ const Resume = () => {
                     </div>
                 ))}
             </div> */}
-
             <div className="education">
                 <h2>Education</h2>
                 <hr/>
-                <div className='education-item'>
-                    {/* {experienceDataString} */}
-                    <p>{educationGenerated}</p>
-                    {/* <h4>Bachelor of Science in Computer Science</h4>
-                    <p>Western University, London, Canada</p>
-                    <p>Date - Date</p> */}
-                </div>
+                {educationCourses.map((course, index) => {
+                    const lines = course.split('\n').filter(Boolean);
+                    return (
+                        <div key={index} className='education-item'>
+                            <h4>{lines[0]}</h4>
+                            {lines.slice(1).map((line, i) => (
+                                <p key={i}>{line}</p>
+                            ))}
+                        </div>
+                    );
+                })}
             </div>
 
             <div className="experience">
@@ -81,8 +89,24 @@ const Resume = () => {
                     <p>Small Description of what the project does</p>             */}
                 </div>
             </div>
-
             <div className="skills">
+                <h2>Skills</h2>
+                <hr/>
+                {skills.map((skill, index) => {
+                    const [title, description] = skill.split(':');
+                    return (
+                        <div key={index} className='skill-item'>
+                            <p><strong>{title}:</strong> {description}</p>
+                        </div>
+                    );
+                })}
+                <ul className='skills-items'>
+                    {/* ... your skills list ... */}
+                </ul>
+            </div>
+
+
+            {/* <div className="skills">
                 <h2>Skills</h2>
                 <p>{skillsGenerated}</p>
                 <hr/>
@@ -93,11 +117,11 @@ const Resume = () => {
                         <li>Python</li>
                         <li>Web Development</li>
                     </ul>
-            </div>
+            </div> */}
 
-            <pre>
+            {/* <pre>
                         {experienceDataString}
-                    </pre>
+                    </pre> */}
         </div>
     );
 };
