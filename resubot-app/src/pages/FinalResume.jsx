@@ -245,7 +245,6 @@ const FinalResume = () => {
       })
       .then((res) => {
         if (res.data.message) {
-          //console.log(res.data.data);
           const experienceData = res.data.data.experienceGenerated;
           const educationGenerated = res.data.data.educationGenerated;
           console.log("education");
@@ -255,6 +254,20 @@ const FinalResume = () => {
 
           // state object
           const resumeData = {
+            fullName,
+            phoneNumber,
+            email,
+            linkedIn,
+            personalLink,
+            role,
+            company,
+            date,
+            location,
+            degree,
+            schoolLocation,
+            schoolName,
+            graduation,
+            projectTitle,
             experienceData,
             educationGenerated,
             skillsGenerated,
@@ -349,7 +362,6 @@ const FinalResume = () => {
           </label>
           <input
             type="text"
-            required
             name="personalLink"
             className="currentInput"
             value={personalLink}
