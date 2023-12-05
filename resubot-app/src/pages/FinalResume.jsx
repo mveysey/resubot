@@ -38,6 +38,52 @@ const FinalResume = () => {
   //const pdfExportComponent = React.useRef(null);
   const navigate = useNavigate();
 
+  // Define a function to fill out the form with predefined data
+  const fillFormWithData = () => {
+    const predefinedData = {
+      newPosition: "Software Engineer",
+      industry: "Technology",
+      fullName: "John Doe",
+      phoneNumber: "123-456-7890",
+      email: "john.doe@example.com",
+      linkedIn: "https://www.linkedin.com/in/johndoe",
+      personalLink: "https://www.johndoe.com",
+      companyInfo: [
+        {
+          role: "Software Developer",
+          company: "ABC Tech",
+          start: "January 2020",
+          location: "New York, NY",
+          description: "Worked as a full stack developer and DBA in a small team of 5, managed projects using Jira...",
+        }
+        // Add more work history data as needed
+      ],
+      degree: "Bachelor of Science",
+      schoolName: "University of XYZ",
+      schoolLocation: "Los Angeles, CA",
+      graduation: "May 2019",
+      skills: "React, JavaScript, Node.js, HTML, CSS",
+      projectTitle: "Portfolio Website",
+      projectDescription: "Created a personal portfolio website using latest fullstack technologies....",
+    };
+
+    setNewPosition(predefinedData.newPosition);
+    setIndustry(predefinedData.industry);
+    setFullName(predefinedData.fullName);
+    setPhoneNumber(predefinedData.phoneNumber);
+    setEmail(predefinedData.email);
+    setLinkedIn(predefinedData.linkedIn);
+    setPersonalLink(predefinedData.personalLink);
+    setCompanyInfo(predefinedData.companyInfo);
+    setDegree(predefinedData.degree);
+    setSchoolName(predefinedData.schoolName);
+    setSchoolLocation(predefinedData.schoolLocation);
+    setGraduation(predefinedData.graduation);
+    setSkills(predefinedData.skills);
+    setProjectTitle(predefinedData.projectTitle);
+    setProjectDescription(predefinedData.projectDescription);
+  };
+
   //updates the state with user's input
   const handleAddCompany = () =>
     setCompanyInfo([
@@ -136,6 +182,24 @@ const FinalResume = () => {
     formData.append("projectTitle", projectTitle);
     formData.append("projectDescription", projectDescription);
 
+    console.log({
+      newPosition: newPosition,
+      industry: industry,
+      fullName: fullName,
+      phoneNumber: phoneNumber,
+      email: email,
+      linkedIn: linkedIn,
+      personalLink: personalLink,
+      companyInfo: companyInfo,
+      degree: degree,
+      schoolName: schoolName,
+      schoolLocation: schoolLocation,
+      graduation: graduation,
+      skills: skills,
+      projectTitle: projectTitle,
+      projectDescription: projectDescription,
+    })
+
     axios
       .post("http://localhost:4000/api/resume/create", {
         newPosition: newPosition,
@@ -189,6 +253,8 @@ const FinalResume = () => {
         method="POST"
         encType="multipart/form-data"
       >
+        {/*DEMO */}
+        <button onClick={fillFormWithData} className="button is-small is-danger">Fill with Predefined Data</button>
         <label htmlFor="newPosition">New Position</label>
         <div className="cutomize">
           <input
@@ -273,6 +339,7 @@ const FinalResume = () => {
                   type="text"
                   name="role"
                   className="currentInput"
+                  value={companyInfo[index].role}
                   onChange={(e) => handleUpdateCompany(e, index)}
                 />
               </div>
@@ -281,6 +348,7 @@ const FinalResume = () => {
                 <input
                   type="text"
                   name="company"
+                  value={companyInfo[index].company}
                   required
                   onChange={(e) => handleUpdateCompany(e, index)}
                 />
@@ -293,6 +361,7 @@ const FinalResume = () => {
                     name="date"
                     placeholder="May 23 - Present"
                     className="subInput"
+                    value={companyInfo[index].start}
                     required
                     onChange={(e) => handleUpdateCompany(e, index)}
                   />
@@ -303,6 +372,7 @@ const FinalResume = () => {
                     type="text"
                     name="location"
                     className="subInput"
+                    value={companyInfo[index].location}
                     required
                     onChange={(e) => handleUpdateCompany(e, index)}
                   />
@@ -314,6 +384,7 @@ const FinalResume = () => {
                 </label>
                 <textarea
                   type="text"
+                  value={companyInfo[index].description}
                   name="description"
                   required
                   onChange={(e) => handleUpdateCompany(e, index)}
