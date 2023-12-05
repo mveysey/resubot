@@ -6,7 +6,7 @@ import "./FinalResume/Finalresume.scss";
 
 const FinalResume = () => {
   //To Cutomize Resume for new position
-  const [newPosition, setNewPosition] = useState("");
+  const [jobDescription, setJobDescription] = useState("");
   const [industry, setIndustry] = useState("");
 
   //Basic Info about user
@@ -31,6 +31,7 @@ const FinalResume = () => {
   const [schoolName, setSchoolName] = useState("");
   const [schoolLocation, setSchoolLocation] = useState("");
   const [graduation, setGraduation] = useState("");
+  const [courses, setCourses] = useState("");
 
   //Skills Information
   const [skills, setSkills] = useState("");
@@ -73,13 +74,14 @@ const FinalResume = () => {
       schoolName: "University of XYZ",
       schoolLocation: "Los Angeles, CA",
       graduation: "May 2019",
+      courses: " ",
       skills: "React, JavaScript, Node.js, HTML, CSS",
       projectTitle: "Portfolio Website",
       projectDescription:
         "Created a personal portfolio website using latest fullstack technologies....",
     };
 
-    setNewPosition(predefinedData.newPosition);
+    setJobDescription(predefinedData.jobDescription);
     setIndustry(predefinedData.industry);
     setFullName(predefinedData.fullName);
     setPhoneNumber(predefinedData.phoneNumber);
@@ -96,6 +98,7 @@ const FinalResume = () => {
     setSchoolName(predefinedData.schoolName);
     setSchoolLocation(predefinedData.schoolLocation);
     setGraduation(predefinedData.graduation);
+    setCourses(predefinedData.courses);
     setSkills(predefinedData.skills);
     setProjectTitle(predefinedData.projectTitle);
     setProjectDescription(predefinedData.projectDescription);
@@ -165,7 +168,7 @@ const FinalResume = () => {
 
     const formData = new FormData();
 
-    formData.append("newPosition", newPosition);
+    formData.append("jobDescription", jobDescription);
     formData.append("industry", industry);
 
     formData.append("fullName", fullName);
@@ -200,7 +203,7 @@ const FinalResume = () => {
     formData.append("projectDescription", projectDescription);
 
     console.log({
-      newPosition: newPosition,
+      jobDescription: jobDescription,
       industry: industry,
       fullName: fullName,
       phoneNumber: phoneNumber,
@@ -216,6 +219,7 @@ const FinalResume = () => {
       schoolName: schoolName,
       schoolLocation: schoolLocation,
       graduation: graduation,
+      courses: courses,
       skills: skills,
       projectTitle: projectTitle,
       projectDescription: projectDescription,
@@ -223,7 +227,7 @@ const FinalResume = () => {
 
     axios
       .post("http://localhost:4000/api/resume/create", {
-        newPosition: newPosition,
+        jobDescription: jobDescription,
         industry: industry,
         fullName: fullName,
         phoneNumber: phoneNumber,
@@ -239,6 +243,7 @@ const FinalResume = () => {
         schoolName: schoolName,
         schoolLocation: schoolLocation,
         graduation: graduation,
+        courses: courses,
         skills: skills,
         projectTitle: projectTitle,
         projectDescription: projectDescription,
@@ -284,14 +289,14 @@ const FinalResume = () => {
         >
           Fill with Predefined Data
         </button>
-        <label htmlFor="newPosition">New Position</label>
+        <label htmlFor="jobDescription">Job Description</label>
         <div className="cutomize">
-          <input
+          <textarea
             type="text"
-            name="newPosition"
-            id="newPosition"
-            value={newPosition}
-            onChange={(e) => setNewPosition(e.target.value)}
+            name="jobDescription"
+            id="jobDescription"
+            value={jobDescription}
+            onChange={(e) => setJobDescription(e.target.value)}
           />
           <div>
             <label htmlFor="industry">Industry</label>
@@ -446,6 +451,17 @@ const FinalResume = () => {
             className="currentInput"
             value={graduation}
             onChange={(e) => setGraduation(e.target.value)}
+          />
+        </div>
+        <div>
+          <label htmlFor="courses">Courses</label>
+          <input
+            type="text"
+            placeholder="Game Programming: 90%, Information Security: 99%"
+            name="courses"
+            className="currentInput"
+            value={courses}
+            onChange={(e) => setCourses(e.target.value)}
           />
         </div>
         <br />
