@@ -7,7 +7,7 @@ const resumeController = {
   // Create a resume entry logic
   createResumeEntry: async (req, res) => {
     try {
-      (optionalJobDecsription = req.body.newPosition),
+      (optionalJobDecsription = req.body.jobDetails),
         (optionalIndustry = req.body.industry),
         (fullName = req.body.fullName),
         (phoneNumber = req.body.phoneNumber),
@@ -23,6 +23,7 @@ const resumeController = {
         (schoolLocation = req.body.schoolLocation),
         (schoolName = req.body.schoolName),
         (graduation = req.body.graduation),
+        (grades = req.body.grades),
         (skills = req.body.skills),
         (projectTitle = req.body.projectTitle),
         (projectDescription = req.body.projectDescription);
@@ -45,22 +46,23 @@ const resumeController = {
         schoolLocation,
         schoolName,
         graduation,
+        grades,
         skills,
         projectTitle,
         projectDescription,
       };
 
       // assign values to optional params
-      var jobDescription;
+      var jobDetails;
       switch (optionalJobDecsription) {
         case undefined || null:
-          jobDescription = null;
+          jobDetails = null;
           break;
 
         default:
-          jobDescription = optionalJobDecsription;
+          jobDetails = optionalJobDecsription;
       }
-      console.log(jobDescription);
+      console.log(jobDetails);
 
       var industry;
       switch (optionalIndustry) {
@@ -97,19 +99,19 @@ const resumeController = {
 
       // create a prompt to send to openAI API as system
       let systemPrompt;
-      if (industry != null && jobDescription != null) {
-        systemPrompt = `You are a resume writer for someone who works in the ${industry} industry and is applying for a job with this description ${jobDescription}. Never forget that industry and job description when you are writing the resume.`;
+      if (industry != null && jobDetails != null) {
+        systemPrompt = `You are a resume writer for someone who works in the ${industry} industry and is applying for a job with this description ${jobDetails}. Never forget that industry and job description when you are writing the resume.`;
       } else if (industry != null) {
         systemPrompt = `You are a resume writer for someone who works in the ${industry} industry. Never forget that industry when you are writing the resume.`;
-      } else if (jobDescription != null) {
-        systemPrompt = `You are a resume writer for someone who is applying for a job with this description ${jobDescription}. Never forget that job description when you are writing the resume.`;
+      } else if (jobDetails != null) {
+        systemPrompt = `You are a resume writer for someone who is applying for a job with this description ${jobDetails}. Never forget that job description when you are writing the resume.`;
       } else {
         systemPrompt = `You are a resume writer for someone. Never forget that role.`;
       }
 
       // create prompts to send to openAI API as user
       const experiencePrompt = `Write me a 50 word description about my role at ${company} in ${location} where I worked as a ${role}. I was responsible for ${description}. I worked here during ${date}`;
-      const educationPrompt = `Write 5 courses that I might have taken at ${schoolName} in ${schoolLocation}, getting my degree in ${degree}. My graduation date is ${graduation}`;
+      const educationPrompt = `Write 5 courses WITH NO DESCRIPTION OF THEM, just list the course names, that I might have taken at ${schoolName} in ${schoolLocation}, getting my degree in ${degree}. My graduation date is ${graduation}`;
       const skillsPrompt = `Write 10 points for my resume on what I am good at given my skills, ${skills}`;
       const projectPrompt = `Write me a 50 word description about my project called ${projectTitle} that consisted of ${projectDescription}`;
 
@@ -124,6 +126,10 @@ const resumeController = {
 
       const educationGenerated = await generateText([
         systemMessage,
+        {
+          role: "system",
+          content: `Include information about ${grades} in the list of courses the user will ask for.`,
+        },
         { role: "user", content: educationPrompt },
       ]);
 
