@@ -6,7 +6,7 @@ import "./FinalResume/Finalresume.scss";
 
 const FinalResume = () => {
   //To Cutomize Resume for new position
-  const [jobDescription, setJobDescription] = useState("");
+  const [jobDetails, setjobDetails] = useState("");
   const [industry, setIndustry] = useState("");
 
   //Basic Info about user
@@ -31,7 +31,7 @@ const FinalResume = () => {
   const [schoolName, setSchoolName] = useState("");
   const [schoolLocation, setSchoolLocation] = useState("");
   const [graduation, setGraduation] = useState("");
-  const [courses, setCourses] = useState("");
+  const [grades, setGrades] = useState("");
 
   //Skills Information
   const [skills, setSkills] = useState("");
@@ -47,7 +47,7 @@ const FinalResume = () => {
   // Define a function to fill out the form with predefined data
   const fillFormWithData = () => {
     const predefinedData = {
-      newPosition: "Software Engineer",
+      jobDetails: "Software Engineer",
       industry: "Technology",
       fullName: "John Doe",
       phoneNumber: "123-456-7890",
@@ -74,14 +74,14 @@ const FinalResume = () => {
       schoolName: "University of XYZ",
       schoolLocation: "Los Angeles, CA",
       graduation: "May 2019",
-      courses: " ",
+      grades: " ",
       skills: "React, JavaScript, Node.js, HTML, CSS",
       projectTitle: "Portfolio Website",
       projectDescription:
         "Created a personal portfolio website using latest fullstack technologies....",
     };
 
-    setJobDescription(predefinedData.jobDescription);
+    setjobDetails(predefinedData.jobDetails);
     setIndustry(predefinedData.industry);
     setFullName(predefinedData.fullName);
     setPhoneNumber(predefinedData.phoneNumber);
@@ -98,7 +98,7 @@ const FinalResume = () => {
     setSchoolName(predefinedData.schoolName);
     setSchoolLocation(predefinedData.schoolLocation);
     setGraduation(predefinedData.graduation);
-    setCourses(predefinedData.courses);
+    setGrades(predefinedData.setGrades);
     setSkills(predefinedData.skills);
     setProjectTitle(predefinedData.projectTitle);
     setProjectDescription(predefinedData.projectDescription);
@@ -168,7 +168,7 @@ const FinalResume = () => {
 
     const formData = new FormData();
 
-    formData.append("jobDescription", jobDescription);
+    formData.append("jobDetails", jobDetails);
     formData.append("industry", industry);
 
     formData.append("fullName", fullName);
@@ -203,7 +203,7 @@ const FinalResume = () => {
     formData.append("projectDescription", projectDescription);
 
     console.log({
-      jobDescription: jobDescription,
+      jobDetails: jobDetails,
       industry: industry,
       fullName: fullName,
       phoneNumber: phoneNumber,
@@ -219,7 +219,7 @@ const FinalResume = () => {
       schoolName: schoolName,
       schoolLocation: schoolLocation,
       graduation: graduation,
-      courses: courses,
+      grades: grades,
       skills: skills,
       projectTitle: projectTitle,
       projectDescription: projectDescription,
@@ -227,7 +227,7 @@ const FinalResume = () => {
 
     axios
       .post("http://localhost:4000/api/resume/create", {
-        jobDescription: jobDescription,
+        jobDetails: jobDetails,
         industry: industry,
         fullName: fullName,
         phoneNumber: phoneNumber,
@@ -243,7 +243,7 @@ const FinalResume = () => {
         schoolName: schoolName,
         schoolLocation: schoolLocation,
         graduation: graduation,
-        courses: courses,
+        grades: grades,
         skills: skills,
         projectTitle: projectTitle,
         projectDescription: projectDescription,
@@ -273,6 +273,7 @@ const FinalResume = () => {
             schoolName,
             graduation,
             projectTitle,
+            grades,
             experienceData,
             educationGenerated,
             skillsGenerated,
@@ -302,14 +303,14 @@ const FinalResume = () => {
         >
           Fill with Predefined Data
         </button>
-        <label htmlFor="jobDescription">Job Description</label>
+        <label htmlFor="jobDetails">Job Details</label>
         <div className="cutomize">
           <textarea
             type="text"
-            name="jobDescription"
-            id="jobDescription"
-            value={jobDescription}
-            onChange={(e) => setJobDescription(e.target.value)}
+            name="jobDetails"
+            id="jobDetails"
+            value={jobDetails}
+            onChange={(e) => setjobDetails(e.target.value)}
           />
           <div>
             <label htmlFor="industry">Industry</label>
@@ -466,14 +467,14 @@ const FinalResume = () => {
           />
         </div>
         <div>
-          <label htmlFor="courses">Courses</label>
+          <label htmlFor="grades">Grades</label>
           <input
             type="text"
             placeholder="Game Programming: 90%, Information Security: 99%"
-            name="courses"
+            name="grades"
             className="currentInput"
-            value={courses}
-            onChange={(e) => setCourses(e.target.value)}
+            value={grades}
+            onChange={(e) => setGrades(e.target.value)}
           />
         </div>
         <br />
