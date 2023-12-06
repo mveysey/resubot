@@ -47,7 +47,37 @@ const FinalResume = () => {
   // Define a function to fill out the form with predefined data
   const fillFormWithData = () => {
     const predefinedData = {
-      jobDetails: "Software Engineer",
+      jobDetails: `Role: Python Developer (Banking Projects)
+      Structure: 6 Months + Extension
+      Pay: $85.00 per hour inc.
+      Location: Toronto (hybrid)
+      
+      We currently have an opportunity for a contract role - Hybrid- Python Developer working on Banking projects.
+      
+      Candidate Requirements/Must-Have Skills:
+      
+      Strong Python Development: 10+ years of design and development experience using Python (Version 2.7 and above) and hands-on experience and in dept knowledge of standard python libraries.
+      Experience processing large volumes of data using PySpark, Pandas, and/or NumPy.
+      2+ years experience with Python frameworks such as Django, Flask, requests. etc.
+      Experience in Object-oriented programming and Agile Development Methodology.
+      Experience with TDD writing unit tests, test coverage using PyTest, PyUnit, pytest-cov libraries.
+      Open-Source contribution experience
+      Financial industry experience
+      --
+      
+      Please apply with an updated resume and ensure the required skills you can speak to for this position are included.
+      
+      For more roles like this please go to www.corgta.com/find-a-job/
+      
+      Job Types: Full-time, Fixed term contract
+      Contract length: 6 months
+      
+      Salary: Up to $85.00 per hour
+      
+      Schedule:
+      
+      8 hour shift
+      Work Location: In person`,
       industry: "Technology",
       fullName: "John Doe",
       phoneNumber: "123-456-7890",
@@ -74,7 +104,8 @@ const FinalResume = () => {
       schoolName: "University of XYZ",
       schoolLocation: "Los Angeles, CA",
       graduation: "May 2019",
-      grades: " ",
+      grades:
+        "data structures and algorithms: 85%, advanced java programming: 99%, python programming: 90%, intro to django: 90%, Advanced unit testing: 100%, Intro to pyUnit: 90%, Advanced databases: 75%, Leadership in Business: 50%, Accounting: 80%, Intro to Psychology: 88%, Physical Living 2000: 80%",
       skills: "React, JavaScript, Node.js, HTML, CSS",
       projectTitle: "Portfolio Website",
       projectDescription:

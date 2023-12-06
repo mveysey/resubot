@@ -111,8 +111,8 @@ const resumeController = {
 
       // create prompts to send to openAI API as user
       const experiencePrompt = `Write me a 50 word description about my role at ${company} in ${location} where I worked as a ${role}. I was responsible for ${description}. I worked here during ${date}`;
-      const educationPrompt = `Write 5 courses WITH NO DESCRIPTION OF THEM, just list the course names, that I might have taken at ${schoolName} in ${schoolLocation}, getting my degree in ${degree}. My graduation date is ${graduation}`;
-      const skillsPrompt = `Write 10 points for my resume on what I am good at given my skills, ${skills}`;
+      const educationPrompt = `Write 5 courses WITH NO DESCRIPTION OF THEM, just list the course names, that I might have taken at ${schoolName} in ${schoolLocation}, getting my degree in ${degree}. My graduation date is ${graduation}. Please look at my ${skills} and ${grades} when choosing these and compare them with the job description I've provided you, making sure I'm demonstarting all of my important courses related to the job.`;
+      const skillsPrompt = `Write 10 points for my resume on what I am good at given my skills, ${skills} and the job description you were provided with. Also include information from the courses I have taken IF THEY ARE APPLICABLE: here are the courses ${grades}. Don't write a description for any skill, just write the skill`;
       const projectPrompt = `Write me a 50 word description about my project called ${projectTitle} that consisted of ${projectDescription}`;
 
       //  send context prompt before generating resume info
