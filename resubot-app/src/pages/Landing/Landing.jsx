@@ -1,5 +1,9 @@
 import React, {useState, useEffect} from "react";
 import './Landing.scss'
+import access_edit from '../../assets/access_edit.png';
+import cover_letter from '../../assets/cover_letter.png';
+import resume from '../../assets/resume.png';
+import fast from '../../assets/fast.png';
 import {ScrollMenu} from 'react-horizontal-scrolling-menu';
 import {LeftArrow, RightArrow, ScrollCard} from "../../components/HorizontalScroller/HScroller";
 
@@ -87,22 +91,22 @@ const LandingPage = () => {
                <div className="container">
                   <h2>Features Designed To Help You Win your Dream Job</h2>
                   <div className="feature">
-                     <img></img>
+                     <img src={resume} alt="Resume" />
                      <h3>AI-Generated Resumes</h3>
                      <p>Our advanced AI techonology crafts personlaized resumes tailored to your career goals.</p>
                   </div>
                   <div className="feature">
-                     <img></img>
+                     <img src={cover_letter } alt="Cover Letter" />
                      <h3>Cover Letter</h3>
                      <p>Build a cover letter with a same ease and tailored to you specific industry.</p>
                   </div>
                   <div className="feature">
-                     <img></img>
+                     <img src={fast} alt="Fast and Efficient"/>
                      <h3>Fast and Efficient</h3>
                      <p>Get your professional resume within minutes, saving you time and effort.</p>
                   </div>
                   <div className="feature">
-                     <img></img>
+                     <img src={access_edit} alt="Cloud-Based Access" />
                      <h3>Cloud-Based Access</h3>
                      <p>Access and edit your resume anytime, anywhere with our secure cloud platform.</p>
                   </div>

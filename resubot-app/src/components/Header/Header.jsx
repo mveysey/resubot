@@ -32,6 +32,7 @@ const Header = ({ version }) => {
           <img src={logo} alt="Logo" width="190" height="100" />
         </a>
         <div className={`nav-items ${isOpen ? 'open' : ''}`}>
+          <a className='sidebar' onClick={() => setIsOpen(!isOpen)} href="#"><svg xmlns="http://www.w3.org/2000/svg" height="26" viewBox="0 96 960 960" width="26"><path d="m249 849-42-42 231-231-231-231 42-42 231 231 231-231 42 42-231 231 231 231-42 42-231-231-231 231Z"/></svg></a>
           <a className="navbar-item" href="/chatbot">Chatbot</a>
           <a className="navbar-item" href="/home">Profile</a>
           <a className="navbar-item" href="/contact">Help</a>
@@ -43,12 +44,8 @@ const Header = ({ version }) => {
               </div>
             ) : (
               <>
-                <div className="navbar-item">
-                  <a href="/login">Login</a>
-                </div>
-                <div className="navbar-item">
-                  <a href="/register">Register</a>
-                </div>
+                  <a className="navbar-item" href="/login">Login</a>
+                  <a className="navbar-item" style={{ color:' var(--text-color-light)' }} href="/register">Register</a>
               </>
             )}
           </div>
