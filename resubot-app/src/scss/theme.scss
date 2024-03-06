@@ -11,39 +11,39 @@
 :root {
   --border-radius: 8px;
   --border-radius-half: 4px;
-  --main-color: #3faea8;
+  --main-color: #29465B;
   --blue-color: #4b89dc;
   --purple-color: #967bdc;
   --red-color: #d94555;
-  --cyan-color: #36bc9b;
+  --cyan-color: #29465B;
   --yellow-color: #f8ba43;
   --green-color: #21ab4b;
-  --dark-color: #226d6a;
-  --light-color: #ffffff;
+  --dark-color: #29465B;
+  --light-color: #F4F4F4;
   --grey-color: #b2b4ba;
   --grey-dark-color: #403e42;
   --box-shadow-light: rgb(15, 37, 36) 0px 5px 12px;
 
   --toastify-toast-width: 400px !important;
-  --toastify-color-light: #f0f3f6 !important;;
+  --toastify-color-light: #F4F4F4 !important;;
   --text-color-light: #fde0da !important;
   --text-color-dark: #0b0c10 !important;
 }
 
 // Set global theme colors
-$main: #3faea8;
+$main: #38B2AC;
 $blue: #4b89dc;
 $purple: #967bdc;
 $red: #d94555;
 $cyan: #36bc9b;
-$info: #f28168;
+$info: #FF7F50;
 $yellow: #f8ba43;
-$green: #21ab4b;
-$dark: #226d6a;
+$green: #29465B;
+$dark: #29465B;
 $light: #fde0da;
 $grey: #b2b4ba;
-$grey-dark: #0d111a;
-$bg-color: #b5dac9;
+$grey-dark: #333333;
+$bg-color: #ffffff;
 $pagination-active-color: $main;
 
 //define theme colors for

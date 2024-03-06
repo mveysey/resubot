@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import './Landing.scss'
 import {ScrollMenu} from 'react-horizontal-scrolling-menu';
 import {LeftArrow, RightArrow, ScrollCard} from "../../components/HorizontalScroller/HScroller";
@@ -7,6 +7,7 @@ const getItems = () =>
     Array(20)
         .fill(0)
         .map((_, ind) => ({id: `feature-${ind}`}));
+
 
 
 // shown when
@@ -27,20 +28,47 @@ const LandingPage = () => {
             );
         };
 
+        const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 19) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    document.addEventListener('scroll', handleScroll);
+
+    return () => {
+      document.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
     return (
         <div className="landing-wrapper">
-            {/*hero*/}
-            <section className="hero is-main">
-                <div className="hero-body">
+            <section className="banner">
+        <svg className="waves" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+          <path fill="#fff" fillOpacity="1" d="M0,96L60,85.3C120,75,240,53,360,90.7C480,128,600,224,720,234.7C840,245,960,171,1080,160C1200,149,1320,203,1380,229.3L1440,256L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path>
+        </svg>
+        <div className="hero-text">
                     <p className="title">
                         Welcome to ResuBot
                     </p>
                     <p className="subtitle">
-                        An AI powered resume builder for the modern job seeker
+                        Unlock Your Potential with AI-Optimized Resumes
                     </p>
-
+                    {/* Get Started Button */}
+                    <div className="columns is-centered">
+                        <a href="/home" className="start-btn button is-large is-info">GET STARTED</a>
+                    </div>
+                </div>
+        
+      </section>
+      {/*
                     <section className="section scroller-container is-align-items-center	">
-                        {/* Horizontal Scroller*/}
+                        {/* Horizontal Scroller}
                         <ScrollMenu LeftArrow={LeftArrow} RightArrow={RightArrow}>
                             {scollItems.map(({id}) => (
                                 <ScrollCard
@@ -52,16 +80,39 @@ const LandingPage = () => {
                                 />
                             ))}
                         </ScrollMenu>
-                    </section>
-                    {/* Get Started Button*/}
-                    <div className="columns is-centered">
-                        <a href="/home" className="start-btn button is-large is-info">GET STARTED</a>
-                    </div>
-                </div>
+                    </section>*/}
+        
+
+            <section className="features">
+               <div className="container">
+                  <h2>Features Designed To Help You Win your Dream Job</h2>
+                  <div className="feature">
+                     <img></img>
+                     <h3>AI-Generated Resumes</h3>
+                     <p>Our advanced AI techonology crafts personlaized resumes tailored to your career goals.</p>
+                  </div>
+                  <div className="feature">
+                     <img></img>
+                     <h3>Cover Letter</h3>
+                     <p>Build a cover letter with a same ease and tailored to you specific industry.</p>
+                  </div>
+                  <div className="feature">
+                     <img></img>
+                     <h3>Fast and Efficient</h3>
+                     <p>Get your professional resume within minutes, saving you time and effort.</p>
+                  </div>
+                  <div className="feature">
+                     <img></img>
+                     <h3>Cloud-Based Access</h3>
+                     <p>Access and edit your resume anytime, anywhere with our secure cloud platform.</p>
+                  </div>
+
+               </div>
+
             </section>
 
             <div className="examples-container box">
-                <h1 className="title">Example Resumes</h1>
+                <h1 className="title">Ready-To-Use Resume Templates</h1>
                 <div className="examples-grid-container">
                     <div className="example-box">
                         <article className="message">
@@ -159,6 +210,14 @@ const LandingPage = () => {
                         </article>
                     </div>
                 </div>
+                <section className="get-started">
+                   <div>
+                    <h2>Ready to Transform Your Career</h2>
+                    <p>Take your first step towards a brigeter future by creating your AI-Optimized resume today.</p>
+                    <a href="singup" class="btn">Get Started Now</a>
+                   </div>
+
+                </section>
 
                 {/* Live data based on users*/}
                 <div className="user-data-wrapper">
@@ -258,6 +317,7 @@ const LandingPage = () => {
                         </div>
                     </div>
                 </div>
+            
             </div>
 
         </div>

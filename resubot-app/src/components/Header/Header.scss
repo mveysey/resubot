@@ -1,50 +1,46 @@
 .navbar {
   display: flex;
-  padding: 20px;
-  height: 5%;
-  font-family: "Poppins", sans-serif;
-  user-select: none;
-  -webkit-box-shadow: var(--box-shadow-light);
-  box-shadow: var(--box-shadow-light);
-
-  .navbar-brand {
-    img {
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333;
+  padding: 1rem;
+  .logo {
+    color: white;
+    font-size: 1.5rem;
+  }
+  .nav-items {
+    display: flex;
+    gap: 1rem;
+    a {
+      color: white;
+      text-decoration: none;
+    }
+    @media (max-width: 768px) {
+      position: absolute;
+      right: 0;
+      top: 5rem;
+      flex-direction: column;
+      background-color: #333;
+      padding: 1rem;
+      gap: 0.5rem;
+      width: 100%;
+      display: none;
+      &.open {
+        display: flex;
+      }
+    }
+  }
+  .burger {
+    display: none;
+    cursor: pointer;
+    div {
+      width: 25px;
+      height: 3px;
+      background-color: white;
       margin: 5px;
     }
-  }
-
-  .navbar-item {
-    margin: 0 10px;
-    color: var(--text-color-light);
-    font-weight: 400;
-    font-size: 1.1rem;
-    cursor: pointer;
-    transition: 0.3s ease-in-out;
-
-    &:hover {
-      color: var(--main-color);
-      scale: 1.1;
+    @media (max-width: 768px) {
+      display: block;
     }
   }
-
-  .user-icon {
-    width: 40px;
-    height: 40px;
-    background-color: var(--red-color);
-    color: var(--text-color-light);
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 24px;
-    font-weight: 300;
-    text-transform: uppercase;
-  }
-}
-
-.panel{
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end; /* Align to the bottom */
-  height: -90vh + 10vh; /* Adjust as needed */
 }
