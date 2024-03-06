@@ -2,25 +2,52 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #333;
   padding: 1rem;
-  .logo {
-    color: white;
-    font-size: 1.5rem;
+  
+  .navbar-brand {
+    display: flex;
+    align-items: center;
+
+    img {
+      margin-right: 20px;
+    }
   }
+
   .nav-items {
     display: flex;
+    margin-right: auto;
     gap: 1rem;
-    a {
-      color: white;
-      text-decoration: none;
+    .navbar-item {
+      margin: 0 10px;
+      color: var(--text-color-light);
+      font-weight: 400;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: 0.3s ease-in-out;
+
+      &:hover {
+        color: var(--main-color);
+        transform: scale(1.1); // Corrected from 'scale' to 'transform: scale'
+      }
+    }
+    .user-icon {
+      width: 40px;
+      height: 40px;
+      background-color: var(--red-color);
+      color: var(--text-color-light);
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 24px;
+      font-weight: 300;
+      text-transform: uppercase;
     }
     @media (max-width: 768px) {
       position: absolute;
       right: 0;
       top: 5rem;
       flex-direction: column;
-      background-color: #333;
       padding: 1rem;
       gap: 0.5rem;
       width: 100%;
@@ -30,13 +57,14 @@
       }
     }
   }
+
   .burger {
     display: none;
     cursor: pointer;
     div {
       width: 25px;
       height: 3px;
-      background-color: white;
+      background-color: black;
       margin: 5px;
     }
     @media (max-width: 768px) {
