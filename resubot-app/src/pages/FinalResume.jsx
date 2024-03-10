@@ -313,7 +313,6 @@ const FinalResume = () => {
 
           console.log(resumeData);
           navigate("/resume1", { state: { resumeData } });
-          //navigate("/resume1");
         }
       })
       .catch((err) => console.error(err));
