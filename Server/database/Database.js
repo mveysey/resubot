@@ -1,18 +1,28 @@
-const mysql = require('mysql2')
+const sql = require('mssql');
 
-const pool = mysql.createPool({
-  host: process.env.DB_HOST,
+const config = {
   user: process.env.DB_USERNAME,
   password: process.env.DB_PASSWORD,
+  server: process.env.DB_HOST,
   database: process.env.DB_DBNAME,
-  waitForConnections: true,
-  connectionLimit: 10,
-  queueLimit: 0
-});
+  options: {
+    encrypt: true, // For Azure SQL
+    trustServerCertificate: false // Change this if needed based on your server setup
+  }
+};
 
-pool.getConnection((err, conn) => {
-  if(err) console.log(err)
-  console.log("Connected successfully")
-})
+const pool = new sql.ConnectionPool(config);
 
-module.exports = pool.promise()
+async function connectToDatabase() {
+  try {
+    await pool.connect();
+    console.log('Connected successfully');
+  } catch (error) {
+    console.error('Error connecting to database:', error);
+  }
+}
+
+module.exports = {
+  pool,
+  connectToDatabase
+};
