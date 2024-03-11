@@ -88,9 +88,9 @@ const LandingPage = () => {
           <path fill="#fff" fillOpacity="1" d="M0,96L60,85.3C120,75,240,53,360,90.7C480,128,600,224,720,234.7C840,245,960,171,1080,160C1200,149,1320,203,1380,229.3L1440,256L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path>
         </svg>
         <div className="hero-text">
-                    <p className="title">
+                    <h1 className="title">
                         Welcome to ResuBot
-                    </p>
+                    </h1>
                     <p className="subtitle">
                         Unlock Your Potential with AI-Optimized Resumes
                     </p>
@@ -146,7 +146,7 @@ const LandingPage = () => {
 
             </section>
 
-            <div className="examples-container box">
+            {/*  <div className="examples-container box">
                 <h1 className="title">Ready-To-Use Resume Templates</h1>
                 <div className="examples-grid-container">
                     <div className="example-box">
@@ -245,7 +245,32 @@ const LandingPage = () => {
                         </article>
                     </div>
                 </div>
-                <section className="get-started">
+            </div>*/}
+
+            <section className="resume">
+                <div>
+                    <h1>Unlock Your Dream Job</h1>
+                </div>
+                <div>
+                    <p>Elevate your resume game with the premier AI-generated resume maker. Tailored to your specific industry and job description, ensuring your resume stands out. Our platform empowers you to distinguish yourself from the crowd and pursue your career ambitions confidently.</p>
+                </div>
+                <div className="columns is-centered">
+                        <a href="/home" className="resume-btn button is-info">Create My Resume</a>
+                </div>
+
+            </section>
+            <section className="coverletter">
+                <div>
+                    <h1>Craft A Compelling Cover Letter Effortlessly with our cover letter maker.</h1>
+                </div>
+                <div>
+                    <p>create a professional pitches in mere minutes, saving you precious time and eliminating the stress of writer's block. Say goodbye to tedious searches for persuasive phrases and formatting woes. With our intuitive tool, you'll effortlessly captivate your audience and make a lasting impression</p>
+                </div>
+                <div className="columns is-centered">
+                        <a href="/home" className="coverletter-btn button is-info">Create Cover Letter</a>
+                </div>
+            </section>
+            <section className="get-started">
                    <div>
                     <h2>Ready to Transform Your Career</h2>
                     <p>Take your first step towards a brigeter future by creating your AI-Optimized resume today.</p>
@@ -257,7 +282,7 @@ const LandingPage = () => {
 
                 {/* Live data based on users*/}
                 <div className="user-data-wrapper">
-                    <h1 className="title">Frequently Asked Questions</h1>
+                    <h2>Frequently Asked Questions</h2>
                     <div>
                         <div className="accordion">
                             {data.map((item, i) => (
@@ -275,8 +300,6 @@ const LandingPage = () => {
                     
 
                 </div>
-            
-            </div>
 
         </div>
     )

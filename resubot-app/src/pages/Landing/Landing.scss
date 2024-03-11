@@ -1,7 +1,14 @@
+h2{
+  font-size: 38px;
+  font-weight: 700;
+  text-align: center;
+  padding: 0px;
+ 
+}
 .landing-wrapper {
-
     .examples-container {
-        padding: 50px;
+      padding: 50px;
+
         .examples-grid-container {
             height: 620px;
             overflow-y: scroll;
@@ -25,9 +32,6 @@
             }
         }
 
-        .user-data-wrapper {
-            margin-top: 100px;
-        }
     }
 
     .banner {
@@ -75,7 +79,7 @@
       
         h2 {
           grid-column: 1 / -1; // Makes the heading span all columns
-          text-align: center;
+          
         }
       
         .feature {
@@ -86,8 +90,8 @@
 
           
           img {
-            width: 100px; // Example width, adjust as needed
-            height: auto;
+            width: 150px; // Example width, adjust as needed
+            height: 100px;
           }
       
           h3, p {
@@ -102,33 +106,39 @@
         align-items: center;
     }
 
-    .accordion{
-      width: auto;
-      .item{
-        background-color: transparent;
-        margin-bottom: 5px;
-        padding: 10px 20px;
-        box-shadow: 0 0.2em 0.125em rgba(217,217,217,1); 
+    .user-data-wrapper {
+      margin-top: 100px;
+      padding: 50px;
 
-        .title{
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-        }
 
-        .content{
-          color: #8b7f75;
-          max-height: 0;
-          overflow: hidden;
-          transition: all 0.5s cubic-bezier(0,1,0,1);
-
-          &.content-show{
-            height: auto;
-            max-height: 9999px;
-            transition: all 0.5s cubic-bezier(1,0,1,1);
+      .accordion{
+        width: auto;
+        .item{
+          background-color: transparent;
+          margin-bottom: 5px;
+          padding: 10px 20px;
+          box-shadow: 0 0.2em 0.125em rgba(217,217,217,1); 
+  
+          .title{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+          }
+  
+          .content{
+            color: #8b7f75;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0,1,0,1);
+  
+            &.content-show{
+              height: auto;
+              max-height: 9999px;
+              transition: all 0.5s cubic-bezier(1,0,1,1);
+            }
           }
         }
       }
-    }
+  }
 
 }
