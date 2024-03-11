@@ -13,16 +13,46 @@ const getItems = () =>
         .map((_, ind) => ({id: `feature-${ind}`}));
 
 
+const data = [
+    
+    {
+        question: "What makes your AI-generated resumes different from traditional resumes?", 
+        answer: "Our AI-generated resumes offer severla distinct advnatages over traditional resumes. They are created using advanced algorithms that analyze data to optimize content for relevance, keywords, and readability. Additionally, our resumes can be personalized to match specific job requirements and industry standards, ensuring a higher chance of catching the attention of hiring managers and passing through Applicant Tracking Systems (ATS).",
+    },
+    {
+        question: "Can I edit and update my resume after it's been generated?", 
+        answer: "Yes, you have the flexibility to edit and update your resume even after it has been generated. Our platform allows you to make changes to the content, formatting, and design as needed, ensuring that your resume stays up-to-date and tailored to your evolving career goals and experiences.",
+    },
+    {
+        question: "Is there a limit to the number of resumes I can create using Resubot?", 
+        answer: " No, there is no limit to the number of resumes you can create using Resubot. You can generate as many resumes as you need to target different job opportunities, industries, or career objectives. Our platform is designed to provide unlimited access to our resume-building tools, empowering you to create high-quality resumes tailored to your unique preferences and aspirations.",
+    },
+    {
+        question: "What file formats are supported for downloading and sharing my resume?", 
+        answer: "Once your resume is ready there you can download a PDF of your resumes or cover letters to start applying for jobs.",
+    },
+
+]
+
+
 
 // shown when
 const LandingPage = () => {
 
     const [scollItems, setScrollItems] = useState(getItems);
-    const [selected, setSelected] = useState([]);
+    const [selected, setSelected] = useState(null);
     const [position, setPosition] = useState(0);
     const isItemSelected = (id) => !!selected.find((el) => el === id);
 
-    const handleScrollItemClick = (id) =>
+    const toggle = (i) => {
+        if(selected == i){
+            return setSelected(null)
+        }
+
+        setSelected(i)
+    };
+
+    {/*const handleScrollItemClick = (id) =>
         ({getItemById, scrollToItem}) => {
             const itemSelected = isItemSelected(id);
             setSelected((currentSelected) =>
@@ -31,8 +61,9 @@ const LandingPage = () => {
                     : currentSelected.concat(id)
             );
         };
+    */}
 
-        const [isScrolled, setIsScrolled] = useState(false);
+    const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -223,103 +254,26 @@ const LandingPage = () => {
 
                 </section>
 
+
                 {/* Live data based on users*/}
                 <div className="user-data-wrapper">
-                    <h1 className="title">Live User Data</h1>
-                    {/*Number of resumes created over time.*/}
-                    <div className="card">
-                        <header className="card-header">
-                            <p className="card-header-title">
-                                Number of resumes created over time
-                            </p>
-                            <button className="card-header-icon" aria-label="more options">
-                                    <span className="icon">
-                                      <i className="fas fa-angle-down" aria-hidden="true"></i>
-                                    </span>
-                            </button>
-                        </header>
-                        <div className="card-content">
-                            <div className="content">
-                                insert apex chart component
-                            </div>
-                        </div>
-                    </div>
+                    <h1 className="title">Frequently Asked Questions</h1>
+                    <div>
+                        <div className="accordion">
+                            {data.map((item, i) => (
+                                <div className="item">
+                                    <div className="title" onClick={() => toggle(i)}>
+                                        <p>{item.question}</p>
+                                        <span>{selected == i ? '-' : '+'}</span>
+                                    </div>
+                                    <div className={selected == i ? 'content.show' : 'content'}>{item.answer}</div>
+                                </div>
+                            ))}
 
-                    {/*Average time spent on creating a resume*/}
-                    <div className="card">
-                        <header className="card-header">
-                            <p className="card-header-title">
-                                Average time spent on creating a resume
-                            </p>
-                            <button className="card-header-icon" aria-label="more options">
-                                    <span className="icon">
-                                      <i className="fas fa-angle-down" aria-hidden="true"></i>
-                                    </span>
-                            </button>
-                        </header>
-                        <div className="card-content">
-                            <div className="content">
-                                insert apex chart component
-                            </div>
                         </div>
                     </div>
+                    
 
-                    {/*Most frequently used keywords in resumesAverage time spent on creating a resume*/}
-                    <div className="card">
-                        <header className="card-header">
-                            <p className="card-header-title">
-                                Most frequently used keywords in resumes
-                            </p>
-                            <button className="card-header-icon" aria-label="more options">
-                                    <span className="icon">
-                                      <i className="fas fa-angle-down" aria-hidden="true"></i>
-                                    </span>
-                            </button>
-                        </header>
-                        <div className="card-content">
-                            <div className="content">
-                                insert apex chart component
-                            </div>
-                        </div>
-                    </div>
-
-                    {/*Work experience distribution */}
-                    <div className="card">
-                        <header className="card-header">
-                            <p className="card-header-title">
-                                Work experience distribution (years of experience).
-                            </p>
-                            <button className="card-header-icon" aria-label="more options">
-                                    <span className="icon">
-                                      <i className="fas fa-angle-down" aria-hidden="true"></i>
-                                    </span>
-                            </button>
-                        </header>
-                        <div className="card-content">
-                            <div className="content">
-                                insert apex chart component
-                            </div>
-                        </div>
-                    </div>
-
-                    {/*Education level distribution*/}
-                    <div className="card">
-                        <header className="card-header">
-                            <p className="card-header-title">
-                                Education level distribution
-                            </p>
-                            <button className="card-header-icon" aria-label="more options">
-                                    <span className="icon">
-                                      <i className="fas fa-angle-down" aria-hidden="true"></i>
-                                    </span>
-                            </button>
-                        </header>
-                        <div className="card-content">
-                            <div className="content">
-                                insert apex chart component
-                            </div>
-                        </div>
-                    </div>
                 </div>
             
             </div>
