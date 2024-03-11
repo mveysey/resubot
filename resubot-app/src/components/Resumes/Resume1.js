@@ -46,7 +46,7 @@ const Resume = () => {
 
     axios
       .post("http://localhost:4000/api/resume/regenerate", {
-        regenerationRequest: regenerateRequest,
+        regenerateRequest: regenerateRequest,
         fullName: fullName,
         phoneNumber: phoneNumber,
         email: email,
@@ -58,11 +58,12 @@ const Resume = () => {
         description: experienceData,
         date: date,
         degree: degree,
+        courses: educationGenerated,
         schoolName: schoolName,
         schoolLocation: schoolLocation,
         graduation: graduation,
         grades: grades,
-        skills: skills,
+        skills: skillsGenerated,
         projectTitle: projectTitle,
         projectDescription: projectGenerated,
       })
@@ -70,13 +71,12 @@ const Resume = () => {
         if (res.data.message) {
           const experienceData = res.data.data.experienceGenerated;
           const educationGenerated = res.data.data.educationGenerated;
-          console.log("education");
-          console.log(educationGenerated);
           const skillsGenerated = res.data.data.skillsGenerated;
           const projectGenerated = res.data.data.projectGenerated;
 
           // state object
           const resumeData = {
+            regenerateRequest,
             fullName,
             phoneNumber,
             email,
@@ -98,8 +98,6 @@ const Resume = () => {
             projectGenerated,
           };
 
-          console.log(resumeData);
-          console.log("hi");
           navigate("/resume1", { state: { resumeData } });
         }
       })
@@ -112,11 +110,13 @@ const Resume = () => {
         onSubmit={regenerateData}
         method="POST"
         encType="multipart/form-data"
+        id="regenerateForm"
       >
         <label>Regeneration Request</label>
         <input
           type="text"
           name="regenerationRequest"
+          id="regenerateRequestID"
           value={regenerateRequest}
           onChange={(e) => setRegenerateRequest(e.target.value)}
         />

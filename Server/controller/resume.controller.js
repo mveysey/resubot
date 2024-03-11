@@ -62,7 +62,7 @@ const resumeController = {
         default:
           jobDetails = optionalJobDecsription;
       }
-      console.log(jobDetails);
+      // console.log(jobDetails);
 
       var industry;
       switch (optionalIndustry) {
@@ -73,7 +73,7 @@ const resumeController = {
         default:
           industry = optionalIndustry;
       }
-      console.log(industry);
+      // console.log(industry);
 
       /*
       const systemMessage = {
@@ -150,7 +150,7 @@ const resumeController = {
         projectGenerated,
       };
 
-      console.log(chatgptData);
+      // console.log(chatgptData);
 
       const responseData = { ...newEntry, ...chatgptData };
 
@@ -166,9 +166,8 @@ const resumeController = {
   },
 
   createRegeneratedResumeEntry: async (req, res) => {
-    console.log("hi");
     try {
-      (regenerationRequest = req.body.regenerateRequest),
+      (regenerateRequest = req.body.regenerateRequest),
         (fullName = req.body.fullName),
         (phoneNumber = req.body.phoneNumber),
         (email = req.body.email),
@@ -180,6 +179,7 @@ const resumeController = {
         (location = req.body.location),
         (description = req.body.experienceData),
         (degree = req.body.degree),
+        (courses = req.body.courses),
         (schoolLocation = req.body.schoolLocation),
         (schoolName = req.body.schoolName),
         (graduation = req.body.graduation),
@@ -190,7 +190,7 @@ const resumeController = {
 
       const newEntry = {
         id: generateID(),
-        regenerationRequest,
+        regenerateRequest,
         fullName,
         phoneNumber,
         email,
@@ -202,6 +202,7 @@ const resumeController = {
         location,
         description,
         degree,
+        courses,
         schoolLocation,
         schoolName,
         graduation,
@@ -211,14 +212,39 @@ const resumeController = {
         projectDescription,
       };
 
+      console.log(
+        regenerateRequest,
+        fullName,
+        phoneNumber,
+        email,
+        linkedIn,
+        personalLink,
+        role,
+        company,
+        date,
+        location,
+        description,
+        degree,
+        courses,
+        schoolLocation,
+        schoolName,
+        graduation,
+        grades,
+        skills,
+        projectTitle,
+        projectDescription
+      );
       // create a prompt to send to openAI API as system
-      let systemPrompt = `You are a updating a resume for someone who wants this change ${regenerationRequest}. Never forget that change when you are writing the resume.`;
+      let systemPrompt = `You are a updating a resume for someone who wants this change ${regenerateRequest}. Never forget that change when you are writing the resume.`;
 
       // create prompts to send to openAI API as user
-      const experiencePrompt = `Write me a 50 word description about my role at ${company} in ${location} where I worked as a ${role}. I was responsible for ${description}. I worked here during ${date}`;
-      const educationPrompt = `Write 5 courses WITH NO DESCRIPTION OF THEM, just list the course names, that I might have taken at ${schoolName} in ${schoolLocation}, getting my degree in ${degree}. My graduation date is ${graduation}. Please look at my ${skills} and ${grades} when choosing these and compare them with the job description I've provided you, making sure I'm demonstarting all of my important courses related to the job.`;
-      const skillsPrompt = `Write 10 points for my resume on what I am good at given my skills, ${skills} and the job description you were provided with. Also include information from the courses I have taken IF THEY ARE APPLICABLE: here are the courses ${grades}. Don't write a description for any skill, just write the skill`;
-      const projectPrompt = `Write me a 50 word description about my project called ${projectTitle} that consisted of ${projectDescription}`;
+      const experiencePrompt = `Write me a 50 word description about my role at ${company} in ${location} where I worked as a ${role}. I was responsible for ${description}. I worked here during ${date}.  Recall this ${regenerateRequest} when writing EVERYTHING.`;
+      const educationPrompt = `Write 5 courses WITH NO DESCRIPTION OF THEM, just list the course names, that I might have taken at ${schoolName} in ${schoolLocation}, getting my degree in ${degree}. My graduation date is ${graduation}. Please look at my ${skills} and ${grades} when choosing these and compare them with the job description I've provided you, making sure I'm demonstarting all of my important courses related to the job. Recall this ${regenerateRequest} when writing EVERYTHING.`;
+      const skillsPrompt = `Write 10 points for my resume on what I am good at given my skills, ${skills}. Also include information from the courses I have taken IF THEY ARE APPLICABLE: here are the courses ${courses}. Don't write a description for any skill, just write the skill.  Recall this ${regenerateRequest} when writing EVERYTHING.`;
+      const projectPrompt = `Write me a 50 word description about my project called ${projectTitle} that consisted of ${projectDescription}.  Recall this ${regenerateRequest} when writing EVERYTHING.`;
+
+      // console.log("projectDescription", projectDescription);
+      // console.log("skills", projectDescription);
 
       //  send context prompt before generating resume info
       const systemMessage = { role: "system", content: systemPrompt };
@@ -255,7 +281,7 @@ const resumeController = {
         projectGenerated,
       };
 
-      console.log(chatgptData);
+      // console.log(chatgptData);
 
       const responseData = { ...newEntry, ...chatgptData };
 
