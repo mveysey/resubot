@@ -1,28 +1,26 @@
+// Database.js
 const sql = require('mssql');
 
 const config = {
-  user: process.env.DB_USERNAME,
-  password: process.env.DB_PASSWORD,
-  server: process.env.DB_HOST,
-  database: process.env.DB_DBNAME,
+  user: 'admin',
+  password: 'Resubot2024',
+  server: 'resubotdb.c5usg0wm00ma.us-east-2.rds.amazonaws.com',
+  database: 'resubot',
+  port: 1433,
   options: {
-    encrypt: true, // For Azure SQL
-    trustServerCertificate: false // Change this if needed based on your server setup
+    encrypt: true,
+    trustServerCertificate: true
   }
 };
 
-const pool = new sql.ConnectionPool(config);
-
-async function connectToDatabase() {
-  try {
-    await pool.connect();
-    console.log('Connected successfully');
-  } catch (error) {
-    console.error('Error connecting to database:', error);
-  }
-}
+const poolPromise = new sql.ConnectionPool(config)
+  .connect()
+  .then(pool => {
+    console.log('Connected to MSSQL')
+    return pool
+  })
+  .catch(err => console.log('Database Connection Failed! Bad Config: ', err))
 
 module.exports = {
-  pool,
-  connectToDatabase
+  sql, poolPromise
 };

@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Resume from "./components/Resume";
 
+
 const App = () => {
     //👇🏻 state holding the result
     const [result, setResult] = useState({});
