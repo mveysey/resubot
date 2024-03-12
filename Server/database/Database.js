@@ -1,11 +1,22 @@
 // Database.js
 const sql = require('mssql');
 
+// const config = {
+//   user: 'admin',
+//   password: 'Resubot2024',
+//   server: 'resubotdb.c5usg0wm00ma.us-east-2.rds.amazonaws.com',
+//   database: 'resubot',
+//   port: 1433,
+//   options: {
+//     encrypt: true,
+//     trustServerCertificate: true
+//   }
+// };
 const config = {
-  user: 'admin',
-  password: 'Resubot2024',
-  server: 'resubotdb.c5usg0wm00ma.us-east-2.rds.amazonaws.com',
-  database: 'resubot',
+  user: process.env.DB_USERNAME,
+  password: process.env.DB_PASSWORD,
+  server: process.env.DB_HOST,
+  database: process.env.DB_DBNAME,
   port: 1433,
   options: {
     encrypt: true,
