@@ -26,8 +26,13 @@
       cursor: pointer;
       transition: 0.3s ease-in-out;
     }
+    .vl{
+      border-left: 4px solid #29465B;
+      height: 50px;
+    }
+   
     
-    @media (max-width: 768px) {
+    @media (max-width: 1200px) {
       position: absolute;
       right: 0;
       top: 5rem;
@@ -44,24 +49,51 @@
         right: 0;
         height: 100vh;
         width: 250px;
-        background-color: rgba(255, 255, 255, 0.15);
+       background-color: rgba(255, 255, 255, 0.15);
         backdrop-filter: blur(12px);
         box-shadow: -10px 0 10px rgba(0, 0, 0, 0.1);
-        list-style: none;
-        flex-direction: column;
+       list-style: none;
+       flex-direction: column;
         align-items: flex-start;
-        justify-content: flex-start;
+      justify-content: flex-start;
+      }
+       &.open .vl {
+      opacity: 0; // Hide the vertical line
+    }
+    }
+
+    
+
+    .login-link{
+      color: #ffcdad;
+    }
+
+    .register-link{
+      position: relative; // Ensure position relative for z-index
+      padding: 8px 16px; // Adjust padding as needed
+      border: 2px solid #FFCDAD; // Border color
+      border-radius: 5px; // Border radius
+      background-color: #FFCDAD; // Background color
+      color: #FFF; // Text color
+
+      &:hover {
+        background-color: darken(#FFCDAD, 10%); // Darken the background color on hover
+        border-color: darken(#FFCDAD, 10%); // Darken the border color on hover
       }
     }
+    
+    
 
     .sidebar{
       display: none;
 
-      @media (max-width: 768px) {
+      @media (max-width: 1200px) {
         display: block;
       }
     }
   }
+
+
 
   .burger {
     display: none;
@@ -72,7 +104,7 @@
       background-color: black;
       margin: 5px;
     }
-    @media (max-width: 768px) {
+    @media (max-width: 1200px) {
       display: block;
     }
   }

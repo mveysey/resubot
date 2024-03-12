@@ -36,16 +36,18 @@ const Header = ({ version }) => {
           <a className="navbar-item" href="/chatbot">Chatbot</a>
           <a className="navbar-item" href="/home">Profile</a>
           <a className="navbar-item" href="/contact">Help</a>
+          <div className='vl'></div>
+          
           <div className="navbar-end">
             {user?.username ? (
-              <div className="navbar-item" onClick={() => setState({ isPaneOpen: true })}>
+              <div  onClick={() => setState({ isPaneOpen: true })}>
                 <span className="user-icon">{user?.username.slice(0, 1)}</span>
                 <span>{user?.username.slice(0, 10)}</span>
               </div>
             ) : (
               <>
-                  <a className="navbar-item" href="/login">Login</a>
-                  <a className="navbar-item" style={{ color:' var(--text-color-light)' }} href="/register">Register</a>
+              <a className="navbar-item login-link " href="/login">Login</a>
+              <a className="navbar-item register-link" href="/register">Register</a>
               </>
             )}
           </div>

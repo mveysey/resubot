@@ -54,19 +54,26 @@ h2{
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-      
+    
+            h1{
+              margin-bottom: 50px;
+              font-size: 50px;
+            }
             .start-btn {
-                padding: 10px 20px;
+              display: inline-block;
+              margin-top: 20px;
+              padding: 10px 20px;
                 color: var(--text-color-light);
-                font-weight: 600;
-                font-size: 1rem;
-                width: 30%;
+                border: none;
+          border-radius: 5px;
+            text-decoration: none;
                 cursor: pointer;
                 transition: 0.3s ease-in-out;
+                color: white;
       
                 &:hover {
-                    background-color: var(--main-color-light);
-                    color: var(--text-color-dark);
+                    background-color: #EB6B3C;
+                    
                 }
             }
         }
@@ -114,7 +121,7 @@ h2{
   .coverletter {
     display: flex;
     align-items: center;
-    margin-top: 30px;
+    margin-top: 100px;
 
     .coverletter-content {
         flex: 1;
@@ -149,7 +156,7 @@ h2{
     .coverletter-image {
         flex: 1;
         text-align: right; // Align the image to the left
-        //max-width: 100%; // Allow the image to take the full width available
+        max-width: 100%; // Allow the image to take the full width available
         width: auto; // Ensure the image height adjusts dynamically
     }
 }
@@ -158,6 +165,7 @@ h2{
   text-align: center; // Center align the content horizontally
   padding: 50px 0; // Add padding to the top and bottom of the section
   background-color: #0056b3;
+  margin-top: 100px;
 
   h2 {
       font-size: 2.5rem; // Adjust the font size of the heading
@@ -223,12 +231,13 @@ h2{
     }
 
     .user-data-wrapper {
-      margin-top: 100px;
+      margin-top: 30px;
       padding: 50px;
 
 
       .accordion{
         width: auto;
+        margin-top: 60px;
         .item{
           background-color: transparent;
           margin-bottom: 5px;

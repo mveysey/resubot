@@ -98,7 +98,7 @@ const LandingPage = () => {
                 </p>
                 {/* Get Started Button */}
                 <div className="columns is-centered">
-                    <a href="/home" className="start-btn button is-large is-info">GET STARTED</a>
+                    <a href="/home" className="start-btn button is-large is-info"><strong>GET STARTED</strong></a>
                 </div>
             </div>
         </section>
