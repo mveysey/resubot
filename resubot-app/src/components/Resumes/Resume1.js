@@ -1,8 +1,12 @@
-import React from "react";
-import { useLocation } from "react-router-dom";
+import React, { useState } from "react";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
+import axios from "axios";
 import "./resume1.css";
 
 const Resume = () => {
+  const [regenerateRequest, setRegenerateRequest] = useState("");
+  const navigate = useNavigate();
+
   const location = useLocation();
   const resumeData = location.state?.resumeData || {};
 
@@ -34,8 +38,90 @@ const Resume = () => {
   // Split the education data based on numbered lists
   const educationCourses = educationGenerated.split(/\d+\.\s/).filter(Boolean);
 
+  const regenerateData = (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+
+    formData.append("regenerateRequest", regenerateRequest);
+
+    axios
+      .post("http://localhost:4000/api/resume/regenerate", {
+        regenerateRequest: regenerateRequest,
+        fullName: fullName,
+        phoneNumber: phoneNumber,
+        email: email,
+        linkedIn: linkedIn,
+        personalLink: personalLink,
+        role: role,
+        company: company,
+        location: location,
+        description: experienceData,
+        date: date,
+        degree: degree,
+        courses: educationGenerated,
+        schoolName: schoolName,
+        schoolLocation: schoolLocation,
+        graduation: graduation,
+        grades: grades,
+        skills: skillsGenerated,
+        projectTitle: projectTitle,
+        projectDescription: projectGenerated,
+      })
+      .then((res) => {
+        if (res.data.message) {
+          const experienceData = res.data.data.experienceGenerated;
+          const educationGenerated = res.data.data.educationGenerated;
+          const skillsGenerated = res.data.data.skillsGenerated;
+          const projectGenerated = res.data.data.projectGenerated;
+
+          // state object
+          const resumeData = {
+            regenerateRequest,
+            fullName,
+            phoneNumber,
+            email,
+            linkedIn,
+            personalLink,
+            role,
+            company,
+            date,
+            location,
+            degree,
+            schoolLocation,
+            schoolName,
+            graduation,
+            projectTitle,
+            grades,
+            experienceData,
+            educationGenerated,
+            skillsGenerated,
+            projectGenerated,
+          };
+
+          navigate("/resume1", { state: { resumeData } });
+        }
+      })
+      .catch((err) => console.error(err));
+  };
+
   return (
     <div className="container">
+      <form
+        onSubmit={regenerateData}
+        method="POST"
+        encType="multipart/form-data"
+        id="regenerateForm"
+      >
+        <label>Regeneration Request</label>
+        <input
+          type="text"
+          name="regenerationRequest"
+          id="regenerateRequestID"
+          value={regenerateRequest}
+          onChange={(e) => setRegenerateRequest(e.target.value)}
+        />
+        <button>Submit Regeneration Request</button>
+      </form>
       <div className="header">
         <h1>{fullName}</h1>
         <div className="contact-info">

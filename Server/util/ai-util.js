@@ -13,7 +13,7 @@ const generateID = () => {
 
 // Function to generate text using OpenAI API
 const generateText = async (messages) => {
-  console.log(messages);
+  // console.log(messages);
   const response = await openai.chat.completions.create({
     model: "gpt-3.5-turbo",
     messages: messages,

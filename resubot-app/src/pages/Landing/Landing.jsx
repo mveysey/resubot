@@ -4,6 +4,8 @@ import access_edit from '../../assets/access_edit.png';
 import cover_letter from '../../assets/cover_letter.png';
 import resume from '../../assets/resume.png';
 import fast from '../../assets/fast.png';
+import resume2 from '../../assets/resume2.png';
+import coverletter2 from '../../assets/coverletter2.png';
 import {ScrollMenu} from 'react-horizontal-scrolling-menu';
 import {LeftArrow, RightArrow, ScrollCard} from "../../components/HorizontalScroller/HScroller";
 
@@ -13,16 +15,46 @@ const getItems = () =>
         .map((_, ind) => ({id: `feature-${ind}`}));
 
 
+const data = [
+    
+    {
+        question: "What makes your AI-generated resumes different from traditional resumes?", 
+        answer: "Our AI-generated resumes offer severla distinct advnatages over traditional resumes. They are created using advanced algorithms that analyze data to optimize content for relevance, keywords, and readability. Additionally, our resumes can be personalized to match specific job requirements and industry standards, ensuring a higher chance of catching the attention of hiring managers and passing through Applicant Tracking Systems (ATS).",
+    },
+    {
+        question: "Can I edit and update my resume after it's been generated?", 
+        answer: "Yes, you have the flexibility to edit and update your resume even after it has been generated. Our platform allows you to make changes to the content, formatting, and design as needed, ensuring that your resume stays up-to-date and tailored to your evolving career goals and experiences.",
+    },
+    {
+        question: "Is there a limit to the number of resumes I can create using Resubot?", 
+        answer: " No, there is no limit to the number of resumes you can create using Resubot. You can generate as many resumes as you need to target different job opportunities, industries, or career objectives. Our platform is designed to provide unlimited access to our resume-building tools, empowering you to create high-quality resumes tailored to your unique preferences and aspirations.",
+    },
+    {
+        question: "What file formats are supported for downloading and sharing my resume?", 
+        answer: "Once your resume is ready there you can download a PDF of your resumes or cover letters to start applying for jobs.",
+    },
+
+]
+
+
 
 // shown when
 const LandingPage = () => {
 
     const [scollItems, setScrollItems] = useState(getItems);
-    const [selected, setSelected] = useState([]);
+    const [selected, setSelected] = useState(null);
     const [position, setPosition] = useState(0);
     const isItemSelected = (id) => !!selected.find((el) => el === id);
 
-    const handleScrollItemClick = (id) =>
+    const toggle = (i) => {
+        if(selected == i){
+            return setSelected(null)
+        }
+
+        setSelected(i)
+    };
+
+    {/*const handleScrollItemClick = (id) =>
         ({getItemById, scrollToItem}) => {
             const itemSelected = isItemSelected(id);
             setSelected((currentSelected) =>
@@ -31,8 +63,9 @@ const LandingPage = () => {
                     : currentSelected.concat(id)
             );
         };
+    */}
 
-        const [isScrolled, setIsScrolled] = useState(false);
+    const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -52,24 +85,23 @@ const LandingPage = () => {
 
     return (
         <div className="landing-wrapper">
-            <section className="banner">
-        <svg className="waves" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-          <path fill="#fff" fillOpacity="1" d="M0,96L60,85.3C120,75,240,53,360,90.7C480,128,600,224,720,234.7C840,245,960,171,1080,160C1200,149,1320,203,1380,229.3L1440,256L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path>
-        </svg>
-        <div className="hero-text">
-                    <p className="title">
-                        Welcome to ResuBot
-                    </p>
-                    <p className="subtitle">
-                        Unlock Your Potential with AI-Optimized Resumes
-                    </p>
-                    {/* Get Started Button */}
-                    <div className="columns is-centered">
-                        <a href="/home" className="start-btn button is-large is-info">GET STARTED</a>
-                    </div>
+        <section className="banner">
+            <svg className="waves" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+            <path fill="#fff" fillOpacity="1" d="M0,96L60,85.3C120,75,240,53,360,90.7C480,128,600,224,720,234.7C840,245,960,171,1080,160C1200,149,1320,203,1380,229.3L1440,256L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path>
+            </svg>
+            <div className="hero-text">
+                <h1 className="title">
+                    Welcome to ResuBot
+                </h1>
+                <p className="subtitle">
+                    Unlock Your Potential with AI-Optimized Resumes
+                </p>
+                {/* Get Started Button */}
+                <div className="columns is-centered">
+                    <a href="/home" className="start-btn button is-large is-info">GET STARTED</a>
                 </div>
-        
-      </section>
+            </div>
+        </section>
       {/*
                     <section className="section scroller-container is-align-items-center	">
                         {/* Horizontal Scroller}
@@ -115,7 +147,7 @@ const LandingPage = () => {
 
             </section>
 
-            <div className="examples-container box">
+            {/*  <div className="examples-container box">
                 <h1 className="title">Ready-To-Use Resume Templates</h1>
                 <div className="examples-grid-container">
                     <div className="example-box">
@@ -214,115 +246,72 @@ const LandingPage = () => {
                         </article>
                     </div>
                 </div>
-                <section className="get-started">
+            </div>*/}
+
+            <section className="resume">
+                <div className="resume-content">
+                    <div>
+                        <h2>Unlock Your Dream Job</h2>
+                    </div>
+                    <div>
+                        <p>Elevate your resume game with the premier AI-generated resume maker. Tailored to your specific industry and job description, ensuring your resume stands out. Our platform empowers you to distinguish yourself from the crowd and pursue your career ambitions confidently.</p>
+                    </div>
+                    <div className="columns is-centered">
+                        <a href="/home" className="resume-btn button is-info">Create My Resume</a>
+                    </div>
+                </div>
+                <div className="resume-image">
+                    <img src={resume2} alt="Resume" />
+                </div>
+            </section>
+            <section className="coverletter">
+                <div className="coverletter-image">
+                    <img src={coverletter2} alt="Resume" />
+                </div>
+                <div className="coverletter-content">
+                    <div>
+                        <h2>Craft A Compelling Cover Letter Effortlessly with our cover letter maker.</h2>
+                    </div>
+                    <div>
+                        <p>create a professional pitches in mere minutes, saving you precious time and eliminating the stress of writer's block. Say goodbye to tedious searches for persuasive phrases and formatting woes. With our intuitive tool, you'll effortlessly captivate your audience and make a lasting impression</p>
+                    </div>
+                    <div className="columns is-centered">
+                            <a href="/home" className="coverletter-btn button is-info">Create Cover Letter</a>
+                    </div>
+                    
+                </div>
+                
+            </section>
+            <section className="get-started">
                    <div>
                     <h2>Ready to Transform Your Career</h2>
                     <p>Take your first step towards a brigeter future by creating your AI-Optimized resume today.</p>
                     <a href="singup" class="btn">Get Started Now</a>
                    </div>
 
-                </section>
+            </section>
+
 
                 {/* Live data based on users*/}
                 <div className="user-data-wrapper">
-                    <h1 className="title">Live User Data</h1>
-                    {/*Number of resumes created over time.*/}
-                    <div className="card">
-                        <header className="card-header">
-                            <p className="card-header-title">
-                                Number of resumes created over time
-                            </p>
-                            <button className="card-header-icon" aria-label="more options">
-                                    <span className="icon">
-                                      <i className="fas fa-angle-down" aria-hidden="true"></i>
-                                    </span>
-                            </button>
-                        </header>
-                        <div className="card-content">
-                            <div className="content">
-                                insert apex chart component
-                            </div>
-                        </div>
-                    </div>
+                    <h2>Frequently Asked Questions</h2>
+                    <div>
+                        <div className="accordion">
+                            {data.map((item, i) => (
+                                <div className="item">
+                                    <div className="title" onClick={() => toggle(i)}>
+                                        <p>{item.question}</p>
+                                        <span>{selected == i ? '-' : '+'}</span>
+                                    </div>
+                                    <div className={selected == i ? 'content.show' : 'content'}>{item.answer}</div>
+                                </div>
+                            ))}
 
-                    {/*Average time spent on creating a resume*/}
-                    <div className="card">
-                        <header className="card-header">
-                            <p className="card-header-title">
-                                Average time spent on creating a resume
-                            </p>
-                            <button className="card-header-icon" aria-label="more options">
-                                    <span className="icon">
-                                      <i className="fas fa-angle-down" aria-hidden="true"></i>
-                                    </span>
-                            </button>
-                        </header>
-                        <div className="card-content">
-                            <div className="content">
-                                insert apex chart component
-                            </div>
                         </div>
                     </div>
+                    
 
-                    {/*Most frequently used keywords in resumesAverage time spent on creating a resume*/}
-                    <div className="card">
-                        <header className="card-header">
-                            <p className="card-header-title">
-                                Most frequently used keywords in resumes
-                            </p>
-                            <button className="card-header-icon" aria-label="more options">
-                                    <span className="icon">
-                                      <i className="fas fa-angle-down" aria-hidden="true"></i>
-                                    </span>
-                            </button>
-                        </header>
-                        <div className="card-content">
-                            <div className="content">
-                                insert apex chart component
-                            </div>
-                        </div>
-                    </div>
-
-                    {/*Work experience distribution */}
-                    <div className="card">
-                        <header className="card-header">
-                            <p className="card-header-title">
-                                Work experience distribution (years of experience).
-                            </p>
-                            <button className="card-header-icon" aria-label="more options">
-                                    <span className="icon">
-                                      <i className="fas fa-angle-down" aria-hidden="true"></i>
-                                    </span>
-                            </button>
-                        </header>
-                        <div className="card-content">
-                            <div className="content">
-                                insert apex chart component
-                            </div>
-                        </div>
-                    </div>
-
-                    {/*Education level distribution*/}
-                    <div className="card">
-                        <header className="card-header">
-                            <p className="card-header-title">
-                                Education level distribution
-                            </p>
-                            <button className="card-header-icon" aria-label="more options">
-                                    <span className="icon">
-                                      <i className="fas fa-angle-down" aria-hidden="true"></i>
-                                    </span>
-                            </button>
-                        </header>
-                        <div className="card-content">
-                            <div className="content">
-                                insert apex chart component
-                            </div>
-                        </div>
-                    </div>
                 </div>
-            
-            </div>
 
         </div>
     )
