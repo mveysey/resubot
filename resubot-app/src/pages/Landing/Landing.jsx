@@ -4,6 +4,8 @@ import access_edit from '../../assets/access_edit.png';
 import cover_letter from '../../assets/cover_letter.png';
 import resume from '../../assets/resume.png';
 import fast from '../../assets/fast.png';
+import resume2 from '../../assets/resume2.png';
+import coverletter2 from '../../assets/coverletter2.png';
 import {ScrollMenu} from 'react-horizontal-scrolling-menu';
 import {LeftArrow, RightArrow, ScrollCard} from "../../components/HorizontalScroller/HScroller";
 
@@ -83,24 +85,23 @@ const LandingPage = () => {
 
     return (
         <div className="landing-wrapper">
-            <section className="banner">
-        <svg className="waves" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-          <path fill="#fff" fillOpacity="1" d="M0,96L60,85.3C120,75,240,53,360,90.7C480,128,600,224,720,234.7C840,245,960,171,1080,160C1200,149,1320,203,1380,229.3L1440,256L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path>
-        </svg>
-        <div className="hero-text">
-                    <h1 className="title">
-                        Welcome to ResuBot
-                    </h1>
-                    <p className="subtitle">
-                        Unlock Your Potential with AI-Optimized Resumes
-                    </p>
-                    {/* Get Started Button */}
-                    <div className="columns is-centered">
-                        <a href="/home" className="start-btn button is-large is-info">GET STARTED</a>
-                    </div>
+        <section className="banner">
+            <svg className="waves" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+            <path fill="#fff" fillOpacity="1" d="M0,96L60,85.3C120,75,240,53,360,90.7C480,128,600,224,720,234.7C840,245,960,171,1080,160C1200,149,1320,203,1380,229.3L1440,256L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path>
+            </svg>
+            <div className="hero-text">
+                <h1 className="title">
+                    Welcome to ResuBot
+                </h1>
+                <p className="subtitle">
+                    Unlock Your Potential with AI-Optimized Resumes
+                </p>
+                {/* Get Started Button */}
+                <div className="columns is-centered">
+                    <a href="/home" className="start-btn button is-large is-info">GET STARTED</a>
                 </div>
-        
-      </section>
+            </div>
+        </section>
       {/*
                     <section className="section scroller-container is-align-items-center	">
                         {/* Horizontal Scroller}
@@ -248,27 +249,38 @@ const LandingPage = () => {
             </div>*/}
 
             <section className="resume">
-                <div>
-                    <h1>Unlock Your Dream Job</h1>
-                </div>
-                <div>
-                    <p>Elevate your resume game with the premier AI-generated resume maker. Tailored to your specific industry and job description, ensuring your resume stands out. Our platform empowers you to distinguish yourself from the crowd and pursue your career ambitions confidently.</p>
-                </div>
-                <div className="columns is-centered">
+                <div className="resume-content">
+                    <div>
+                        <h2>Unlock Your Dream Job</h2>
+                    </div>
+                    <div>
+                        <p>Elevate your resume game with the premier AI-generated resume maker. Tailored to your specific industry and job description, ensuring your resume stands out. Our platform empowers you to distinguish yourself from the crowd and pursue your career ambitions confidently.</p>
+                    </div>
+                    <div className="columns is-centered">
                         <a href="/home" className="resume-btn button is-info">Create My Resume</a>
+                    </div>
                 </div>
-
+                <div className="resume-image">
+                    <img src={resume2} alt="Resume" />
+                </div>
             </section>
             <section className="coverletter">
-                <div>
-                    <h1>Craft A Compelling Cover Letter Effortlessly with our cover letter maker.</h1>
+                <div className="coverletter-image">
+                    <img src={coverletter2} alt="Resume" />
                 </div>
-                <div>
-                    <p>create a professional pitches in mere minutes, saving you precious time and eliminating the stress of writer's block. Say goodbye to tedious searches for persuasive phrases and formatting woes. With our intuitive tool, you'll effortlessly captivate your audience and make a lasting impression</p>
+                <div className="coverletter-content">
+                    <div>
+                        <h2>Craft A Compelling Cover Letter Effortlessly with our cover letter maker.</h2>
+                    </div>
+                    <div>
+                        <p>create a professional pitches in mere minutes, saving you precious time and eliminating the stress of writer's block. Say goodbye to tedious searches for persuasive phrases and formatting woes. With our intuitive tool, you'll effortlessly captivate your audience and make a lasting impression</p>
+                    </div>
+                    <div className="columns is-centered">
+                            <a href="/home" className="coverletter-btn button is-info">Create Cover Letter</a>
+                    </div>
+                    
                 </div>
-                <div className="columns is-centered">
-                        <a href="/home" className="coverletter-btn button is-info">Create Cover Letter</a>
-                </div>
+                
             </section>
             <section className="get-started">
                    <div>
@@ -277,7 +289,7 @@ const LandingPage = () => {
                     <a href="singup" class="btn">Get Started Now</a>
                    </div>
 
-                </section>
+            </section>
 
 
                 {/* Live data based on users*/}

@@ -72,7 +72,123 @@ h2{
         }
     }
 
-    .features .container {
+    .resume {
+      display: flex;
+      align-items: center;
+      background-color: var(--light-color); // Light grey background color
+  
+      .resume-content {
+          flex: 1;
+          padding: 20px; // Add padding to create space between content and image
+          display: flex;
+          flex-direction: column; // Stack child elements vertically
+          justify-content: center; // Center content vertically
+          height: auto; // Reset height
+          text-align: center; // Center text horizontall          
+
+        }
+      .resume-btn {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 10px 20px;
+        background-color: #007bff; // Blue background color
+        color: #fff; // White text color
+        border: none;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+    }
+
+    .resume-btn:hover {
+        background-color: #0056b3; // Darker blue background color on hover
+    }
+  
+      .resume-image {
+          flex: 1;
+          text-align: right; // Align the image to the right
+          max-width: 500px; // Set maximum width for the image
+          max-height: 500px; // Set maximum height for the image
+      }
+  }
+
+  .coverletter {
+    display: flex;
+    align-items: center;
+    margin-top: 30px;
+
+    .coverletter-content {
+        flex: 1;
+        padding: 20px; // Add padding to create space between content and image
+        display: flex;
+        flex-direction: column; // Stack child elements vertically
+        justify-content: center; // Center content vertically
+        height: auto; // Reset height
+        text-align: center; // Center text horizontally
+
+        h2{
+          color: var(--dark-color);
+        }
+    }
+
+    .coverletter-btn {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 10px 20px;
+        background-color: #007bff; // Blue background color
+        color: #fff; // White text color
+        border: none;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+    }
+
+    .coverletter-btn:hover {
+        background-color: #0056b3; // Darker blue background color on hover
+    }
+
+    .coverletter-image {
+        flex: 1;
+        text-align: right; // Align the image to the left
+        //max-width: 100%; // Allow the image to take the full width available
+        width: auto; // Ensure the image height adjusts dynamically
+    }
+}
+
+.get-started {
+  text-align: center; // Center align the content horizontally
+  padding: 50px 0; // Add padding to the top and bottom of the section
+  background-color: #0056b3;
+
+  h2 {
+      font-size: 2.5rem; // Adjust the font size of the heading
+      margin-bottom: 20px; // Add margin to the bottom of the heading
+      color: white;
+  }
+
+  p {
+      font-size: 1.1rem; // Adjust the font size of the paragraph
+      margin-bottom: 30px; // Add margin to the bottom of the paragraph
+      color: white;
+
+  }
+
+  .btn {
+      display: inline-block;
+      padding: 12px 24px;
+      background-color: #ffcdad; // Blue background color
+      color: black; // White text color
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+  }
+
+  .btn:hover {
+      background-color: #ffad7d; // Darker blue background color on hover
+  }
+}
+  
+  
+  .features .container {
         display: grid;
         grid-template-columns: repeat(2, 1fr); // Creates two columns of equal width
         gap: 20px; // Adjust the gap between columns as needed
