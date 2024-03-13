@@ -1,18 +1,18 @@
 import React from "react";
-import "./Home.scss";
+import "./Coverletter.scss";
 import HomeToolBar from "../../components/HomeToolBar/HomeToolBar.jsx";
 import Profiles from "../../components/Profiles/Profiles.jsx";
 
-const Home = () => {
+const Coverletter = () => {
 
     return (
         <div className="home-wrapper">
             <div className="horizontal_wrap">
 				
 				<ul className="profile-menu">
-                    <li><a href="/resume" className="resume active"><strong>My Resume</strong>
+                    <li><a href="/resumes" className="resume"><strong>My Resume</strong>
 					</a></li>
-					<li><a href="/coverletter" className="coverletter">
+					<li><a href="/coverletter" className="coverletter active">
 						<span className="text"><strong>My Cover Letter</strong></span>
 					</a></li>
 				</ul>
@@ -47,7 +47,7 @@ const Home = () => {
                 <div className="level-left">
                     <div className="level-item">
                         <p className="title is-4">
-                            <a href="/finalresume" className="new-button button is-info">New Resume 
+                            <a className="new-button button is-info">New Cover Letter 
                         </a>
                         </p>
                     </div>
@@ -57,7 +57,7 @@ const Home = () => {
                     <div className="level-item ml-6">
                         <div className="field has-addons">
                             <p className="control">
-                                <input className="input" type="text" placeholder="Find a resume..."/>
+                                <input className="input" type="text" placeholder="Find my cover letter..."/>
                             </p>
                             <p className="control">
                                 <button className="button ">
@@ -79,4 +79,4 @@ const Home = () => {
     );
 };
 
-export default Home;
+export default Coverletter;

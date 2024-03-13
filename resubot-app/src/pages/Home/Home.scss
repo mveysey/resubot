@@ -1,18 +1,99 @@
 .home-wrapper {
-    margin-top: 80px;
     padding: 20px;
-    height: 100vh - 10vh;
-    background: var(--light-color);
-
-    .home-content {
-        border: 2px solid var(--grey-dark-color);
-        height: 100%;
-        padding: 28px;
-        border-radius: 10px;
+    height: calc(100vh - 10vh); /* Adjusted height calculation */
+    background: #f7f9fc;
+    color: var(--dark-color);
+  
+    .horizontal_wrap {
+      display: flex;
+      align-items: center; /* Center align items vertically */
+      height: 50px; /* Adjust height as needed */
+      margin-left: 10px;
     }
+    
+    .profile-menu {
+      display: flex;
+      flex-direction: row; /* Display items horizontally */
+      justify-content: space-between;    
+      li {
+        list-style-type: none;
+      }
+    
+      li a {
+        padding: 2px;
+        text-transform: uppercase;
+        color: #000;
+        letter-spacing: 2px;
+        margin-bottom: 10px; /* Add space between menu items */
+        display: inline-block; /* Make span behave like a block element */
+        border: 2px solid black; /* Add black outline */
+        border-bottom: 0;
+        padding: 18px; /* Adjust padding as needed */
+        border-radius: 5px;
+      }
 
-    .toolbar-bar {
-        color: var(--grey-dark-color);
-        border: 2px solid var(--grey-dark-color);
-    }
+      li a:hover,
+      li a.active {
+        background: #e6f7ff; /* Change background color on hover and active */
+        color: var(--grey-dark-color); /* Change text color on hover and active */
+        box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2); /* Add box shadow */
+
+
+  }
 }
+li:first-child a {
+    margin-right: 5px; /* Adjust margin-right as needed */
+
+  }
+  
+
+  
+    .home-content {
+      border: 2px solid var(--grey-dark-color);
+      padding: 28px;
+      border-radius: 10px;
+      height: calc(100% - 50px - 10px - 50px); /* Adjusted height calculation */
+    }
+  
+    .toolbar-bar {
+      color: var(--grey-dark-color);
+      border: 2px solid var(--grey-dark-color);
+      margin-top: 10px; /* Add margin top */
+    }
+  
+    .hometoolbar-wrapper {
+      padding: 10px;
+  
+      .new-button {
+        width: 300px;
+
+        .new-button:hover {
+            background: #EB6B3C;
+            color: var(--light-color);
+            transition: 0.3s ease-in-out;
+          }
+    
+      }
+
+      
+  
+      .input {
+        width: 200px;
+      }
+
+      .level-right {
+        .button {
+          background-color: #f0f0f0; // Grey color
+          border: none;
+          border-radius: 5px;
+          transition: background-color 0.3s ease;
+    
+          &:hover {
+            background-color: #d0d0d0; // Darker grey color on hover
+          }
+        }
+      }
+    }
+
+  }
+  
