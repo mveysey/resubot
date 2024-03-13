@@ -41,7 +41,6 @@ const Router = () => (
                 <Route path="/preferences" element={<Preferences/>}/>
                 <Route path="/contact" element={<Contact/>}/>
                 <Route path="/experience" element={<Experience/>}/>
-                <Route path="/education" element={<Education/>}/>
                 <Route path="/skills" element={<Skills/>}/>
                 <Route path="/projects" element={<Projects/>}/>
                 <Route path="/customize" element={<Customize/>}/>

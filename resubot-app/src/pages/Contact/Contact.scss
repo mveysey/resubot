@@ -24,7 +24,6 @@
   border-bottom-left-radius: 25px;
   position: relative;
 
-
   .menu {
     padding-left: 25px;
 
@@ -40,13 +39,11 @@
 
       &:hover,
       &.active {
-        background: #fff;
-        color: var(--grey-dark-color);
+        background: black;
+        color: red;
       }
     }
   }
-
-  
 }
 
 .container {
@@ -55,11 +52,19 @@
   overflow: auto;
 
   .item {
-    background: #fff;
+    background: black;
     padding: 50px;
     margin-bottom: 25px;
   }
 
+  // Styles for hidden and active classes
+  .hidden {
+    display: none;
+  }
+
+  .active {
+    display: block;
+  }
 }
 
 .content {
@@ -74,9 +79,8 @@
       width: 100%;
       padding: 8px;
       margin-bottom: 16px;
-      border: 1px solid #ccc;
+      border: 1px solid black;
       border-radius: 4px;
-
     }
 
     button {
@@ -89,7 +93,7 @@
       transition: background-color 0.3s;
 
       &:hover {
-        background-color: #F87659;
+        background-color: #f87659;
       }
     }
   }

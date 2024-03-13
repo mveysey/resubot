@@ -10,7 +10,7 @@ const Home = () => {
             <div className="horizontal_wrap">
 				
 				<ul className="profile-menu">
-                    <li><a href="/resume" className="resume active"><strong>My Resume</strong>
+                    <li><a href="/home" className="resume active"><strong>My Resume</strong>
 					</a></li>
 					<li><a href="/coverletter" className="coverletter">
 						<span className="text"><strong>My Cover Letter</strong></span>
@@ -47,7 +47,7 @@ const Home = () => {
                 <div className="level-left">
                     <div className="level-item">
                         <p className="title is-4">
-                            <a href="/finalresume" className="new-button button is-info">New Resume 
+                            <a href="/contact" className="new-button button is-info">New Resume 
                         </a>
                         </p>
                     </div>
