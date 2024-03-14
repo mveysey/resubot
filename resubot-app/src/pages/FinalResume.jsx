@@ -321,7 +321,7 @@ const FinalResume = () => {
             projectGenerated
           })
           .then(response => {
-            console.log("succesfully saved data ")
+            console.log("succesfully saved chatGPT data to database ")
           })
           .catch(error => {
             // Handle errors
