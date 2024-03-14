@@ -8,5 +8,7 @@ const resumeController = require("../controller/resume.controller");
 router.post("/create", resumeController.createResumeEntry);
 router.post("/regenerate", resumeController.createRegeneratedResumeEntry);
 router.post("/save", resumeController.saveResumeData); // route for saving ChatGPT data 
+router.post("/saveInputData", resumeController.saveInputResumeData); // route for saving input
+
 
 module.exports = router;

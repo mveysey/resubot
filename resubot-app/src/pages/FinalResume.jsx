@@ -327,6 +327,32 @@ const FinalResume = () => {
             // Handle errors
             console.error('Error saving data', error);
           });
+
+          // save input data in input data of user table 
+          axios.post('http://localhost:4000/api/resume/saveInputData', {
+            fullName,
+            phoneNumber,
+            email,
+            linkedIn,
+            personalLink,
+            role,
+            company,
+            date,
+            location,
+            degree,
+            schoolLocation,
+            schoolName,
+            graduation,
+            projectTitle,
+            grades,
+          })
+          .then(response => {
+            console.log("succesfully saved chatGPT data to database ")
+          })
+          .catch(error => {
+            // Handle errors
+            console.error('Error saving data', error);
+          });
         }
       })
       .catch((err) => console.error(err));
