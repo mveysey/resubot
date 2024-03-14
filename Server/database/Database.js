@@ -1,5 +1,6 @@
 // Database.js
 const sql = require('mssql');
+require('dotenv').config();
 
 // const config = {
 //   user: 'admin',
@@ -23,6 +24,9 @@ const config = {
     trustServerCertificate: true
   }
 };
+
+
+
 
 const poolPromise = new sql.ConnectionPool(config)
   .connect()

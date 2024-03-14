@@ -4,6 +4,7 @@ import axios from "axios";
 import Loading from "./Loading/Loading";
 import "./FinalResume/Finalresume.scss";
 
+
 const FinalResume = () => {
   //To Cutomize Resume for new position
   const [jobDetails, setjobDetails] = useState("");
@@ -313,6 +314,19 @@ const FinalResume = () => {
 
           console.log(resumeData);
           navigate("/resume1", { state: { resumeData } });
+          axios.post('http://localhost:4000/api/resume/save', {
+            experienceData,
+            educationGenerated,
+            skillsGenerated,
+            projectGenerated
+          })
+          .then(response => {
+            console.log("succesfully saved data ")
+          })
+          .catch(error => {
+            // Handle errors
+            console.error('Error saving data', error);
+          });
         }
       })
       .catch((err) => console.error(err));

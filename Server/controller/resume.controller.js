@@ -3,6 +3,11 @@ const path = require("path");
 const bodyParser = require("body-parser");
 const { generateID, generateText } = require("../util/ai-util"); // Import utility functions
 
+const { poolPromise } = require('../database/Database');
+require('dotenv').config();
+const sql = require('mssql');
+
+
 const resumeController = {
   // Create a resume entry logic
   createResumeEntry: async (req, res) => {
@@ -163,6 +168,7 @@ const resumeController = {
         error: error.message,
       });
     }
+    
   },
 
   createRegeneratedResumeEntry: async (req, res) => {
@@ -281,7 +287,7 @@ const resumeController = {
         projectGenerated,
       };
 
-      // console.log(chatgptData);
+      console.log(chatgptData);
 
       const responseData = { ...newEntry, ...chatgptData };
 
@@ -295,6 +301,36 @@ const resumeController = {
       });
     }
   },
+  saveResumeData: async (req, res) => {
+    try {
+      const resumeData = req.body;
+      const savedData = await saveResume(resumeData);
+      res.json({ message: "Resume data saved successfully", data: savedData });
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  },
 };
 
 module.exports = resumeController;
+
+async function saveResume(data) {
+  let pool;
+  try {
+    pool = await poolPromise;
+    const request = pool.request();
+    request.input('experienceData', sql.VarChar, data.experienceData);
+    request.input('educationGenerated', sql.VarChar, data.educationGenerated);
+    request.input('skillsGenerated', sql.VarChar, data.skillsGenerated);
+    request.input('projectGenerated', sql.VarChar, data.projectGenerated);
+
+    const result = await request.query('insert into resumeData (experienceData, educationGenerated, skillsGenerated, projectGenerated) values (@experienceData, @educationGenerated, @skillsGenerated, @projectGenerated)');
+
+    console.log("Data added successfully", result);
+    return result.recordset;
+  } catch (error) {
+    console.error("Error saving data to the database", error);
+    throw error;
+  } 
+}
+

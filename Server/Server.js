@@ -40,23 +40,7 @@ app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
 
-app.post('api/saveResumeData', async (req, res) => {
-  try {
-    const { experienceData, educationData, skillsData, projectData } = req.body;
 
-    // Adjust the query to insert data into specific columns
-    const query = `INSERT INTO resume (experienceData, educationData, skillsData, projectData) 
-                   VALUES ($1, $2, $3, $4)`;
-
-    // Execute the query with all data
-    await pool.query(query, [experienceData, educationData, skillsData, projectData]);
-
-    res.status(200).send('Data saved successfully');
-  } catch (error) {
-    console.error('Error saving data:', error);
-    res.status(500).send('Error saving data');
-  }
-});
 
 
 
