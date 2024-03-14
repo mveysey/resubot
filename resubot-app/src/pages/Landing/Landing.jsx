@@ -270,7 +270,7 @@ const LandingPage = () => {
                 </div>
                 <div className="coverletter-content">
                     <div>
-                        <h2>Craft A Compelling Cover Letter Effortlessly with our cover letter maker.</h2>
+                        <h2>Compelling a Cover Letter Effortlessly</h2>
                     </div>
                     <div>
                         <p>create a professional pitches in mere minutes, saving you precious time and eliminating the stress of writer's block. Say goodbye to tedious searches for persuasive phrases and formatting woes. With our intuitive tool, you'll effortlessly captivate your audience and make a lasting impression</p>
@@ -294,7 +294,7 @@ const LandingPage = () => {
 
                 {/* Live data based on users*/}
                 <div className="user-data-wrapper">
-                    <h2>Frequently Asked Questions</h2>
+                    <h2 className="questions">Frequently Asked Questions</h2>
                     <div>
                         <div className="accordion">
                             {data.map((item, i) => (
