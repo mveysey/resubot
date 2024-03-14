@@ -347,7 +347,7 @@ const FinalResume = () => {
             grades,
           })
           .then(response => {
-            console.log("succesfully saved chatGPT data to database ")
+            console.log("succesfully saved input data to database ")
           })
           .catch(error => {
             // Handle errors
