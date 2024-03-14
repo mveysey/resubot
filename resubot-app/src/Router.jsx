@@ -25,6 +25,7 @@ import FinalResume from "./pages/FinalResume.jsx";
 import CreateResume from "./pages/CreateResumes/Resumes.jsx";
 import ProtectedRoute from "./common/protectedRoute.js"; 
 import Coverletter from "./pages/CoverLetter/Coverletter.jsx";
+import CardSlider from "./components/TemplateSlider/Slider.jsx"
 
 const Router = () => (
     <BrowserRouter>
@@ -52,6 +53,7 @@ const Router = () => (
                 <Route path="/finalresume" element={<FinalResume/>}/>
                 <Route path="/resumes" element={<CreateResume/>}/>
                 <Route path="/coverletter" element={<Coverletter/>}/>
+                <Route path="/slider" element={<CardSlider/>} />
 
                 {/*Error Page*/}
                 <Route path="*" element={<Error/>}/>
