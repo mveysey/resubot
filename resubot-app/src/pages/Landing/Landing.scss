@@ -7,7 +7,6 @@ h2{
 }
 .landing-wrapper {
     .examples-container {
-      padding: 50px;
 
         .examples-grid-container {
             height: 620px;
@@ -82,7 +81,7 @@ h2{
     .resume {
       display: flex;
       align-items: center;
-      background-color: var(--light-color); // Light grey background color
+      background-color: #f7f9fc; // Light grey background color
   
       .resume-content {
           flex: 1;
@@ -98,16 +97,15 @@ h2{
         display: inline-block;
         margin-top: 20px;
         padding: 10px 20px;
-        background-color: #007bff; // Blue background color
-        color: #fff; // White text color
-        border: none;
+        background-color: #ADDFFF; // Blue background color
+        color: var(--dark-color);        border: none;
         border-radius: 5px;
         text-decoration: none;
         transition: background-color 0.3s ease;
     }
 
     .resume-btn:hover {
-        background-color: #0056b3; // Darker blue background color on hover
+        background-color: darken(#ADDFFF, 20%);; // Darker blue background color on hover
     }
   
       .resume-image {
@@ -141,16 +139,15 @@ h2{
         display: inline-block;
         margin-top: 20px;
         padding: 10px 20px;
-        background-color: #007bff; // Blue background color
-        color: #fff; // White text color
-        border: none;
+        background-color: #ADDFFF; // Blue background color
+        color: var(--dark-color);        border: none;
         border-radius: 5px;
         text-decoration: none;
         transition: background-color 0.3s ease;
     }
 
     .coverletter-btn:hover {
-        background-color: #0056b3; // Darker blue background color on hover
+      background-color: darken(#ADDFFF, 20%);; // Darker blue background color on hover
     }
 
     .coverletter-image {
@@ -164,19 +161,19 @@ h2{
 .get-started {
   text-align: center; // Center align the content horizontally
   padding: 50px 0; // Add padding to the top and bottom of the section
-  background-color: #0056b3;
+  background-color: #e6f7ff;
   margin-top: 100px;
 
   h2 {
       font-size: 2.5rem; // Adjust the font size of the heading
       margin-bottom: 20px; // Add margin to the bottom of the heading
-      color: white;
+      color: var(--dark-color);
   }
 
   p {
       font-size: 1.1rem; // Adjust the font size of the paragraph
       margin-bottom: 30px; // Add margin to the bottom of the paragraph
-      color: white;
+      color: var(--dark-color);
 
   }
 
@@ -184,7 +181,7 @@ h2{
       display: inline-block;
       padding: 12px 24px;
       background-color: #ffcdad; // Blue background color
-      color: black; // White text color
+      color: var(--dark-color); // White text color
       text-decoration: none;
       border-radius: 5px;
       transition: background-color 0.3s ease;

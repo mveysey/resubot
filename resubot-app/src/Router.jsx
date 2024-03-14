@@ -21,7 +21,8 @@ import Projects from "./pages/Projects/Projects.jsx";
 import Customize from "./pages/Customize/Customize.jsx";
 import FinalResume from "./pages/FinalResume.jsx";
 import CreateResume from "./pages/CreateResumes/Resumes.jsx";
-import ProtectedRoute from "./common/protectedRoute.js";
+import ProtectedRoute from "./common/protectedRoute.js"; 
+import Coverletter from "./pages/CoverLetter/Coverletter.jsx";
 
 const Router = () => (
     <BrowserRouter>
@@ -40,13 +41,13 @@ const Router = () => (
                 <Route path="/preferences" element={<Preferences/>}/>
                 <Route path="/contact" element={<Contact/>}/>
                 <Route path="/experience" element={<Experience/>}/>
-                <Route path="/education" element={<Education/>}/>
                 <Route path="/skills" element={<Skills/>}/>
                 <Route path="/projects" element={<Projects/>}/>
                 <Route path="/customize" element={<Customize/>}/>
                 <Route path="/loading" element={<Loading/>}/>
                 <Route path="/finalresume" element={<FinalResume/>}/>
                 <Route path="/resumes" element={<CreateResume/>}/>
+                <Route path="/coverletter" element={<Coverletter/>}/>
 
                 {/*Error Page*/}
                 <Route path="*" element={<Error/>}/>
