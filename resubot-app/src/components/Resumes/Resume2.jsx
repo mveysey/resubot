@@ -11,22 +11,22 @@ const Resume2 = () => {
         <div class="details">
             <div>
             <h1>
-                Jhon Doe
+                Your Name
             </h1>
             </div>
           <div class="item bottomLineSeparator">
-            <h2>
+            <h2 className='sectionTitle'>
               CONTACT
             </h2>
             <div class="smallText">
               <p>
                 <i class="fa fa-phone contactIcon" aria-hidden="true"></i>
-                (+33) 777 777 77
+                Phone Number
               </p>
               <p>
                 <i class="fa fa-envelope contactIcon" aria-hidden="true"></i>
                 <a href="mailto:lorem@ipsum.com@gmail.com">
-                  lorem@ipsum.com
+                  Email
                 </a>
               </p>
               <p>
@@ -44,7 +44,7 @@ const Resume2 = () => {
             </div>
           </div>
           <div class="item bottomLineSeparator">
-            <h2>
+            <h2 className='sectionTitle'>
               SKILLS
             </h2>
             <div class="smallText">
@@ -105,7 +105,7 @@ const Resume2 = () => {
             </div>
           </div>
           <div class="education2">
-            <h2>
+            <h2 className='sectionTitle'>
               EDUCATION
             </h2>
             <div class="smallText">
@@ -127,7 +127,7 @@ const Resume2 = () => {
       </div>
       <div class="rightPanel">
         <div class="workExperience">
-          <h2>
+          <h2 className='sectionTitle'>
             Work experience
           </h2>
           <ul>
@@ -215,7 +215,7 @@ const Resume2 = () => {
           <div class="clear"></div>
         </div>
         <div className="projects">
-            <h2>Projects</h2>
+            <h2 className='sectionTitle'>Projects</h2>
 
           <div class="sectionContent">
             <h3>Jin, Lei, Mogan, Jennifer, et al. </h3>

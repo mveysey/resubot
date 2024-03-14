@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Form, useNavigate } from "react-router-dom";
 import axios from "axios";
-import resume3 from "../../assets/resume3.PNG";
+import resume3 from "../../assets/resume_template3.PNG";
 import "./Contact.scss";
 
 const Contact = () => {
@@ -286,7 +286,7 @@ const Contact = () => {
       >
 
       <div id="templates">
-        <image src={resume3} alt="Resume3"/>
+        <img src={resume3} alt="Resume3"/>
       </div>
         
         
