@@ -57,6 +57,17 @@ router.get('/dbtest', async (req, res) => {
   }
 });
 
+router.get('/dbtestInputData', async (req, res) => {
+  try {
+    const pool = await poolPromise;
+    const result = await pool.request().query('SELECT * FROM resumeInputData;');
+    res.status(200).json({ success: true, message: 'Database connection successful', data: result.recordset });
+  } catch (error) {
+    console.error('Error connecting to database:', error);
+    res.status(500).json({ success: false, message: 'Failed to connect to the database' });
+  }
+});
+
 module.exports = router;
 
 
