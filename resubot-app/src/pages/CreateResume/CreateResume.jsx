@@ -5,6 +5,7 @@ import resume3 from "../../assets/resume_template3.PNG";
 import resume2 from "../../assets/resume_template2.PNG";
 import resume4 from "../../assets/resume_template4.PNG";
 import "./CreateResume.scss";
+import Loading from "../Loading/Loading.jsx";
 
 const CreateResume = () => {
   //To Select a Resume Template 
@@ -256,6 +257,10 @@ const CreateResume = () => {
     setLoading(true);
   };
 
+  if (loading) {
+    return <Loading />;
+  } 
+
   return (
     <div className="wrapper">
 		<div className="wrapper_inner">
@@ -408,7 +413,7 @@ const CreateResume = () => {
         </div>
         <section id="experience" className={activeSection === "experience" ? "active" : "hidden"}>
         <div className="companies">
-          <label htmlFor="role">Position</label>
+          <label htmlFor="role">Position Held</label>
           <input
             type="text"
             name="role"
