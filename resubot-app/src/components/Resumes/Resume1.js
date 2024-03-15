@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./resume1.css";
+import html2canvas from 'html2canvas';
+import { jsPDF } from 'jspdf';
+
 
 const Resume = () => {
   const [regenerateRequest, setRegenerateRequest] = useState("");
@@ -104,7 +107,21 @@ const Resume = () => {
       .catch((err) => console.error(err));
   };
 
+  const generatePdf = () => {
+    const resumeElement = document.getElementById('resumeElement'); // Ensure you have an element with this ID in your JSX
+    html2canvas(resumeElement).then((canvas) => {
+      const imgData = canvas.toDataURL('image/png');
+      const pdf = new jsPDF({
+        orientation: 'portrait',
+      });
+      pdf.addImage(imgData, 'PNG', 0, 0);
+      pdf.save('resume.pdf');
+    });
+  };
+  
+
   return (
+    <div className="container" id="resumeElement">
     <div className="container">
       <form
         onSubmit={regenerateData}
@@ -220,6 +237,12 @@ const Resume = () => {
         })}
         <ul className="skills-items">{/* ... your skills list ... */}</ul>
       </div>
+     
+      <button onClick={generatePdf}>Download as PDF</button>
+        </div>
+
+      
+
 
       {/* <div className="skills">
                 <h2>Skills</h2>
