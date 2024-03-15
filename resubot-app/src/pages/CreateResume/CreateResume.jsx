@@ -22,6 +22,8 @@ const CreateResume = () => {
   const [linkedIn, setLinkedIn] = useState("");
   const [personalLink, setPersonalLink] = useState("");
 
+  //Experince information 
+  const [companyInfo, setCompanyInfo] = useState([{role: "", company:"", date:"", location:"", description:""}]);
   const [role, setRole] = useState("");
   const [company, setCompany] = useState("");
   const [date, setDate] = useState("");
@@ -58,6 +60,23 @@ const CreateResume = () => {
   const handleTemplateSelect = (templateName) => {
     setSelectedTemplate(templateName);
   };
+
+  const handleAddCompany = () =>
+    setCompanyInfo([...companyInfo, { name: "", position: "" }]);
+
+//👇🏻 removes a selected item from the list
+const handleRemoveCompany = (index) => {
+    const list = [...companyInfo];
+    list.splice(index, 1);
+    setCompanyInfo(list);
+};
+//👇🏻 updates an item within the list
+const handleUpdateCompany = (e, index) => {
+    const { name, value } = e.target;
+    const list = [...companyInfo];
+    list[index][name] = value;
+    setCompanyInfo(list);
+};
 
   // Define a function to fill out the form with predefined data
   const fillFormWithData = () => {
@@ -412,61 +431,72 @@ const CreateResume = () => {
           />
         </div>
         <section id="experience" className={activeSection === "experience" ? "active" : "hidden"}>
-        <div className="companies">
-          <label htmlFor="role">Position Held</label>
-          <input
-            type="text"
-            name="role"
-            value={role}
-            required
-            onChange={(e) => setRole(e.target.value)}
-          />
-        </div>
-        <div className="companies">
-          <label htmlFor="company">Company</label>
-          <input
-            type="text"
-            name="company"
-            value={company}
-            required
-            onChange={(e) => setCompany(e.target.value)}
-          />
-        </div>
-        <div className="verticalcontainer">
-          <div className="companies">
-            <label htmlFor="date">Date</label>
+        {companyInfo.map((company, index) => (
+          <div className="nestedContainer" key={index}>
+            <div className="companies">
+            <label htmlFor="role">Position Held</label>
             <input
               type="text"
-              name="date"
-              placeholder="May 23 - Present"
-              className="subInput"
-              value={date}
+              name="role"
               required
-              onChange={(e) => setDate(e.target.value)}
+              onChange={(e) => handleUpdateCompany(e, index)}
             />
           </div>
           <div className="companies">
-            <label htmlFor="location">Location</label>
+            <label htmlFor="company">Company</label>
             <input
               type="text"
-              name="location"
-              className="subInput"
-              value={location}
               required
-              onChange={(e) => setLocation(e.target.value)}
+              onChange={(e) => handleUpdateCompany(e, index)}
             />
           </div>
-        </div>
-        <div className="companies">
-          <label htmlFor="description">Description of Your Position</label>
-          <textarea
-            type="text"
-            value={description}
-            name="description"
-            required
-            onChange={(e) => setDescription(e.target.value)}
-          />
-        </div>
+          <div className="verticalcontainer">
+            <div className="companies">
+              <label htmlFor="date">Date</label>
+              <input
+                type="text"
+                name="date"
+                placeholder="May 23 - Present"
+                className="subInput"
+                required
+                onChange={(e) => handleUpdateCompany(e, index)}
+              />
+            </div>
+            <div className="companies">
+              <label htmlFor="location">Location</label>
+              <input
+                type="text"
+                name="location"
+                className="subInput"
+                required
+                onChange={(e) => handleUpdateCompany(e, index)}
+              />
+            </div>
+          </div>
+          <div className="companies">
+            <label htmlFor="description">Description of Your Position</label>
+            <textarea
+              type="text"
+              name="description"
+              required
+              onChange={(e) => handleUpdateCompany(e, index)}
+            />
+          </div>
+          <div className='btn__group'>
+              {companyInfo.length - 1 === index && companyInfo.length < 4 && (
+                <button id='addBtn' onClick={handleAddCompany}>
+                  Add
+                </button>
+              )}
+              {companyInfo.length > 1 && (
+                <button id='deleteBtn' onClick={() => handleRemoveCompany(index)}>
+                  Del
+                </button>
+              )}
+            </div>
+          </div>
+        ))}
+        
         </section>
         
         <section id="education" className={activeSection === "education" ? "active" : "hidden"}>
