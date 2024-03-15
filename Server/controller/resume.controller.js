@@ -368,7 +368,7 @@ async function saveInputResume(data) {
 
       // Update the SQL query to insert new fields
       const result = await request.query(`
-          INSERT INTO resumeData 
+          INSERT INTO resumeInputData 
           ([Full Name], [Phone Number], [Email Address], [LinkedIn URL], [Personal Website OR Relevant Links], [Description of Your Position], Company, [Date or Date Range], Location, Degree, [[University Location], [University Name], [Graduation Date], [Give Your Project a Title], Grades) 
           VALUES 
           (@fullName, @phoneNumber, @email, @linkedIn, @personalLink, @role, @company, @date, @location, @degree, @schoolLocation, @schoolName, @graduation, @projectTitle, @grades)
