@@ -1,7 +1,8 @@
 import React, {Suspense} from 'react';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Loader from "./components/Loader/Loader";
-import Home from "./pages/Home/Home.jsx";
+import Home from "./pages/Home/Home_Resume.jsx";
+import Home2 from "./pages/Home/Home_CoverLetter.jsx";
 import Landing from "./pages/Landing/Landing.jsx";
 import Error from "./pages/Error/Error";
 import Login from "./pages/Login/Login";
@@ -15,17 +16,13 @@ import Templates from "./pages/Templates/Templates.jsx";
 import Register from "./pages/Register/Register.jsx";
 import Preferences from "./pages/Preferences/Preferences.jsx";
 import Loading from "./pages/Loading/Loading.jsx";
-import Contact from "./pages/Contact/Contact.jsx";
-import Experience from "./pages/Experience/Experience.jsx";
-import Education from "./pages/Education/Education.jsx";
-import Skills from "./pages/Skills/Skills.jsx";
-import Projects from "./pages/Projects/Projects.jsx";
-import Customize from "./pages/Customize/Customize.jsx";
+import CreateResume from "./pages/CreateResume/CreateResume.jsx";
 import FinalResume from "./pages/FinalResume.jsx";
-import CreateResume from "./pages/CreateResumes/Resumes.jsx";
 import ProtectedRoute from "./common/protectedRoute.js"; 
-import Coverletter from "./pages/CoverLetter/Coverletter.jsx";
-import CardSlider from "./components/TemplateSlider/Slider.jsx"
+import CreateCoverletter from "./pages/CreateCoverLetter/Coverletter.jsx";
+import CardSlider from "./components/TemplateSlider/Slider.jsx";
+import CoverLetter from './components/CoverLetterTemplates/Coverletter_Templates.jsx';
+
 
 const Router = () => (
     <BrowserRouter>
@@ -33,7 +30,8 @@ const Router = () => (
             <Routes>
                 {/* Landing Page */}
                 <Route path="/" element={<Landing/>}/>
-                <Route path="/home" element={<Home/>}/>
+                <Route path="/profile_resume" element={<Home/>}/>
+                <Route path="/profile_coverletter" element={<Home2/>}/>
                 <Route path="/register" element={<Register/>}/>
                 <Route path="/login" element={<Login/>}/>
                 <Route path="/resume1" element={<Resume/>}/>
@@ -44,16 +42,12 @@ const Router = () => (
                 <Route path="/chatbot" element={<ChatbotPage/>}/>
                 <Route path="/templates" element={<Templates/>}/>
                 <Route path="/preferences" element={<Preferences/>}/>
-                <Route path="/contact" element={<Contact/>}/>
-                <Route path="/experience" element={<Experience/>}/>
-                <Route path="/skills" element={<Skills/>}/>
-                <Route path="/projects" element={<Projects/>}/>
-                <Route path="/customize" element={<Customize/>}/>
+                <Route path="/create_resume" element={<CreateResume/>}/>
+                <Route path="/create_coverletter" element={<CreateCoverletter/>}/>
                 <Route path="/loading" element={<Loading/>}/>
                 <Route path="/finalresume" element={<FinalResume/>}/>
-                <Route path="/resumes" element={<CreateResume/>}/>
-                <Route path="/coverletter" element={<Coverletter/>}/>
                 <Route path="/slider" element={<CardSlider/>} />
+                <Route path="/coverletter" element={<CoverLetter/>} />
 
                 {/*Error Page*/}
                 <Route path="*" element={<Error/>}/>
