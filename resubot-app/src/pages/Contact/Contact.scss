@@ -51,10 +51,18 @@
   height: calc(100% - 60px);
   overflow: auto;
 
-  .item {
-    background: black;
-    padding: 50px;
-    margin-bottom: 25px;
+  #templates {
+    display: flex; // Activates Flexbox layout
+    justify-content: center; // Centers images in the row horizontally
+    align-items: center; // Aligns images in the row vertically
+    gap: 20px; // Creates space between images
+
+    img {
+      // Optional: Set a fixed width or max-width for larger images to ensure they fit in the row nicely
+      width: 450px; // Adjust this as needed
+      height: 450px; // Adjust to maintain aspect ratio or set a fixed height
+      //max-width: 100%; // Ensures images are responsive
+    }
   }
 
   // Styles for hidden and active classes
@@ -67,7 +75,6 @@
   }
 }
 
-.content {
   form {
     label {
       display: block;
@@ -96,5 +103,5 @@
         background-color: #f87659;
       }
     }
-  }
+  
 }

@@ -6,7 +6,9 @@ import Landing from "./pages/Landing/Landing.jsx";
 import Error from "./pages/Error/Error";
 import Login from "./pages/Login/Login";
 import Resume from "./components/Resumes/Resume1.js";
-import Resume2 from "./components/Resumes/Resume2.js"
+import Resume2 from "./components/Resumes/Resume2.jsx";
+import Resume3 from "./components/Resumes/Resume3.jsx";
+import Resume4 from "./components/Resumes/Resume4.jsx";
 import Help from "./pages/Help/Help.jsx";
 import ChatbotPage from "./pages/ChatBot/Chatbot.jsx";
 import Templates from "./pages/Templates/Templates.jsx";
@@ -23,6 +25,7 @@ import FinalResume from "./pages/FinalResume.jsx";
 import CreateResume from "./pages/CreateResumes/Resumes.jsx";
 import ProtectedRoute from "./common/protectedRoute.js"; 
 import Coverletter from "./pages/CoverLetter/Coverletter.jsx";
+import CardSlider from "./components/TemplateSlider/Slider.jsx"
 
 const Router = () => (
     <BrowserRouter>
@@ -35,6 +38,8 @@ const Router = () => (
                 <Route path="/login" element={<Login/>}/>
                 <Route path="/resume1" element={<Resume/>}/>
                 <Route path="/resume2" element={<Resume2/>}/>
+                <Route path="/resume3" element={<Resume3/>}/>
+                <Route path="/resume4" element={<Resume4/>}/>
                 <Route path="/help" element={<Help/>}/>
                 <Route path="/chatbot" element={<ChatbotPage/>}/>
                 <Route path="/templates" element={<Templates/>}/>
@@ -48,6 +53,7 @@ const Router = () => (
                 <Route path="/finalresume" element={<FinalResume/>}/>
                 <Route path="/resumes" element={<CreateResume/>}/>
                 <Route path="/coverletter" element={<Coverletter/>}/>
+                <Route path="/slider" element={<CardSlider/>} />
 
                 {/*Error Page*/}
                 <Route path="*" element={<Error/>}/>

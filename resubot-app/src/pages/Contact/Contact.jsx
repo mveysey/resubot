@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { Form, useNavigate } from "react-router-dom";
 import axios from "axios";
+import resume3 from "../../assets/resume_template3.PNG";
+import resume2 from "../../assets/resume_template2.PNG";
+import resume4 from "../../assets/resume_template4.PNG";
 import "./Contact.scss";
 
 const Contact = () => {
@@ -283,6 +286,12 @@ const Contact = () => {
         method="POST"
         encType="multipart/form-data"
       >
+
+      <div id="templates">
+        <img src={resume3} alt="Resume3"/>
+        <img src={resume2} alt="Resume2"/>
+        <img src={resume4} alt="Resume4"/>
+      </div>
         
         
         
