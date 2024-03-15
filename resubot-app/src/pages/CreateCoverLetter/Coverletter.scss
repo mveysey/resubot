@@ -1,0 +1,21 @@
+.menu-coverletter {
+    padding-left: 25px;
+  
+      li a {
+        display: block;
+        padding: 15px;
+        text-transform: uppercase;
+        color: #000;
+        letter-spacing: 2px;
+        border-top-left-radius: 25px;
+        border-bottom-left-radius: 25px;
+        margin-bottom: 1px;
+  
+        &:hover,
+        &.active {
+          background: var(--dark-color);
+          color: white;
+    }
+}
+}
+

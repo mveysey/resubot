@@ -4,9 +4,12 @@ import axios from "axios";
 import resume3 from "../../assets/resume_template3.PNG";
 import resume2 from "../../assets/resume_template2.PNG";
 import resume4 from "../../assets/resume_template4.PNG";
-import "./Contact.scss";
+import "./CreateResume.scss";
 
-const Contact = () => {
+const CreateResume = () => {
+  //To Select a Resume Template 
+  const [selectedTemplate, setSelectedTemplate] = useState("");
+
   //To Cutomize Resume for new position
   const [jobDetails, setjobDetails] = useState("");
   const [industry, setIndustry] = useState("");
@@ -38,15 +41,21 @@ const Contact = () => {
   //Projects Information
   const [projectTitle, setProjectTitle] = useState("");
   const [projectDescription, setProjectDescription] = useState("");
-  const [activeSection, setActiveSection] = useState(""); // State to manage active section
+  const [activeSection, setActiveSection] = useState("templates"); // State to manage active section
 
 
   const [loading, setLoading] = useState(false);
+  
   //const pdfExportComponent = React.useRef(null);
   const navigate = useNavigate();
 
-  const handleSectionClick = (sectionId) => {
-    setActiveSection(sectionId); // Update active section state
+  const handleSectionClick = (event, sectionId) => {
+    event.preventDefault(); // Prevents the default anchor link behavior
+    setActiveSection(sectionId);
+  };  
+
+  const handleTemplateSelect = (templateName) => {
+    setSelectedTemplate(templateName);
   };
 
   // Define a function to fill out the form with predefined data
@@ -130,6 +139,8 @@ const Contact = () => {
     setProjectTitle(predefinedData.projectTitle);
     setProjectDescription(predefinedData.projectDescription);
   };
+
+  
 
   
 
@@ -252,29 +263,58 @@ const Contact = () => {
 			<div className="backdrop"></div>
 			<div className="vertical_bar">
 				
-				<ul className="menu">
-                    <li><a href="#templates">
-						<span className="text">Templates</span>
-					</a></li>
-                    <li><a href="#customize" onClick={() => handleSectionClick("customize")}>
-						<span className="text">Cutomize Resume</span>
-					</a></li>
-					<li><a href="#contact" onClick={() => handleSectionClick("contact")}>
-						<span className="text">Contact Info</span>
-					</a></li>
-					<li><a href="#experience" onClick={() => handleSectionClick("experience")}>
-						<span className="text">Experience</span>
-					</a></li>
-					<li><a href="#education" className="active" onClick={() => handleSectionClick("education")}>
-						<span className="text">Education</span>
-					</a></li>
-					<li><a href="#skills" onClick={() => handleSectionClick("skills")}>
-						<span className="text">Skills</span>
-					</a></li>
-                    <li><a href="#projects" onClick={() => handleSectionClick("projects")}>
-						<span className="text">Projects</span>
-					</a></li>
-				</ul>
+      <ul className="menu">
+  <li>
+    <a href="#templates" 
+       onClick={(e) => handleSectionClick(e, "templates")}
+       className={activeSection === "templates" ? "active" : ""}>
+      <span className="text">Resume Templates</span>
+    </a>
+  </li>
+  <li>
+    <a href="#customize" 
+       onClick={(e) => handleSectionClick(e, "customize")}
+       className={activeSection === "customize" ? "active" : ""}>
+      <span className="text">Customize Resume</span>
+    </a>
+  </li>
+  <li>
+    <a href="#contact" 
+       onClick={(e) => handleSectionClick(e, "contact")}
+       className={activeSection === "contact" ? "active" : ""}>
+      <span className="text">Contact Info</span>
+    </a>
+  </li>
+  <li>
+    <a href="#experience" 
+       onClick={(e) => handleSectionClick(e, "experience")}
+       className={activeSection === "experience" ? "active" : ""}>
+      <span className="text">Experience</span>
+    </a>
+  </li>
+  <li>
+    <a href="#education" 
+       onClick={(e) => handleSectionClick(e, "education")}
+       className={activeSection === "education" ? "active" : ""}>
+      <span className="text">Education</span>
+    </a>
+  </li>
+  <li>
+    <a href="#skills" 
+       onClick={(e) => handleSectionClick(e, "skills")}
+       className={activeSection === "skills" ? "active" : ""}>
+      <span className="text">Skills</span>
+    </a>
+  </li>
+  <li>
+    <a href="#projects" 
+       onClick={(e) => handleSectionClick(e, "projects")}
+       className={activeSection === "projects" ? "active" : ""}>
+      <span className="text">Projects</span>
+    </a>
+  </li>
+</ul>
+
 
 				
 			</div>
@@ -287,24 +327,16 @@ const Contact = () => {
         encType="multipart/form-data"
       >
 
-      <div id="templates">
-        <img src={resume3} alt="Resume3"/>
-        <img src={resume2} alt="Resume2"/>
-        <img src={resume4} alt="Resume4"/>
-      </div>
+      <div id="templates" className={activeSection === "templates" ? "active" : "hidden"}>
+              <img src={resume3} alt="Resume3"/>
+              <img src={resume2} alt="Resume2" />
+              <img src={resume4} alt="Resume4"/>
+          </div>
         
         
         
         <div id="customize" className={activeSection === "customize" ? "active" : "hidden"}>
-        <label htmlFor="jobDetails">Job Details</label>
-          <textarea
-            type="text"
-            name="jobDetails"
-            id="jobDetails"
-            value={jobDetails}
-            onChange={(e) => setjobDetails(e.target.value)}
-          />
-          <div>
+        <div>
             <label htmlFor="industry">Industry</label>
             <input
               type="text"
@@ -314,6 +346,15 @@ const Contact = () => {
               onChange={(e) => setIndustry(e.target.value)}
             />
           </div>
+        <label htmlFor="jobDetails">Job Details</label>
+          <textarea
+            type="text"
+            name="jobDetails"
+            id="jobDetails"
+            value={jobDetails}
+            onChange={(e) => setjobDetails(e.target.value)}
+          />
+          
         </div>
         <div id="contact" className={activeSection === "contact" ? "active" : "hidden"}>
           <label htmlFor="fullName">Full Name</label>
@@ -367,6 +408,16 @@ const Contact = () => {
         </div>
         <section id="experience" className={activeSection === "experience" ? "active" : "hidden"}>
         <div className="companies">
+          <label htmlFor="role">Position</label>
+          <input
+            type="text"
+            name="role"
+            value={role}
+            required
+            onChange={(e) => setRole(e.target.value)}
+          />
+        </div>
+        <div className="companies">
           <label htmlFor="company">Company</label>
           <input
             type="text"
@@ -378,7 +429,7 @@ const Contact = () => {
         </div>
         <div className="verticalcontainer">
           <div className="companies">
-            <label htmlFor="date">Date or Date Range</label>
+            <label htmlFor="date">Date</label>
             <input
               type="text"
               name="date"
@@ -453,6 +504,7 @@ const Contact = () => {
             type="text"
             required
             name="graduation"
+            placeholder="May 23 - Present"
             className="currentInput"
             value={graduation}
             onChange={(e) => setGraduation(e.target.value)}
@@ -510,10 +562,11 @@ const Contact = () => {
               value={projectDescription}
               onChange={(e) => setProjectDescription(e.target.value)}
             />
+            <button>CREATE MY RESUME</button>
           </div>
         </section>
 
-        <button>CREATE RESUME</button>
+        
       </form>
     </div>
     </div>
@@ -521,4 +574,4 @@ const Contact = () => {
   );
 };
 
-export default Contact;
+export default CreateResume;

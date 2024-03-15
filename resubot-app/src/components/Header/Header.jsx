@@ -34,7 +34,7 @@ const Header = ({ version }) => {
         <div className={`nav-items ${isOpen ? 'open' : ''}`}>
           <a className='sidebar' onClick={() => setIsOpen(!isOpen)} href="#"><svg xmlns="http://www.w3.org/2000/svg" height="26" viewBox="0 96 960 960" width="26"><path d="m249 849-42-42 231-231-231-231 42-42 231 231 231-231 42 42-231 231 231 231-42 42-231-231-231 231Z"/></svg></a>
           <a className="navbar-item" href="/chatbot">Chatbot</a>
-          <a className="navbar-item" href="/home">Profile</a>
+          <a className="navbar-item" href="/profile_resume">Profile</a>
           <a className="navbar-item" href="/contact">Help</a>
           <div className='vl'></div>
           
