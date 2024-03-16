@@ -2,14 +2,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 90vh - 10vh;
+  height: calc(100vh - 10vh);
 
   .register-box {
     width: 800px;
-    height: 600px;
+    height: 550px;
     padding: 1.5rem 1.5rem 2rem 1.5rem;
     display: flex; // Add display flex to make flexbox properties available
     flex-direction: column; // Stack children vertically
+    background: #e6f7ff;
 
     .register-button {
       width: 400px;
@@ -19,8 +20,7 @@
     }
 
     .register-button:hover {
-      background-color: #3faea8;
-      scale: 1.1;
+      background-color: #EB6B3C;
       transition: all 0.3s ease-in-out;
     }
 

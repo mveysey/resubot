@@ -5,11 +5,6 @@ const ChatbotPage = () => (
     <div className="chatbot-wrapper">
         <div className="sidebar">
             <h3 className="title is-3">AI Chatbot</h3>
-            <textarea
-                className="textarea"
-                placeholder="Type your message..."
-                rows="20"
-            ></textarea>
 
             {/*Chatbot Panel*/}
             <nav className="panel">
@@ -72,6 +67,12 @@ const ChatbotPage = () => (
             <div className="chat-message user-message">User message 2</div>
             <div className="chat-message ai-message">AI response 2</div>
             {/* Add more chat messages here */}
+
+            <textarea
+                className="textarea"
+                placeholder="Type your message..."
+                rows="4"
+            ></textarea>
         </div>
     </div>
 );

@@ -1,6 +1,7 @@
 .chatbot-wrapper {
   display: flex;
   justify-content: space-between;
+  height: 100v;
 }
 
 .sidebar {
@@ -14,20 +15,37 @@
   margin-bottom: 20px;
 }
 
-.textarea {
-  width: 100%;
-  margin-bottom: 20px;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-}
-
 .chat-container {
   flex-grow: 1;
   padding: 20px;
   background-color: #fff;
-  overflow-y: auto;
+  overflow: auto;
 }
+
+.textarea {
+  width: 50%;
+  padding: 10px 15px; /* Padding inside the textarea */
+  border-radius: 5px; /* Rounded corners */
+  border: 1px solid #ccc; /* Light gray border */
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); /* Subtle inner shadow for depth */
+  font-size: 16px; /* Reasonable default font size */
+  line-height: .5; /* Spacing for text lines */
+  resize: none; /* Prevent resizing, remove if resize is desired */
+  display: block;
+  margin-top: 230px;
+
+  
+}
+
+/* Placeholder styling */
+::placeholder {
+  color: #aaa; /* Lighter text color for placeholder */
+  padding: 10px;
+}
+
+
+
+
 
 .chat-message {
   margin-bottom: 10px;

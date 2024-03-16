@@ -1,6 +1,5 @@
 .home-wrapper {
     padding: 20px;
-    height: calc(100vh - 10vh); /* Adjusted height calculation */
     background: #f7f9fc;
     color: var(--dark-color);
   
@@ -52,7 +51,7 @@ li:first-child a {
       border: 2px solid var(--grey-dark-color);
       padding: 28px;
       border-radius: 10px;
-      height: calc(100% - 50px - 10px - 50px); /* Adjusted height calculation */
+      height: 600px; /* Adjusted height calculation */
     }
   
     .toolbar-bar {
