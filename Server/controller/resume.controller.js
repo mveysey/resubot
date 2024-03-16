@@ -1,12 +1,11 @@
-const fs = require("fs");
+// const fs = require("fs");
 const path = require("path");
 const bodyParser = require("body-parser");
 const { generateID, generateText } = require("../util/ai-util"); // Import utility functions
 
-const { poolPromise } = require('../database/Database');
-require('dotenv').config();
-const sql = require('mssql');
-
+const { poolPromise } = require("../database/Database");
+require("dotenv").config();
+const sql = require("mssql");
 
 const resumeController = {
   // Create a resume entry logic
@@ -168,7 +167,6 @@ const resumeController = {
         error: error.message,
       });
     }
-    
   },
 
   createRegeneratedResumeEntry: async (req, res) => {
@@ -314,7 +312,10 @@ const resumeController = {
     try {
       const resumeData = req.body;
       const savedData = await saveInputResume(resumeData);
-      res.json({ message: "Resume Input data saved successfully", data: savedData });
+      res.json({
+        message: "Resume Input data saved successfully",
+        data: savedData,
+      });
     } catch (error) {
       res.status(500).json({ error: error.message });
     }
@@ -328,58 +329,58 @@ async function saveResume(data) {
   try {
     pool = await poolPromise;
     const request = pool.request();
-    request.input('experienceData', sql.VarChar, data.experienceData);
-    request.input('educationGenerated', sql.VarChar, data.educationGenerated);
-    request.input('skillsGenerated', sql.VarChar, data.skillsGenerated);
-    request.input('projectGenerated', sql.VarChar, data.projectGenerated);
+    request.input("experienceData", sql.VarChar, data.experienceData);
+    request.input("educationGenerated", sql.VarChar, data.educationGenerated);
+    request.input("skillsGenerated", sql.VarChar, data.skillsGenerated);
+    request.input("projectGenerated", sql.VarChar, data.projectGenerated);
 
-    const result = await request.query('insert into resumeInputData (experienceData, educationGenerated, skillsGenerated, projectGenerated) values (@experienceData, @educationGenerated, @skillsGenerated, @projectGenerated)');
+    const result = await request.query(
+      "insert into resumeInputData (experienceData, educationGenerated, skillsGenerated, projectGenerated) values (@experienceData, @educationGenerated, @skillsGenerated, @projectGenerated)"
+    );
 
     console.log("Data added successfully", result);
     return result.recordset;
   } catch (error) {
     console.error("Error saving data to the database", error);
     throw error;
-  } 
+  }
 }
 
 async function saveInputResume(data) {
   let pool;
   try {
-      pool = await poolPromise;
-      const request = pool.request();
+    pool = await poolPromise;
+    const request = pool.request();
 
-      // Add input parameters for each field
-      request.input('fullName', sql.VarChar, data.fullName);
-      request.input('phoneNumber', sql.VarChar, data.phoneNumber);
-      request.input('email', sql.VarChar, data.email);
-      request.input('linkedIn', sql.VarChar, data.linkedIn);
-      request.input('personalLink', sql.VarChar, data.personalLink);
-      request.input('role', sql.VarChar, data.role);
-      request.input('company', sql.VarChar, data.company);
-      request.input('date', sql.VarChar, data.date); // You might want to use sql.Date depending on the format
-      request.input('location', sql.VarChar, data.location);
-      request.input('degree', sql.VarChar, data.degree);
-      request.input('schoolLocation', sql.VarChar, data.schoolLocation);
-      request.input('schoolName', sql.VarChar, data.schoolName);
-      request.input('graduation', sql.VarChar, data.graduation); // Use sql.Date if this is a date field
-      request.input('projectTitle', sql.VarChar, data.projectTitle);
-      request.input('grades', sql.VarChar, data.grades);
+    // Add input parameters for each field
+    request.input("fullName", sql.VarChar, data.fullName);
+    request.input("phoneNumber", sql.VarChar, data.phoneNumber);
+    request.input("email", sql.VarChar, data.email);
+    request.input("linkedIn", sql.VarChar, data.linkedIn);
+    request.input("personalLink", sql.VarChar, data.personalLink);
+    request.input("role", sql.VarChar, data.role);
+    request.input("company", sql.VarChar, data.company);
+    request.input("date", sql.VarChar, data.date); // You might want to use sql.Date depending on the format
+    request.input("location", sql.VarChar, data.location);
+    request.input("degree", sql.VarChar, data.degree);
+    request.input("schoolLocation", sql.VarChar, data.schoolLocation);
+    request.input("schoolName", sql.VarChar, data.schoolName);
+    request.input("graduation", sql.VarChar, data.graduation); // Use sql.Date if this is a date field
+    request.input("projectTitle", sql.VarChar, data.projectTitle);
+    request.input("grades", sql.VarChar, data.grades);
 
-      // Update the SQL query to insert new fields
-      const result = await request.query(`
+    // Update the SQL query to insert new fields
+    const result = await request.query(`
           INSERT INTO resumeInputData 
           ([Full Name], [Phone Number], [Email Address], [LinkedIn URL], [Personal Website OR Relevant Links], [Description of Your Position], Company, [Date or Date Range], Location, Degree, [[University Location], [University Name], [Graduation Date], [Give Your Project a Title], Grades) 
           VALUES 
           (@fullName, @phoneNumber, @email, @linkedIn, @personalLink, @role, @company, @date, @location, @degree, @schoolLocation, @schoolName, @graduation, @projectTitle, @grades)
       `);
 
-      console.log("Data added successfully", result);
-      return result.recordset;
+    console.log("Data added successfully", result);
+    return result.recordset;
   } catch (error) {
-      console.error("Error saving data to the database", error);
-      throw error;
-  } 
+    console.error("Error saving data to the database", error);
+    throw error;
+  }
 }
-
-

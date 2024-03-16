@@ -4,8 +4,9 @@ import axios from "axios";
 import Loading from "./Loading/Loading";
 import "./FinalResume/Finalresume.scss";
 
-
 const FinalResume = () => {
+  let resumeDisplayPath = "/resume1";
+
   //To Cutomize Resume for new position
   const [jobDetails, setjobDetails] = useState("");
   const [industry, setIndustry] = useState("");
@@ -161,42 +162,6 @@ const FinalResume = () => {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    console.log({
-      fullName,
-      graduation,
-      skills,
-      projectDescription,
-    });
-    /*const newPosition = localStorage.getItem("newPosition");
-    const industry = localStorage.getItem("industry");
-
-    const fullName = localStorage.getItem("fullName");
-    const phoneNumber = localStorage.getItem("phoneNumber");
-    const email = localStorage.getItem("email");
-    const linkedIn = localStorage.getItem("linkedIn");
-    const personalLink = localStorage.getItem("personalLink");
-
-    const role1 = localStorage.getItem("role1");
-    const company1 = localStorage.getItem("company1");
-    const date1 = localStorage.getItem("date1");
-    const location1 = localStorage.getItem("location1");
-    const description1 = localStorage.getItem("description1");
-
-    const role2 = localStorage.getItem("role2");
-    const company2 = localStorage.getItem("company2");
-    const date2 = localStorage.getItem("date2");
-    const location2 = localStorage.getItem("location2");
-    const description2 = localStorage.getItem("description2");
-
-    const degree = localStorage.getItem("degree");
-    const location = localStorage.getItem("location");
-    const schoolName = localStorage.getItem("schoolName");
-    const graduation = localStorage.getItem("graduation");
-
-    const skills = localStorage.getItem("skills");
-
-    const projectTitle = localStorage.getItem("projectTitle");
-    const projectDescription = localStorage.getItem("projectDescription");*/
 
     const formData = new FormData();
 
@@ -209,53 +174,9 @@ const FinalResume = () => {
     formData.append("linkedIn", linkedIn);
     formData.append("personalLink", personalLink);
 
-    /*formData.append("role1", role1);
-    formData.append("company1", company1);
-    formData.append("date1", date1);
-    formData.append("location1", location1);
-    formData.append("description1", description1);
-
-    formData.append("role2", role2);
-    formData.append("company2", company2);
-    formData.append("date2", date2);
-    formData.append("location2", location2);
-    //formData.append("description2", description2);
-
-    
-    formData.append("degree", role2);
-    formData.append("location", company2);
-    formData.append("schoolName", date2);
-    formData.append("graduation", location2);*/
-
-    // formData.append("workHistory", JSON.stringify(companyInfo));
-
     formData.append("skills", skills);
 
     formData.append("projectTitle", projectTitle);
-    formData.append("projectDescription", projectDescription);
-
-    console.log({
-      jobDetails: jobDetails,
-      industry: industry,
-      fullName: fullName,
-      phoneNumber: phoneNumber,
-      email: email,
-      linkedIn: linkedIn,
-      personalLink: personalLink,
-      role: role,
-      location: location,
-      date: date,
-      company: company,
-      description: description,
-      degree: degree,
-      schoolName: schoolName,
-      schoolLocation: schoolLocation,
-      graduation: graduation,
-      grades: grades,
-      skills: skills,
-      projectTitle: projectTitle,
-      projectDescription: projectDescription,
-    });
 
     axios
       .post("http://localhost:4000/api/resume/create", {
@@ -284,8 +205,6 @@ const FinalResume = () => {
         if (res.data.message) {
           const experienceData = res.data.data.experienceGenerated;
           const educationGenerated = res.data.data.educationGenerated;
-          console.log("education");
-          console.log(educationGenerated);
           const skillsGenerated = res.data.data.skillsGenerated;
           const projectGenerated = res.data.data.projectGenerated;
 
@@ -313,46 +232,48 @@ const FinalResume = () => {
           };
 
           console.log(resumeData);
-          navigate("/resume1", { state: { resumeData } });
-          axios.post('http://localhost:4000/api/resume/save', {
-            experienceData,
-            educationGenerated,
-            skillsGenerated,
-            projectGenerated
-          })
-          .then(response => {
-            console.log("succesfully saved chatGPT data to database ")
-          })
-          .catch(error => {
-            // Handle errors
-            console.error('Error saving data', error);
-          });
+          navigate(resumeDisplayPath, { state: { resumeData } });
+          axios
+            .post("http://localhost:4000/api/resume/save", {
+              experienceData,
+              educationGenerated,
+              skillsGenerated,
+              projectGenerated,
+            })
+            .then((response) => {
+              console.log("succesfully saved chatGPT data to database ");
+            })
+            .catch((error) => {
+              // Handle errors
+              console.error("Error saving data", error);
+            });
 
-          // save input data in input data of user table 
-          axios.post('http://localhost:4000/api/resume/saveInputData', {
-            fullName,
-            phoneNumber,
-            email,
-            linkedIn,
-            personalLink,
-            role,
-            company,
-            date,
-            location,
-            degree,
-            schoolLocation,
-            schoolName,
-            graduation,
-            projectTitle,
-            grades,
-          })
-          .then(response => {
-            console.log("succesfully saved input data to database ")
-          })
-          .catch(error => {
-            // Handle errors
-            console.error('Error saving data', error);
-          });
+          // save input data in input data of user table
+          axios
+            .post("http://localhost:4000/api/resume/saveInputData", {
+              fullName,
+              phoneNumber,
+              email,
+              linkedIn,
+              personalLink,
+              role,
+              company,
+              date,
+              location,
+              degree,
+              schoolLocation,
+              schoolName,
+              graduation,
+              projectTitle,
+              grades,
+            })
+            .then((response) => {
+              console.log("succesfully saved input data to database ");
+            })
+            .catch((error) => {
+              // Handle errors
+              console.error("Error saving data", error);
+            });
         }
       })
       .catch((err) => console.error(err));
@@ -453,6 +374,16 @@ const FinalResume = () => {
             value={company}
             required
             onChange={(e) => setCompany(e.target.value)}
+          />
+        </div>
+        <div className="companies">
+          <label htmlFor="role">Title</label>
+          <input
+            type="text"
+            name="role"
+            value={role}
+            required
+            onChange={(e) => setRole(e.target.value)}
           />
         </div>
         <div className="verticalcontainer">
