@@ -108,17 +108,21 @@ const Resume = () => {
   };
 
   const generatePdf = () => {
-    const resumeElement = document.getElementById('resumeElement'); // Ensure you have an element with this ID in your JSX
-    html2canvas(resumeElement).then((canvas) => {
-      const imgData = canvas.toDataURL('image/png');
-      const pdf = new jsPDF({
-        orientation: 'portrait',
-      });
-      pdf.addImage(imgData, 'PNG', 0, 0);
-      pdf.save('resume.pdf');
-    });
-  };
+    const resumeElement = document.getElementById('resumeElement');
   
+    setTimeout(() => {
+      html2canvas(resumeElement, { scale: 2 }).then((canvas) => {
+        const imgData = canvas.toDataURL('image/png');
+        const pdf = new jsPDF({
+          orientation: 'portrait',
+          unit: 'px',
+          format: [canvas.width, canvas.height]
+        });
+        pdf.addImage(imgData, 'PNG', 0, 0, canvas.width, canvas.height);
+        pdf.save('resume.pdf');
+      });
+    }, 500); // Adjust delay as needed
+  };
 
   return (
     <div className="container" id="resumeElement">
