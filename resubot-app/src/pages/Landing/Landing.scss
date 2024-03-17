@@ -120,6 +120,9 @@
   .coverletter {
     display: flex;
     align-items: center;
+    background-color: #f7f9fc;
+
+    
 
     .coverletter-content {
         flex: 1;
@@ -164,11 +167,12 @@
 .get-started {
   text-align: center; // Center align the content horizontally
   padding: 50px 0; // Add padding to the top and bottom of the section
-  background-color: #e6f7ff;
+  background-color: #ADDFFF;
   margin-top: 100px;
 
   h2 {
-      font-size: 2.5rem; // Adjust the font size of the heading
+      font-size: 60px; // Adjust the font size of the heading
+      font-weight: 800;
       margin-bottom: 20px; // Add margin to the bottom of the heading
       color: var(--dark-color);
       text-align: center;

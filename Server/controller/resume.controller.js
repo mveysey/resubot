@@ -181,7 +181,7 @@ const resumeController = {
         (company = req.body.company),
         (date = req.body.date),
         (location = req.body.location),
-        (description = req.body.experienceData),
+        (description = req.body.description),
         (degree = req.body.degree),
         (courses = req.body.courses),
         (schoolLocation = req.body.schoolLocation),
@@ -190,7 +190,7 @@ const resumeController = {
         (grades = req.body.grades),
         (skills = req.body.skills),
         (projectTitle = req.body.projectTitle),
-        (projectDescription = req.body.projectGenerated);
+        (projectDescription = req.body.projectDescription);
 
       const newEntry = {
         id: generateID(),
@@ -218,24 +218,29 @@ const resumeController = {
 
       console.log(
         regenerateRequest,
-        fullName,
-        phoneNumber,
-        email,
-        linkedIn,
-        personalLink,
-        role,
-        company,
-        date,
-        location,
+        // fullName,
+        // phoneNumber,
+        // email,
+        // linkedIn,
+        // personalLink,
+        // role,
+        // company,
+        // date,
+        // location,
+        "roleDescription",
         description,
-        degree,
+        // degree,
+        "courses",
         courses,
-        schoolLocation,
-        schoolName,
-        graduation,
+        // schoolLocation,
+        // schoolName,
+        // graduation,
+        "grades",
         grades,
+        "skills",
         skills,
-        projectTitle,
+        // projectTitle,
+        "projectDescription",
         projectDescription
       );
       // create a prompt to send to openAI API as system
@@ -338,10 +343,10 @@ async function saveResume(data) {
       "insert into resumeInputData (experienceData, educationGenerated, skillsGenerated, projectGenerated) values (@experienceData, @educationGenerated, @skillsGenerated, @projectGenerated)"
     );
 
-    console.log("Data added successfully", result);
+    // console.log("Data added successfully", result);
     return result.recordset;
   } catch (error) {
-    console.error("Error saving data to the database", error);
+    // console.error("Error saving data to the database", error);
     throw error;
   }
 }
@@ -377,10 +382,10 @@ async function saveInputResume(data) {
           (@fullName, @phoneNumber, @email, @linkedIn, @personalLink, @role, @company, @date, @location, @degree, @schoolLocation, @schoolName, @graduation, @projectTitle, @grades)
       `);
 
-    console.log("Data added successfully", result);
+    // console.log("Data added successfully", result);
     return result.recordset;
   } catch (error) {
-    console.error("Error saving data to the database", error);
+    // console.error("Error saving data to the database", error);
     throw error;
   }
 }

@@ -19,7 +19,7 @@ import slide_image_3 from "../../assets/resume_template4.PNG";
 function Slider() {
     return (
       <div className="container">
-        <h1 className="heading">Flower Gallery</h1>
+        <h1 className="heading">Resume Templates</h1>
         <Swiper
           effect={'coverflow'}
           grabCursor={true}
@@ -30,7 +30,7 @@ function Slider() {
             rotate: 0,
             stretch: 0,
             depth: 100,
-            modifier: 2.5,
+            modifier: 0.5,
           }}
           pagination={{ el: '.swiper-pagination', clickable: true }}
           navigation={{
