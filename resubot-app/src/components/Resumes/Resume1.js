@@ -248,9 +248,10 @@ const Resume = () => {
           })}
           <ul className="skills-items">{/* ... your skills list ... */}</ul>
         </div>
+        </div>
 
         <button onClick={generatePdf}>Download as PDF</button>
-      </div>
+     
 
       {/* <div className="skills">
                 <h2>Skills</h2>
