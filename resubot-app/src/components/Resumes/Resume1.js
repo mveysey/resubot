@@ -125,7 +125,7 @@ const Resume = () => {
   };
 
   return (
-    <div className="container" id="resumeElement">
+   
     <div className="container">
       <form
         onSubmit={regenerateData}
@@ -143,6 +143,7 @@ const Resume = () => {
         />
         <button>Submit Regeneration Request</button>
       </form>
+      <div className="container" id="resumeElement">
       <div className="header">
         <h1>{fullName}</h1>
         <div className="contact-info">
