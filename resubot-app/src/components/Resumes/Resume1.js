@@ -4,8 +4,11 @@ import axios from "axios";
 import "./resume1.css";
 import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
+import Modal from "../RegenerateResume/Modal.js";
 
 const Resume = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
   const [regenerateRequest, setRegenerateRequest] = useState("");
   const navigate = useNavigate();
 
@@ -125,6 +128,9 @@ const Resume = () => {
 
   return (
     <div className="container">
+      <button onClick={() => setIsOpen(true)}>Open Modal</button>
+      {isOpen && <Modal setIsOpen={setIsOpen} />}
+
       <form
         onSubmit={regenerateData}
         method="POST"
