@@ -124,6 +124,8 @@ const Resume = () => {
     }, 500); // Adjust delay as needed
   };
 
+
+
   return (
    
     <div className="container">
