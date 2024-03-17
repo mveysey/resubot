@@ -233,6 +233,9 @@ const FinalResume = () => {
 
           console.log(resumeData);
           navigate(resumeDisplayPath, { state: { resumeData } });
+          navigate('/ResumeGenerationLandingPage');
+          
+
           axios
             .post("http://localhost:4000/api/resume/save", {
               experienceData,
