@@ -47,18 +47,30 @@ li:first-child a {
   
 
   
-    .home-content {
-      border: 2px solid var(--grey-dark-color);
-      padding: 28px;
-      border-radius: 10px;
-      height: 600px; /* Adjusted height calculation */
-    }
+  .home-content {
+    display: flex; // Enable flexbox
+    flex-direction: column; // Stack children vertically
+    justify-content: flex-start; // Align items to the start of the container
+    align-items: stretch; // Stretch items to fill the width
+    border: 2px solid var(--grey-dark-color);
+    padding: 28px;
+    border-radius: 10px;
+    height: 600px; // Adjusted height calculation
+    overflow: hidden; // Prevent content from overflowing
   
-    .toolbar-bar {
-      color: var(--grey-dark-color);
-      border: 2px solid var(--grey-dark-color);
-      margin-top: 10px; /* Add margin top */
+    .total-header {
+      font-size: 20px;
+      flex-shrink: 0; 
     }
+  }
+  
+  .toolbar-bar {
+    color: var(--grey-dark-color);
+    border: 2px solid var(--grey-dark-color);
+    margin-top: 10px; // Add margin top
+    // Prevent the toolbar from taking up more space than it should
+    flex-shrink: 0; 
+  }
   
     .hometoolbar-wrapper {
       padding: 10px;
