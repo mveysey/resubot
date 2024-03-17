@@ -6,6 +6,7 @@ import resume from '../../assets/resume.png';
 import fast from '../../assets/fast.png';
 import resume2 from '../../assets/resume2.png';
 import coverletter2 from '../../assets/coverletter2.png';
+import TemplateSwiper from '../../components/TemplateSlider/Slider.jsx'
 import {ScrollMenu} from 'react-horizontal-scrolling-menu';
 import {LeftArrow, RightArrow, ScrollCard} from "../../components/HorizontalScroller/HScroller";
 
@@ -263,7 +264,11 @@ const LandingPage = () => {
                 <div className="resume-image">
                     <img src={resume2} alt="Resume" />
                 </div>
+                
             </section>
+            <div>
+                 <TemplateSwiper />
+                </div>
             <section className="coverletter">
                 <div className="coverletter-image">
                     <img src={coverletter2} alt="Resume" />

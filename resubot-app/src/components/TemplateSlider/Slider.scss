@@ -7,18 +7,13 @@ $dark: #222224;
 $track-bg: #f9f9f9;
 
 // Reset and base styles
-*, *::before, *::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  list-style-type: none;
-}
+
 
 
 
 // Swiper container and slide styles
 .swiper_container {
-  height: 52rem;
+  height: 50rem;
   padding: 2rem 0;
   position: relative;
 
@@ -36,6 +31,7 @@ $track-bg: #f9f9f9;
       height: 36rem !important;
     }
 
+
     img {
     
       object-fit: cover;
@@ -50,6 +46,13 @@ $track-bg: #f9f9f9;
       display: none;
     }
   }
+}
+
+.heading{
+  font-size: 40px;
+  font-weight: 600;
+  text-align: center;
+  color: var(--dark-color);
 }
 
 // Slider controller and responsive adjustments

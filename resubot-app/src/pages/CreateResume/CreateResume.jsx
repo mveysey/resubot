@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form, useNavigate } from "react-router-dom";
+import { Form, json, useNavigate } from "react-router-dom";
 import axios from "axios";
 import resume3 from "../../assets/resume_template3.PNG";
 import resume2 from "../../assets/resume_template2.PNG";
@@ -23,7 +23,7 @@ const CreateResume = () => {
   const [personalLink, setPersonalLink] = useState("");
 
   //Experince information 
-  const [companyInfo, setCompanyInfo] = useState([{role: "", company:"", date:"", location:"", description:""}]);
+  const [companyInfo, setCompanyInfo] = useState([{ role: "", company: "", date: "", location: "", description: "" }]);
   const [role, setRole] = useState("");
   const [company, setCompany] = useState("");
   const [date, setDate] = useState("");
@@ -59,10 +59,24 @@ const CreateResume = () => {
 
   const handleTemplateSelect = (templateName) => {
     setSelectedTemplate(templateName);
+    let route = "";
+    switch (templateName) {
+      case 'resume1':
+        route = "/resume1";
+        break;
+      case 'resume2':
+        route = "/resume2";
+        break;
+      case 'resume3':
+        route = "/resume3";
+        break;
+      default:
+        route = "/"
+    }
   };
 
   const handleAddCompany = () =>
-    setCompanyInfo([...companyInfo, { name: "", position: "" }]);
+    setCompanyInfo([...companyInfo, { role: "", company: "", date: "", location: "", description: "" }]);
 
 //👇🏻 removes a selected item from the list
 const handleRemoveCompany = (index) => {
@@ -79,86 +93,7 @@ const handleUpdateCompany = (e, index) => {
 };
 
   // Define a function to fill out the form with predefined data
-  const fillFormWithData = () => {
-    const predefinedData = {
-      jobDetails: `Role: Python Developer (Banking Projects)
-      Structure: 6 Months + Extension
-      Pay: $85.00 per hour inc.
-      Location: Toronto (hybrid)
-      
-      We currently have an opportunity for a contract role - Hybrid- Python Developer working on Banking projects.
-      
-      Candidate Requirements/Must-Have Skills:
-      
-      Strong Python Development: 10+ years of design and development experience using Python (Version 2.7 and above) and hands-on experience and in dept knowledge of standard python libraries.
-      Experience processing large volumes of data using PySpark, Pandas, and/or NumPy.
-      2+ years experience with Python frameworks such as Django, Flask, requests. etc.
-      Experience in Object-oriented programming and Agile Development Methodology.
-      Experience with TDD writing unit tests, test coverage using PyTest, PyUnit, pytest-cov libraries.
-      Open-Source contribution experience
-      Financial industry experience
-      --
-      
-      Please apply with an updated resume and ensure the required skills you can speak to for this position are included.
-      
-      For more roles like this please go to www.corgta.com/find-a-job/
-      
-      Job Types: Full-time, Fixed term contract
-      Contract length: 6 months
-      
-      Salary: Up to $85.00 per hour
-      
-      Schedule:
-      
-      8 hour shift
-      Work Location: In person`,
-      industry: "Technology",
-      fullName: "John Doe",
-      phoneNumber: "123-456-7890",
-      email: "john.doe@example.com",
-      linkedIn: "https://www.linkedin.com/in/johndoe",
-      personalLink: "https://www.johndoe.com",
-      role: "Software Developer",
-      company: "ABC Tech",
-      date: "January 2020",
-      location: "New York, NY",
-      description:
-        "Worked as a full stack developer and DBA in a small team of 5, managed projects using Jira...",
-     
-      degree: "Bachelor of Science",
-      schoolName: "University of XYZ",
-      schoolLocation: "Los Angeles, CA",
-      graduation: "May 2019",
-      grades:
-        "data structures and algorithms: 85%, advanced java programming: 99%, python programming: 90%, intro to django: 90%, Advanced unit testing: 100%, Intro to pyUnit: 90%, Advanced databases: 75%, Leadership in Business: 50%, Accounting: 80%, Intro to Psychology: 88%, Physical Living 2000: 80%",
-      skills: "React, JavaScript, Node.js, HTML, CSS",
-      projectTitle: "Portfolio Website",
-      projectDescription:
-        "Created a personal portfolio website using latest fullstack technologies....",
-    };
-
-    setjobDetails(predefinedData.jobDetails);
-    setIndustry(predefinedData.industry);
-    setFullName(predefinedData.fullName);
-    setPhoneNumber(predefinedData.phoneNumber);
-    setEmail(predefinedData.email);
-    setLinkedIn(predefinedData.linkedIn);
-    setPersonalLink(predefinedData.personalLink);
-    setRole(predefinedData.role);
-    setDate(predefinedData.date);
-    setCompany(predefinedData.company);
-    setLocation(predefinedData.location);
-    setDescription(predefinedData.description);
-    // setCompanyInfo(predefinedData.companyInfo);
-    setDegree(predefinedData.degree);
-    setSchoolName(predefinedData.schoolName);
-    setSchoolLocation(predefinedData.schoolLocation);
-    setGraduation(predefinedData.graduation);
-    setGrades(predefinedData.setGrades);
-    setSkills(predefinedData.skills);
-    setProjectTitle(predefinedData.projectTitle);
-    setProjectDescription(predefinedData.projectDescription);
-  };
+ 
 
   
 
@@ -170,6 +105,7 @@ const handleUpdateCompany = (e, index) => {
       fullName,
       graduation,
       skills,
+      companyInfo,
       projectDescription,
     });
    
@@ -184,6 +120,8 @@ const handleUpdateCompany = (e, index) => {
     formData.append("email", email);
     formData.append("linkedIn", linkedIn);
     formData.append("personalLink", personalLink);
+
+    formData.append("companyInfo", JSON.stringify(companyInfo))
 
     formData.append("skills", skills);
 
@@ -352,11 +290,11 @@ const handleUpdateCompany = (e, index) => {
       >
 
       <div id="templates" className={activeSection === "templates" ? "active" : "hidden"}>
-              <img src={resume3} alt="Resume3"/>
-              <img src={resume2} alt="Resume2" />
-              <img src={resume4} alt="Resume4"/>
-          </div>
-        
+        <img src={resume3} alt="Resume3" onClick={() => handleTemplateSelect('resume3')} className={selectedTemplate === 'resume3' ? 'selected' : 'hoverable'} />
+        <img src={resume2} alt="Resume2" onClick={() => handleTemplateSelect('resume2')} className={selectedTemplate === 'resume2' ? 'selected' : 'hoverable'} />
+        <img src={resume4} alt="Resume4" onClick={() => handleTemplateSelect('resume4')} className={selectedTemplate === 'resume4' ? 'selected' : 'hoverable'} />
+      </div>
+              
         
         
         <div id="customize" className={activeSection === "customize" ? "active" : "hidden"}>

@@ -20,29 +20,26 @@
   border-bottom-left-radius: 25px;
   position: relative;
   
-  
-
   .menu {
     padding-left: 25px;
   
-      li a {
-        display: block;
-        padding: 15px;
-        text-transform: uppercase;
-        color: #000;
-        letter-spacing: 2px;
-        border-top-left-radius: 25px;
-        border-bottom-left-radius: 25px;
-        margin-bottom: 1px;
+    li a {
+      display: block;
+      padding: 15px;
+      text-transform: uppercase;
+      color: #000;
+      letter-spacing: 2px;
+      border-top-left-radius: 25px;
+      border-bottom-left-radius: 25px;
+      margin-bottom: 1px;
   
-        &:hover,
-        &.active {
-          background: #ADDFFF;
-          color: var(--grey-dark-color);
-        }
+      &:hover,
+      &.active {
+        background: #ADDFFF;
+        color: var(--grey-dark-color);
       }
     }
-  
+  }
 }
 
 .container {
@@ -52,9 +49,8 @@
   overflow: auto;
 
   form {
-
     #templates {
-      
+      display: flex;
       justify-content: center; // Center the images
       align-items: center; // Align the images vertically
       gap: 8px; // Adjust spacing between images
@@ -64,13 +60,31 @@
         width: calc((100% - 16px) / 3); // Dynamically calculate width
         height: auto; // Maintain aspect ratio
         object-fit: cover;
-  
-        @media (max-width: 768px) { // Adjust for smaller screens
-          width: calc((100% - 8px) / 2); // Display in 2 columns on smaller screens
+        transition: transform 0.2s, box-shadow 0.2s; // Smooth transition for transform and box-shadow
+        
+        &:hover {
+          transform: scale(1.05); // Slightly scale up images on hover for emphasis
+          box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); // Add shadow for depth
         }
-  
-        @media (max-width: 480px) { // Adjust for very small screens
-          width: 100%; // Each image takes full width on very small screens
+      }
+    
+      img.selected {
+        border: 2px solid #007bff; // Highlight selected image
+        transform: scale(1.05);
+        
+
+       
+      }
+
+      @media (max-width: 768px) { // Adjust for smaller screens
+        img {
+          width: calc((100% - 8px) / 2);
+        }
+      }
+
+      @media (max-width: 480px) { // Adjust for very small screens
+        img {
+          width: 100%;
         }
       }
       &.hidden {
@@ -80,6 +94,10 @@
       &.active {
         display: flex;
       }
+        
+    }
+
+    
     }
   
     label {
@@ -157,9 +175,5 @@
     }
   }
 
-  
-
-  
-}
 
 
