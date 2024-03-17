@@ -2,9 +2,8 @@ import React, { useState } from "react";
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./resume1.css";
-import html2canvas from 'html2canvas';
-import { jsPDF } from 'jspdf';
-
+import html2canvas from "html2canvas";
+import { jsPDF } from "jspdf";
 
 const Resume = () => {
   const [regenerateRequest, setRegenerateRequest] = useState("");
@@ -72,10 +71,10 @@ const Resume = () => {
       })
       .then((res) => {
         if (res.data.message) {
-          const experienceData = res.data.data.experienceGenerated;
-          const educationGenerated = res.data.data.educationGenerated;
-          const skillsGenerated = res.data.data.skillsGenerated;
-          const projectGenerated = res.data.data.projectGenerated;
+          // const experienceData = res.data.data.experienceGenerated;
+          // const educationGenerated = res.data.data.educationGenerated;
+          // const skillsGenerated = res.data.data.skillsGenerated;
+          // const projectGenerated = res.data.data.projectGenerated;
 
           // state object
           const resumeData = {
@@ -100,7 +99,7 @@ const Resume = () => {
             skillsGenerated,
             projectGenerated,
           };
-
+          console.log("************* Experience Data", experienceData);
           navigate("/resume1", { state: { resumeData } });
         }
       })
@@ -108,24 +107,23 @@ const Resume = () => {
   };
 
   const generatePdf = () => {
-    const resumeElement = document.getElementById('resumeElement');
-  
+    const resumeElement = document.getElementById("resumeElement");
+
     setTimeout(() => {
       html2canvas(resumeElement, { scale: 2 }).then((canvas) => {
-        const imgData = canvas.toDataURL('image/png');
+        const imgData = canvas.toDataURL("image/png");
         const pdf = new jsPDF({
-          orientation: 'portrait',
-          unit: 'px',
-          format: [canvas.width, canvas.height]
+          orientation: "portrait",
+          unit: "px",
+          format: [canvas.width, canvas.height],
         });
-        pdf.addImage(imgData, 'PNG', 0, 0, canvas.width, canvas.height);
-        pdf.save('resume.pdf');
+        pdf.addImage(imgData, "PNG", 0, 0, canvas.width, canvas.height);
+        pdf.save("resume.pdf");
       });
     }, 500); // Adjust delay as needed
   };
 
   return (
-   
     <div className="container">
       <form
         onSubmit={regenerateData}
@@ -144,23 +142,23 @@ const Resume = () => {
         <button>Submit Regeneration Request</button>
       </form>
       <div className="container" id="resumeElement">
-      <div className="header">
-        <h1>{fullName}</h1>
-        <div className="contact-info">
-          <p>Email: {email}</p>
-          <p>Phone: {phoneNumber}</p>
-          <p>
-            LinkedIn:
-            <a href={linkedIn}>{linkedIn}</a>
-          </p>
-          <p>
-            Link:
-            <a href={personalLink}>{personalLink}</a>
-          </p>
+        <div className="header">
+          <h1>{fullName}</h1>
+          <div className="contact-info">
+            <p>Email: {email}</p>
+            <p>Phone: {phoneNumber}</p>
+            <p>
+              LinkedIn:
+              <a href={linkedIn}>{linkedIn}</a>
+            </p>
+            <p>
+              Link:
+              <a href={personalLink}>{personalLink}</a>
+            </p>
+          </div>
         </div>
-      </div>
 
-      {/* <div className="education">
+        {/* <div className="education">
                 <h2>Education</h2>
                 <hr/>
                 {courseDetails.map((course, index) => (
@@ -172,39 +170,39 @@ const Resume = () => {
                     </div>
                 ))}
             </div> */}
-      <div className="education">
-        <h2>Education</h2>
-        <hr />
-        <p>
-          {schoolName}, {schoolLocation}
-        </p>
-        <p>{degree}</p>
-        <p>{graduation}</p>
-        <p>{grades}</p>
-        {educationCourses.map((course, index) => {
-          const lines = course.split("\n").filter(Boolean);
-          return (
-            <div key={index} className="education-item">
-              <h4>{lines[0]}</h4>
-              {lines.slice(1).map((line, i) => (
-                <p key={i}>{line}</p>
-              ))}
-            </div>
-          );
-        })}
-      </div>
+        <div className="education">
+          <h2>Education</h2>
+          <hr />
+          <p>
+            {schoolName}, {schoolLocation}
+          </p>
+          <p>{degree}</p>
+          <p>{graduation}</p>
+          <p>{grades}</p>
+          {educationCourses.map((course, index) => {
+            const lines = course.split("\n").filter(Boolean);
+            return (
+              <div key={index} className="education-item">
+                <h4>{lines[0]}</h4>
+                {lines.slice(1).map((line, i) => (
+                  <p key={i}>{line}</p>
+                ))}
+              </div>
+            );
+          })}
+        </div>
 
-      <div className="experience">
-        <h2>Experience</h2>
-        <hr />
-        <div className="experience-item">
-          <p>{role}</p>
-          <p>{company}</p>
-          <p>{date}</p>
-          <p>{jobLocation}</p>
-          <p>{experienceData}</p>
-          {/* {experienceDataString} */}
-          {/* <h4>Company Name</h4>
+        <div className="experience">
+          <h2>Experience</h2>
+          <hr />
+          <div className="experience-item">
+            <p>{role}</p>
+            <p>{company}</p>
+            <p>{date}</p>
+            <p>{jobLocation}</p>
+            <p>{experienceData}</p>
+            {/* {experienceDataString} */}
+            {/* <h4>Company Name</h4>
                    
                     <p>Position</p>
                     <p>Date - Date</p>
@@ -213,41 +211,38 @@ const Resume = () => {
                         <li>Responsibility 2</li>
                         <li>Responsibility 3</li>
                     </ul>                 */}
+          </div>
         </div>
-      </div>
 
-      <div className="project">
-        <h2>Projects</h2>
-        <hr />
-        <div className="project-item">
-          {/* <h4>Project Name</h4> */}
-          <p>{projectTitle}</p>
-          <p>{projectGenerated}</p>
-          {/* <p>Software Used</p>
+        <div className="project">
+          <h2>Projects</h2>
+          <hr />
+          <div className="project-item">
+            {/* <h4>Project Name</h4> */}
+            <p>{projectTitle}</p>
+            <p>{projectGenerated}</p>
+            {/* <p>Software Used</p>
                     <p>Small Description of what the project does</p>             */}
+          </div>
         </div>
-      </div>
-      <div className="skills">
-        <h2>Skills</h2>
-        <hr />
-        {skills.map((skill, index) => {
-          const [title, description] = skill.split(":");
-          return (
-            <div key={index} className="skill-item">
-              <p>
-                <strong>{title}:</strong> {description}
-              </p>
-            </div>
-          );
-        })}
-        <ul className="skills-items">{/* ... your skills list ... */}</ul>
-      </div>
-     
-      <button onClick={generatePdf}>Download as PDF</button>
+        <div className="skills">
+          <h2>Skills</h2>
+          <hr />
+          {skills.map((skill, index) => {
+            const [title, description] = skill.split(":");
+            return (
+              <div key={index} className="skill-item">
+                <p>
+                  <strong>{title}:</strong> {description}
+                </p>
+              </div>
+            );
+          })}
+          <ul className="skills-items">{/* ... your skills list ... */}</ul>
         </div>
 
-      
-
+        <button onClick={generatePdf}>Download as PDF</button>
+      </div>
 
       {/* <div className="skills">
                 <h2>Skills</h2>
