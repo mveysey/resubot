@@ -340,13 +340,13 @@ async function saveResume(data) {
     request.input("projectGenerated", sql.VarChar, data.projectGenerated);
 
     const result = await request.query(
-      "insert into resumeInputData (experienceData, educationGenerated, skillsGenerated, projectGenerated) values (@experienceData, @educationGenerated, @skillsGenerated, @projectGenerated)"
+      "insert into resumeData (experienceData, educationGenerated, skillsGenerated, projectGenerated) values (@experienceData, @educationGenerated, @skillsGenerated, @projectGenerated)"
     );
 
-    // console.log("Data added successfully", result);
+    console.log("Data added successfully", result);
     return result.recordset;
   } catch (error) {
-    // console.error("Error saving data to the database", error);
+    console.error("Error saving data to the database", error);
     throw error;
   }
 }
