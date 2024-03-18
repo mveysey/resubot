@@ -30,11 +30,15 @@ const authRouter = require("./routes/auth.router");
 const testRouter = require("./routes/test.router");
 const miscRouter = require("./routes/misc.router");
 const templateRouter = require("./routes/template.router")
+const chatbotRouter = require("./routes/chatbot.router.js")
+
 app.use("/api/resume", resumeRouter);
 app.use("/api/auth", authRouter);
 app.use("/api/test", testRouter);
 app.use("/api/template", templateRouter);
 app.use("/api/misc", miscRouter);
+app.use("/api/chatbot", chatbotRouter);
+
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
