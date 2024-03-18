@@ -22,6 +22,9 @@ import ProtectedRoute from "./common/protectedRoute.js";
 import CreateCoverletter from "./pages/CreateCoverLetter/Coverletter.jsx";
 import CardSlider from "./components/TemplateSlider/Slider.jsx";
 import CoverLetter from './components/CoverLetterTemplates/Coverletter_Templates.jsx';
+import ResumeGenerationLandingPage from './pages/ResumeGenerationLandingPage';
+
+
 
 
 const Router = () => (
@@ -48,6 +51,7 @@ const Router = () => (
                 <Route path="/finalresume" element={<FinalResume/>}/>
                 <Route path="/slider" element={<CardSlider/>} />
                 <Route path="/coverletter" element={<CoverLetter/>} />
+                <Route path="/resume-generation" element={<ResumeGenerationLandingPage />} />
 
                 {/*Error Page*/}
                 <Route path="*" element={<Error/>}/>
