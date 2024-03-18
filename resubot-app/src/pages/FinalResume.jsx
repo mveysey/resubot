@@ -162,6 +162,11 @@ const FinalResume = () => {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
+    setLoading(true); // Start loading
+
+    // Navigate to the loading page (resume-generation) first
+    navigate('/resume-generation');
+
 
     const formData = new FormData();
 
@@ -233,8 +238,7 @@ const FinalResume = () => {
 
           console.log(resumeData);
           navigate(resumeDisplayPath, { state: { resumeData } });
-          navigate('/resume-generation');
-
+        
           axios
             .post("http://localhost:4000/api/resume/save", {
               experienceData,
@@ -275,11 +279,17 @@ const FinalResume = () => {
             .catch((error) => {
               // Handle errors
               console.error("Error saving data", error);
+            })
+            .finally(() => {
+              setLoading(false); // Stop loading after the entire process
             });
+            
+
         }
       })
       .catch((err) => console.error(err));
-    setLoading(true);
+      
+  
   };
 
   return (
