@@ -233,7 +233,7 @@ const FinalResume = () => {
 
           console.log(resumeData);
           navigate(resumeDisplayPath, { state: { resumeData } });
-          navigate('/ResumeGenerationLandingPage');
+          // navigate('/ResumeGenerationLandingPage');
           
 
           axios
