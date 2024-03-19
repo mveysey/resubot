@@ -3,6 +3,22 @@
   justify-content: space-between;
   height: 100v;
 }
+/* Style for the send button */
+.send-button {
+  background-color: #4a90e2; /* Example color, adjust as needed */
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+  width: 100%; /* Full width */
+}
+
+.send-button:hover {
+  background-color: darken(#4a90e2, 10%); /* Darker shade on hover */
+}
 
 .sidebar {
   width: 300px;

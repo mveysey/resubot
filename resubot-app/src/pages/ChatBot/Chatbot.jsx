@@ -107,7 +107,9 @@ return (
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
             ></textarea>
-            <button onClick={sendMessage}>Send</button>
+            {/* <button onClick={sendMessage}>Send</button> */}
+            <button onClick={sendMessage} className="send-button">Send</button>
+
         </div>
     </div>
 );
