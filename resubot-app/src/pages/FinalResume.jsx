@@ -1,11 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Form, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Loading from "./Loading/Loading";
 import "./FinalResume/Finalresume.scss";
+import resume3 from "../assets/resume_template3.PNG";
+import resume2 from "../assets/resume_template2.PNG";
+import resume4 from "../assets/resume_template4.PNG";
 
 const FinalResume = () => {
-  let resumeDisplayPath = "/resume1";
+
+  const [resumeDisplayPath, setResumeDisplayPath] = useState(""); 
+  const [selectedTemplate, setSelectedTemplate] = useState("");
 
   //To Cutomize Resume for new position
   const [jobDetails, setjobDetails] = useState("");
@@ -18,6 +23,7 @@ const FinalResume = () => {
   const [linkedIn, setLinkedIn] = useState("");
   const [personalLink, setPersonalLink] = useState("");
 
+  const [companyInfo, setCompanyInfo] = useState([{ role: "", company: "", date: "", location: "", description: "" }]);
   const [role, setRole] = useState("");
   const [company, setCompany] = useState("");
   const [date, setDate] = useState("");
@@ -45,6 +51,53 @@ const FinalResume = () => {
   const [loading, setLoading] = useState(false);
   //const pdfExportComponent = React.useRef(null);
   const navigate = useNavigate();
+
+  const [activeSection, setActiveSection] = useState("templates"); // State to manage active section
+  
+
+  const handleAddCompany = () =>
+  setCompanyInfo([...companyInfo, { role: "", company: "", date: "", location: "", description: "" }]);
+
+  //removes a selected item from the list
+  const handleRemoveCompany = (index) => {
+    const list = [...companyInfo];
+    list.splice(index, 1);
+    setCompanyInfo(list);
+  };
+  // updates an item within the list
+  const handleUpdateCompany = (e, index) => {
+    const { name, value } = e.target;
+    const list = [...companyInfo];
+    list[index][name] = value;
+    setCompanyInfo(list);
+  };
+
+  const handleSectionClick = (event, sectionId) => {
+    event.preventDefault(); // Prevents the default anchor link behavior
+    setActiveSection(sectionId);
+  };  
+
+  
+
+
+  const handleTemplateSelect = (templateName) => {
+    setSelectedTemplate(templateName);
+    switch (templateName) {
+      case 'resume2':
+        setResumeDisplayPath("/resume2");
+        break;
+      case 'resume3':
+        setResumeDisplayPath("/resume3");
+        break;
+      case 'resume4':
+        setResumeDisplayPath("/resume4"); // Assuming you meant to navigate to /resume1 for the 'resume4' case
+        break;
+      default:
+        setResumeDisplayPath("/"); // Default path or error handling
+        break;
+    }
+  };
+
 
   // Define a function to fill out the form with predefined data
   const fillFormWithData = () => {
@@ -121,6 +174,7 @@ const FinalResume = () => {
     setEmail(predefinedData.email);
     setLinkedIn(predefinedData.linkedIn);
     setPersonalLink(predefinedData.personalLink);
+
     setRole(predefinedData.role);
     setDate(predefinedData.date);
     setCompany(predefinedData.company);
@@ -179,9 +233,11 @@ const FinalResume = () => {
     formData.append("linkedIn", linkedIn);
     formData.append("personalLink", personalLink);
 
+
     formData.append("skills", skills);
 
     formData.append("projectTitle", projectTitle);
+
 
     axios
       .post("http://localhost:4000/api/resume/create", {
@@ -192,6 +248,7 @@ const FinalResume = () => {
         email: email,
         linkedIn: linkedIn,
         personalLink: personalLink,
+        companyInfo: companyInfo,
         role: role,
         company: company,
         location: location,
@@ -213,6 +270,7 @@ const FinalResume = () => {
           const skillsGenerated = res.data.data.skillsGenerated;
           const projectGenerated = res.data.data.projectGenerated;
 
+
           // state object
           const resumeData = {
             fullName,
@@ -220,6 +278,7 @@ const FinalResume = () => {
             email,
             linkedIn,
             personalLink,
+            companyInfo,
             role,
             company,
             date,
@@ -293,6 +352,71 @@ const FinalResume = () => {
   };
 
   return (
+
+    <div className="wrapper">
+      <div className="wrapper_inner">
+        <div className="vertical_wrap">
+			<div className="backdrop"></div>
+			<div className="vertical_bar">
+				
+      <ul className="menu">
+  <li>
+    <a href="#templates" 
+       onClick={(e) => handleSectionClick(e, "templates")}
+       className={activeSection === "templates" ? "active" : ""}>
+      <span className="text">Resume Templates</span>
+    </a>
+  </li>
+  <li>
+    <a href="#customize" 
+       onClick={(e) => handleSectionClick(e, "customize")}
+       className={activeSection === "customize" ? "active" : ""}>
+      <span className="text">Customize Resume</span>
+    </a>
+  </li>
+  <li>
+    <a href="#contact" 
+       onClick={(e) => handleSectionClick(e, "contact")}
+       className={activeSection === "contact" ? "active" : ""}>
+      <span className="text">Contact Info</span>
+    </a>
+  </li>
+  <li>
+    <a href="#experience" 
+       onClick={(e) => handleSectionClick(e, "experience")}
+       className={activeSection === "experience" ? "active" : ""}>
+      <span className="text">Experience</span>
+    </a>
+  </li>
+  <li>
+    <a href="#education" 
+       onClick={(e) => handleSectionClick(e, "education")}
+       className={activeSection === "education" ? "active" : ""}>
+      <span className="text">Education</span>
+    </a>
+  </li>
+  <li>
+    <a href="#skills" 
+       onClick={(e) => handleSectionClick(e, "skills")}
+       className={activeSection === "skills" ? "active" : ""}>
+      <span className="text">Skills</span>
+    </a>
+  </li>
+  <li>
+    <a href="#projects" 
+       onClick={(e) => handleSectionClick(e, "projects")}
+       className={activeSection === "projects" ? "active" : ""}>
+      <span className="text">Projects</span>
+    </a>
+  </li>
+</ul>
+
+
+				
+			</div>
+		</div>
+      
+    
     <div className="container">
       <form
         onSubmit={handleFormSubmit}
@@ -306,16 +430,16 @@ const FinalResume = () => {
         >
           Fill with Predefined Data
         </button>
-        <label htmlFor="jobDetails">Job Details</label>
-        <div className="cutomize">
-          <textarea
-            type="text"
-            name="jobDetails"
-            id="jobDetails"
-            value={jobDetails}
-            onChange={(e) => setjobDetails(e.target.value)}
-          />
-          <div>
+        <div id="templates" className={activeSection === "templates" ? "active" : "hidden"}>
+        <img src={resume3} alt="Resume3" onClick={() => handleTemplateSelect('resume3')} className={selectedTemplate === 'resume3' ? 'selected' : 'hoverable'} />
+        <img src={resume2} alt="Resume2" onClick={() => handleTemplateSelect('resume2')} className={selectedTemplate === 'resume2' ? 'selected' : 'hoverable'} />
+        <img src={resume4} alt="Resume4" onClick={() => handleTemplateSelect('resume4')} className={selectedTemplate === 'resume4' ? 'selected' : 'hoverable'} />
+      </div>
+              
+        
+        
+        <div id="customize" className={activeSection === "customize" ? "active" : "hidden"}>
+        <div>
             <label htmlFor="industry">Industry</label>
             <input
               type="text"
@@ -325,9 +449,17 @@ const FinalResume = () => {
               onChange={(e) => setIndustry(e.target.value)}
             />
           </div>
-          <br />
+        <label htmlFor="jobDetails">Job Details</label>
+          <textarea
+            type="text"
+            name="jobDetails"
+            id="jobDetails"
+            value={jobDetails}
+            onChange={(e) => setjobDetails(e.target.value)}
+          />
+          
         </div>
-        <div className="contactInfo">
+        <div id="contact" className={activeSection === "contact" ? "active" : "hidden"}>
           <label htmlFor="fullName">Full Name</label>
           <input
             type="text"
@@ -377,64 +509,76 @@ const FinalResume = () => {
             onChange={(e) => setPersonalLink(e.target.value)}
           />
         </div>
-        <br />
-        <div className="companies">
-          <label htmlFor="company">Company</label>
-          <input
-            type="text"
-            name="company"
-            value={company}
-            required
-            onChange={(e) => setCompany(e.target.value)}
-          />
-        </div>
-        <div className="companies">
-          <label htmlFor="role">Title</label>
-          <input
-            type="text"
-            name="role"
-            value={role}
-            required
-            onChange={(e) => setRole(e.target.value)}
-          />
-        </div>
-        <div className="verticalcontainer">
-          <div className="companies">
-            <label htmlFor="date">Date or Date Range</label>
+        <section id="experience" className={activeSection === "experience" ? "active" : "hidden"}>
+        {companyInfo.map((company, index) => (
+          <div className="nestedContainer" key={index}>
+            <div className="companies">
+            <label htmlFor="role">Position Held</label>
             <input
               type="text"
-              name="date"
-              placeholder="May 23 - Present"
-              className="subInput"
-              value={date}
+              name="role"
               required
-              onChange={(e) => setDate(e.target.value)}
+              onChange={(e) => handleUpdateCompany(e, index)}
             />
           </div>
           <div className="companies">
-            <label htmlFor="location">Location</label>
+            <label htmlFor="company">Company</label>
             <input
               type="text"
-              name="location"
-              className="subInput"
-              value={location}
               required
-              onChange={(e) => setLocation(e.target.value)}
+              onChange={(e) => handleUpdateCompany(e, index)}
             />
           </div>
-        </div>
-        <div className="companies">
-          <label htmlFor="description">Description of Your Position</label>
-          <textarea
-            type="text"
-            value={description}
-            name="description"
-            required
-            onChange={(e) => setDescription(e.target.value)}
-          />
-          <br />
-        </div>
-        <br />
+          <div className="verticalcontainer">
+            <div className="companies">
+              <label htmlFor="date">Date</label>
+              <input
+                type="text"
+                name="date"
+                placeholder="May 23 - Present"
+                className="subInput"
+                required
+                onChange={(e) => handleUpdateCompany(e, index)}
+              />
+            </div>
+            <div className="companies">
+              <label htmlFor="location">Location</label>
+              <input
+                type="text"
+                name="location"
+                className="subInput"
+                required
+                onChange={(e) => handleUpdateCompany(e, index)}
+              />
+            </div>
+          </div>
+          <div className="companies">
+            <label htmlFor="description">Description of Your Position</label>
+            <textarea
+              type="text"
+              name="description"
+              required
+              onChange={(e) => handleUpdateCompany(e, index)}
+            />
+          </div>
+          <div className='btn__group'>
+              {companyInfo.length - 1 === index && companyInfo.length < 4 && (
+                <button id='addBtn' onClick={handleAddCompany}>
+                  Add
+                </button>
+              )}
+              {companyInfo.length > 1 && (
+                <button id='deleteBtn' onClick={() => handleRemoveCompany(index)}>
+                  Del
+                </button>
+              )}
+            </div>
+          </div>
+        ))}
+        
+        </section>
+        
+        <section id="education" className={activeSection === "education" ? "active" : "hidden"}>
         <div>
           <label htmlFor="degree">Degree</label>
           <input
@@ -474,6 +618,7 @@ const FinalResume = () => {
             type="text"
             required
             name="graduation"
+            placeholder="May 23 - Present"
             className="currentInput"
             value={graduation}
             onChange={(e) => setGraduation(e.target.value)}
@@ -490,8 +635,9 @@ const FinalResume = () => {
             onChange={(e) => setGrades(e.target.value)}
           />
         </div>
-        <br />
-        <div>
+        </section>
+       
+        <section id="skills" className={activeSection === "skills" ? "active" : "hidden"}>
           <div>
             <label htmlFor="skills">Enter the Skills You Possess</label>
             <textarea
@@ -503,11 +649,10 @@ const FinalResume = () => {
               onChange={(e) => setSkills(e.target.value)}
             />
           </div>
-        </div>
+        </section>
 
-        <br />
 
-        <div>
+        <section id="projects" className={activeSection === "projects" ? "active" : "hidden"}>
           <div>
             <label htmlFor="projectTitle">Give Your Project a Title</label>
             <input
@@ -531,11 +676,12 @@ const FinalResume = () => {
               value={projectDescription}
               onChange={(e) => setProjectDescription(e.target.value)}
             />
+            <button>CREATE MY RESUME</button>
           </div>
-        </div>
-
-        <button>CREATE RESUME</button>
+        </section>
       </form>
+    </div>
+    </div>
     </div>
   );
 };
