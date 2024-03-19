@@ -126,6 +126,35 @@ const Resume = () => {
     }, 500); // Adjust delay as needed
   };
 
+  const generateAndSendPdf = () => {
+    const resumeElement = document.getElementById("resumeElement");
+    html2canvas(resumeElement, { scale: 2 }).then((canvas) => {
+      const imgData = canvas.toDataURL("image/png");
+      const pdf = new jsPDF({
+        orientation: "portrait",
+        unit: "px",
+        format: [canvas.width, canvas.height],
+      });
+      pdf.addImage(imgData, "PNG", 0, 0, canvas.width, canvas.height);
+  
+      pdf.output('blob').then((blob) => {
+        const formData = new FormData();
+        formData.append("file", blob, "resume.pdf");
+  
+        axios.post("http://localhost:4000/api/saveResumePdf", formData, {
+            headers: {
+                "Content-Type": "multipart/form-data",
+            },
+        }).then(response => {
+            console.log("PDF uploaded", response);
+        }).catch(error => {
+            console.error("Error uploading PDF", error);
+        });
+      });
+    });
+  };
+  
+
 
 
   return (
@@ -251,6 +280,7 @@ const Resume = () => {
         </div>
 
         <button onClick={generatePdf}>Download as PDF</button>
+        <button onClick={generateAndSendPdf}>Save</button>
      
 
       {/* <div className="skills">

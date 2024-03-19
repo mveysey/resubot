@@ -6,7 +6,9 @@ const { generateID, generateText } = require("../util/ai-util"); // Import utili
 const { poolPromise } = require("../database/Database");
 require("dotenv").config();
 const sql = require("mssql");
-
+const multer = require('multer');
+const upload = multer();
+const fs = require('fs');
 const resumeController = {
   // Create a resume entry logic
   createResumeEntry: async (req, res) => {
@@ -325,6 +327,67 @@ const resumeController = {
       res.status(500).json({ error: error.message });
     }
   },
+
+  saveResumePDF: async (req, res) => {
+    try {
+      // Ensure that a file is received
+      if (!req.file) {
+        res.status(400).send('No file uploaded.');
+        return;
+      }
+  
+      const pool = await poolPromise;
+      const request = pool.request();
+      
+  
+      // Stream the file buffer from uploaded file
+      fs.readFile(req.file.path, async (err, fileBuffer) => {
+        if (err) {
+          throw err;
+        }
+  
+        const fileName = req.file.originalname;
+  
+        // Save file to database
+        await request
+          .input('FileName', sql.NVarChar, fileName)
+          .input('PDFData', sql.VarBinary(sql.MAX), fileBuffer)
+          .query('INSERT INTO ResumeRecordsPDF (FileName, resumePDF) VALUES (@FileName, @PDFData)');
+  
+        res.status(200).send('PDF saved successfully.');
+        console.log('PDF saved successfully'); 
+      });
+    } catch (error) {
+      res.status(500).send('Error saving PDF: ' + error.message);
+    } finally {
+      // Delete the file from server after saving to database
+      if (req.file && req.file.path) {
+        fs.unlink(req.file.path, (err) => {
+          if (err) {
+            console.error('Error deleting file:', err);
+          }
+        });
+      }
+    }
+  }, 
+
+  getAllSavedResumes : async (req, res) => {
+    try {
+      const pool = await poolPromise;
+      const request = pool.request();
+  
+      const result = await request.query('SELECT Id, FileName FROM ResumeRecordsPDF');
+  
+      res.json({
+        message: "Retrieved all saved resume metadata successfully",
+        data: result.recordset
+      });
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  }
+  
+  
   
 };
 
