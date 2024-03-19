@@ -27,12 +27,6 @@ const ProfilePage = ({ isCoverLetter }) => {
         <nav className="level is-mobile">
           <div className="level-item has-text-centered">
             <div>
-              <p className="total-header">Total Profiles</p>
-              <p className="title">12</p>
-            </div>
-          </div>
-          <div className="level-item has-text-centered">
-            <div>
               <p className="total-header">Total Resumes</p>
               <p className="title">23</p>
             </div>
@@ -52,7 +46,7 @@ const ProfilePage = ({ isCoverLetter }) => {
             <div className="level-left">
               <div className="level-item">
                 <p className="title is-4">
-                  <a href={isCoverLetter ? "/create_coverletter" : "/create_resume"} className="new-button button is-info">
+                  <a href={isCoverLetter ? "/create_coverletter" : "/finalresume"} className="new-button button is-info">
                     {isCoverLetter ? "New Cover Letter" : "New Resume"}
                   </a>
                 </p>

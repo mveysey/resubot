@@ -5,7 +5,7 @@ import resume3 from "../../assets/resume_template3.PNG";
 import resume2 from "../../assets/resume_template2.PNG";
 import resume4 from "../../assets/resume_template4.PNG";
 import "./CreateResume.scss";
-import Loading from "../Loading/Loading.jsx";
+import Loader from "../../components/Loader/Loader.jsx";
 
 const CreateResume = () => {
   //To Select a Resume Template 
@@ -78,13 +78,13 @@ const CreateResume = () => {
   const handleAddCompany = () =>
     setCompanyInfo([...companyInfo, { role: "", company: "", date: "", location: "", description: "" }]);
 
-//👇🏻 removes a selected item from the list
+// removes a selected item from the list
 const handleRemoveCompany = (index) => {
     const list = [...companyInfo];
     list.splice(index, 1);
     setCompanyInfo(list);
 };
-//👇🏻 updates an item within the list
+// updates an item within the list
 const handleUpdateCompany = (e, index) => {
     const { name, value } = e.target;
     const list = [...companyInfo];
@@ -215,7 +215,7 @@ const handleUpdateCompany = (e, index) => {
   };
 
   if (loading) {
-    return <Loading />;
+    return <Loader />;
   } 
 
   return (
