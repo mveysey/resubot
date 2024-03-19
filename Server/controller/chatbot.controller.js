@@ -8,7 +8,9 @@ const chatbotController = {
     interactWithChatbot: async (req, res) => {
       try {
         const userMessages = req.body.messages; // Array of message objects
+        // const aiResponse = await generateText([systemMessage, userMessages]);
         const aiResponse = await generateText(userMessages);
+        
   
         res.json({ message: aiResponse });
       } catch (error) {
