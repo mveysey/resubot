@@ -9,6 +9,7 @@ const chatbotController = {
       try {
         const userMessages = req.body.messages; // Array of message objects
         const aiResponse = await generateText(userMessages);
+        
   
         res.json({ message: aiResponse });
       } catch (error) {

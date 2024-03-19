@@ -1,35 +1,35 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./Chatbot.scss";
 
 const ChatbotPage = () => {
-  const [messages, setMessages] = useState([]); // To store the conversation
-  const [input, setInput] = useState(''); // To handle the user input
+  const [messages, setMessages] = useState([]);
+  const [input, setInput] = useState('');
 
-  // Function to send message and get response from the backend
   const sendMessage = async () => {
-    console.log("sendMessage called");
-    if (!input.trim()) return; // Avoid sending empty messages
-
+    if (!input.trim()) return;
+  
     const userMessage = { role: 'user', content: input };
-    setMessages(currentMessages => [...currentMessages, userMessage]); // Update conversation with user message
-
+    const systemMessage = { role: "system", content: 'Be as brief as possible' };
+    
+    const messagesForBackend = [...messages, systemMessage, userMessage]; // Include systemMessage for the backend
+  
     try {
-      const updatedMessages = [...messages, userMessage];
-      const response = await axios.post('http://localhost:4000/api/chatbot/create', { messages: updatedMessages });
-
-      // const response = await axios.post('/api/chatbot/create', {
-      //   messages: [...messages, userMessage],
-      // });
-      const aiMessage = { role: 'ai', content: response.data.message };
-      setMessages(currentMessages => [...currentMessages, aiMessage]); // Update conversation with AI response
+      const response = await axios.post('http://localhost:4000/api/chatbot/create', { messages: messagesForBackend });
+      const aiMessage = { role: 'assistant', content: response.data.message };
+  
+      setMessages(prevMessages => [...prevMessages, userMessage, aiMessage]); // Only add userMessage and aiMessage to state
     } catch (error) {
       console.error('Error:', error);
-      // Handle errors appropriately
     }
-
+  
     setInput(''); // Clear input field
   };
+
+  const startNewSession = () => {
+    setMessages([]); // Clears the chat history
+  };
+  
 
 return (
     <div className="chatbot-wrapper">
@@ -84,7 +84,7 @@ return (
                 </div>
 
                 <div className="panel-block">
-                    <button className="button is-danger is-fullwidth">
+                    <button className="button is-danger is-fullwidth" onClick={startNewSession}>
                         New AI Session
                     </button>
                 </div>
@@ -111,7 +111,9 @@ return (
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
             ></textarea>
-            <button onClick={sendMessage}>Send</button>
+            {/* <button onClick={sendMessage}>Send</button> */}
+            <button onClick={sendMessage} className="send-button">Send</button>
+
         </div>
     </div>
 );
