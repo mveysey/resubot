@@ -8,8 +8,7 @@ import resume2 from "../assets/resume_template2.PNG";
 import resume4 from "../assets/resume_template4.PNG";
 
 const FinalResume = () => {
-
-  const [resumeDisplayPath, setResumeDisplayPath] = useState(""); 
+  const [resumeDisplayPath, setResumeDisplayPath] = useState("");
   const [selectedTemplate, setSelectedTemplate] = useState("");
 
   //To Cutomize Resume for new position
@@ -23,7 +22,9 @@ const FinalResume = () => {
   const [linkedIn, setLinkedIn] = useState("");
   const [personalLink, setPersonalLink] = useState("");
 
-  const [companyInfo, setCompanyInfo] = useState([{ role: "", company: "", date: "", location: "", description: "" }]);
+  const [companyInfo, setCompanyInfo] = useState([
+    { role: "", company: "", date: "", location: "", description: "" },
+  ]);
   const [role, setRole] = useState("");
   const [company, setCompany] = useState("");
   const [date, setDate] = useState("");
@@ -53,10 +54,12 @@ const FinalResume = () => {
   const navigate = useNavigate();
 
   const [activeSection, setActiveSection] = useState("templates"); // State to manage active section
-  
 
   const handleAddCompany = () =>
-  setCompanyInfo([...companyInfo, { role: "", company: "", date: "", location: "", description: "" }]);
+    setCompanyInfo([
+      ...companyInfo,
+      { role: "", company: "", date: "", location: "", description: "" },
+    ]);
 
   //removes a selected item from the list
   const handleRemoveCompany = (index) => {
@@ -75,21 +78,18 @@ const FinalResume = () => {
   const handleSectionClick = (event, sectionId) => {
     event.preventDefault(); // Prevents the default anchor link behavior
     setActiveSection(sectionId);
-  };  
-
-  
-
+  };
 
   const handleTemplateSelect = (templateName) => {
     setSelectedTemplate(templateName);
     switch (templateName) {
-      case 'resume2':
+      case "resume2":
         setResumeDisplayPath("/resume2");
         break;
-      case 'resume3':
+      case "resume3":
         setResumeDisplayPath("/resume3");
         break;
-      case 'resume4':
+      case "resume4":
         setResumeDisplayPath("/resume4"); // Assuming you meant to navigate to /resume1 for the 'resume4' case
         break;
       default:
@@ -97,7 +97,6 @@ const FinalResume = () => {
         break;
     }
   };
-
 
   // Define a function to fill out the form with predefined data
   const fillFormWithData = () => {
@@ -219,8 +218,7 @@ const FinalResume = () => {
     setLoading(true); // Start loading
 
     // Navigate to the loading page (resume-generation) first
-    navigate('/resume-generation');
-
+    navigate("/resume-generation");
 
     const formData = new FormData();
 
@@ -233,11 +231,9 @@ const FinalResume = () => {
     formData.append("linkedIn", linkedIn);
     formData.append("personalLink", personalLink);
 
-
     formData.append("skills", skills);
 
     formData.append("projectTitle", projectTitle);
-
 
     axios
       .post("http://localhost:4000/api/resume/create", {
@@ -270,7 +266,6 @@ const FinalResume = () => {
           const skillsGenerated = res.data.data.skillsGenerated;
           const projectGenerated = res.data.data.projectGenerated;
 
-
           // state object
           const resumeData = {
             fullName,
@@ -297,7 +292,7 @@ const FinalResume = () => {
 
           console.log(resumeData);
           navigate(resumeDisplayPath, { state: { resumeData } });
-        
+
           axios
             .post("http://localhost:4000/api/resume/save", {
               experienceData,
@@ -342,346 +337,394 @@ const FinalResume = () => {
             .finally(() => {
               setLoading(false); // Stop loading after the entire process
             });
-            
-
         }
       })
       .catch((err) => console.error(err));
-      
-  
   };
 
   return (
-
     <div className="wrapper">
       <div className="wrapper_inner">
         <div className="vertical_wrap">
-			<div className="backdrop"></div>
-			<div className="vertical_bar">
-				
-      <ul className="menu">
-  <li>
-    <a href="#templates" 
-       onClick={(e) => handleSectionClick(e, "templates")}
-       className={activeSection === "templates" ? "active" : ""}>
-      <span className="text">Resume Templates</span>
-    </a>
-  </li>
-  <li>
-    <a href="#customize" 
-       onClick={(e) => handleSectionClick(e, "customize")}
-       className={activeSection === "customize" ? "active" : ""}>
-      <span className="text">Customize Resume</span>
-    </a>
-  </li>
-  <li>
-    <a href="#contact" 
-       onClick={(e) => handleSectionClick(e, "contact")}
-       className={activeSection === "contact" ? "active" : ""}>
-      <span className="text">Contact Info</span>
-    </a>
-  </li>
-  <li>
-    <a href="#experience" 
-       onClick={(e) => handleSectionClick(e, "experience")}
-       className={activeSection === "experience" ? "active" : ""}>
-      <span className="text">Experience</span>
-    </a>
-  </li>
-  <li>
-    <a href="#education" 
-       onClick={(e) => handleSectionClick(e, "education")}
-       className={activeSection === "education" ? "active" : ""}>
-      <span className="text">Education</span>
-    </a>
-  </li>
-  <li>
-    <a href="#skills" 
-       onClick={(e) => handleSectionClick(e, "skills")}
-       className={activeSection === "skills" ? "active" : ""}>
-      <span className="text">Skills</span>
-    </a>
-  </li>
-  <li>
-    <a href="#projects" 
-       onClick={(e) => handleSectionClick(e, "projects")}
-       className={activeSection === "projects" ? "active" : ""}>
-      <span className="text">Projects</span>
-    </a>
-  </li>
-</ul>
+          <div className="backdrop"></div>
+          <div className="vertical_bar">
+            <ul className="menu">
+              <li>
+                <a
+                  href="#templates"
+                  onClick={(e) => handleSectionClick(e, "templates")}
+                  className={activeSection === "templates" ? "active" : ""}
+                >
+                  <span className="text">Resume Templates</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#customize"
+                  onClick={(e) => handleSectionClick(e, "customize")}
+                  className={activeSection === "customize" ? "active" : ""}
+                >
+                  <span className="text">Customize Resume</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#contact"
+                  onClick={(e) => handleSectionClick(e, "contact")}
+                  className={activeSection === "contact" ? "active" : ""}
+                >
+                  <span className="text">Contact Info</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#experience"
+                  onClick={(e) => handleSectionClick(e, "experience")}
+                  className={activeSection === "experience" ? "active" : ""}
+                >
+                  <span className="text">Experience</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#education"
+                  onClick={(e) => handleSectionClick(e, "education")}
+                  className={activeSection === "education" ? "active" : ""}
+                >
+                  <span className="text">Education</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#skills"
+                  onClick={(e) => handleSectionClick(e, "skills")}
+                  className={activeSection === "skills" ? "active" : ""}
+                >
+                  <span className="text">Skills</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#projects"
+                  onClick={(e) => handleSectionClick(e, "projects")}
+                  className={activeSection === "projects" ? "active" : ""}
+                >
+                  <span className="text">Projects</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
 
+        <div className="container">
+          <form
+            onSubmit={handleFormSubmit}
+            method="POST"
+            encType="multipart/form-data"
+          >
+            {/*DEMO */}
+            <button
+              onClick={fillFormWithData}
+              className="button is-small is-danger"
+            >
+              Fill with Predefined Data
+            </button>
+            <div
+              id="templates"
+              className={activeSection === "templates" ? "active" : "hidden"}
+            >
+              <img
+                src={resume3}
+                alt="Resume3"
+                onClick={() => handleTemplateSelect("resume3")}
+                className={
+                  selectedTemplate === "resume3" ? "selected" : "hoverable"
+                }
+              />
+              <img
+                src={resume2}
+                alt="Resume2"
+                onClick={() => handleTemplateSelect("resume2")}
+                className={
+                  selectedTemplate === "resume2" ? "selected" : "hoverable"
+                }
+              />
+              <img
+                src={resume4}
+                alt="Resume4"
+                onClick={() => handleTemplateSelect("resume4")}
+                className={
+                  selectedTemplate === "resume4" ? "selected" : "hoverable"
+                }
+              />
+            </div>
 
-				
-			</div>
-		</div>
-      
-    
-    <div className="container">
-      <form
-        onSubmit={handleFormSubmit}
-        method="POST"
-        encType="multipart/form-data"
-      >
-        {/*DEMO */}
-        <button
-          onClick={fillFormWithData}
-          className="button is-small is-danger"
-        >
-          Fill with Predefined Data
-        </button>
-        <div id="templates" className={activeSection === "templates" ? "active" : "hidden"}>
-        <img src={resume3} alt="Resume3" onClick={() => handleTemplateSelect('resume3')} className={selectedTemplate === 'resume3' ? 'selected' : 'hoverable'} />
-        <img src={resume2} alt="Resume2" onClick={() => handleTemplateSelect('resume2')} className={selectedTemplate === 'resume2' ? 'selected' : 'hoverable'} />
-        <img src={resume4} alt="Resume4" onClick={() => handleTemplateSelect('resume4')} className={selectedTemplate === 'resume4' ? 'selected' : 'hoverable'} />
+            <div
+              id="customize"
+              className={activeSection === "customize" ? "active" : "hidden"}
+            >
+              <div>
+                <label htmlFor="industry">Industry</label>
+                <input
+                  type="text"
+                  name="industry"
+                  className="currentInput"
+                  value={industry}
+                  onChange={(e) => setIndustry(e.target.value)}
+                />
+              </div>
+              <label htmlFor="jobDetails">Job Details</label>
+              <textarea
+                type="text"
+                name="jobDetails"
+                id="jobDetails"
+                value={jobDetails}
+                onChange={(e) => setjobDetails(e.target.value)}
+              />
+            </div>
+            <div
+              id="contact"
+              className={activeSection === "contact" ? "active" : "hidden"}
+            >
+              <label htmlFor="fullName">Full Name</label>
+              <input
+                type="text"
+                required
+                name="fullName"
+                id="fullName"
+                value={fullName}
+                onChange={(e) => setFullName(e.target.value)}
+              />
+              <label htmlFor="email">Email Address</label>
+              <input
+                type="text"
+                required
+                name="email"
+                className="currentInput"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              <label htmlFor="phoneNumber">Phone Number</label>
+              <input
+                type="text"
+                required
+                name="phoneNumber"
+                className="currentInput"
+                value={phoneNumber}
+                onChange={(e) => setPhoneNumber(e.target.value)}
+              />
+              <label htmlFor="linkedIn">
+                <strong>LinkedIn </strong>URL
+              </label>
+              <input
+                type="text"
+                required
+                name="linkedIn"
+                className="currentInput"
+                value={linkedIn}
+                onChange={(e) => setLinkedIn(e.target.value)}
+              />
+              <label htmlFor="personalLink">
+                <strong>Personal Website </strong>OR Relevant Links
+              </label>
+              <input
+                type="text"
+                name="personalLink"
+                className="currentInput"
+                value={personalLink}
+                onChange={(e) => setPersonalLink(e.target.value)}
+              />
+            </div>
+            <section
+              id="experience"
+              className={activeSection === "experience" ? "active" : "hidden"}
+            >
+              {companyInfo.map((company, index) => (
+                <div className="nestedContainer" key={index}>
+                  <div className="companies">
+                    <label htmlFor="role">Position Held</label>
+                    <input
+                      type="text"
+                      name="role"
+                      required
+                      onChange={(e) => handleUpdateCompany(e, index)}
+                    />
+                  </div>
+                  <div className="companies">
+                    <label htmlFor="company">Company</label>
+                    <input
+                      type="text"
+                      name="company"
+                      required
+                      onChange={(e) => handleUpdateCompany(e, index)}
+                    />
+                  </div>
+                  <div className="verticalcontainer">
+                    <div className="companies">
+                      <label htmlFor="date">Date</label>
+                      <input
+                        type="text"
+                        name="date"
+                        placeholder="May 23 - Present"
+                        className="subInput"
+                        required
+                        onChange={(e) => handleUpdateCompany(e, index)}
+                      />
+                    </div>
+                    <div className="companies">
+                      <label htmlFor="location">Location</label>
+                      <input
+                        type="text"
+                        name="location"
+                        className="subInput"
+                        required
+                        onChange={(e) => handleUpdateCompany(e, index)}
+                      />
+                    </div>
+                  </div>
+                  <div className="companies">
+                    <label htmlFor="description">
+                      Description of Your Position
+                    </label>
+                    <textarea
+                      type="text"
+                      name="description"
+                      required
+                      onChange={(e) => handleUpdateCompany(e, index)}
+                    />
+                  </div>
+                  <div className="btn__group">
+                    {companyInfo.length - 1 === index &&
+                      companyInfo.length < 4 && (
+                        <button id="addBtn" onClick={handleAddCompany}>
+                          Add
+                        </button>
+                      )}
+                    {companyInfo.length > 1 && (
+                      <button
+                        id="deleteBtn"
+                        onClick={() => handleRemoveCompany(index)}
+                      >
+                        Del
+                      </button>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </section>
+
+            <section
+              id="education"
+              className={activeSection === "education" ? "active" : "hidden"}
+            >
+              <div>
+                <label htmlFor="degree">Degree</label>
+                <input
+                  type="text"
+                  required
+                  name="degree"
+                  className="currentInput"
+                  value={degree}
+                  onChange={(e) => setDegree(e.target.value)}
+                />
+              </div>
+              <div>
+                <label htmlFor="schoolName">University Name</label>
+                <input
+                  type="text"
+                  required
+                  name="schoolName"
+                  className="currentInput"
+                  value={schoolName}
+                  onChange={(e) => setSchoolName(e.target.value)}
+                />
+              </div>
+              <div>
+                <label htmlFor="schoolLocation">University Location</label>
+                <input
+                  type="text"
+                  required
+                  name="schoolLocation"
+                  className="currentInput"
+                  value={schoolLocation}
+                  onChange={(e) => setSchoolLocation(e.target.value)}
+                />
+              </div>
+              <div>
+                <label htmlFor="graduation">Graduation Date</label>
+                <input
+                  type="text"
+                  required
+                  name="graduation"
+                  placeholder="May 23 - Present"
+                  className="currentInput"
+                  value={graduation}
+                  onChange={(e) => setGraduation(e.target.value)}
+                />
+              </div>
+              <div>
+                <label htmlFor="grades">Grades</label>
+                <input
+                  type="text"
+                  placeholder="Game Programming: 90%, Information Security: 99%"
+                  name="grades"
+                  className="currentInput"
+                  value={grades}
+                  onChange={(e) => setGrades(e.target.value)}
+                />
+              </div>
+            </section>
+
+            <section
+              id="skills"
+              className={activeSection === "skills" ? "active" : "hidden"}
+            >
+              <div>
+                <label htmlFor="skills">Enter the Skills You Possess</label>
+                <textarea
+                  type="text"
+                  required
+                  name="skills"
+                  className="currentInput"
+                  value={skills}
+                  onChange={(e) => setSkills(e.target.value)}
+                />
+              </div>
+            </section>
+
+            <section
+              id="projects"
+              className={activeSection === "projects" ? "active" : "hidden"}
+            >
+              <div>
+                <label htmlFor="projectTitle">Give Your Project a Title</label>
+                <input
+                  type="text"
+                  required
+                  name="projectTitle"
+                  className="currentInput"
+                  value={projectTitle}
+                  onChange={(e) => setProjectTitle(e.target.value)}
+                />
+              </div>
+              <div>
+                <label htmlFor="projectDescription">
+                  Description of Your Project
+                </label>
+                <textarea
+                  type="text"
+                  required
+                  name="projectDescription"
+                  className="currentInput"
+                  value={projectDescription}
+                  onChange={(e) => setProjectDescription(e.target.value)}
+                />
+                <button>CREATE MY RESUME</button>
+              </div>
+            </section>
+          </form>
+        </div>
       </div>
-              
-        
-        
-        <div id="customize" className={activeSection === "customize" ? "active" : "hidden"}>
-        <div>
-            <label htmlFor="industry">Industry</label>
-            <input
-              type="text"
-              name="industry"
-              className="currentInput"
-              value={industry}
-              onChange={(e) => setIndustry(e.target.value)}
-            />
-          </div>
-        <label htmlFor="jobDetails">Job Details</label>
-          <textarea
-            type="text"
-            name="jobDetails"
-            id="jobDetails"
-            value={jobDetails}
-            onChange={(e) => setjobDetails(e.target.value)}
-          />
-          
-        </div>
-        <div id="contact" className={activeSection === "contact" ? "active" : "hidden"}>
-          <label htmlFor="fullName">Full Name</label>
-          <input
-            type="text"
-            required
-            name="fullName"
-            id="fullName"
-            value={fullName}
-            onChange={(e) => setFullName(e.target.value)}
-          />
-          <label htmlFor="email">Email Address</label>
-          <input
-            type="text"
-            required
-            name="email"
-            className="currentInput"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <label htmlFor="phoneNumber">Phone Number</label>
-          <input
-            type="text"
-            required
-            name="phoneNumber"
-            className="currentInput"
-            value={phoneNumber}
-            onChange={(e) => setPhoneNumber(e.target.value)}
-          />
-          <label htmlFor="linkedIn">
-            <strong>LinkedIn </strong>URL
-          </label>
-          <input
-            type="text"
-            required
-            name="linkedIn"
-            className="currentInput"
-            value={linkedIn}
-            onChange={(e) => setLinkedIn(e.target.value)}
-          />
-          <label htmlFor="personalLink">
-            <strong>Personal Website </strong>OR Relevant Links
-          </label>
-          <input
-            type="text"
-            name="personalLink"
-            className="currentInput"
-            value={personalLink}
-            onChange={(e) => setPersonalLink(e.target.value)}
-          />
-        </div>
-        <section id="experience" className={activeSection === "experience" ? "active" : "hidden"}>
-        {companyInfo.map((company, index) => (
-          <div className="nestedContainer" key={index}>
-            <div className="companies">
-            <label htmlFor="role">Position Held</label>
-            <input
-              type="text"
-              name="role"
-              required
-              onChange={(e) => handleUpdateCompany(e, index)}
-            />
-          </div>
-          <div className="companies">
-            <label htmlFor="company">Company</label>
-            <input
-              type="text"
-              required
-              onChange={(e) => handleUpdateCompany(e, index)}
-            />
-          </div>
-          <div className="verticalcontainer">
-            <div className="companies">
-              <label htmlFor="date">Date</label>
-              <input
-                type="text"
-                name="date"
-                placeholder="May 23 - Present"
-                className="subInput"
-                required
-                onChange={(e) => handleUpdateCompany(e, index)}
-              />
-            </div>
-            <div className="companies">
-              <label htmlFor="location">Location</label>
-              <input
-                type="text"
-                name="location"
-                className="subInput"
-                required
-                onChange={(e) => handleUpdateCompany(e, index)}
-              />
-            </div>
-          </div>
-          <div className="companies">
-            <label htmlFor="description">Description of Your Position</label>
-            <textarea
-              type="text"
-              name="description"
-              required
-              onChange={(e) => handleUpdateCompany(e, index)}
-            />
-          </div>
-          <div className='btn__group'>
-              {companyInfo.length - 1 === index && companyInfo.length < 4 && (
-                <button id='addBtn' onClick={handleAddCompany}>
-                  Add
-                </button>
-              )}
-              {companyInfo.length > 1 && (
-                <button id='deleteBtn' onClick={() => handleRemoveCompany(index)}>
-                  Del
-                </button>
-              )}
-            </div>
-          </div>
-        ))}
-        
-        </section>
-        
-        <section id="education" className={activeSection === "education" ? "active" : "hidden"}>
-        <div>
-          <label htmlFor="degree">Degree</label>
-          <input
-            type="text"
-            required
-            name="degree"
-            className="currentInput"
-            value={degree}
-            onChange={(e) => setDegree(e.target.value)}
-          />
-        </div>
-        <div>
-          <label htmlFor="schoolName">University Name</label>
-          <input
-            type="text"
-            required
-            name="schoolName"
-            className="currentInput"
-            value={schoolName}
-            onChange={(e) => setSchoolName(e.target.value)}
-          />
-        </div>
-        <div>
-          <label htmlFor="schoolLocation">University Location</label>
-          <input
-            type="text"
-            required
-            name="schoolLocation"
-            className="currentInput"
-            value={schoolLocation}
-            onChange={(e) => setSchoolLocation(e.target.value)}
-          />
-        </div>
-        <div>
-          <label htmlFor="graduation">Graduation Date</label>
-          <input
-            type="text"
-            required
-            name="graduation"
-            placeholder="May 23 - Present"
-            className="currentInput"
-            value={graduation}
-            onChange={(e) => setGraduation(e.target.value)}
-          />
-        </div>
-        <div>
-          <label htmlFor="grades">Grades</label>
-          <input
-            type="text"
-            placeholder="Game Programming: 90%, Information Security: 99%"
-            name="grades"
-            className="currentInput"
-            value={grades}
-            onChange={(e) => setGrades(e.target.value)}
-          />
-        </div>
-        </section>
-       
-        <section id="skills" className={activeSection === "skills" ? "active" : "hidden"}>
-          <div>
-            <label htmlFor="skills">Enter the Skills You Possess</label>
-            <textarea
-              type="text"
-              required
-              name="skills"
-              className="currentInput"
-              value={skills}
-              onChange={(e) => setSkills(e.target.value)}
-            />
-          </div>
-        </section>
-
-
-        <section id="projects" className={activeSection === "projects" ? "active" : "hidden"}>
-          <div>
-            <label htmlFor="projectTitle">Give Your Project a Title</label>
-            <input
-              type="text"
-              required
-              name="projectTitle"
-              className="currentInput"
-              value={projectTitle}
-              onChange={(e) => setProjectTitle(e.target.value)}
-            />
-          </div>
-          <div>
-            <label htmlFor="projectDescription">
-              Description of Your Project
-            </label>
-            <textarea
-              type="text"
-              required
-              name="projectDescription"
-              className="currentInput"
-              value={projectDescription}
-              onChange={(e) => setProjectDescription(e.target.value)}
-            />
-            <button>CREATE MY RESUME</button>
-          </div>
-        </section>
-      </form>
-    </div>
-    </div>
     </div>
   );
 };

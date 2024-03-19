@@ -18,6 +18,7 @@ const resumeController = {
         (email = req.body.email),
         (linkedIn = req.body.linkedIn),
         (personalLink = req.body.personalLink),
+        (companyInfo = req.body.companyInfo),
         (role = req.body.role),
         (company = req.body.company),
         (date = req.body.date),
@@ -41,6 +42,7 @@ const resumeController = {
         email,
         linkedIn,
         personalLink,
+        companyInfo,
         role,
         company,
         date,
@@ -114,18 +116,28 @@ const resumeController = {
       }
 
       // create prompts to send to openAI API as user
-      const experiencePrompt = `Write me a 50 word description about my role at ${company} in ${location} where I worked as a ${role}. I was responsible for ${description}. I worked here during ${date}`;
+      const experiencePrompt1 = `Write me a 50 word description about my role at ${company} in ${location} where I worked as a ${role}. I was responsible for ${description}. I worked here during ${date}`;
       const educationPrompt = `Write 5 courses WITH NO DESCRIPTION OF THEM, just list the course names, that I might have taken at ${schoolName} in ${schoolLocation}, getting my degree in ${degree}. My graduation date is ${graduation}. Please look at my ${skills} and ${grades} when choosing these and compare them with the job description I've provided you, making sure I'm demonstarting all of my important courses related to the job.`;
-      const skillsPrompt = `Write 10 points for my resume on what I am good at given my skills, ${skills} and the job description you were provided with. Also include information from the courses I have taken IF THEY ARE APPLICABLE: here are the courses ${grades}. Don't write a description for any skill, just write the skill`;
+      const skillsPrompt = `Write my top 5 skills for my resume given the job description and industry you were provided with and that these are all of my ${skills}. Also include information from the courses I have taken IF THEY ARE APPLICABLE: here are the courses ${grades}. Don't write a description for any skill, just THE NAME of the skill for example "Java" or "Team Player"`;
       const projectPrompt = `Write me a 50 word description about my project called ${projectTitle} that consisted of ${projectDescription}`;
 
       //  send context prompt before generating resume info
       const systemMessage = { role: "system", content: systemPrompt };
 
-      // generate all resume info
+      const generatedCompanyInfo = [];
+
+      await companyInfo.map(async (experienceItem) => {
+        const experiencePrompt = `Write me a 50 word description about my role at ${experienceItem.company} in ${experienceItem.location} where I worked as a ${experienceItem.role}. I was responsible for ${experienceItem.description}. I worked here during ${experienceItem.date}`;
+        experienceItem.description = await generateText([
+          { role: "user", content: experiencePrompt },
+        ]);
+        generatedCompanyInfo.push(experienceItem);
+      });
+
+      console.log(generatedCompanyInfo);
+
       const experienceGenerated = await generateText([
-        systemMessage,
-        { role: "user", content: experiencePrompt },
+        { role: "user", content: experiencePrompt1 },
       ]);
 
       const educationGenerated = await generateText([
@@ -148,13 +160,12 @@ const resumeController = {
       ]);
 
       const chatgptData = {
+        generatedCompanyInfo,
         experienceGenerated,
         educationGenerated,
         skillsGenerated,
         projectGenerated,
       };
-
-      // console.log(chatgptData);
 
       const responseData = { ...newEntry, ...chatgptData };
 
@@ -247,7 +258,7 @@ const resumeController = {
       let systemPrompt = `You are a updating a resume for someone who wants this change ${regenerateRequest}. Never forget that change when you are writing the resume.`;
 
       // create prompts to send to openAI API as user
-      const experiencePrompt = `Write me a 50 word description about my role at ${company} in ${location} where I worked as a ${role}. I was responsible for ${description}. I worked here during ${date}.  Recall this ${regenerateRequest} when writing EVERYTHING.`;
+      const experiencePrompt1 = `Write me a 50 word description about my role at ${company} in ${location} where I worked as a ${role}. I was responsible for ${description}. I worked here during ${date}.  Recall this ${regenerateRequest} when writing EVERYTHING.`;
       const educationPrompt = `Write 5 courses WITH NO DESCRIPTION OF THEM, just list the course names, that I might have taken at ${schoolName} in ${schoolLocation}, getting my degree in ${degree}. My graduation date is ${graduation}. Please look at my ${skills} and ${grades} when choosing these and compare them with the job description I've provided you, making sure I'm demonstarting all of my important courses related to the job. Recall this ${regenerateRequest} when writing EVERYTHING.`;
       const skillsPrompt = `Write 10 points for my resume on what I am good at given my skills, ${skills}. Also include information from the courses I have taken IF THEY ARE APPLICABLE: here are the courses ${courses}. Don't write a description for any skill, just write the skill.  Recall this ${regenerateRequest} when writing EVERYTHING.`;
       const projectPrompt = `Write me a 50 word description about my project called ${projectTitle} that consisted of ${projectDescription}.  Recall this ${regenerateRequest} when writing EVERYTHING.`;
@@ -261,7 +272,7 @@ const resumeController = {
       // generate all resume info
       const experienceGenerated = await generateText([
         systemMessage,
-        { role: "user", content: experiencePrompt },
+        { role: "user", content: experiencePrompt1 },
       ]);
 
       const educationGenerated = await generateText([
@@ -325,7 +336,6 @@ const resumeController = {
       res.status(500).json({ error: error.message });
     }
   },
-  
 };
 
 module.exports = resumeController;
