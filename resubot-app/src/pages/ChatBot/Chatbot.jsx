@@ -25,6 +25,10 @@ const ChatbotPage = () => {
   
     setInput(''); // Clear input field
   };
+
+  const startNewSession = () => {
+    setMessages([]); // Clears the chat history
+  };
   
 
 return (
@@ -80,7 +84,7 @@ return (
                 </div>
 
                 <div className="panel-block">
-                    <button className="button is-danger is-fullwidth">
+                    <button className="button is-danger is-fullwidth" onClick={startNewSession}>
                         New AI Session
                     </button>
                 </div>
