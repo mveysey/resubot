@@ -17,6 +17,8 @@ router.post("/saveInputData", resumeController.saveInputResumeData); // route fo
 // Route for saving resume PDF - apply multer middleware only to this route
 router.post("/saveResumePDF", upload.single('file'), resumeController.saveResumePDF);
 router.get("/getAllSavedResumes", resumeController.getAllSavedResumes);
+// Route for fetching a saved resume PDF
+router.get("/getResumePdf/:id", resumeController.getSavedResumePDF);
 
 
 module.exports = router;
