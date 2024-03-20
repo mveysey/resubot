@@ -12,35 +12,26 @@ const Resume2 = () => {
   const navigate = useNavigate();
 
   const location = useLocation();
+  // const [resumeData, setResumeData] = useState(location.state?.resumeData || {}); // Declare a state to hold your resume data
   const resumeData = location.state?.resumeData || {};
 
-  // Convert the entire experienceData object to a JSON string
-  const experienceDataString = JSON.stringify(resumeData, null, 2);
   const fullName = resumeData.fullName || "";
   const phoneNumber = resumeData.phoneNumber || "";
   const email = resumeData.email || "";
   const linkedIn = resumeData.linkedIn || "";
   const personalLink = resumeData.personalLink || "";
   const companyInfo = resumeData.companyInfo || "";
-  const role = resumeData.role || "";
-  const company = resumeData.company || "";
-  const date = resumeData.date || "";
-  const jobLocation = resumeData.jobLocation || "";
   const degree = resumeData.degree || "";
   const schoolLocation = resumeData.schoolLocation || "";
   const schoolName = resumeData.schoolName || "";
   const graduation = resumeData.graduation || "";
   const grades = resumeData.grades || "";
   const projectTitle = resumeData.projectTitle || "";
-  const generatedCompanyInfo = resumeData.generatedCompanyInfo || "";
   const experienceGenerated1 = resumeData.experienceGenerated1 || "";
   const experienceGenerated2 = resumeData.experienceGenerated2 || "";
-  const experienceData = resumeData.experienceData || "";
   const educationGenerated = resumeData.educationGenerated || "";
   const skillsGenerated = resumeData.skillsGenerated || "";
   const projectGenerated = resumeData.projectGenerated || "";
-
-  console.log(generatedCompanyInfo);
 
   // Split the skills data based on numbered lists
   const skills = skillsGenerated.split(/\d+\.\s/).filter(Boolean);
@@ -48,9 +39,34 @@ const Resume2 = () => {
   // Split the education data based on numbered lists
   const educationCourses = educationGenerated.split(/\d+\.\s/).filter(Boolean);
 
+  const displayExperience2 = () => {
+    if (companyInfo[1]) {
+      return (
+        <li className="content">
+          <div class="jobPosition">
+            <span class="bolded">{companyInfo[1].role}</span>
+          </div>
+          <div class="companyName bolded">
+            <span>
+              {companyInfo[1].company} - {companyInfo[1].location}
+            </span>
+            <span className="date">{companyInfo[1].date}</span>
+          </div>
+          <div class="smallText">
+            <ul>
+              <li>{experienceGenerated2}</li>
+            </ul>
+          </div>
+        </li>
+      );
+    }
+  };
+
   const regenerateData = (e) => {
     e.preventDefault();
     const formData = new FormData();
+
+    navigate("/resume-generation");
 
     formData.append("regenerateRequest", regenerateRequest);
 
@@ -62,11 +78,9 @@ const Resume2 = () => {
         email: email,
         linkedIn: linkedIn,
         personalLink: personalLink,
-        role: role,
-        company: company,
-        location: location,
-        description: experienceData,
-        date: date,
+        companyInfo: companyInfo,
+        experienceGenerated1: experienceGenerated1,
+        experienceGenerated2: experienceGenerated2,
         degree: degree,
         courses: educationGenerated,
         schoolName: schoolName,
@@ -79,11 +93,6 @@ const Resume2 = () => {
       })
       .then((res) => {
         if (res.data.message) {
-          const experienceData = res.data.data.experienceGenerated;
-          const educationGenerated = res.data.data.educationGenerated;
-          const skillsGenerated = res.data.data.skillsGenerated;
-          const projectGenerated = res.data.data.projectGenerated;
-
           // state object
           const resumeData = {
             regenerateRequest,
@@ -92,22 +101,20 @@ const Resume2 = () => {
             email,
             linkedIn,
             personalLink,
-            role,
-            company,
-            date,
-            location,
+            companyInfo,
             degree,
             schoolLocation,
             schoolName,
             graduation,
             projectTitle,
             grades,
-            experienceData,
+            experienceGenerated1,
+            experienceGenerated2,
             educationGenerated,
             skillsGenerated,
             projectGenerated,
           };
-          console.log("************* Experience Data", experienceData);
+          console.log("******** experience generated", experienceGenerated1);
           navigate("/resume2", { state: { resumeData } });
         }
       })
@@ -133,6 +140,22 @@ const Resume2 = () => {
 
   return (
     <>
+      <form
+        onSubmit={regenerateData}
+        method="POST"
+        encType="multipart/form-data"
+        id="regenerateForm"
+      >
+        <label>Regeneration Request</label>
+        <input
+          type="text"
+          name="regenerationRequest"
+          id="regenerateRequestID"
+          value={regenerateRequest}
+          onChange={(e) => setRegenerateRequest(e.target.value)}
+        />
+        <button>Submit Regeneration Request</button>
+      </form>
       <div class="container2">
         <div class="leftPanel">
           <div class="details">
@@ -223,22 +246,7 @@ const Resume2 = () => {
                   </ul>
                 </div>
               </li>
-              <li className="content">
-                <div class="jobPosition">
-                  <span class="bolded">{companyInfo[1].role}</span>
-                </div>
-                <div class="companyName bolded">
-                  <span>
-                    {companyInfo[1].company} - {companyInfo[1].location}
-                  </span>
-                  <span className="date">{companyInfo[1].date}</span>
-                </div>
-                <div class="smallText">
-                  <ul>
-                    <li>{experienceGenerated2}</li>
-                  </ul>
-                </div>
-              </li>
+              {displayExperience2()}
             </ul>
             <div class="clear"></div>
           </div>

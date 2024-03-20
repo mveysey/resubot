@@ -23,13 +23,15 @@
   }
 
   .leftPanel {
-    width: auto;
+    width: 34%;
     background-color: #f3f3f3;
     padding: 1em;
     display: flex;
     flex-direction: column;
     align-items: center;
     color: black;
+    overflow-wrap: break-word; // Ensures that long words can be broken and wrapped to the next line
+    word-break: break-word; // Breaks the word at the point of overflow
   
     img {
       width: 100%;
@@ -41,24 +43,20 @@
       object-position: 50% 50%;
     }
   
-    .details {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      padding-left: .75em;
-      margin-top: 1.5em;
+    .smallText, .item, .details {
+      overflow-wrap: break-word; // Apply to all text containers within leftPanel
+      word-break: break-word; // Ensures consistent behavior across all child elements
+  
+      p, a { // Targets paragraphs and anchor tags specifically for text wrapping
+        word-break: break-all; // Use break-all to ensure even strict URL strings wrap
+      }
+    }
 
       h1{
         font-size: 3em;
         font-weight: 500;
-      }
+      }    
 
-      .item {
-        margin-top: 2em;
-
-
-      }
     }
 
     .education2{
@@ -71,9 +69,8 @@
 
 
   }
-  
     
-  }
+  
   
   .rightPanel {
     width: 73%;
@@ -102,7 +99,7 @@
 
       ul{
         li{
-          margin-left: -2.5em;
+          margin-left: -2.0em;
         }
       }
     }

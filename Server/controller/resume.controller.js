@@ -21,11 +21,6 @@ const resumeController = {
         (linkedIn = req.body.linkedIn),
         (personalLink = req.body.personalLink),
         (companyInfo = req.body.companyInfo),
-        (role = req.body.role),
-        (company = req.body.company),
-        (date = req.body.date),
-        (location = req.body.location),
-        (description = req.body.description),
         (degree = req.body.degree),
         (schoolLocation = req.body.schoolLocation),
         (schoolName = req.body.schoolName),
@@ -45,11 +40,6 @@ const resumeController = {
         linkedIn,
         personalLink,
         companyInfo,
-        role,
-        company,
-        date,
-        location,
-        description,
         degree,
         schoolLocation,
         schoolName,
@@ -102,26 +92,12 @@ const resumeController = {
       //  send context prompt before generating resume info
       const systemMessage = { role: "system", content: systemPrompt };
 
-      const experience1 = companyInfo[0];
-      const experience2 = companyInfo[1] || null;
+      const experiencePrompt1 = `Write me a 50 word description about my role at ${companyInfo[0].company} in ${companyInfo[0].location} where I worked as a ${companyInfo[0].role}. I was responsible for ${companyInfo[0].description}. I worked here during ${companyInfo[0].date}`;
 
-      const role1 = experience1.role;
-      const company1 = experience1.company;
-      const date1 = experience1.date;
-      const location1 = experience1.location;
-      const description1 = experience1.description;
+      let experiencePrompt2;
 
-      const experiencePrompt1 = `Write me a 50 word description about my role at ${company1} in ${location1} where I worked as a ${role1}. I was responsible for ${description1}. I worked here during ${date1}`;
-
-      let role2, company2, date2, location2, description2, experiencePrompt2;
-
-      if (experience2 != null) {
-        role2 = experience2.role;
-        company2 = experience2.company;
-        date2 = experience2.date;
-        location2 = experience2.location;
-        description2 = experience2.description;
-        experiencePrompt2 = `Write me a 50 word description about my role at ${company2} in ${location2} where I worked as a ${role2}. I was responsible for ${description2}. I worked here during ${date2}`;
+      if (companyInfo[1] != null) {
+        experiencePrompt2 = `Write me a 50 word description about my role at ${companyInfo[1].company} in ${companyInfo[1].location} where I worked as a ${companyInfo[1].role}. I was responsible for ${companyInfo[1].description}. I worked here during ${companyInfo[1].date}`;
       }
 
       const experienceGenerated1 = await generateText([
@@ -130,10 +106,6 @@ const resumeController = {
 
       const experienceGenerated2 = await generateText([
         { role: "user", content: experiencePrompt2 },
-      ]);
-
-      const experienceGenerated = await generateText([
-        { role: "user", content: experiencePrompt1 },
       ]);
 
       const educationGenerated = await generateText([
@@ -158,7 +130,6 @@ const resumeController = {
       const chatgptData = {
         experienceGenerated1,
         experienceGenerated2,
-        experienceGenerated,
         educationGenerated,
         skillsGenerated,
         projectGenerated,
@@ -185,11 +156,9 @@ const resumeController = {
         (email = req.body.email),
         (linkedIn = req.body.linkedIn),
         (personalLink = req.body.personalLink),
-        (role = req.body.role),
-        (company = req.body.company),
-        (date = req.body.date),
-        (location = req.body.location),
-        (description = req.body.description),
+        (companyInfo = req.body.companyInfo),
+        (experienceGen1 = req.body.experienceGenerated1),
+        (experienceGen2 = req.body.experienceGenerated2),
         (degree = req.body.degree),
         (courses = req.body.courses),
         (schoolLocation = req.body.schoolLocation),
@@ -208,11 +177,7 @@ const resumeController = {
         email,
         linkedIn,
         personalLink,
-        role,
-        company,
-        date,
-        location,
-        description,
+        companyInfo,
         degree,
         courses,
         schoolLocation,
@@ -228,7 +193,6 @@ const resumeController = {
       let systemPrompt = `You are a updating a resume for someone who wants this change ${regenerateRequest}. Never forget that change when you are writing the resume.`;
 
       // create prompts to send to openAI API as user
-      const experiencePrompt1 = `Write me a 50 word description about my role at ${company} in ${location} where I worked as a ${role}. I was responsible for ${description}. I worked here during ${date}.  Recall this ${regenerateRequest} when writing EVERYTHING.`;
       const educationPrompt = `Write 5 courses WITH NO DESCRIPTION OF THEM, just list the course names, that I might have taken at ${schoolName} in ${schoolLocation}, getting my degree in ${degree}. My graduation date is ${graduation}. Please look at my ${skills} and ${grades} when choosing these and compare them with the job description I've provided you, making sure I'm demonstarting all of my important courses related to the job. Recall this ${regenerateRequest} when writing EVERYTHING.`;
       const skillsPrompt = `Write 10 points for my resume on what I am good at given my skills, ${skills}. Also include information from the courses I have taken IF THEY ARE APPLICABLE: here are the courses ${courses}. Don't write a description for any skill, just write the skill.  Recall this ${regenerateRequest} when writing EVERYTHING.`;
       const projectPrompt = `Write me a 50 word description about my project called ${projectTitle} that consisted of ${projectDescription}.  Recall this ${regenerateRequest} when writing EVERYTHING.`;
@@ -236,10 +200,20 @@ const resumeController = {
       //  send context prompt before generating resume info
       const systemMessage = { role: "system", content: systemPrompt };
 
-      // generate all resume info
-      const experienceGenerated = await generateText([
-        systemMessage,
+      const experiencePrompt1 = `Write me a 50 word description about my role at ${companyInfo[0].company} in ${companyInfo[0].location} where I worked as a ${companyInfo[0].role}. I was responsible for ${experienceGen1}. I worked here during ${companyInfo[0].date}`;
+
+      let experiencePrompt2;
+
+      if (companyInfo[1] != null) {
+        experiencePrompt2 = `Write me a 50 word description about my role at ${companyInfo[1].company} in ${companyInfo[1].location} where I worked as a ${companyInfo[1].role}. I was responsible for ${experienceGen2}. I worked here during ${companyInfo[1].date}`;
+      }
+
+      const experienceGenerated1 = await generateText([
         { role: "user", content: experiencePrompt1 },
+      ]);
+
+      const experienceGenerated2 = await generateText([
+        { role: "user", content: experiencePrompt2 },
       ]);
 
       const educationGenerated = await generateText([
@@ -262,13 +236,14 @@ const resumeController = {
       ]);
 
       const chatgptData = {
-        experienceGenerated,
+        experienceGenerated1,
+        experienceGenerated2,
         educationGenerated,
         skillsGenerated,
         projectGenerated,
       };
 
-      console.log(chatgptData);
+      console.log(experienceGenerated1);
 
       const responseData = { ...newEntry, ...chatgptData };
 
