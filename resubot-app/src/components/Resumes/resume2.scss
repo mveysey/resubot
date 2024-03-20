@@ -2,7 +2,7 @@
   margin-top: 0.1cm;
   margin-bottom: 0.1cm;
   font-weight: 400;
-  font-size: 1.0em;
+  font-size: 1.5em;
   font-family: 'Archivo Narrow', sans-serif;
   text-align: left;
   color: #cf8a05;
@@ -99,10 +99,11 @@
     .smallText {
       font-family: 'Source Sans Pro', sans-serif;
       text-align: justify;
+      font-size: 0.75em;
 
       ul{
         li{
-          margin-left: -2.5em;
+          margin-left: -2.0em;
         }
       }
     }
