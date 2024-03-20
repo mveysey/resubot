@@ -79,10 +79,10 @@ const Resume2 = () => {
       })
       .then((res) => {
         if (res.data.message) {
-          // const experienceData = res.data.data.experienceGenerated;
-          // const educationGenerated = res.data.data.educationGenerated;
-          // const skillsGenerated = res.data.data.skillsGenerated;
-          // const projectGenerated = res.data.data.projectGenerated;
+          const experienceData = res.data.data.experienceGenerated;
+          const educationGenerated = res.data.data.educationGenerated;
+          const skillsGenerated = res.data.data.skillsGenerated;
+          const projectGenerated = res.data.data.projectGenerated;
 
           // state object
           const resumeData = {
@@ -178,59 +178,6 @@ const Resume2 = () => {
                     </div>
                   );
                 })}
-                {/* <div class="skill">
-                  <div>
-                    <span>Accounting</span>
-                  </div>
-                </div>
-
-                <div class="skill">
-                  <div>
-                    <span>Word</span>
-                  </div>
-                </div>
-
-                <div class="skill">
-                  <div>
-                    <span>Powerpoint</span>
-                  </div>
-                </div>
-
-                <div class="skill">
-                  <div>
-                    <span>Accounting</span>
-                  </div>
-                </div>
-
-                <div class="skill">
-                  <div>
-                    <span>Marketing</span>
-                  </div>
-                </div>
-
-                <div class="skill">
-                  <div>
-                    <span>Photoshop</span>
-                  </div>
-                </div>
-
-                <div class="skill">
-                  <div>
-                    <span>French</span>
-                  </div>
-                </div>
-
-                <div class="skill">
-                  <div>
-                    <span>English</span>
-                  </div>
-                </div>
-
-                <div class="skill">
-                  <div>
-                    <span>Management</span>
-                  </div>
-                </div> */}
               </div>
             </div>
             <div class="education2">
@@ -302,15 +249,6 @@ const Resume2 = () => {
               <h3>{projectTitle} </h3>
               <p>{projectGenerated}</p>
             </div>
-
-            {/* <div class="sectionContent">
-              <h3>Knowles, Heather, Mogan, Jennifer, et al.</h3>
-              <p>
-                "STING/MPYS mediates host defense against listeria monocytogenes
-                infection by regulating Ly6Chi monocyte migration." The Journal
-                of Immunology 190.6 (2013): 2835-2843.
-              </p>
-            </div> */}
           </div>
         </div>
       </div>

@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { Form, useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import Loading from "./Loading/Loading";
 import "./FinalResume/Finalresume.scss";
 import resume3 from "../assets/resume_template3.PNG";
 import resume2 from "../assets/resume_template2.PNG";
@@ -30,10 +29,6 @@ const FinalResume = () => {
   const [date, setDate] = useState("");
   const [location, setLocation] = useState("");
   const [description, setDescription] = useState("");
-  //Compnay information
-  // const [companyInfo, setCompanyInfo] = useState([
-  //   { role: "", company: "", start: "", location: "", description: "" },
-  // ]);
 
   //Education information
   const [degree, setDegree] = useState("");
@@ -187,7 +182,6 @@ const FinalResume = () => {
     setCompany(predefinedData.company);
     setLocation(predefinedData.location);
     setDescription(predefinedData.description);
-    // setCompanyInfo(predefinedData.companyInfo);
     setDegree(predefinedData.degree);
     setSchoolName(predefinedData.schoolName);
     setSchoolLocation(predefinedData.schoolLocation);
@@ -197,29 +191,6 @@ const FinalResume = () => {
     setProjectTitle(predefinedData.projectTitle);
     setProjectDescription(predefinedData.projectDescription);
   };
-
-  // //updates the state with user's input
-  // const handleAddCompany = () =>
-  //   setCompanyInfo([
-  //     ...companyInfo,
-  //     { role: "", company: "", start: "", location: "", description: "" },
-  //   ]);
-
-  // // removes a selected item from the list
-  // const handleRemoveCompany = (index) => {
-  //   const list = [...companyInfo];
-  //   list.splice(index, 1);
-  //   setCompanyInfo(list);
-  // };
-
-  // // updates an item within the list
-  // const handleUpdateCompany = (e, index) => {
-  //   const { name, value } = e.target;
-  //   const list = [...companyInfo];
-  //   list[index][name] = value;
-  //   setCompanyInfo(list);
-  //   localStorage.setItem("companyInfo", JSON.stringify(list));
-  // };
 
   const handleFormSubmit = (e) => {
     e.preventDefault();

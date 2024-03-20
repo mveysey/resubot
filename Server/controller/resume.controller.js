@@ -70,7 +70,6 @@ const resumeController = {
         default:
           jobDetails = optionalJobDecsription;
       }
-      // console.log(jobDetails);
 
       var industry;
       switch (optionalIndustry) {
@@ -81,29 +80,6 @@ const resumeController = {
         default:
           industry = optionalIndustry;
       }
-      // console.log(industry);
-
-      /*
-      const systemMessage = {
-        role: "system",
-        content: "Use words daring, dashing, and weird to describe Emily",
-      };
-      const testP = `Write down 5 words about me, my name is Emily`;
-
-      //   console.log([{ role: "user", content: testP }]);
-
-      const test = await generateText([
-        systemMessage,
-        { role: "user", content: testP },
-      ]);
-
-      console.log(test);
-
-      const testData = {
-        test,
-      };
-
-      const data = { ...newEntry, ...testData }; */
 
       // create a prompt to send to openAI API as system
       let systemPrompt;
@@ -147,16 +123,6 @@ const resumeController = {
         description2 = experience2.description;
         experiencePrompt2 = `Write me a 50 word description about my role at ${company2} in ${location2} where I worked as a ${role2}. I was responsible for ${description2}. I worked here during ${date2}`;
       }
-
-      // await companyInfo.map(async (experienceItem) => {
-      //   const experiencePrompt = `Write me a 50 word description about my role at ${experienceItem.company} in ${experienceItem.location} where I worked as a ${experienceItem.role}. I was responsible for ${experienceItem.description}. I worked here during ${experienceItem.date}`;
-      //   experienceItem.description = await generateText([
-      //     { role: "user", content: experiencePrompt },
-      //   ]);
-      //   generatedCompanyInfo.push(experienceItem);
-      // });
-
-      // console.log(generatedCompanyInfo);
 
       const experienceGenerated1 = await generateText([
         { role: "user", content: experiencePrompt1 },
@@ -258,33 +224,6 @@ const resumeController = {
         projectDescription,
       };
 
-      console.log(
-        regenerateRequest,
-        // fullName,
-        // phoneNumber,
-        // email,
-        // linkedIn,
-        // personalLink,
-        // role,
-        // company,
-        // date,
-        // location,
-        "roleDescription",
-        description,
-        // degree,
-        "courses",
-        courses,
-        // schoolLocation,
-        // schoolName,
-        // graduation,
-        "grades",
-        grades,
-        "skills",
-        skills,
-        // projectTitle,
-        "projectDescription",
-        projectDescription
-      );
       // create a prompt to send to openAI API as system
       let systemPrompt = `You are a updating a resume for someone who wants this change ${regenerateRequest}. Never forget that change when you are writing the resume.`;
 
@@ -293,9 +232,6 @@ const resumeController = {
       const educationPrompt = `Write 5 courses WITH NO DESCRIPTION OF THEM, just list the course names, that I might have taken at ${schoolName} in ${schoolLocation}, getting my degree in ${degree}. My graduation date is ${graduation}. Please look at my ${skills} and ${grades} when choosing these and compare them with the job description I've provided you, making sure I'm demonstarting all of my important courses related to the job. Recall this ${regenerateRequest} when writing EVERYTHING.`;
       const skillsPrompt = `Write 10 points for my resume on what I am good at given my skills, ${skills}. Also include information from the courses I have taken IF THEY ARE APPLICABLE: here are the courses ${courses}. Don't write a description for any skill, just write the skill.  Recall this ${regenerateRequest} when writing EVERYTHING.`;
       const projectPrompt = `Write me a 50 word description about my project called ${projectTitle} that consisted of ${projectDescription}.  Recall this ${regenerateRequest} when writing EVERYTHING.`;
-
-      // console.log("projectDescription", projectDescription);
-      // console.log("skills", projectDescription);
 
       //  send context prompt before generating resume info
       const systemMessage = { role: "system", content: systemPrompt };
