@@ -112,9 +112,18 @@ li:first-child a {
 
    
     }
+    .resume-icons {
+      display: flex;
+      overflow-x: auto;
+      height: 100%; // Use 100% of the parent's height
+      align-items: center; // Center items vertically
+    }
+    
     .resume-preview {
-      width: 150px; // You can adjust the size as needed
-      height: auto;
+      flex: 0 0 auto;
+      margin-right: 10px;
+      width: 20%; // Set width relative to parent
+      height: auto; // Maintain aspect ratio
       object-fit: cover;
       cursor: pointer;
       transition: transform 0.2s, box-shadow 0.2s;
@@ -124,6 +133,7 @@ li:first-child a {
         box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
       }
     }
+    
     .loading-prompt {
       position: fixed;
       top: 50%;

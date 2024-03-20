@@ -121,9 +121,14 @@ const Resume3 = () => {
 
   const generatePdf = () => {
     const resumeElement = document.getElementById("resumeElement");
-
+    const { width, height } = resumeElement.getBoundingClientRect(); // Get bounding rectangle dimensions
+  
     setTimeout(() => {
-      html2canvas(resumeElement, { scale: 2 }).then((canvas) => {
+      html2canvas(resumeElement, { 
+        width: width * 2, // Set canvas width to double of bounding rectangle width
+        height: height * 2, // Set canvas height to double of bounding rectangle height
+        scale: 2 // Maintain scale
+      }).then((canvas) => {
         const imgData = canvas.toDataURL("image/png");
         const pdf = new jsPDF({
           orientation: "portrait",
@@ -132,6 +137,45 @@ const Resume3 = () => {
         });
         pdf.addImage(imgData, "PNG", 0, 0, canvas.width, canvas.height);
         pdf.save("resume.pdf");
+      });
+    }, 500); // Adjust delay as needed
+  };
+  
+
+  const generateAndSendPdf = () => {
+    const resumeElement = document.getElementById("resumeElement");
+    const { width, height } = resumeElement.getBoundingClientRect(); // Get bounding rectangle dimensions
+  
+    setTimeout(() => {
+      html2canvas(resumeElement, { 
+        width: width * 2, // Set canvas width to double of bounding rectangle width
+        height: height * 2, // Set canvas height to double of bounding rectangle height
+        scale: 2 // Maintain scale
+      }).then((canvas) => {
+        const imgData = canvas.toDataURL("image/png");
+        const pdf = new jsPDF({
+          orientation: "portrait",
+          unit: "px",
+          format: [canvas.width, canvas.height],
+        });
+        pdf.addImage(imgData, "PNG", 0, 0, canvas.width, canvas.height);
+  
+        // Generate blob from PDF
+        const blob = pdf.output('blob');
+  
+        // Use FormData to send blob to server
+        const formData = new FormData();
+        formData.append("file", blob, "resume.pdf");
+  
+        axios.post("http://localhost:4000/api/resume/saveResumePdf", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }).then(response => {
+          console.log("PDF uploaded", response);
+        }).catch(error => {
+          console.error("Error uploading PDF", error);
+        });
       });
     }, 500); // Adjust delay as needed
   };
@@ -166,7 +210,7 @@ const Resume3 = () => {
           </div>
           <div class="clear"></div>
         </div>
-
+        <div className="container" id="resumeElement">
         <div className="mainArea">
           <section className="break">
             <div class="sectionTitle">
@@ -247,7 +291,11 @@ const Resume3 = () => {
             <div class="clear"></div>
           </section>
         </div>
+        </div>
+
       </div>
+      <button onClick={generatePdf}>Download as PDF</button>
+      <button onClick={generateAndSendPdf}>Save</button>
     </>
   );
 };
