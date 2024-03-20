@@ -180,17 +180,24 @@ const FinalResume = () => {
     setLinkedIn(predefinedData.linkedIn);
     setPersonalLink(predefinedData.personalLink);
 
-    setRole(predefinedData.role);
-    setDate(predefinedData.date);
-    setCompany(predefinedData.company);
-    setLocation(predefinedData.location);
-    setDescription(predefinedData.description);
+    setRole1(predefinedData.role1);
+    setDate1(predefinedData.date1);
+    setCompany1(predefinedData.company1);
+    setLocation1(predefinedData.location1);
+    setDescription1(predefinedData.description1);
+
+    setRole2(predefinedData.role2);
+    setDate2(predefinedData.date2);
+    setCompany2(predefinedData.company2);
+    setLocation2(predefinedData.location2);
+    setDescription2(predefinedData.description2);
+
     // setCompanyInfo(predefinedData.companyInfo);
     setDegree(predefinedData.degree);
     setSchoolName(predefinedData.schoolName);
     setSchoolLocation(predefinedData.schoolLocation);
     setGraduation(predefinedData.graduation);
-    setGrades(predefinedData.setGrades);
+    setGrades(predefinedData.grades);
     setSkills(predefinedData.skills);
     setProjectTitle(predefinedData.projectTitle);
     setProjectDescription(predefinedData.projectDescription);
@@ -302,7 +309,6 @@ const FinalResume = () => {
             grades,
             experienceGenerated1,
             experienceGenerated2,
-            experienceData,
             educationGenerated,
             skillsGenerated,
             projectGenerated,
@@ -313,7 +319,8 @@ const FinalResume = () => {
         
           axios
             .post("http://localhost:4000/api/resume/save", {
-              experienceData,
+              experienceGenerated1,
+              experienceGenerated2,
               educationGenerated,
               skillsGenerated,
               projectGenerated,
