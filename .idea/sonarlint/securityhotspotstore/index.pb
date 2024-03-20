@@ -56,16 +56,12 @@ T
 $Server/tests/auth.controller.test.js,a\0\a06ea79f631faf6c827027d4f1e6b735f7391d1d
 U
 %resubot-app/src/pages/Login/Login.jsx,9\4\945891f6a350faf4cad3f1130857d1d4a85b5e14
-^
-.resubot-app/src/pages/Education/Education.scss,3\9\39d9d49300603b4bd572bf7a0375a3892dc3c459
 U
 %resubot-app/src/common/axiosConfig.js,d\a\da3f75fe0a1f2edc24ce31ed1c5862712f700df8
 N
 resubot-app/src/common/auth.js,a\3\a3b4d1b2ff6ae296b85f27083e08823ac35ca7ab
 [
 +resubot-app/src/pages/Register/Register.jsx,e\4\e44dc3f1458b41b455c842acd5ad47ee9b17a893
-S
-#resubot-app/src/pages/Home/Home.jsx,e\e\eea82174704d2e396591b3cb1aa56fa127fa5046
 T
 $resubot-app/src/pages/Home/Home.scss,1\1\119b3abfa2379e427a089d618e603492e6b9df6f
 a
@@ -86,12 +82,6 @@ O
 resubot-app/src/.env.production,0\d\0d4e7aa16fa683100b397bfd21f5a5741ae5fe62
 P
  resubot-app/src/.env.development,c\2\c20cbe9a17e0e52f89cf5b963d83e8aa5c4fd0ce
-Y
-)resubot-app/src/pages/Contact/Contact.jsx,c\5\c5c7e0d2ac8ff25bf9ed517e9390df850b053bc0
-]
--resubot-app/src/pages/Customize/Customize.jsx,a\a\aa2da5d57e1564fa18c5f6e60ca2bba8497e253e
-]
--resubot-app/src/pages/Education/Education.jsx,7\f\7f031c52795c9e6707f1e9c95e496e6857644bb2
 ]
 -resubot-app/src/pages/Templates/Templates.jsx,0\8\08a9215d1c8863fb3ae06daf87681b2ecd1b5ba0
 Y
@@ -102,14 +92,6 @@ Y
 )resubot-app/src/pages/ChatBot/Chatbot.jsx,3\a\3a32147aca78435e20533211d09491be1c65e7c8
 Y
 )resubot-app/src/pages/FinalResumeTest.jsx,2\c\2ca370e230fd23a500964fa6aefc819232ad36d6
-[
-+resubot-app/src/pages/Projects/Projects.jsx,4\8\483f7d9438ff72dd6e836359704812930346c2f8
-_
-/resubot-app/src/pages/Experience/Experience.jsx,a\2\a251ddfe7ffdc14c4f6b8f75e0e94410ac9c1315
-W
-'resubot-app/src/pages/Skills/Skills.jsx,f\1\f18696d0f4bd8b87054540a57770c5f05c28d0f0
-b
-2resubot-app/src/pages/Experience/oldExperience.jsx,f\5\f5997d1d1a4865dca6ded80b9d8e02fec531902c
 M
 resubot-app/public/index.html,5\1\516dd331762bd28b49e6bc898ffedd907fa5923c
 `
@@ -130,10 +112,6 @@ P
  Server/routes/template.router.js,b\b\bb4dd09e7d03ba245b54a6ee5c65bdbfb94890aa
 L
 Server/util/template-util.js,4\5\4522506c6f976476f59fd53fa7de0acdac9b69a1
-_
-/resubot-app/src/pages/CreateResumes/Resumes.jsx,a\5\a5eaac4e60f470f3852d18ab03d74b65e2fa5169
-`
-0resubot-app/src/pages/CreateResumes/Resumes.scss,c\d\cda229cb0841e95eaa0287fc2c468a61792493fe
 [
 +resubot-app/src/components/Modal/Modal.scss,b\6\b620e00bc8e82f1d22e887db4066b4260479caf0
 k
@@ -144,7 +122,25 @@ k
 -resubot-app/src/pages/Templates/Template2.jsx,8\f\8f628beb3c20bf4a1fcfc58bdfa19cd997f97f29
 ]
 -resubot-app/src/pages/Templates/Template3.jsx,0\2\0257fc0781f086fd766c380fd2e1817e4cd2ea2e
-S
-#resubot-app/src/common/pdfGenerator,c\1\c1e41eee8b9ad53ccfc6ea889b03fafde5e634ef
 U
 %resubot-app/src/hooks/PdfGenerator.js,f\9\f9c745f3437d0bea1f8db64a5294a0cf25db6716
+]
+-resubot-app/src/components/Resumes/Resume1.js,7\5\7512a8251a30aaaab271c6c94f94e67ea6c71af7
+U
+%resubot-app/src/hooks/TestDatabase.js,6\5\65507d8ebee357755b2364bf4ea7c75b8040fe58
+\
+,resubot-app/src/components/Footer/Footer.jsx,7\4\747ec0d19c98ac62f64fa6e6ee074bcf3c34031c
+]
+-resubot-app/src/components/Footer/Footer.scss,e\0\e0ee509800248903348b4d81d8ad51f9ed3feb4c
+<
+package.json,7\0\7030d0b2f71b999ff89a343de08c414af32fc93a
+A
+package-lock.json,f\a\fa288d1472d29beccb489a676f68739ad365fc47
+S
+#.idea/sonarlint/issuestore/index.pb,9\f\9fe84ebb15faf917b7def6236dba604453cc61e0
+W
+'Server/controller/chatbot.controller.js,4\f\4f94fd088ad2775f60560c15f5d1862b45234147
+O
+Server/routes/chatbot.router.js,3\9\39298a94675a752a561ee3cee913a32bd13c37e5
+]
+-.idea/sonarlint/securityhotspotstore/index.pb,8\8\88a9255124c95bdc913197c120a8d560edc59c8e

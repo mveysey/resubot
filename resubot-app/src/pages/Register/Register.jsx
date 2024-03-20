@@ -5,7 +5,7 @@ import {useForm} from "react-hook-form"; //plugin that help with validate form i
 import {toast} from "react-toastify";
 import {Link, useNavigate} from "react-router-dom";
 import auth from "../../common/auth.js"; //notification plugin
-const Register = ({props}) => {
+const Register = () => {
     const navigate = useNavigate();
     const {
         register,
@@ -50,7 +50,7 @@ const Register = ({props}) => {
                         <input
                             className={`input`}
                             type="text"
-                            placeholder="Email"
+                            placeholder="Username"
                             name="email"
                             {...register("username", {
                                     required: "username is required",

@@ -6,9 +6,9 @@ const { generateID, generateText } = require("../util/ai-util"); // Import utili
 const { poolPromise } = require("../database/Database");
 require("dotenv").config();
 const sql = require("mssql");
-const multer = require('multer');
+const multer = require("multer");
 const upload = multer();
-const fs = require('fs');
+const fs = require("fs");
 const resumeController = {
   // Create a resume entry logic
   createResumeEntry: async (req, res) => {
@@ -20,11 +20,7 @@ const resumeController = {
         (email = req.body.email),
         (linkedIn = req.body.linkedIn),
         (personalLink = req.body.personalLink),
-        (role = req.body.role),
-        (company = req.body.company),
-        (date = req.body.date),
-        (location = req.body.location),
-        (description = req.body.description),
+        (companyInfo = req.body.companyInfo),
         (degree = req.body.degree),
         (schoolLocation = req.body.schoolLocation),
         (schoolName = req.body.schoolName),
@@ -43,11 +39,7 @@ const resumeController = {
         email,
         linkedIn,
         personalLink,
-        role,
-        company,
-        date,
-        location,
-        description,
+        companyInfo,
         degree,
         schoolLocation,
         schoolName,
@@ -68,7 +60,6 @@ const resumeController = {
         default:
           jobDetails = optionalJobDecsription;
       }
-      // console.log(jobDetails);
 
       var industry;
       switch (optionalIndustry) {
@@ -79,29 +70,6 @@ const resumeController = {
         default:
           industry = optionalIndustry;
       }
-      // console.log(industry);
-
-      /*
-      const systemMessage = {
-        role: "system",
-        content: "Use words daring, dashing, and weird to describe Emily",
-      };
-      const testP = `Write down 5 words about me, my name is Emily`;
-
-      //   console.log([{ role: "user", content: testP }]);
-
-      const test = await generateText([
-        systemMessage,
-        { role: "user", content: testP },
-      ]);
-
-      console.log(test);
-
-      const testData = {
-        test,
-      };
-
-      const data = { ...newEntry, ...testData }; */
 
       // create a prompt to send to openAI API as system
       let systemPrompt;
@@ -116,18 +84,28 @@ const resumeController = {
       }
 
       // create prompts to send to openAI API as user
-      const experiencePrompt = `Write me a 50 word description about my role at ${company} in ${location} where I worked as a ${role}. I was responsible for ${description}. I worked here during ${date}`;
+      // const experiencePrompt1 = `Write me a 50 word description about my role at ${company} in ${location} where I worked as a ${role}. I was responsible for ${description}. I worked here during ${date}`;
       const educationPrompt = `Write 5 courses WITH NO DESCRIPTION OF THEM, just list the course names, that I might have taken at ${schoolName} in ${schoolLocation}, getting my degree in ${degree}. My graduation date is ${graduation}. Please look at my ${skills} and ${grades} when choosing these and compare them with the job description I've provided you, making sure I'm demonstarting all of my important courses related to the job.`;
-      const skillsPrompt = `Write 10 points for my resume on what I am good at given my skills, ${skills} and the job description you were provided with. Also include information from the courses I have taken IF THEY ARE APPLICABLE: here are the courses ${grades}. Don't write a description for any skill, just write the skill`;
+      const skillsPrompt = `Write my top 5 skills for my resume given the job description and industry you were provided with and that these are all of my ${skills}. Also include information from the courses I have taken IF THEY ARE APPLICABLE: here are the courses ${grades}. Don't write a description for any skill, just THE NAME of the skill for example "Java" or "Team Player"`;
       const projectPrompt = `Write me a 50 word description about my project called ${projectTitle} that consisted of ${projectDescription}`;
 
       //  send context prompt before generating resume info
       const systemMessage = { role: "system", content: systemPrompt };
 
-      // generate all resume info
-      const experienceGenerated = await generateText([
-        systemMessage,
-        { role: "user", content: experiencePrompt },
+      const experiencePrompt1 = `Write me a 50 word description about my role at ${companyInfo[0].company} in ${companyInfo[0].location} where I worked as a ${companyInfo[0].role}. I was responsible for ${companyInfo[0].description}`;
+
+      let experiencePrompt2;
+
+      if (companyInfo[1] != null) {
+        experiencePrompt2 = `Write me a 50 word description about my role at ${companyInfo[1].company} in ${companyInfo[1].location} where I worked as a ${companyInfo[1].role}. I was responsible for ${companyInfo[1].description}`;
+      }
+
+      const experienceGenerated1 = await generateText([
+        { role: "user", content: experiencePrompt1 },
+      ]);
+
+      const experienceGenerated2 = await generateText([
+        { role: "user", content: experiencePrompt2 },
       ]);
 
       const educationGenerated = await generateText([
@@ -150,13 +128,12 @@ const resumeController = {
       ]);
 
       const chatgptData = {
-        experienceGenerated,
+        experienceGenerated1,
+        experienceGenerated2,
         educationGenerated,
         skillsGenerated,
         projectGenerated,
       };
-
-      // console.log(chatgptData);
 
       const responseData = { ...newEntry, ...chatgptData };
 
@@ -179,11 +156,9 @@ const resumeController = {
         (email = req.body.email),
         (linkedIn = req.body.linkedIn),
         (personalLink = req.body.personalLink),
-        (role = req.body.role),
-        (company = req.body.company),
-        (date = req.body.date),
-        (location = req.body.location),
-        (description = req.body.description),
+        (companyInfo = req.body.companyInfo),
+        (experienceGen1 = req.body.experienceGenerated1),
+        (experienceGen2 = req.body.experienceGenerated2),
         (degree = req.body.degree),
         (courses = req.body.courses),
         (schoolLocation = req.body.schoolLocation),
@@ -202,11 +177,7 @@ const resumeController = {
         email,
         linkedIn,
         personalLink,
-        role,
-        company,
-        date,
-        location,
-        description,
+        companyInfo,
         degree,
         courses,
         schoolLocation,
@@ -218,52 +189,31 @@ const resumeController = {
         projectDescription,
       };
 
-      console.log(
-        regenerateRequest,
-        // fullName,
-        // phoneNumber,
-        // email,
-        // linkedIn,
-        // personalLink,
-        // role,
-        // company,
-        // date,
-        // location,
-        "roleDescription",
-        description,
-        // degree,
-        "courses",
-        courses,
-        // schoolLocation,
-        // schoolName,
-        // graduation,
-        "grades",
-        grades,
-        "skills",
-        skills,
-        // projectTitle,
-        "projectDescription",
-        projectDescription
-      );
       // create a prompt to send to openAI API as system
       let systemPrompt = `You are a updating a resume for someone who wants this change ${regenerateRequest}. Never forget that change when you are writing the resume.`;
 
       // create prompts to send to openAI API as user
-      const experiencePrompt = `Write me a 50 word description about my role at ${company} in ${location} where I worked as a ${role}. I was responsible for ${description}. I worked here during ${date}.  Recall this ${regenerateRequest} when writing EVERYTHING.`;
-      const educationPrompt = `Write 5 courses WITH NO DESCRIPTION OF THEM, just list the course names, that I might have taken at ${schoolName} in ${schoolLocation}, getting my degree in ${degree}. My graduation date is ${graduation}. Please look at my ${skills} and ${grades} when choosing these and compare them with the job description I've provided you, making sure I'm demonstarting all of my important courses related to the job. Recall this ${regenerateRequest} when writing EVERYTHING.`;
-      const skillsPrompt = `Write 10 points for my resume on what I am good at given my skills, ${skills}. Also include information from the courses I have taken IF THEY ARE APPLICABLE: here are the courses ${courses}. Don't write a description for any skill, just write the skill.  Recall this ${regenerateRequest} when writing EVERYTHING.`;
+      const educationPrompt = `Write 5 courses WITH NO DESCRIPTION OF THEM, just list the course names, that I might have taken at ${schoolName} in ${schoolLocation}, getting my degree in ${degree}. My graduation date is ${graduation}. Please look at my ${skills} and ${grades} when choosing these and compare them with the job description I've provided you, making sure I'm demonstarting all of my important courses related to the job. Recall this ${regenerateRequest} when writing EVERYTHING. Write 5 courses WITH NO DESCRIPTION OF THEM, just list the course names`;
+      const skillsPrompt = `Write my top 5 skills for my resume given the job description and industry you were provided with and that these are all of my ${skills}. Don't write a description for any skill, just THE NAME of the skill for example "Java" or "Team Player". Recall this ${regenerateRequest} when writing EVERYTHING. Write 5 skills WITH NO DESCRIPTION OF THEM, just list the skill`;
       const projectPrompt = `Write me a 50 word description about my project called ${projectTitle} that consisted of ${projectDescription}.  Recall this ${regenerateRequest} when writing EVERYTHING.`;
-
-      // console.log("projectDescription", projectDescription);
-      // console.log("skills", projectDescription);
 
       //  send context prompt before generating resume info
       const systemMessage = { role: "system", content: systemPrompt };
 
-      // generate all resume info
-      const experienceGenerated = await generateText([
-        systemMessage,
-        { role: "user", content: experiencePrompt },
+      const experiencePrompt1 = `Write me a 50 word description about my role at ${companyInfo[0].company} in ${companyInfo[0].location} where I worked as a ${companyInfo[0].role}. I was responsible for ${experienceGen1}. Capitalize the first letter of the first sentence. Recall this ${regenerateRequest} when writing EVERYTHING.`;
+
+      let experiencePrompt2;
+
+      if (companyInfo[1] != null) {
+        experiencePrompt2 = `Write me a 50 word description about my role at ${companyInfo[1].company} in ${companyInfo[1].location} where I worked as a ${companyInfo[1].role}. I was responsible for ${experienceGen2}. Capitalize the first letter of the first sentence. Recall this ${regenerateRequest} when writing EVERYTHING.`;
+      }
+
+      const experienceGenerated1 = await generateText([
+        { role: "user", content: experiencePrompt1 },
+      ]);
+
+      const experienceGenerated2 = await generateText([
+        { role: "user", content: experiencePrompt2 },
       ]);
 
       const educationGenerated = await generateText([
@@ -286,13 +236,14 @@ const resumeController = {
       ]);
 
       const chatgptData = {
-        experienceGenerated,
+        experienceGenerated1,
+        experienceGenerated2,
         educationGenerated,
         skillsGenerated,
         projectGenerated,
       };
 
-      console.log(chatgptData);
+      console.log(experienceGenerated1);
 
       const responseData = { ...newEntry, ...chatgptData };
 
@@ -332,63 +283,63 @@ const resumeController = {
     try {
       // Ensure that a file is received
       if (!req.file) {
-        res.status(400).send('No file uploaded.');
+        res.status(400).send("No file uploaded.");
         return;
       }
-  
+
       const pool = await poolPromise;
       const request = pool.request();
-      
-  
+
       // Stream the file buffer from uploaded file
       fs.readFile(req.file.path, async (err, fileBuffer) => {
         if (err) {
           throw err;
         }
-  
+
         const fileName = req.file.originalname;
-  
+
         // Save file to database
         await request
-          .input('FileName', sql.NVarChar, fileName)
-          .input('PDFData', sql.VarBinary(sql.MAX), fileBuffer)
-          .query('INSERT INTO ResumeRecordsPDF (FileName, resumePDF) VALUES (@FileName, @PDFData)');
-  
-        res.status(200).send('PDF saved successfully.');
-        console.log('PDF saved successfully'); 
+          .input("FileName", sql.NVarChar, fileName)
+          .input("PDFData", sql.VarBinary(sql.MAX), fileBuffer)
+          .query(
+            "INSERT INTO ResumeRecordsPDF (FileName, resumePDF) VALUES (@FileName, @PDFData)"
+          );
+
+        res.status(200).send("PDF saved successfully.");
+        console.log("PDF saved successfully");
       });
     } catch (error) {
-      res.status(500).send('Error saving PDF: ' + error.message);
+      res.status(500).send("Error saving PDF: " + error.message);
     } finally {
       // Delete the file from server after saving to database
       if (req.file && req.file.path) {
         fs.unlink(req.file.path, (err) => {
           if (err) {
-            console.error('Error deleting file:', err);
+            console.error("Error deleting file:", err);
           }
         });
       }
     }
-  }, 
+  },
 
-  getAllSavedResumes : async (req, res) => {
+  getAllSavedResumes: async (req, res) => {
     try {
       const pool = await poolPromise;
       const request = pool.request();
-  
-      const result = await request.query('SELECT Id, FileName FROM ResumeRecordsPDF');
-  
+
+      const result = await request.query(
+        "SELECT Id, FileName FROM ResumeRecordsPDF"
+      );
+
       res.json({
         message: "Retrieved all saved resume metadata successfully",
-        data: result.recordset
+        data: result.recordset,
       });
     } catch (error) {
       res.status(500).json({ error: error.message });
     }
-  }
-  
-  
-  
+  },
 };
 
 module.exports = resumeController;
