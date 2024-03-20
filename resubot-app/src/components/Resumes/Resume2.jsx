@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./resume2.scss";
@@ -12,8 +12,16 @@ const Resume2 = () => {
   const navigate = useNavigate();
 
   const location = useLocation();
-  // const [resumeData, setResumeData] = useState(location.state?.resumeData || {}); // Declare a state to hold your resume data
-  const resumeData = location.state?.resumeData || {};
+  // const resumeData = location.state?.resumeData || {};
+  const [resumeData, setResumeData] = useState(
+    location.state?.resumeData || {}
+  ); // Declare a state to hold your resume data
+
+  // Add useEffect here
+  useEffect(() => {
+    // This will update resumeData state whenever location.state changes
+    setResumeData(location.state?.resumeData || {});
+  }, [location.state]); // Dependency array, effect runs on change of location.state
 
   const fullName = resumeData.fullName || "";
   const phoneNumber = resumeData.phoneNumber || "";
@@ -92,7 +100,7 @@ const Resume2 = () => {
         projectDescription: projectGenerated,
       })
       .then((res) => {
-        if (res.data.message) {
+        if (res.data.message && res.data.data) {
           // state object
           const resumeData = {
             regenerateRequest,
@@ -115,7 +123,7 @@ const Resume2 = () => {
             projectGenerated,
           };
           console.log("******** experience generated", experienceGenerated1);
-          navigate("/resume2", { state: { resumeData } });
+          navigate("/resume2", { state: { resumeData: res.data.data } });
         }
       })
       .catch((err) => console.error(err));

@@ -24,11 +24,6 @@ const FinalResume = () => {
   const [companyInfo, setCompanyInfo] = useState([
     { role: "", company: "", date: "", location: "", description: "" },
   ]);
-  const [role, setRole] = useState("");
-  const [company, setCompany] = useState("");
-  const [date, setDate] = useState("");
-  const [location, setLocation] = useState("");
-  const [description, setDescription] = useState("");
 
   //Education information
   const [degree, setDegree] = useState("");
@@ -177,16 +172,11 @@ const FinalResume = () => {
     setLinkedIn(predefinedData.linkedIn);
     setPersonalLink(predefinedData.personalLink);
 
-    setRole(predefinedData.role);
-    setDate(predefinedData.date);
-    setCompany(predefinedData.company);
-    setLocation(predefinedData.location);
-    setDescription(predefinedData.description);
     setDegree(predefinedData.degree);
     setSchoolName(predefinedData.schoolName);
     setSchoolLocation(predefinedData.schoolLocation);
     setGraduation(predefinedData.graduation);
-    setGrades(predefinedData.setGrades);
+    setGrades(predefinedData.grades);
     setSkills(predefinedData.skills);
     setProjectTitle(predefinedData.projectTitle);
     setProjectDescription(predefinedData.projectDescription);
@@ -224,11 +214,6 @@ const FinalResume = () => {
         linkedIn: linkedIn,
         personalLink: personalLink,
         companyInfo: companyInfo,
-        role: role,
-        company: company,
-        location: location,
-        description: description,
-        date: date,
         degree: degree,
         schoolName: schoolName,
         schoolLocation: schoolLocation,
@@ -255,10 +240,6 @@ const FinalResume = () => {
             linkedIn,
             personalLink,
             companyInfo,
-            role,
-            company,
-            date,
-            location,
             degree,
             schoolLocation,
             schoolName,
@@ -267,7 +248,6 @@ const FinalResume = () => {
             grades,
             experienceGenerated1,
             experienceGenerated2,
-            experienceData,
             educationGenerated,
             skillsGenerated,
             projectGenerated,
@@ -299,10 +279,6 @@ const FinalResume = () => {
               email,
               linkedIn,
               personalLink,
-              role,
-              company,
-              date,
-              location,
               degree,
               schoolLocation,
               schoolName,
