@@ -15,8 +15,6 @@ const Resume = () => {
   const location = useLocation();
   const resumeData = location.state?.resumeData || {};
 
-  // Convert the entire experienceData object to a JSON string
-  const experienceDataString = JSON.stringify(resumeData, null, 2);
   const fullName = resumeData.fullName || "";
   const phoneNumber = resumeData.phoneNumber || "";
   const email = resumeData.email || "";
@@ -57,11 +55,6 @@ const Resume = () => {
         email: email,
         linkedIn: linkedIn,
         personalLink: personalLink,
-        role: role,
-        company: company,
-        location: location,
-        description: experienceData,
-        date: date,
         degree: degree,
         courses: educationGenerated,
         schoolName: schoolName,
@@ -74,11 +67,6 @@ const Resume = () => {
       })
       .then((res) => {
         if (res.data.message) {
-          // const experienceData = res.data.data.experienceGenerated;
-          // const educationGenerated = res.data.data.educationGenerated;
-          // const skillsGenerated = res.data.data.skillsGenerated;
-          // const projectGenerated = res.data.data.projectGenerated;
-
           // state object
           const resumeData = {
             regenerateRequest,
@@ -136,26 +124,26 @@ const Resume = () => {
         format: [canvas.width, canvas.height],
       });
       pdf.addImage(imgData, "PNG", 0, 0, canvas.width, canvas.height);
-  
-      pdf.output('blob').then((blob) => {
+
+      pdf.output("blob").then((blob) => {
         const formData = new FormData();
         formData.append("file", blob, "resume.pdf");
-  
-        axios.post("http://localhost:4000/api/saveResumePdf", formData, {
+
+        axios
+          .post("http://localhost:4000/api/saveResumePdf", formData, {
             headers: {
-                "Content-Type": "multipart/form-data",
+              "Content-Type": "multipart/form-data",
             },
-        }).then(response => {
+          })
+          .then((response) => {
             console.log("PDF uploaded", response);
-        }).catch(error => {
+          })
+          .catch((error) => {
             console.error("Error uploading PDF", error);
-        });
+          });
       });
     });
   };
-  
-
-
 
   return (
     <div className="container">
@@ -277,11 +265,10 @@ const Resume = () => {
           })}
           <ul className="skills-items">{/* ... your skills list ... */}</ul>
         </div>
-        </div>
+      </div>
 
-        <button onClick={generatePdf}>Download as PDF</button>
-        <button onClick={generateAndSendPdf}>Save</button>
-     
+      <button onClick={generatePdf}>Download as PDF</button>
+      <button onClick={generateAndSendPdf}>Save</button>
 
       {/* <div className="skills">
                 <h2>Skills</h2>
