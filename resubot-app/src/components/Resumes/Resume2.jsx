@@ -33,6 +33,8 @@ const Resume2 = () => {
   const grades = resumeData.grades || "";
   const projectTitle = resumeData.projectTitle || "";
   const generatedCompanyInfo = resumeData.generatedCompanyInfo || "";
+  const experienceGenerated1 = resumeData.experienceGenerated1 || "";
+  const experienceGenerated2 = resumeData.experienceGenerated2 || "";
   const experienceData = resumeData.experienceData || "";
   const educationGenerated = resumeData.educationGenerated || "";
   const skillsGenerated = resumeData.skillsGenerated || "";
@@ -77,10 +79,10 @@ const Resume2 = () => {
       })
       .then((res) => {
         if (res.data.message) {
-          // const experienceData = res.data.data.experienceGenerated;
-          // const educationGenerated = res.data.data.educationGenerated;
-          // const skillsGenerated = res.data.data.skillsGenerated;
-          // const projectGenerated = res.data.data.projectGenerated;
+          const experienceData = res.data.data.experienceGenerated;
+          const educationGenerated = res.data.data.educationGenerated;
+          const skillsGenerated = res.data.data.skillsGenerated;
+          const projectGenerated = res.data.data.projectGenerated;
 
           // state object
           const resumeData = {
@@ -176,59 +178,6 @@ const Resume2 = () => {
                     </div>
                   );
                 })}
-                {/* <div class="skill">
-                  <div>
-                    <span>Accounting</span>
-                  </div>
-                </div>
-
-                <div class="skill">
-                  <div>
-                    <span>Word</span>
-                  </div>
-                </div>
-
-                <div class="skill">
-                  <div>
-                    <span>Powerpoint</span>
-                  </div>
-                </div>
-
-                <div class="skill">
-                  <div>
-                    <span>Accounting</span>
-                  </div>
-                </div>
-
-                <div class="skill">
-                  <div>
-                    <span>Marketing</span>
-                  </div>
-                </div>
-
-                <div class="skill">
-                  <div>
-                    <span>Photoshop</span>
-                  </div>
-                </div>
-
-                <div class="skill">
-                  <div>
-                    <span>French</span>
-                  </div>
-                </div>
-
-                <div class="skill">
-                  <div>
-                    <span>English</span>
-                  </div>
-                </div>
-
-                <div class="skill">
-                  <div>
-                    <span>Management</span>
-                  </div>
-                </div> */}
               </div>
             </div>
             <div class="education2">
@@ -258,86 +207,38 @@ const Resume2 = () => {
           <div class="workExperience">
             <h2 className="sectionTitle">Work experience</h2>
             <ul>
-              {companyInfo.map((experience) => {
-                return (
-                  <li className="content">
-                    <div class="jobPosition">
-                      <span class="bolded">{experience.role}</span>
-                    </div>
-                    <div class="companyName bolded">
-                      <span>
-                        {experience.company} - {experience.location}
-                      </span>
-                      <span className="date">{experience.date}</span>
-                    </div>
-                    <div class="smallText">
-                      <ul>
-                        <li>{experience.description}</li>
-                      </ul>
-                    </div>
-                  </li>
-                );
-              })}
-
-              {/* <li className="content">
+              <li className="content">
                 <div class="jobPosition">
-                  <span class="bolded">Digital Marketing Expert</span>
+                  <span class="bolded">{companyInfo[0].role}</span>
                 </div>
                 <div class="companyName bolded">
-                  <span>Company name</span>
-                  <span className="date">Jun 2014 - Sept 2015</span>
+                  <span>
+                    {companyInfo[0].company} - {companyInfo[0].location}
+                  </span>
+                  <span className="date">{companyInfo[0].date}</span>
                 </div>
                 <div class="smallText">
                   <ul>
-                    <li>
-                      Integer commodo ullamcorper mauris, id condimentum lorem
-                      elementum sed. Etiam rutrum eu elit ut hendrerit.
-                      Vestibulum congue sem ac auctor semper. Aenean quis
-                      imperdiet magna. Sed eget ullamcorper enim. Vestibulum
-                      consequat turpis eu neque efficitur blandit sed sit amet
-                      neque. Curabitur congue semper erat nec blandit.
-                    </li>
-                    <li>
-                      Integer commodo ullamcorper mauris, id condimentum lorem
-                      elementum sed. Etiam rutrum eu elit ut hendrerit.
-                      Vestibulum congue sem ac auctor semper. Aenean quis
-                      imperdiet magna. Sed eget ullamcorper enim. Vestibulum
-                      consequat turpis eu neque efficitur blandit sed sit amet
-                      neque. Curabitur congue semper erat nec blandit.
-                    </li>
+                    <li>{experienceGenerated1}</li>
                   </ul>
                 </div>
-              </li> */}
-
-              {/* <li className="content">
+              </li>
+              <li className="content">
                 <div class="jobPosition">
-                  <span class="bolded">Accountant</span>
+                  <span class="bolded">{companyInfo[1].role}</span>
                 </div>
                 <div class="companyName bolded">
-                  <span>Company name</span>
-                  <span className="date">Jun 2017 - May 2020</span>
+                  <span>
+                    {companyInfo[1].company} - {companyInfo[1].location}
+                  </span>
+                  <span className="date">{companyInfo[1].date}</span>
                 </div>
                 <div class="smallText">
                   <ul>
-                    <li>
-                      Integer commodo ullamcorper mauris, id condimentum lorem
-                      elementum sed. Etiam rutrum eu elit ut hendrerit.
-                      Vestibulum congue sem ac auctor semper. Aenean quis
-                      imperdiet magna. Sed eget ullamcorper enim. Vestibulum
-                      consequat turpis eu neque efficitur blandit sed sit amet
-                      neque. Curabitur congue semper erat nec blandit.
-                    </li>
-                    <li>
-                      Integer commodo ullamcorper mauris, id condimentum lorem
-                      elementum sed. Etiam rutrum eu elit ut hendrerit.
-                      Vestibulum congue sem ac auctor semper. Aenean quis
-                      imperdiet magna. Sed eget ullamcorper enim. Vestibulum
-                      consequat turpis eu neque efficitur blandit sed sit amet
-                      neque. Curabitur congue semper erat nec blandit.
-                    </li>
+                    <li>{experienceGenerated2}</li>
                   </ul>
                 </div>
-              </li> */}
+              </li>
             </ul>
             <div class="clear"></div>
           </div>
@@ -348,15 +249,6 @@ const Resume2 = () => {
               <h3>{projectTitle} </h3>
               <p>{projectGenerated}</p>
             </div>
-
-            {/* <div class="sectionContent">
-              <h3>Knowles, Heather, Mogan, Jennifer, et al.</h3>
-              <p>
-                "STING/MPYS mediates host defense against listeria monocytogenes
-                infection by regulating Ly6Chi monocyte migration." The Journal
-                of Immunology 190.6 (2013): 2835-2843.
-              </p>
-            </div> */}
           </div>
         </div>
       </div>
