@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { Form, useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import Loading from "./Loading/Loading";
 import "./FinalResume/Finalresume.scss";
 import resume3 from "../assets/resume_template3.PNG";
 import resume2 from "../assets/resume_template2.PNG";
@@ -30,10 +29,6 @@ const FinalResume = () => {
   const [date, setDate] = useState("");
   const [location, setLocation] = useState("");
   const [description, setDescription] = useState("");
-  //Compnay information
-  // const [companyInfo, setCompanyInfo] = useState([
-  //   { role: "", company: "", start: "", location: "", description: "" },
-  // ]);
 
   //Education information
   const [degree, setDegree] = useState("");
@@ -138,22 +133,30 @@ const FinalResume = () => {
       email: "john.doe@example.com",
       linkedIn: "https://www.linkedin.com/in/johndoe",
       personalLink: "https://www.johndoe.com",
-      role: "Software Developer",
-      company: "ABC Tech",
-      date: "January 2020",
-      location: "New York, NY",
-      description:
-        "Worked as a full stack developer and DBA in a small team of 5, managed projects using Jira...",
-      // companyInfo: [
+      // role: "Software Developer",
+      // company: "ABC Tech",
+      // date: "January 2020",
+      // location: "New York, NY",
+      // description:
+      //   "Worked as a full stack developer and DBA in a small team of 5, managed projects using Jira...",
+      // companyInfo: setCompanyInfo([
       //   {
       //     role: "Software Developer",
       //     company: "ABC Tech",
       //     start: "January 2020",
       //     location: "New York, NY",
-      //     description: "Worked as a full stack developer and DBA in a small team of 5, managed projects using Jira...",
-      //   }
-      //   // Add more work history data as needed
-      // ],
+      //     description:
+      //       "Worked as a full stack developer and DBA in a small team of 5, managed projects using Jira...",
+      //   },
+      //   {
+      //     role: "Frontend Developer",
+      //     company: "XYZ Tech",
+      //     start: "May 2023",
+      //     location: "Vancouver, BC",
+      //     description:
+      //       "Worked as a front end developer using React, HTML, CSS, JavaScript.",
+      //   },
+      // ]),
       degree: "Bachelor of Science",
       schoolName: "University of XYZ",
       schoolLocation: "Los Angeles, CA",
@@ -179,7 +182,6 @@ const FinalResume = () => {
     setCompany(predefinedData.company);
     setLocation(predefinedData.location);
     setDescription(predefinedData.description);
-    // setCompanyInfo(predefinedData.companyInfo);
     setDegree(predefinedData.degree);
     setSchoolName(predefinedData.schoolName);
     setSchoolLocation(predefinedData.schoolLocation);
@@ -189,29 +191,6 @@ const FinalResume = () => {
     setProjectTitle(predefinedData.projectTitle);
     setProjectDescription(predefinedData.projectDescription);
   };
-
-  // //updates the state with user's input
-  // const handleAddCompany = () =>
-  //   setCompanyInfo([
-  //     ...companyInfo,
-  //     { role: "", company: "", start: "", location: "", description: "" },
-  //   ]);
-
-  // // removes a selected item from the list
-  // const handleRemoveCompany = (index) => {
-  //   const list = [...companyInfo];
-  //   list.splice(index, 1);
-  //   setCompanyInfo(list);
-  // };
-
-  // // updates an item within the list
-  // const handleUpdateCompany = (e, index) => {
-  //   const { name, value } = e.target;
-  //   const list = [...companyInfo];
-  //   list[index][name] = value;
-  //   setCompanyInfo(list);
-  //   localStorage.setItem("companyInfo", JSON.stringify(list));
-  // };
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
@@ -265,6 +244,8 @@ const FinalResume = () => {
           const educationGenerated = res.data.data.educationGenerated;
           const skillsGenerated = res.data.data.skillsGenerated;
           const projectGenerated = res.data.data.projectGenerated;
+          const experienceGenerated1 = res.data.data.experienceGenerated1;
+          const experienceGenerated2 = res.data.data.experienceGenerated2;
 
           // state object
           const resumeData = {
@@ -284,6 +265,8 @@ const FinalResume = () => {
             graduation,
             projectTitle,
             grades,
+            experienceGenerated1,
+            experienceGenerated2,
             experienceData,
             educationGenerated,
             skillsGenerated,
