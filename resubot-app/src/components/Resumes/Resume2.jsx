@@ -33,6 +33,8 @@ const Resume2 = () => {
   const grades = resumeData.grades || "";
   const projectTitle = resumeData.projectTitle || "";
   const generatedCompanyInfo = resumeData.generatedCompanyInfo || "";
+  const experienceGenerated1 = resumeData.experienceGenerated1 || "";
+  const experienceGenerated2 = resumeData.experienceGenerated2 || "";
   const experienceData = resumeData.experienceData || "";
   const educationGenerated = resumeData.educationGenerated || "";
   const skillsGenerated = resumeData.skillsGenerated || "";
@@ -258,86 +260,38 @@ const Resume2 = () => {
           <div class="workExperience">
             <h2 className="sectionTitle">Work experience</h2>
             <ul>
-              {companyInfo.map((experience) => {
-                return (
-                  <li className="content">
-                    <div class="jobPosition">
-                      <span class="bolded">{experience.role}</span>
-                    </div>
-                    <div class="companyName bolded">
-                      <span>
-                        {experience.company} - {experience.location}
-                      </span>
-                      <span className="date">{experience.date}</span>
-                    </div>
-                    <div class="smallText">
-                      <ul>
-                        <li>{experience.description}</li>
-                      </ul>
-                    </div>
-                  </li>
-                );
-              })}
-
-              {/* <li className="content">
+              <li className="content">
                 <div class="jobPosition">
-                  <span class="bolded">Digital Marketing Expert</span>
+                  <span class="bolded">{companyInfo[0].role}</span>
                 </div>
                 <div class="companyName bolded">
-                  <span>Company name</span>
-                  <span className="date">Jun 2014 - Sept 2015</span>
+                  <span>
+                    {companyInfo[0].company} - {companyInfo[0].location}
+                  </span>
+                  <span className="date">{companyInfo[0].date}</span>
                 </div>
                 <div class="smallText">
                   <ul>
-                    <li>
-                      Integer commodo ullamcorper mauris, id condimentum lorem
-                      elementum sed. Etiam rutrum eu elit ut hendrerit.
-                      Vestibulum congue sem ac auctor semper. Aenean quis
-                      imperdiet magna. Sed eget ullamcorper enim. Vestibulum
-                      consequat turpis eu neque efficitur blandit sed sit amet
-                      neque. Curabitur congue semper erat nec blandit.
-                    </li>
-                    <li>
-                      Integer commodo ullamcorper mauris, id condimentum lorem
-                      elementum sed. Etiam rutrum eu elit ut hendrerit.
-                      Vestibulum congue sem ac auctor semper. Aenean quis
-                      imperdiet magna. Sed eget ullamcorper enim. Vestibulum
-                      consequat turpis eu neque efficitur blandit sed sit amet
-                      neque. Curabitur congue semper erat nec blandit.
-                    </li>
+                    <li>{experienceGenerated1}</li>
                   </ul>
                 </div>
-              </li> */}
-
-              {/* <li className="content">
+              </li>
+              <li className="content">
                 <div class="jobPosition">
-                  <span class="bolded">Accountant</span>
+                  <span class="bolded">{companyInfo[1].role}</span>
                 </div>
                 <div class="companyName bolded">
-                  <span>Company name</span>
-                  <span className="date">Jun 2017 - May 2020</span>
+                  <span>
+                    {companyInfo[1].company} - {companyInfo[1].location}
+                  </span>
+                  <span className="date">{companyInfo[1].date}</span>
                 </div>
                 <div class="smallText">
                   <ul>
-                    <li>
-                      Integer commodo ullamcorper mauris, id condimentum lorem
-                      elementum sed. Etiam rutrum eu elit ut hendrerit.
-                      Vestibulum congue sem ac auctor semper. Aenean quis
-                      imperdiet magna. Sed eget ullamcorper enim. Vestibulum
-                      consequat turpis eu neque efficitur blandit sed sit amet
-                      neque. Curabitur congue semper erat nec blandit.
-                    </li>
-                    <li>
-                      Integer commodo ullamcorper mauris, id condimentum lorem
-                      elementum sed. Etiam rutrum eu elit ut hendrerit.
-                      Vestibulum congue sem ac auctor semper. Aenean quis
-                      imperdiet magna. Sed eget ullamcorper enim. Vestibulum
-                      consequat turpis eu neque efficitur blandit sed sit amet
-                      neque. Curabitur congue semper erat nec blandit.
-                    </li>
+                    <li>{experienceGenerated2}</li>
                   </ul>
                 </div>
-              </li> */}
+              </li>
             </ul>
             <div class="clear"></div>
           </div>

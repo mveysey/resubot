@@ -138,22 +138,30 @@ const FinalResume = () => {
       email: "john.doe@example.com",
       linkedIn: "https://www.linkedin.com/in/johndoe",
       personalLink: "https://www.johndoe.com",
-      role: "Software Developer",
-      company: "ABC Tech",
-      date: "January 2020",
-      location: "New York, NY",
-      description:
-        "Worked as a full stack developer and DBA in a small team of 5, managed projects using Jira...",
-      // companyInfo: [
+      // role: "Software Developer",
+      // company: "ABC Tech",
+      // date: "January 2020",
+      // location: "New York, NY",
+      // description:
+      //   "Worked as a full stack developer and DBA in a small team of 5, managed projects using Jira...",
+      // companyInfo: setCompanyInfo([
       //   {
       //     role: "Software Developer",
       //     company: "ABC Tech",
       //     start: "January 2020",
       //     location: "New York, NY",
-      //     description: "Worked as a full stack developer and DBA in a small team of 5, managed projects using Jira...",
-      //   }
-      //   // Add more work history data as needed
-      // ],
+      //     description:
+      //       "Worked as a full stack developer and DBA in a small team of 5, managed projects using Jira...",
+      //   },
+      //   {
+      //     role: "Frontend Developer",
+      //     company: "XYZ Tech",
+      //     start: "May 2023",
+      //     location: "Vancouver, BC",
+      //     description:
+      //       "Worked as a front end developer using React, HTML, CSS, JavaScript.",
+      //   },
+      // ]),
       degree: "Bachelor of Science",
       schoolName: "University of XYZ",
       schoolLocation: "Los Angeles, CA",
@@ -265,6 +273,8 @@ const FinalResume = () => {
           const educationGenerated = res.data.data.educationGenerated;
           const skillsGenerated = res.data.data.skillsGenerated;
           const projectGenerated = res.data.data.projectGenerated;
+          const experienceGenerated1 = res.data.data.experienceGenerated1;
+          const experienceGenerated2 = res.data.data.experienceGenerated2;
 
           // state object
           const resumeData = {
@@ -284,6 +294,8 @@ const FinalResume = () => {
             graduation,
             projectTitle,
             grades,
+            experienceGenerated1,
+            experienceGenerated2,
             experienceData,
             educationGenerated,
             skillsGenerated,
