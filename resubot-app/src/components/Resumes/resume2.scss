@@ -173,6 +173,23 @@
       }
     }
   }
+  .download-pdf-button, .save-button {
+    background-color: #f0f0f0; // Example background color, change as needed
+    color: #333; // Example text color, change as needed
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    margin: 5px;
+    cursor: pointer;
+    font-size: 16px; // Adjust font size as needed
+    transition: background-color 0.3s ease, color 0.3s ease;
+  
+    &:hover {
+      background-color: #d0d0d0; // Darker background color on hover
+      color: #000; // Change text color on hover if needed
+    }
+  }
+  
 }
   
   

@@ -316,8 +316,9 @@ const Resume2 = () => {
         </div>
 
       </div>
-      <button onClick={generatePdf}>Download as PDF</button>
-      <button onClick={generateAndSendPdf}>Save</button>
+      <button onClick={generatePdf} className="download-pdf-button">Download as PDF</button>
+<button onClick={generateAndSendPdf} className="save-button">Save</button>
+
     </>
     
   );

@@ -137,9 +137,9 @@ const ProfilePage = ({ isCoverLetter }) => {
           <nav className="level">
             <div className="level-left">
               <div className="level-item">
-              <button onClick={viewSavedResumePDF} className="button is-primary">
+              {/* <button onClick={viewSavedResumePDF} className="button is-primary">
               View Saved Resume
-            </button>
+            </button> */}
                 <p className="title is-4">
                   <a href={isCoverLetter ? "/create_coverletter" : "/finalresume"} className="new-button button is-info">
                     {isCoverLetter ? "New Cover Letter" : "New Resume"}
