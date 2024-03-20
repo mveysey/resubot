@@ -125,6 +125,7 @@ const Resume2 = () => {
       .catch((err) => console.error(err));
   };
 
+
   const generatePdf = () => {
     const resumeElement = document.getElementById("resumeElement");
 
@@ -140,6 +141,36 @@ const Resume2 = () => {
         pdf.save("resume.pdf");
       });
     }, 500); // Adjust delay as needed
+  };
+
+  const generateAndSendPdf = () => {
+    const resumeElement = document.getElementById("resumeElement");
+    html2canvas(resumeElement, { scale: 2 }).then((canvas) => {
+      const imgData = canvas.toDataURL("image/png");
+      const pdf = new jsPDF({
+        orientation: "portrait",
+        unit: "px",
+        format: [canvas.width, canvas.height],
+      });
+      pdf.addImage(imgData, "PNG", 0, 0, canvas.width, canvas.height);
+  
+      // Generate blob from PDF
+      const blob = pdf.output('blob');
+  
+      // Use FormData to send blob to server
+      const formData = new FormData();
+      formData.append("file", blob, "resume.pdf");
+  
+      axios.post("http://localhost:4000/api/resume/saveResumePdf", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }).then(response => {
+        console.log("PDF uploaded", response);
+      }).catch(error => {
+        console.error("Error uploading PDF", error);
+      });
+    });
   };
 
   return (
@@ -160,9 +191,10 @@ const Resume2 = () => {
         />
         <button>Submit Regeneration Request</button>
       </form>
-
+      <div className="container" id="resumeElement">
       <div class="container2">
         <div class="leftPanel">
+        
           <div class="details">
             <div>
               <h1>{fullName}</h1>
@@ -264,8 +296,14 @@ const Resume2 = () => {
             </div>
           </div>
         </div>
+       
+        </div>
+
       </div>
+      <button onClick={generatePdf}>Download as PDF</button>
+      <button onClick={generateAndSendPdf}>Save</button>
     </>
+    
   );
 };
 

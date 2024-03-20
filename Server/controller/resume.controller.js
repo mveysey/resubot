@@ -343,7 +343,6 @@ const resumeController = {
       res.status(500).json({ error: error.message });
     }
   },
-
   getSavedResumePDF: async (req, res) => {
     try {
         const { id } = req.params; // Assuming you're using an ID to fetch the specific resume
@@ -366,6 +365,30 @@ const resumeController = {
         res.status(500).send('Error retrieving the PDF: ' + error.message);
     }
 }
+
+
+//   getSavedResumePDF: async (req, res) => {
+//     try {
+//         const { id } = req.params; // Assuming you're using an ID to fetch the specific resume
+
+//         const pool = await poolPromise;
+//         const request = pool.request();
+
+//         const result = await request
+//             .input('ID', sql.Int, id)
+//             .query('SELECT resumePDF FROM ResumeRecordsPDF WHERE Id = @ID');
+
+//         if (result.recordset.length > 0) {
+//             const pdfBuffer = result.recordset[0].resumePDF;
+//             res.setHeader('Content-Type', 'application/pdf');
+//             res.send(pdfBuffer);
+//         } else {
+//             res.status(404).send('Resume not found');
+//         }
+//     } catch (error) {
+//         res.status(500).send('Error retrieving the PDF: ' + error.message);
+//     }
+// }
 };
 
 module.exports = resumeController;

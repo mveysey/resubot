@@ -1,23 +1,37 @@
-import React, { useState } from 'react';
+// import React, { useState } from 'react';
 import "./ProfilePage.scss";
 import HomeToolBar from "../../components/HomeToolBar/HomeToolBar.jsx";
 import Profiles from "../../components/Profiles/Profiles.jsx";
 import axios from 'axios';
 import resume2 from "../../assets/resume_template2.PNG";
 import PDFViewerPage from "./PDFViewerPage";
+import React, { useState, useEffect } from 'react';
 
 
 const ProfilePage = ({ isCoverLetter }) => {
-  const [resumeID, setResumeID] = useState(1);
+  // const [resumeID, setResumeID] = useState(7);
   const [isLoading, setIsLoading] = useState(false); 
-
+  const [resumes, setResumes] = useState([]);
   const [pdfUrl, setPdfUrl] = useState(""); // State to hold the PDF URL
 
-  const viewSavedResumePDF = async () => {
-    if (resumeID) {
+  // Fetch resumes from the backend API
+  useEffect(() => {
+    const fetchResumes = async () => {
+      try {
+        const response = await axios.get('http://localhost:4000/api/resume/getAllSavedResumes');
+        setResumes(response.data.data);
+      } catch (error) {
+        console.error('Error fetching resumes:', error);
+      }
+    };
+    fetchResumes();
+  }, []);
+
+  const viewSavedResumePDF = async (id) => {
+    if (id) {
       setIsLoading(true);
       try {
-        const response = await axios.get(`http://localhost:4000/api/resume/getResumePdf/${resumeID}`, { responseType: 'blob' });
+        const response = await axios.get(`http://localhost:4000/api/resume/getResumePdf/${id}`, { responseType: 'blob' });
         const pdfBlob = new Blob([response.data], { type: 'application/pdf' });
         const url = URL.createObjectURL(pdfBlob);
         setPdfUrl(url); // Set the PDF URL
@@ -29,6 +43,26 @@ const ProfilePage = ({ isCoverLetter }) => {
       console.log('No resume ID provided');
     }
   };
+
+
+
+
+  // const viewSavedResumePDF = async () => {
+  //   if (resumeID) {
+  //     setIsLoading(true);
+  //     try {
+  //       const response = await axios.get(`http://localhost:4000/api/resume/getResumePdf/${resumeID}`, { responseType: 'blob' });
+  //       const pdfBlob = new Blob([response.data], { type: 'application/pdf' });
+  //       const url = URL.createObjectURL(pdfBlob);
+  //       setPdfUrl(url); // Set the PDF URL
+  //     } catch (error) {
+  //       console.error('Error viewing resume:', error);
+  //     }
+  //     setIsLoading(false);
+  //   } else {
+  //     console.log('No resume ID provided');
+  //   }
+  // };
 
   // const viewSavedResumePDF = async () => {
   //   if (resumeID) {
@@ -86,7 +120,7 @@ const ProfilePage = ({ isCoverLetter }) => {
           <div className="level-item has-text-centered">
             <div>
               <p className="total-header">Total Resumes</p>
-              <p className="title">23</p>
+              <p className="title">{resumes.length}</p> {/* Dynamically display total resumes */}
             </div>
           </div>
           <div className="level-item has-text-centered">
@@ -140,13 +174,24 @@ const ProfilePage = ({ isCoverLetter }) => {
           Loading Saved Resume...
         </div>
       )}
+       <div className="resume-icons">
+        {resumes.map((resume) => (
+          <img
+            key={resume.Id}
+            src={resume2} // Set the image source dynamically based on the resume data
+            alt="Saved Resume Preview"
+            onClick={() => viewSavedResumePDF(resume.Id)}
+            className="resume-preview"
+          />
+        ))}
+      </div>
 
-        <img
+        {/* <img
   src={resume2}
   alt="Saved Resume Preview"
   onClick={() => viewSavedResumePDF()}
   className="resume-preview"
-/>
+/> */}
 
           {/* Render PDFViewerPage if pdfUrl is not empty */}
       {pdfUrl && <PDFViewerPage pdfUrl={pdfUrl} />}
