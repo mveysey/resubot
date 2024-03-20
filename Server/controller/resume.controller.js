@@ -193,19 +193,19 @@ const resumeController = {
       let systemPrompt = `You are a updating a resume for someone who wants this change ${regenerateRequest}. Never forget that change when you are writing the resume.`;
 
       // create prompts to send to openAI API as user
-      const educationPrompt = `Write 5 courses WITH NO DESCRIPTION OF THEM, just list the course names, that I might have taken at ${schoolName} in ${schoolLocation}, getting my degree in ${degree}. My graduation date is ${graduation}. Please look at my ${skills} and ${grades} when choosing these and compare them with the job description I've provided you, making sure I'm demonstarting all of my important courses related to the job. Recall this ${regenerateRequest} when writing EVERYTHING.`;
-      const skillsPrompt = `Write 10 points for my resume on what I am good at given my skills, ${skills}. Also include information from the courses I have taken IF THEY ARE APPLICABLE: here are the courses ${courses}. Don't write a description for any skill, just write the skill.  Recall this ${regenerateRequest} when writing EVERYTHING.`;
+      const educationPrompt = `Write 5 courses WITH NO DESCRIPTION OF THEM, just list the course names, that I might have taken at ${schoolName} in ${schoolLocation}, getting my degree in ${degree}. My graduation date is ${graduation}. Please look at my ${skills} and ${grades} when choosing these and compare them with the job description I've provided you, making sure I'm demonstarting all of my important courses related to the job. Recall this ${regenerateRequest} when writing EVERYTHING. Write 5 courses WITH NO DESCRIPTION OF THEM, just list the course names`;
+      const skillsPrompt = `Write my top 5 skills for my resume given the job description and industry you were provided with and that these are all of my ${skills}. Don't write a description for any skill, just THE NAME of the skill for example "Java" or "Team Player". Recall this ${regenerateRequest} when writing EVERYTHING. Write 5 skills WITH NO DESCRIPTION OF THEM, just list the skill`;
       const projectPrompt = `Write me a 50 word description about my project called ${projectTitle} that consisted of ${projectDescription}.  Recall this ${regenerateRequest} when writing EVERYTHING.`;
 
       //  send context prompt before generating resume info
       const systemMessage = { role: "system", content: systemPrompt };
 
-      const experiencePrompt1 = `Write me a 50 word description about my role at ${companyInfo[0].company} in ${companyInfo[0].location} where I worked as a ${companyInfo[0].role}. I was responsible for ${experienceGen1}. I worked here during ${companyInfo[0].date}`;
+      const experiencePrompt1 = `Write me a 50 word description about my role at ${companyInfo[0].company} in ${companyInfo[0].location} where I worked as a ${companyInfo[0].role}. I was responsible for ${experienceGen1}. Capitalize the first letter of the first sentence. Recall this ${regenerateRequest} when writing EVERYTHING.`;
 
       let experiencePrompt2;
 
       if (companyInfo[1] != null) {
-        experiencePrompt2 = `Write me a 50 word description about my role at ${companyInfo[1].company} in ${companyInfo[1].location} where I worked as a ${companyInfo[1].role}. I was responsible for ${experienceGen2}. I worked here during ${companyInfo[1].date}`;
+        experiencePrompt2 = `Write me a 50 word description about my role at ${companyInfo[1].company} in ${companyInfo[1].location} where I worked as a ${companyInfo[1].role}. I was responsible for ${experienceGen2}. Capitalize the first letter of the first sentence. Recall this ${regenerateRequest} when writing EVERYTHING.`;
       }
 
       const experienceGenerated1 = await generateText([
