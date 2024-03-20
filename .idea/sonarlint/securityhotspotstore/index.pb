@@ -144,3 +144,7 @@ O
 Server/routes/chatbot.router.js,3\9\39298a94675a752a561ee3cee913a32bd13c37e5
 ]
 -.idea/sonarlint/securityhotspotstore/index.pb,8\8\88a9255124c95bdc913197c120a8d560edc59c8e
+_
+/resubot-app/src/pages/Home/Home_CoverLetter.jsx,d\6\d6a065fed010f2441cdfee296aacf8833d7306e4
+Z
+*resubot-app/src/pages/Home/Home_Resume.jsx,e\b\ebe76535d25f986bacf1d0979741f4ca27036b4b
