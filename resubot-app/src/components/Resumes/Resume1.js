@@ -216,6 +216,7 @@ const Resume = () => {
             );
           })}
         </div>
+        
 
         <div className="experience">
           <h2>Experience</h2>

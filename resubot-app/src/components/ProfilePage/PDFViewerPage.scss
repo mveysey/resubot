@@ -1,0 +1,28 @@
+/* PDFViewerPage.scss */
+.pdf-viewer-page {
+    font-family: Arial, sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  header img {
+    width: 50px; /* Adjust size as needed */
+    margin-right: 10px;
+  }
+  
+  header h1 {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  main {
+    border: 1px solid #ccc;
+    padding: 20px;
+  }
+  

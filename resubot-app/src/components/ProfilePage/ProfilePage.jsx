@@ -4,24 +4,48 @@ import HomeToolBar from "../../components/HomeToolBar/HomeToolBar.jsx";
 import Profiles from "../../components/Profiles/Profiles.jsx";
 import axios from 'axios';
 import resume2 from "../../assets/resume_template2.PNG";
+import PDFViewerPage from "./PDFViewerPage";
+
 
 const ProfilePage = ({ isCoverLetter }) => {
-  const [resumeID, setResumeID] = useState(1); // Assuming you will get this ID somehow
+  const [resumeID, setResumeID] = useState(1);
+  const [isLoading, setIsLoading] = useState(false); 
+
+  const [pdfUrl, setPdfUrl] = useState(""); // State to hold the PDF URL
 
   const viewSavedResumePDF = async () => {
     if (resumeID) {
+      setIsLoading(true);
       try {
         const response = await axios.get(`http://localhost:4000/api/resume/getResumePdf/${resumeID}`, { responseType: 'blob' });
         const pdfBlob = new Blob([response.data], { type: 'application/pdf' });
-        const pdfUrl = URL.createObjectURL(pdfBlob);
-        window.open(pdfUrl, '_blank'); // Open in a new tab
+        const url = URL.createObjectURL(pdfBlob);
+        setPdfUrl(url); // Set the PDF URL
       } catch (error) {
         console.error('Error viewing resume:', error);
       }
+      setIsLoading(false);
     } else {
       console.log('No resume ID provided');
     }
   };
+
+  // const viewSavedResumePDF = async () => {
+  //   if (resumeID) {
+  //     setIsLoading(true);
+  //     try {
+  //       const response = await axios.get(`http://localhost:4000/api/resume/getResumePdf/${resumeID}`, { responseType: 'blob' });
+  //       const pdfBlob = new Blob([response.data], { type: 'application/pdf' });
+  //       const pdfUrl = URL.createObjectURL(pdfBlob);
+  //       window.open(pdfUrl, '_blank'); // Open in a new tab
+  //     } catch (error) {
+  //       console.error('Error viewing resume:', error);
+  //     }
+  //     setIsLoading(false); // Set loading to false
+  //   } else {
+  //     console.log('No resume ID provided');
+  //   }
+  // };
   
 
   // const viewSavedResumePDF = async () => {
@@ -108,12 +132,24 @@ const ProfilePage = ({ isCoverLetter }) => {
           </nav>
         </div>
         <div className="toolbar-bar" />
+   
+
+           {/* Loading prompt */}
+      {isLoading && (
+        <div className="loading-prompt">
+          Loading Saved Resume...
+        </div>
+      )}
+
         <img
   src={resume2}
   alt="Saved Resume Preview"
   onClick={() => viewSavedResumePDF()}
   className="resume-preview"
 />
+
+          {/* Render PDFViewerPage if pdfUrl is not empty */}
+      {pdfUrl && <PDFViewerPage pdfUrl={pdfUrl} />}
 
         
 

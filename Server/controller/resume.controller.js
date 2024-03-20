@@ -9,6 +9,9 @@ const sql = require("mssql");
 const multer = require("multer");
 const upload = multer();
 const fs = require("fs");
+const redis = require('redis');
+const client = redis.createClient();
+
 const resumeController = {
   // Create a resume entry logic
   createResumeEntry: async (req, res) => {
@@ -278,7 +281,7 @@ const resumeController = {
       res.status(500).json({ error: error.message });
     }
   },
-
+ 
   saveResumePDF: async (req, res) => {
     try {
       // Ensure that a file is received
@@ -340,9 +343,10 @@ const resumeController = {
       res.status(500).json({ error: error.message });
     }
   },
+
   getSavedResumePDF: async (req, res) => {
     try {
-        const { id } = req.params; 
+        const { id } = req.params; // Assuming you're using an ID to fetch the specific resume
 
         const pool = await poolPromise;
         const request = pool.request();
