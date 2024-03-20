@@ -6,22 +6,18 @@ import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
 
 const Resume2 = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
   const [regenerateRequest, setRegenerateRequest] = useState("");
   const navigate = useNavigate();
 
   const location = useLocation();
-  // const resumeData = location.state?.resumeData || {};
   const [resumeData, setResumeData] = useState(
     location.state?.resumeData || {}
-  ); // Declare a state to hold your resume data
+  );
 
-  // Add useEffect here
   useEffect(() => {
     // This will update resumeData state whenever location.state changes
     setResumeData(location.state?.resumeData || {});
-  }, [location.state]); // Dependency array, effect runs on change of location.state
+  }, [location.state]);
 
   const fullName = resumeData.fullName || "";
   const phoneNumber = resumeData.phoneNumber || "";
@@ -164,6 +160,7 @@ const Resume2 = () => {
         />
         <button>Submit Regeneration Request</button>
       </form>
+
       <div class="container2">
         <div class="leftPanel">
           <div class="details">

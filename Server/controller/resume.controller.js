@@ -92,12 +92,12 @@ const resumeController = {
       //  send context prompt before generating resume info
       const systemMessage = { role: "system", content: systemPrompt };
 
-      const experiencePrompt1 = `Write me a 50 word description about my role at ${companyInfo[0].company} in ${companyInfo[0].location} where I worked as a ${companyInfo[0].role}. I was responsible for ${companyInfo[0].description}. I worked here during ${companyInfo[0].date}`;
+      const experiencePrompt1 = `Write me a 50 word description about my role at ${companyInfo[0].company} in ${companyInfo[0].location} where I worked as a ${companyInfo[0].role}. I was responsible for ${companyInfo[0].description}`;
 
       let experiencePrompt2;
 
       if (companyInfo[1] != null) {
-        experiencePrompt2 = `Write me a 50 word description about my role at ${companyInfo[1].company} in ${companyInfo[1].location} where I worked as a ${companyInfo[1].role}. I was responsible for ${companyInfo[1].description}. I worked here during ${companyInfo[1].date}`;
+        experiencePrompt2 = `Write me a 50 word description about my role at ${companyInfo[1].company} in ${companyInfo[1].location} where I worked as a ${companyInfo[1].role}. I was responsible for ${companyInfo[1].description}`;
       }
 
       const experienceGenerated1 = await generateText([
