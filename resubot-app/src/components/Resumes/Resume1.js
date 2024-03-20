@@ -124,26 +124,26 @@ const Resume = () => {
         format: [canvas.width, canvas.height],
       });
       pdf.addImage(imgData, "PNG", 0, 0, canvas.width, canvas.height);
-
-      pdf.output("blob").then((blob) => {
-        const formData = new FormData();
-        formData.append("file", blob, "resume.pdf");
-
-        axios
-          .post("http://localhost:4000/api/saveResumePdf", formData, {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          })
-          .then((response) => {
-            console.log("PDF uploaded", response);
-          })
-          .catch((error) => {
-            console.error("Error uploading PDF", error);
-          });
+  
+      // Generate blob from PDF
+      const blob = pdf.output('blob');
+  
+      // Use FormData to send blob to server
+      const formData = new FormData();
+      formData.append("file", blob, "resume.pdf");
+  
+      axios.post("http://localhost:4000/api/resume/saveResumePdf", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }).then(response => {
+        console.log("PDF uploaded", response);
+      }).catch(error => {
+        console.error("Error uploading PDF", error);
       });
     });
   };
+  
 
   return (
     <div className="container">
