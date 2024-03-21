@@ -23,7 +23,7 @@ const config = {
     encrypt: true,
     trustServerCertificate: true
   }, 
-  requestTimeout: 60000 // Example: 30 seconds
+  requestTimeout: 210000 // Example: 30 seconds
 
 };
 

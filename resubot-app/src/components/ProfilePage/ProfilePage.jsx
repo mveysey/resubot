@@ -126,7 +126,7 @@ const ProfilePage = ({ isCoverLetter }) => {
           <div className="level-item has-text-centered">
             <div>
               <p className="total-header">Total Cover Letters</p>
-              <p className="title">13</p>
+              <p className="title">0</p>
             </div>
           </div>
         </nav>
