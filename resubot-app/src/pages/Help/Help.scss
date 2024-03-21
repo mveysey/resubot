@@ -1,19 +1,71 @@
+
+// Apply a base font and background to the entire page
 .help-wrapper {
-  padding: 50px;
-  font-family: "Poppins", sans-serif;
+  background-color: #f5f7fa;
+  padding: 20px;
 
-  .help-title {
-    font-size: 2rem;
-    margin-bottom: 1rem;
+  .help-title{
+    font-size: 40px;
+    font-weight: 600;
+    text-align: center;
+    color: var(--dark-color);
+    margin: 20px;
   }
 
+  // Style the boxes
   .box {
-    margin-bottom: 1.1rem;
-  }
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+    padding: 20px;
 
-  p {
-    line-height: 1.5;
-    font-family: Roboto, sans-serif;
-  }
+    // Style notifications
+    .notification {
+      padding: 15px;
+      border-left: 3px solid #3498db; // A nice shade of blue
+      background-color: #fff;
+      
+      
+      h1, h2 {
+        color: darken(#3498db, 20%);
+      }
 
+
+      .title {
+        margin-top: 10px;
+      }
+
+      .subtitle, p {
+        font-size: 0.9rem;
+        line-height: 1.6;
+      }
+
+      strong {
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+// Additional styling for titles
+.help-title, .title {
+  font-weight: normal;
+  color: darken(#3498db, 10%);
+}
+
+
+
+// Ensure the 'Getting Started' and other sections stand out
+.title.is-4 {
+  font-size: 1.25rem;
+  margin-bottom: 15px;
+}
+
+// Style for paragraphs to enhance readability
+p {
+  margin-bottom: 10px;
+  &:last-child {
+    margin-bottom: 0;
+  }
 }

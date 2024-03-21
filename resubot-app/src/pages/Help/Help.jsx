@@ -6,10 +6,9 @@ import './Help.scss'
 const HelpPage = () =>
     (
         <div className="help-wrapper">
-            <section className="box">
-                <div className="notification is-info">
-                    <h1 className="help-title">Help Page</h1>
-                    <p className="subtitle">Welcome to our Help Center!</p>
+            <section>
+                <div>
+                    <h1 className="help-title">Welcome to our Help Center!</h1>
                 </div>
             </section>
 
