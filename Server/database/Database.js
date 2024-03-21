@@ -22,7 +22,9 @@ const config = {
   options: {
     encrypt: true,
     trustServerCertificate: true
-  }
+  }, 
+  requestTimeout: 60000 // Example: 30 seconds
+
 };
 
 

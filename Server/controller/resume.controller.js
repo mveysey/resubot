@@ -9,8 +9,7 @@ const sql = require("mssql");
 const multer = require("multer");
 const upload = multer();
 const fs = require("fs");
-const redis = require('redis');
-const client = redis.createClient();
+
 
 const resumeController = {
   // Create a resume entry logic
