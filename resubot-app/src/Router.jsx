@@ -18,11 +18,11 @@ import Preferences from "./pages/Preferences/Preferences.jsx";
 import Loading from "./pages/Loading/Loading.jsx";
 import CreateResume from "./pages/CreateResume/CreateResume.jsx";
 import FinalResume from "./pages/FinalResume.jsx";
-import ProtectedRoute from "./common/protectedRoute.js"; 
 import CreateCoverletter from "./pages/CreateCoverLetter/Coverletter.jsx";
 import CardSlider from "./components/TemplateSlider/Slider.jsx";
 import CoverLetter from './components/CoverLetterTemplates/Coverletter_Templates.jsx';
 import ResumeGenerationLandingPage from './pages/ResumeGenerationLandingPage';
+import Admin from "./pages/Admin/Admin.jsx";
 
 
 
@@ -34,12 +34,14 @@ const Router = () => (
                 {/* Landing Page */}
                 <Route path="/" element={<Landing/>}/>
                 <Route path="/profile_resume" element={<Home/>}/>
+                <Route path="/home" element={<Home/>}/>
                 <Route path="/profile_coverletter" element={<Home2/>}/>
                 <Route path="/register" element={<Register/>}/>
                 <Route path="/login" element={<Login/>}/>
                 <Route path="/resume1" element={<Resume/>}/>
                 <Route path="/resume2" element={<Resume2/>}/>
                 <Route path="/resume3" element={<Resume3/>}/>
+                <Route path="/admin" element={<Admin/>}/>
                 <Route path="/resume4" element={<Resume4/>}/>
                 <Route path="/help" element={<Help/>}/>
                 <Route path="/chatbot" element={<ChatbotPage/>}/>
