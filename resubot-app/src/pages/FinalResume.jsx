@@ -158,7 +158,8 @@ const FinalResume = () => {
       graduation: "May 2019",
       grades:
         "data structures and algorithms: 85%, advanced java programming: 99%, python programming: 90%, intro to django: 90%, Advanced unit testing: 100%, Intro to pyUnit: 90%, Advanced databases: 75%, Leadership in Business: 50%, Accounting: 80%, Intro to Psychology: 88%, Physical Living 2000: 80%",
-      skills: "React, JavaScript, Node.js, HTML, CSS",
+      skills:
+        "React, JavaScript, Node.js, HTML, CSS, Django, Flask, NumPy, Python",
       projectTitle: "Portfolio Website",
       projectDescription:
         "Created a personal portfolio website using latest fullstack technologies....",
