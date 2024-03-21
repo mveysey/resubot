@@ -140,5 +140,18 @@
       line-height: 0.8em;
       margin-bottom: 4px;
     }
+    
+  .saving-prompt {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+    text-align: center;
+    z-index: 100;
+  }
   }
   

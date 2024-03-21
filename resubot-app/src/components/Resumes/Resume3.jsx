@@ -13,6 +13,7 @@ const Resume3 = () => {
   const [resumeData, setResumeData] = useState(
     location.state?.resumeData || {}
   );
+  const [isSaving, setIsSaving] = useState(false); // New state for loading prompt
 
   useEffect(() => {
     // This will update resumeData state whenever location.state changes
@@ -143,6 +144,7 @@ const Resume3 = () => {
   
 
   const generateAndSendPdf = () => {
+    setIsSaving(true); // Set loading prompt to visible
     const resumeElement = document.getElementById("resumeElement");
     const { width, height } = resumeElement.getBoundingClientRect(); // Get bounding rectangle dimensions
   
@@ -173,8 +175,10 @@ const Resume3 = () => {
           },
         }).then(response => {
           console.log("PDF uploaded", response);
+          setIsSaving(false); // Hide loading prompt after save
         }).catch(error => {
           console.error("Error uploading PDF", error);
+          setIsSaving(false); // Hide loading prompt after save
         });
       });
     }, 500); // Adjust delay as needed
@@ -296,6 +300,7 @@ const Resume3 = () => {
       </div>
       <button onClick={generatePdf}>Download as PDF</button>
       <button onClick={generateAndSendPdf}>Save</button>
+      {isSaving && <div className="saving-prompt">Saving your resume...</div>}
     </>
   );
 };
